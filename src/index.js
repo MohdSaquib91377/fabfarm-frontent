@@ -10,7 +10,7 @@ import './css/responsive.css';
 import App from './App';
 ReactDOM.render(
   <React.StrictMode>
-    <div id="wrapper">
+    <div className='clv_main_wrapper index_v4'>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <App />

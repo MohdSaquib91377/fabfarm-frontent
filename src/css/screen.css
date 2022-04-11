@@ -1,0 +1,145 @@
+@media(min-width:999px){
+    .hideMin999{ display: none;}
+}
+
+@media(max-width:999px){
+    .container p{ font-size: calc(1.5vw + 1rem) !important; line-height: 2 !important;}
+    .button a{font-size: calc(2vw + 1.5rem);  padding:5vw; }
+    /*********Reset*******/
+    .hideMax999{ display: none;}
+    .flexiFont{ font-size: calc(0.5vw + 2rem);}
+    .inner{ padding:0 15px;}     
+    .mainGrid2,.mainGrid2 .button,.mainGrid3{ margin: 40px 0;}
+
+    .mainGrid3 .col{ width: 100%; display: block;}
+
+    /*********Flexi Nav*********/
+    .logo, .nav{ padding: 12px 0;}
+    .logo{ width: 45%;}
+    .menuIcon{ display: inline-block; vertical-align: middle; width: 40px; text-align: right; position: absolute; right: 15px; margin-top: 8%;}
+    .menuIcon p{ border-top: 5px solid #000; margin: 6px 0;}
+
+    .bannerArt h2{ font-size: calc(2vw + 1.5rem);}
+    .bannerArt p{ font-size: calc(1.5vw + 1rem);}
+    .bannerArt a{ font-size: calc(1.5vw + 1.2rem); padding:5vw; margin-top: 5vw;}
+
+    /*********Main Grids*********/
+    .mainGrid1{ margin-bottom: 40px;}
+    .mainGrid1 .title h1{ font-size: calc(1.5vw + 1.5rem);}
+    .mainGrid1 .title h1{ margin:30px 0 40px 0;}
+    .mainGrid1 .col{ display: block; width: 100%;}
+    .mainGrid1 .fig{ text-align: center; margin-bottom: 40px;}
+    .mainGrid1 .fig img{ width: 80%;}
+    .mainGrid1 .art{ padding: 30px 20px;}
+    .mainGrid1 .art p{font-size: calc(1vw + 1.5rem); line-height: 1.6;}
+
+    .mainGrid2 .thumbBlog{ padding: 5vw 0;}
+    .mainGrid2 .thumbBlog img{ width: 45%; margin:2%;}
+
+    .mainGrid3 .art h2{ font-size: calc(1.5vw + 1.5rem); line-height: 1.4;}
+    .mainGrid3 .art p { margin-top: 0;}
+    .mainGrid3 .art p span{ display: none;}
+    .mainGrid3 .bgArt .pattern{ width: 66%;}
+    .mainGrid3 .bgArt .seeds{ width: 33%;}
+    .mainGrid3 .art{ padding:20px 40px 0 40px;}
+
+    .mainGrid4 .figArt .col:first-child{ margin-left:0;}
+    .mainGrid4 .figArt .col{ width: 45%; margin: 20px 0px; padding: 0 15px;}
+    .mainGrid4 .figArt .col h4{ font-size: calc(1vw + 1.2rem);}
+
+    /****************Inside Main************/
+    .seedsGrid .figArt{ }
+    .seedsGrid .figArt .col{ width: 45%; text-align: center;}
+    .seedsGrid .figArt .col .fig{}
+    
+
+    .footer .col h3{ font-size: calc(0.8vw + 1.2rem);}
+    .footer .col li{ font-size: calc(0.4vw + 1rem); margin: 20px 0;}
+    
+    .socialIcons li{ background-size: initial !important; width: 50px; height: 50px; padding:10px 0;}
+    .socialIcons a.iconFb,.socialIcons a.iconIn,.socialIcons a.iconTwitter,.socialIcons a.iconInsta{ width: 30px; height: 30px; background-size: cover !important;}
+
+    .copyRights img{ max-width: 100%;}  
+    .copyRights p{font-size: calc(0.4vw + 1rem); line-height: 1.6;}  
+}
+
+@media(max-width:769px){
+    .menuIcon{margin-top: 10%;}   
+
+    /*********Top Panel*********/
+    .topPanel{ overflow: hidden;}
+    .registerBlock{ margin-top: -40px;}
+    .topPanel .language{ float: right;}
+    .topPanel .weather{ display: block; margin-top: 15px;}
+    /*********Main Grids*********/
+    .footer .col{ width: 30%;}
+    .footer .col h3{ font-size: calc(0.6vw + 1rem);}
+    .footer .col li{ font-size: calc(0.4vw + 0.8rem); margin: 20px 0; background-size:initial !important; min-height: 1.4 !important;}
+    .footer .col3 li span{ background-size:initial !important; width: 32px; height: 32px;}
+    .footer .col3 li a{ margin-top: 6px;}
+    .footer{}
+    
+    .socialIcons li{ background-size:initial !important; width: 50px; height: 50px; padding:10px 0;}
+}
+@media(max-width:640px){
+    .container p{ line-height: 1.2 !important;}
+
+    /*********Flexi Nav*********/
+    .menuIcon{margin-top: 12%;}    
+    .bannerArt{ top: 25%;}
+
+    /*********Main Grids*********/
+    .mainGrid1 .art p{font-size: calc(0.8vw + 1.2rem); line-height: 1.4; margin-top: 0; margin-right: 0;}
+    .mainGrid1 .art .smallFig{ margin-left: 0;}
+    .mainGrid1 .art .smallFig img{ max-width: 32%;}
+    .mainGrid4 .figArt .col h4{ font-size: calc(0.5vw + 1.2rem);}
+
+    .mainGrid3 .bgArt{ padding-right: 15px;}
+    .mainGrid3 .bgArt .pattern{ width: 100%;}
+    
+    .mainGrid3 .bgArt .seeds{ position: relative; top: -180px; left: 80px;}
+    .mainGrid3 .bgArt .seeds img{ margin-left: 65px; width: 100%; }
+    .mainGrid3 .bgArt .butn{ text-align: center; margin-top: -50px;}
+}
+@media(max-width:480px){
+    .container p{ line-height: 1.8 !important;}
+    /*********Top Panel*********/
+    .topPanel .location,.topPanel .weather,.topPanel .language a{ display: none;}
+    .topPanel .language{ float: left; margin-right: 5px ;}
+    .topPanel .language select{ font-size: 16px;}
+    .registerBlock a:first-child{ background: 0 none; padding-left: 0;}
+    .registerBlock{ float: right; width: auto; margin-top: -30px;}
+    .registerBlock a{ font-size: calc(0.4vw + 1rem); background: none;}
+
+    /*********Flexi Nav*********/
+    .menuIcon{margin-top: 9%;}
+
+    .nav{ top: 40%;}
+    
+    .bannerArt{ top: 15%;}
+    .bannerArt h2{ font-size: calc(1.5vw + 1.5rem);}
+    .bannerArt p{ font-size: calc(1vw + 1rem); line-height: 1.2 !important;}
+    .bannerArt a{  font-size: calc(1vw + 1.2rem); padding:5vw 30px;}
+
+    /*********Main Grids*********/
+    .mainGrid1 .art h4{ margin-bottom: 20px; font-size: calc(1.5vw + 1.5rem);}
+    .mainGrid1 .art p{font-size: calc(0.8vw + 1.2rem); line-height: 1.4; margin-top: 0; margin-right: 0;}
+    .mainGrid1 .art p span{ display: none;}
+    .mainGrid1 .art .smallFig{ display: block; margin-top: 20px; text-align: center;}
+    .mainGrid1 .art .smallFig img{ max-width: 80%; display: block;}  
+
+    .mainGrid3 .bgArt .pattern h3{ font-size: calc(1vw + 1.2rem); }
+    .mainGrid3 .bgArt .seeds{ width: 40%; top: -165px; left: 50px;}
+    .mainGrid3 .bgArt .seeds img{ margin-left: 0; width: 100%;}
+    .mainGrid3 .bgArt .butn a{ padding:15px 40px;font-size: calc(1.5vw + 1.5rem); line-height: 1.2;}
+    
+    .mainGrid4 .figArt .col { display: block; width: 99%;}
+    
+    .footer .col{ width: 100%; margin-bottom: 20px;}
+    .footer .col h3{font-size:calc(1vw + 1.5rem);} 
+    .footer .col li{ font-size: calc(0.5vw + 1rem);}
+    .socialIcons{ margin-bottom: 20px;}
+    .footEnd{ margin-top: 0;}
+    
+}
+

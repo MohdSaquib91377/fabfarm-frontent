@@ -1,0 +1,1122 @@
+/*****Sandeep's Style****/
+/*****font-family: 'Open Sans', sans-serif;*font-family: 'Roboto', sans-serif;****/
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #222;
+  font-size: 1rem;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ul,
+ol,
+li {
+  list-style: none;
+  border: 0 none;
+}
+
+a {
+  text-decoration: none;
+  border: 0 none;
+}
+input,
+select,
+button {
+  border: 0 none;
+  background: none;
+  outline: none;
+}
+/********Common Style Here************/
+.button {
+  text-align: center;
+}
+.button a {
+  font-family: Open Sans;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 70px;
+  color: #fff;
+  line-height: 64px;
+  display: inline-block;
+  background: rgba(80, 169, 78, 0.89);
+  border: 1px solid #04a700;
+  padding: 80px 90px;
+  border-radius: 30px;
+}
+.buttonCart a {
+  background: rgba(80, 169, 78, 0.89);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 12px 75px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 35px;
+  color: #ffffff;
+}
+.buttonMore a {
+  display: inline-block;
+  background: #870606;
+  padding: 25px 40px 29px 40px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 41px;
+  color: #ffffff;
+}
+
+.inner {
+  max-width: 1920px;
+  padding: 0 75px;
+  margin: 0 auto;
+}
+.title h1,
+.title h2 {
+  font-size: 40px;
+  font-weight: 600;
+  margin: 40px 0;
+  line-height: 1.4;
+}
+
+/********Header************/
+.header {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.09);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.topPanel {
+  background: #5d6065;
+  color: #fff;
+  padding: 12px 0;
+}
+.topPanel a {
+  color: #fff;
+}
+.topPanel .location,
+.topPanel .language,
+.topPanel .weather {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 40px;
+}
+.topPanel .location {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  border: 1px solid #fff;
+  padding: 6px 12px;
+  background: url(../../public/images/icons/location.png) no-repeat 0 center;
+  min-height: 40px;
+  padding-left: 35px;
+}
+.topPanel .language {
+  background: url(../../public/images/icons/global.png) no-repeat 0 0;
+  min-height: 30px;
+  padding-left: 40px;
+}
+.topPanel .language select {
+  vertical-align: middle;
+  background: none;
+  color: #fff;
+  font-size: 24px;
+}
+.topPanel .language select option {
+  color: #000;
+}
+.topPanel .weather {
+  margin-right: 0;
+  font-size: 34px;
+  background: url(../../public/images/icons/weatherCircle.png) no-repeat 0 0;
+  padding-left: 50px;
+  min-height: 40px;
+}
+.topPanel .weather p {
+  font-size: 13px;
+  line-height: 15px;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: "Roboto", sans-serif;
+}
+.topPanel .weather sup {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Roboto", sans-serif;
+}
+
+.registerBlock {
+  margin-top: 6px;
+}
+.registerBlock a {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 20px;
+  padding: 6px 0;
+}
+.registerBlock a:first-child {
+  background: url(../../public/images/icons/login.png) no-repeat 0 center;
+  min-height: 32px;
+  padding-right: 12px;
+  margin-right: 8px;
+  padding-left: 40px;
+  border-right: 1px solid #fff;
+}
+.registerBlock a:last-child {
+  background: rgba(80, 169, 78, 0.89);
+  border-radius: 4px;
+  padding: 6px 20px 8px 20px;
+}
+
+.logo,
+.nav {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 20px 0;
+}
+.logo {
+  width: 20%;
+}
+.logo img {
+  max-width: 100%;
+}
+.nav {
+  text-align: right;
+  width: 79%;
+}
+.nav li {
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0 30px;
+  font-weight: 600;
+  font-size: 36px;
+  position: relative;
+}
+.nav li.downArrow {
+  background: url(../../public/images/icons/downArrow.png) no-repeat right
+    center;
+  padding-right: 40px;
+}
+.nav li.downArrow:hover {
+  background: url(../../public/images/icons/downArrowHovr.png) no-repeat right
+    center;
+  padding-right: 40px;
+}
+.nav li:hover a {
+  color: rgba(80, 169, 78, 0.89);
+}
+.nav li:last-child {
+  margin-right: 0;
+}
+.nav li .dropdown {
+  display: none;
+}
+.nav li:hover .dropdown {
+  position: absolute;
+  display: block;
+  z-index: 9;
+  text-align: left;
+}
+.nav li:hover .dropdown ul {
+  padding: 25px;
+  margin-top: 30px;
+  border: 2px #e7e7e7 solid;
+  background: #fff;
+}
+.nav li .dropdown li {
+  margin: 0;
+}
+.nav li:hover .dropdown a {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 26px;
+  display: block;
+}
+.nav li:hover .dropdown li:hover a {
+  color: rgba(80, 169, 78, 0.89);
+}
+.nav li:hover .dropdown li {
+  padding-left: 45px;
+  margin-bottom: 20px;
+  min-height: 32px;
+}
+.nav li:hover .dropdown li:last-child {
+  margin-bottom: 0;
+}
+.nav li:hover .dropdown li.seeds {
+  background: url(../../public/images/icons/coffee-seed.png) no-repeat 0 center;
+}
+.nav li:hover .dropdown li.fertilizers {
+  background: url(../../public/images/icons/fertilizers.png) no-repeat 0 center;
+}
+.nav li:hover .dropdown li.profile {
+  background: url(../../public/images/icons/profile.png) no-repeat 0 center;
+}
+.nav li:hover .dropdown li.wallet {
+  background: url(../../public/images/icons/wallet.png) no-repeat 0 center;
+}
+.nav li:hover .dropdown li.weather {
+  background: url(../../public/images/icons/weather.png) no-repeat 0 center;
+}
+.nav li:hover .dropdown li.notification {
+  background: url(../../public/images/icons/notification.png) no-repeat 0 center;
+}
+.nav li:hover .dropdown li.order {
+  background: url(../../public/images/icons/order.png) no-repeat 0 center;
+}
+.nav li:hover .dropdown li.logout {
+  background: url(../../public/images/icons/logout.png) no-repeat 0 center;
+}
+
+/********Banner************/
+.banner {
+  position: relative;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.09);
+}
+.banner img {
+  width: 100%;
+}
+.bannerBG {
+  background: rgba(0, 0, 0, 0.55);
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  opacity: 0.45;
+}
+.bannerArt {
+  position: absolute;
+  top: 35%;
+  text-align: center;
+  color: #fff;
+  min-width: 100%;
+  right: 0;
+  bottom: 0;
+}
+.bannerArt h2 {
+  font-size: 74px;
+  margin: 0;
+  font-weight: 800;
+}
+.bannerArt p {
+  font-size: 32px;
+  font-weight: 800;
+  margin-top: 12px;
+}
+.bannerArt a {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  margin-top: 45px;
+  font-size: 50px;
+  border-radius: 15px;
+  display: inline-block;
+  padding: 30px;
+}
+
+/********Main Page(Index)************/
+.mainGrid1 {
+  margin: 0px 0 140px 0;
+}
+.mainGrid1 .title h1 {
+  text-align: center;
+  max-width: 1140px;
+  margin: 80px auto;
+  font-style: italic;
+}
+.mainGrid1 .col {
+  width: 49%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.mainGrid1 .fig img {
+  max-width: 100%;
+}
+.mainGrid1 .art {
+  position: relative;
+  background: rgba(80, 169, 78, 0.06);
+  padding: 100px 60px 40px 60px;
+  border: 3px solid #eaecea;
+  box-sizing: border-box;
+  border-radius: 83px;
+}
+.mainGrid1 .art h4 {
+  color: #0bb207;
+  font-size: 42px;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+.mainGrid1 .art p {
+  margin-right: 15px;
+  font-size: 36px;
+  font-style: italic;
+  line-height: 64px;
+  font-weight: 600;
+}
+.mainGrid1 .art .smallFig {
+  /*position: absolute; right: 0; bottom: 0;*/
+  text-align: right;
+  margin-top: -100px;
+}
+
+.mainGrid2 {
+  margin: 60px 0;
+}
+.mainGrid2 .thumbBlog {
+  padding: 120px 0;
+  border-radius: 30px;
+  border: 5px solid #e4e4e4;
+  text-align: center;
+}
+.mainGrid2 .thumbBlog img {
+  margin: 0 50px;
+}
+.mainGrid2 .button {
+  margin: 140px 0;
+}
+
+.mainGrid3 {
+  margin-bottom: 140px;
+}
+.mainGrid3 .col {
+  display: inline-block;
+  vertical-align: middle;
+  width: 49%;
+}
+.mainGrid3 .bgArt {
+  background: rgba(82, 148, 226, 0.37);
+  border-radius: 110px;
+  padding: 0 100px 60px 0px;
+}
+.mainGrid3 .bgArt .pattern {
+  width: 62%;
+  min-height: 571px;
+  background: url(../../public/images/midEllipse1.png) no-repeat right 0;
+  padding: 80px 40px 40px 40px;
+}
+.mainGrid3 .bgArt .pattern h3 {
+  font-size: 42px;
+  color: rgba(0, 0, 0, 0.63);
+  line-height: 1.4;
+}
+.mainGrid3 .bgArt .pattern span {
+  color: #5cae60;
+}
+.mainGrid3 .bgArt .pattern p {
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Open Sans;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 64px;
+  margin-top: 20px;
+}
+.mainGrid3 .bgArt .butn {
+  text-align: right;
+  margin-top: 40px;
+}
+.mainGrid3 .bgArt .butn a {
+  background: rgba(134, 179, 7, 0.82);
+  border-radius: 10px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 42px;
+  line-height: 57px;
+  padding: 18px 95px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+.mainGrid3 .bgArt .pattern,
+.mainGrid3 .bgArt .seeds {
+  display: inline-block;
+  vertical-align: bottom;
+}
+.mainGrid3 .bgArt .seeds {
+  width: 37%;
+  text-align: center;
+}
+.mainGrid3 .bgArt .seeds img {
+  margin-left: -30px;
+}
+
+.mainGrid3 .art {
+  padding-left: 140px;
+}
+.mainGrid3 .art h2 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 68px;
+  color: #0bb307;
+}
+.mainGrid3 .art p {
+  font-family: Open Sans;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: 20px;
+  font-size: 36px;
+  line-height: 64px; /* or 178% */
+  color: rgba(0, 0, 0, 0.76);
+}
+
+.mainGrid4 .figArt {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.mainGrid4 .figArt .col {
+  display: inline-block;
+  vertical-align: top;
+  width: 22.5%;
+  margin: 0 1%;
+}
+.mainGrid4 .figArt .col:first-child {
+  margin-left: 0;
+}
+.mainGrid4 .figArt .col:last-child {
+  margin-right: 0;
+}
+.mainGrid4 .figArt .col .insider {
+  border: 5px solid #c0c0c0;
+  border-radius: 10px;
+}
+.mainGrid4 .figArt .col img {
+  max-width: 100%;
+}
+.mainGrid4 .figArt .col h4 {
+  font-family: Open Sans;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 64px;
+  color: #000;
+  margin: 10px 0 20px 0;
+}
+
+/********About List************/
+.about .figArt {
+  margin: 100px 0;
+}
+.about .figArt .col {
+  display: inline-block;
+  vertical-align: top;
+}
+.about .figArt .col:first-child {
+  width: 45%;
+}
+.about .figArt .col:last-child {
+  width: 54%;
+}
+.about .figArt .col .art h1 {
+  margin-top: 0;
+}
+.about .figArt .col .art p {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 35px;
+  color: #000000;
+}
+
+.about .gridView {
+  padding-top: 40px;
+  margin-bottom: 80px;
+}
+.about .gridView .col {
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+  margin: 1.5%;
+  text-align: center;
+}
+
+.about .gridView .col h2 {
+  font-family: Open Sans;
+  margin: 40px 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 57px;
+}
+.about .gridView .col p {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 38px;
+  color: #000000;
+}
+
+/********PRoduct List************/
+.seedsGrid .figArt {
+  max-width: 1200px;
+  margin: 80px auto;
+}
+.seedsGrid .figArt .col {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  width: 21.5%;
+  margin: 0 1.5%;
+}
+.seedsGrid .figArt .col .fig {
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+.seedsGrid .figArt .col .fig img {
+  vertical-align: middle;
+  margin-top: 20%;
+}
+.seedsGrid .figArt .col hr {
+  background: #50a94e;
+  border-radius: 10px;
+  height: 14px;
+  margin-bottom: 10px;
+}
+.seedsGrid .figArt .col .art h3 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 57px;
+}
+
+.breadcrumb {
+  margin-bottom: 80px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 35px;
+}
+
+.productList {
+}
+.productList .prodSearch {
+  text-align: right;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  margin-bottom: 40px;
+  width: 160px;
+  padding: 6px 10px 8px 10px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 35px;
+}
+.productList .prodSearch input {
+  width: 100px;
+  line-height: 1;
+}
+.productList .prodSearch input,
+.prodSearch button {
+  display: inline-block;
+  vertical-align: middle;
+}
+.productList .prodSearch button {
+  background: url(../../public/images/icons/search-sm.png) no-repeat;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.productList .productGrid {
+  color: #000;
+}
+.productList .productGrid .col {
+  border: 4px solid #d6d6d6;
+  padding: 60px 60px 30px;
+  border-radius: 20px;
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin: 0 1.5% 40px 1.5%;
+}
+.productList .productGrid hr {
+  border-bottom: 4px solid #bababa;
+  margin-left: -60px;
+  margin-right: -60px;
+}
+.productList .productGrid .prodView img {
+  width: 100%;
+  max-width: 100%;
+}
+.productList .productGrid .prodView h3 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 35px;
+  margin: 15px 0 10px 0;
+}
+.productList .productGrid .prodView p {
+  font-family: Open Sans;
+  margin-bottom: 20px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+}
+.productList .productGrid .requiredQty {
+  background: #efefef;
+  border: 1px solid #b9b9b9;
+  padding: 10px;
+  margin-right: 30px;
+}
+.productList .productGrid .requiredQty label {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+}
+.productList .productGrid .requiredQty select {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+.productList .productGrid .requiredQty,
+.productList .productGrid .prodPrice {
+  display: inline-block;
+  vertical-align: middle;
+}
+.productList .productGrid .prodPrice h4 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 30px;
+}
+.productList .productGrid .addCart {
+  text-align: center;
+}
+
+.productList .productGrid .addCart a {
+  background: rgba(80, 169, 78, 0.89);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 12px 75px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 35px;
+  color: #ffffff;
+}
+.productList .buttonMore {
+  text-align: right;
+}
+.productList .buttonMore a {
+  margin: 40px 0 60px 0;
+}
+
+/********ProductDetails************/
+.productDetails {
+  margin: 140px 0 80px 0;
+}
+.productDetails .surrounder .fig {
+  width: 34%;
+}
+.productDetails .surrounder .fig,
+.productDetails .surrounder .art {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 1%;
+}
+.productDetails .surrounder .art {
+  width: 60%;
+}
+.productDetails .surrounder .art h2 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 56px;
+  line-height: 1;
+}
+.productDetails .surrounder .art h3 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  margin: 20px 0 30px 0;
+  line-height: 44px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.productDetails .surrounder .requiredQty {
+  background: #efefef;
+  border: 1px solid #b9b9b9;
+  padding: 10px;
+  margin-right: 30px;
+}
+.productDetails .surrounder .requiredQty label {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+}
+.productDetails .surrounder .requiredQty select {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+.productDetails .surrounder .requiredQty,
+.surrounder .prodPrice {
+  display: inline-block;
+  vertical-align: middle;
+}
+.productDetails .surrounder .prodPrice h4 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 30px;
+}
+.productDetails .surrounder .addCart {
+  margin: 60px 0 80px 0;
+}
+.productDetails .surrounder .addCart a {
+  background: rgba(80, 169, 78, 0.89);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 12px 75px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 35px;
+  color: #ffffff;
+}
+
+.productDetails .surrounder .description {
+  overflow: hidden;
+}
+.productDetails .surrounder .description h5 {
+  float: left;
+  margin-right: 20px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 1;
+  color: #000000;
+}
+.productDetails .surrounder .description p {
+  float: left;
+  max-width: 720px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 30px;
+  color: #000000;
+}
+
+.highlights {
+  margin-left: 1%;
+  margin-top: 80px;
+}
+.highlights h4 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 44px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+.highlights p {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 44px;
+  color: #000000;
+}
+
+.productSimalar {
+  margin-bottom: 80px;
+}
+.productSimalar h2 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 43px;
+  margin: 12px 0;
+  line-height: 59px;
+}
+.productSimalar.productList .productGrid .col:first-child {
+  margin-left: 0;
+}
+.productSimalar.productList .productGrid .col:last-child {
+  margin-right: 0;
+}
+
+/********Shopping Cart Details************/
+.shoppingCartDetails {
+  width: 100%;
+  max-width: 1500px;
+  margin: 80px auto;
+  border: 0 none;
+}
+.shoppingCartDetails thead {
+  background: rgba(0, 0, 0, 0.06);
+}
+.shoppingCartDetails th,
+.shoppingCartDetails td {
+  text-align: center;
+  padding: 40px 15px;
+  width: 33.3%;
+}
+.shoppingCartDetails th h5 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 38px;
+  line-height: 52px;
+  color: #000000;
+}
+.shoppingCartDetails td {
+  border-bottom: 2px solid #dadada;
+}
+.shoppingCartDetails .qty a,
+.shoppingCartDetails .qty span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.shoppingCartDetails .qty a {
+  font-family: Open Sans;
+  font-style: normal;
+  margin: 0 12px;
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 52px;
+  background: #eee;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  display: inline-block;
+}
+.shoppingCartDetails .qty span {
+  font-family: Open Sans;
+  font-style: normal;
+  margin: 0 12px;
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 52px;
+}
+.shoppingCartDetails .price span,
+.shoppingCartDetails .price a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.shoppingCartDetails .price span {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 52px;
+}
+.shoppingCartDetails .price a {
+  font-size: 48px;
+  margin-left: 12px;
+  vertical-align: middle;
+  color: #fff;
+  background: #50a94e;
+  border-radius: 50%;
+  padding-top: 5px;
+  width: 64px;
+  height: 64px;
+  text-align: center;
+  display: inline-block;
+}
+
+.priceTotal {
+  text-align: left;
+  margin-left: 140px;
+}
+.priceTotal .col {
+  width: 49%;
+  display: inline-block;
+  vertical-align: top;
+}
+.priceTotal h2 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 58px;
+  line-height: 79px;
+}
+.priceTotal .col p {
+  font-family: Open Sans;
+  margin: 15px 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 46px;
+  line-height: 63px;
+  color: rgba(0, 0, 0, 0.71);
+}
+.PriceButton a {
+  display: inline-block;
+  margin-top: 20px;
+  background: rgba(80, 169, 78, 0.89);
+  color: #fff;
+  padding: 25px 250px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 56px;
+  line-height: 76px;
+}
+/********contact************/
+.contact {
+  max-width: 1100px;
+  margin: 80px auto;
+  text-align: center;
+}
+.contact h2 {
+  font-family: Open Sans;
+  margin-bottom: 80px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 58px;
+  line-height: 79px;
+}
+.contact input,
+.contact textarea {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 34px;
+  line-height: 46px;
+  color: rgba(0, 0, 0, 0.5);
+  background: rgba(196, 196, 196, 0.35);
+}
+.contact input {
+  width: 45%;
+  margin: 0 2%;
+  padding: 20px;
+}
+.contact textarea {
+  resize: none;
+  margin: 60px 2% 0 2%;
+  width: 94%;
+  padding: 20px;
+  border: 1px solid #ebebeb;
+  min-height: 300px;
+}
+.contact button {
+  cursor: pointer;
+  background: #50a94e;
+  margin-top: 60px;
+  text-align: center;
+  padding: 28px 100px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 38px;
+  line-height: 52px;
+  color: #ffffff;
+}
+
+/********Footer************/
+.footer {
+  background: rgba(0, 0, 0, 0.71);
+  padding: 60px 0 40px 0;
+  color: #fff;
+}
+.footer .col {
+  width: 31%;
+  margin: 0 1%;
+  font-size: 30px;
+  display: inline-block;
+  vertical-align: top;
+}
+.footer .col h3 {
+  font-size: 38px;
+  font-weight: 600;
+}
+.footer .col li {
+  margin: 40px 0;
+}
+.footer .col3 li span {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: initial;
+}
+.footer .col3 li a {
+  display: inline-block;
+  vertical-align: top;
+}
+.footer .col3 li .iconCall {
+  background: url(../../public/images/icons/call.png) no-repeat 0 0;
+  padding-left: 50px;
+}
+.footer .col3 li .iconMail {
+  background: url(../../public/images/icons/email.png) no-repeat 0 0;
+  padding-left: 50px;
+}
+.footEnd {
+  margin-top: 60px;
+}
+.socialIcons li {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  background: #000;
+  border-radius: 50px;
+  padding: 18px 10px;
+  text-align: center;
+}
+.socialIcons a {
+  display: inline-block;
+  vertical-align: top;
+  width: 64px;
+  height: 64px;
+}
+.socialIcons .iconFb {
+  background: #000 url(../../public/images/icons/fb.png) no-repeat center;
+}
+.socialIcons .iconIn {
+  background: #000 url(../../public/images/icons/linkedin.png) no-repeat center;
+}
+.socialIcons .iconTwitter {
+  background: #000 url(../../public/images/icons/twitter.png) no-repeat center;
+}
+.socialIcons .iconInsta {
+  background: #000 url(../../public/images/icons/insta.png) no-repeat center;
+}
+.copyRights p {
+  margin-top: 30px;
+  font-size: 22px;
+  font-weight: 300;
+}
+.cart-count {
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  position: relative;
+  left: 40px;
+  bottom: 15px;
+}

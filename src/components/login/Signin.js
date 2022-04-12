@@ -27,12 +27,12 @@ const Signin = ({ open, handleClose }) => {
                         </svg>
 
                         <p>Consectetur adipisicing elit sed do eiusmod por incididunt uttelabore et dolore magna aliqu.</p>
-                        <a href="javascript:;" className="clv_btn white_btn pop_signup">sign up</a>
+                        <a href="#" className="clv_btn white_btn pop_signup">sign up</a>
                         <ul>
-                            <li><a href="javascript:;"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
-                            <li><a href="javascript:;"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
-                            <li><a href="javascript:;"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
-                            <li><a href="javascript:;"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
+                            <li><a href="#"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
+                            <li><a href="#"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
+                            <li><a href="#"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
+                            <li><a href="#"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
                         </ul>
                     </div>
                     <div className="signup_form_section">
@@ -44,13 +44,13 @@ const Signin = ({ open, handleClose }) => {
                         <div className="form_block">
                             <input type="text" className="form_field" placeholder="Password" />
                         </div>
-                        <a href="javascript:;" className="clv_btn">sign up</a>
+                        <a href="#" className="clv_btn">sign up</a>
                         <div className="social_button_section">
-                            <a href="javascript:;" className="fb_btn">
+                            <a href="#" className="fb_btn">
                                 <span><img src={process.env.PUBLIC_URL + "images/fb.png"} alt="image" /></span>
                                 <span>facebook</span>
                             </a>
-                            <a href="javascript:;" className="google_btn">
+                            <a href="#" className="google_btn">
                                 <span><img src={process.env.PUBLIC_URL + "images/google.png"} alt="image" /></span>
                                 <span>google+</span>
                             </a>

@@ -1,15 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 const Footer = () => {
     return (
-        <footer class="clv_footer_wrapper clv_section">
-            <div class="container">
-                <div class="row">
+        <footer className="clv_footer_wrapper clv_section">
+            <div className="container">
+                <div className="row">
 
-                    <div class="col-md-4">
-                        <div class="footer_block">
-                            <div class="footer_logo"><a href="javascript:;"><img src={process.env.PUBLIC_URL + "images/footer_logo4.png"} alt="image" /></a></div>
+                    <div className="col-md-4">
+                        <div className="footer_block">
+                            <div className="footer_logo"><Link to='/'><img src={process.env.PUBLIC_URL + "images/logo.png"} alt="image" /></Link></div>
                             <p><span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -107,54 +109,54 @@ const Footer = () => {
                                     </g>
                                 </svg>
                             </span> cultivation@example.com</p>
-                            <ul class="agri_social_links">
-                                <li><a href="javascript:;"><span><i class="fa fa-facebook" aria-hidden="true"></i></span></a></li>
-                                <li><a href="javascript:;"><span><i class="fa fa-twitter" aria-hidden="true"></i></span></a></li>
-                                <li><a href="javascript:;"><span><i class="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
-                                <li><a href="javascript:;"><span><i class="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
+                            <ul className="agri_social_links">
+                                <li><FontAwesomeIcon icon={faFacebook} /></li>
+                                <li><FontAwesomeIcon icon={faInstagram} /></li>
+                                <li><FontAwesomeIcon icon={faYoutube} /></li>
+                                <li><FontAwesomeIcon icon={faTwitter} /></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="footer_block">
-                            <div class="footer_heading">
+                    <div className="col-md-4">
+                        <div className="footer_block">
+                            <div className="footer_heading">
                                 <h4>Quick Links</h4>
                                 <img src={process.env.PUBLIC_URL + "images/garden_underline3.png"} alt="image" />
                             </div>
-                            <ul class="time_table">
+                            <ul className="time_table">
                                 <li>
-                                    <p><span><i class="fa fa-angle-right" aria-hidden="true"></i></span>Home</p>
+                                    <Link to='/' onClick={() => window.scroll(0)}><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Home</p></Link>
                                 </li>
                                 <li>
-                                    <p><span><i class="fa fa-angle-right" aria-hidden="true"></i></span>Shop</p>
+                                    <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Shop</p></Link>
                                 </li>
                                 <li>
-                                    <p><span><i class="fa fa-angle-right" aria-hidden="true"></i></span>About</p>
+                                    <Link to='/aboutus' onClick={() => window.scroll(0)}> <p><span><FontAwesomeIcon icon={faAngleRight} /></span> About</p></Link>
                                 </li>
                                 <li>
-                                    <p><span><i class="fa fa-angle-right" aria-hidden="true"></i></span>Contact</p>
+                                    <Link to='/contact' onClick={() => window.scroll(0)}><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Contact</p></Link>
                                 </li>
                                 <li>
-                                    <p><span><i class="fa fa-angle-right" aria-hidden="true"></i></span>Shop</p>
+                                    <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Shop</p></Link>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="footer_block">
-                            <div class="footer_heading">
+                    <div className="col-md-4">
+                        <div className="footer_block">
+                            <div className="footer_heading">
                                 <h4>Your safety</h4>
                                 <img src={"images/garden_underline3.png"} alt="image" />
                             </div>
-                            <ul class="time_table">
+                            <ul className="time_table">
                                 <li>
-                                    <p><span><i class="fa fa-angle-right" aria-hidden="true"></i></span>Privacy Policy</p>
+                                    <p><span><FontAwesomeIcon icon={faAngleRight} /></span>Privacy Policy</p>
                                 </li>
                                 <li>
-                                    <p><span><i class="fa fa-angle-right" aria-hidden="true"></i></span>Terms and Condition</p>
+                                    <p><span><FontAwesomeIcon icon={faAngleRight} /></span>Terms and Condition</p>
                                 </li>
                                 <li>
-                                    <p><span><i class="fa fa-angle-right" aria-hidden="true"></i></span>FAQs</p>
+                                    <p><span><FontAwesomeIcon icon={faAngleRight} /></span>FAQs</p>
                                 </li>
 
                             </ul>

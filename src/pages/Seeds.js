@@ -2,10 +2,10 @@ import React from 'react';
 import { addToCart } from '../redux/actions/productActions';
 import { connect } from 'react-redux';
 const Seeds = ({ products, addToCart }) => {
-    const seedList = products.map((product) => {
+    const seedList = products.map((product, i) => {
         const { id, image, title, description, Qty: { first_otp, second_otp }, price } = product;
         return (
-            <div className="col" key={id}>
+            <div className="col" key={i}>
                 <div className="prodView">
                     <img src={process.env.PUBLIC_URL + image} alt={title} />
                     <h3>{title}</h3>

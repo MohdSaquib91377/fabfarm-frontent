@@ -10,6 +10,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
+        quantity: 1,
         price: 300
     },
     {
@@ -21,6 +22,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
+        quantity: 1,
         price: 300
     },
     {
@@ -32,6 +34,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
+        quantity: 1,
         price: 300
     },
     {
@@ -43,6 +46,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
+        quantity: 1,
         price: 300
     },
     {
@@ -54,6 +58,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
+        quantity: 1,
         price: 300
     },
     {
@@ -65,6 +70,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
+        quantity: 1,
         price: 300
     },
     ],

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux';
 import store, { persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -8,7 +8,10 @@ import './css/style.css';
 import './css/screen.css';
 import './css/responsive.css';
 import App from './App';
-ReactDOM.render(
+
+const container = document.getElementById('root');
+const root = createRoot(container)
+root.render(
   <React.StrictMode>
     <div className='clv_main_wrapper index_v4'>
       <Provider store={store}>
@@ -17,6 +20,5 @@ ReactDOM.render(
         </PersistGate>
       </Provider>
     </div>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );

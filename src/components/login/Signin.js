@@ -1,5 +1,8 @@
 import React from 'react'
-const Signin = ({ open, handleClose }) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faLinkedin, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faArrowLeftRotate } from '@fortawesome/free-solid-svg-icons'
+const Signin = ({ open, trigger, handleClose }) => {
     return (
         <>
             <div className={open ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
@@ -27,12 +30,12 @@ const Signin = ({ open, handleClose }) => {
                         </svg>
 
                         <p>Consectetur adipisicing elit sed do eiusmod por incididunt uttelabore et dolore magna aliqu.</p>
-                        <a href="#" className="clv_btn white_btn pop_signup">sign up</a>
+                        <button onClick={trigger} className="clv_btn white_btn pop_signup">sign up</button>
                         <ul>
-                            <li><a href="#"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
-                            <li><a href="#"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
-                            <li><a href="#"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
-                            <li><a href="#"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
+                            <li><a href="javascript:;"><span><FontAwesomeIcon icon={faFacebook} /></span></a></li>
+                            <li><a href="javascript:;"><span><FontAwesomeIcon icon={faTwitter} /></span></a></li>
+                            <li><a href="javascript:;"><span><FontAwesomeIcon icon={faLinkedin} /></span></a></li>
+                            <li><a href="javascript:;"><span><FontAwesomeIcon icon={faYoutube} /></span></a></li>
                         </ul>
                     </div>
                     <div className="signup_form_section">
@@ -44,7 +47,7 @@ const Signin = ({ open, handleClose }) => {
                         <div className="form_block">
                             <input type="text" className="form_field" placeholder="Password" />
                         </div>
-                        <a href="#" className="clv_btn">sign up</a>
+                        <a href="#" className="clv_btn">sign in</a>
                         <div className="social_button_section">
                             <a href="#" className="fb_btn">
                                 <span><img src={process.env.PUBLIC_URL + "images/fb.png"} alt="image" /></span>

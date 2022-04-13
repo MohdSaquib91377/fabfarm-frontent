@@ -5,6 +5,7 @@ import Seed from './pages/Seeds';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Footer from "./pages/Footer";
+import Profile from './components/profile/Profile';
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
           <Route exact path='/seeds' element={<Seed />} />
           <Route exact path='/aboutus' element={<About />} />
           <Route exact path='/contact' element={<Contact />} />
+          <Route exact path='/profile' element={<Profile />} />
         </Routes>
         <Footer />
       </Router>

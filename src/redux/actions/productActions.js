@@ -29,12 +29,19 @@ export const removeFromCart = (itemID) => {
         },
     };
 };
-export const ajustQuantity = (itemID, value) => {
+export const incrementQuantity = (itemID) => {
     return {
-        type: ActionTypes.ADDJUST_QUANTITY,
+        type: ActionTypes.INCREMENT_QUANTITY,
         payload: {
             id: itemID,
-            quantity: value,
+        },
+    };
+};
+export const decrementQuantity = (itemID) => {
+    return {
+        type: ActionTypes.DECREMENT_QUANTITY,
+        payload: {
+            id: itemID,
         },
     };
 };

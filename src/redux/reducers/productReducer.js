@@ -10,8 +10,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
-        quantity: 1,
-        price: 300
+        price: 100
     },
     {
         id: 2,
@@ -22,8 +21,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
-        quantity: 1,
-        price: 300
+        price: 200
     },
     {
         id: 3,
@@ -34,8 +32,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
-        quantity: 1,
-        price: 300
+        price: 160
     },
     {
         id: 4,
@@ -46,8 +43,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
-        quantity: 1,
-        price: 300
+        price: 500
     },
     {
         id: 5,
@@ -58,8 +54,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
-        quantity: 1,
-        price: 300
+        price: 250
     },
     {
         id: 6,
@@ -70,8 +65,7 @@ const initialState = {
             first_otp: "500gm",
             second_otp: "600gm"
         },
-        quantity: 1,
-        price: 300
+        price: 1000
     },
     ],
     cart: [],
@@ -96,7 +90,7 @@ export const shopReducer = (state = initialState, action) => {
                 ...state,
                 cart: inCart ? state.cart.map((item) =>
                     item.id === action.payload.id
-                        ? { ...item, quantity: item + 1 } : item)
+                        ? { ...item, quantity: item.quantity + 1 } : item)
                     : [...state.cart, { ...item, quantity: 1 }]
             };
         case ActionTypes.REMOVE_FROM_CART:
@@ -104,11 +98,18 @@ export const shopReducer = (state = initialState, action) => {
                 ...state,
                 cart: state.cart.filter((item) => item.id !== action.payload.id),
             };
-        case ActionTypes.ADDJUST_QUANTITY:
+        case ActionTypes.INCREMENT_QUANTITY:
             return {
                 ...state,
                 cart: state.cart.map(item => item.id === action.payload.id ?
-                    { ...item, quantity: action.payload.quantity }
+                    { ...item, quantity: item.quantity + 1 }
+                    : item)
+            };
+        case ActionTypes.DECREMENT_QUANTITY:
+            return {
+                ...state,
+                cart: state.cart.map(item => item.id === action.payload.id ?
+                    { ...item, quantity: item.quantity - (item.quantity > 1 ? 1 : 0) }
                     : item)
             };
         default:

@@ -1,8 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faLinkedin, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faArrowLeftRotate } from '@fortawesome/free-solid-svg-icons'
 const Signin = ({ open, trigger, handleClose }) => {
+    const initialValues = { email: '', password: '' }
+    const [input, setInput] = useState(initialValues)
+    const [inputErrors, setInputErrors] = useState({})
+    const [isSubmit, setIsSubmit] = useState(false)
+
+    const handleChange = (e) => {
+        const { name, value } = (e.target)
+        setInput({ ...input, [name]: value })
+    }
+    const handleSubmit = (e) => {
+        debugger;
+        e.preventDefault();
+        setInputErrors(validateSignin(input))
+        setIsSubmit(true)
+    }
+    useEffect(() => {
+        if (Object.keys(inputErrors).length === 0 && isSubmit) {
+            console.log(input)
+        }
+    }, [inputErrors])
+    const validateSignin = (value) => {
+        const erros = {};
+        const regexemail = /\S+@\S+\.\S+/;
+        const regexmobile = /^\d{10}$/;
+        if (!value.email) {
+            erros.email = 'Email is required'
+        }
+        else if (!value.email.test(regexemail)) {
+            erros.email = 'Enter a valid email';
+        }
+        if (!value.password) {
+            erros.password = 'Password is required'
+        }
+    }
     return (
         <>
             <div className={open ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
@@ -42,12 +75,25 @@ const Signin = ({ open, trigger, handleClose }) => {
                         <h4>sign in account</h4>
                         <img src={process.env.PUBLIC_URL + "images/clv_underline.png"} alt="image" />
                         <div className="form_block">
-                            <input type="text" className="form_field" placeholder="Email" />
+                            <input
+                                type="text"
+                                name='email'
+                                value={input.email}
+                                className="form_field"
+                                placeholder="Email"
+                                onChange={handleChange}
+                            />
                         </div>
                         <div className="form_block">
-                            <input type="text" className="form_field" placeholder="Password" />
+                            <input
+                                type="text"
+                                name='password'
+                                value={input.password}
+                                className="form_field"
+                                placeholder="Password"
+                                onChange={handleChange} />
                         </div>
-                        <a href="#" className="clv_btn">sign in</a>
+                        <button onClick={() => handleSubmit()} className="clv_btn">sign in</button>
                         <div className="social_button_section">
                             <a href="#" className="fb_btn">
                                 <span><img src={process.env.PUBLIC_URL + "images/fb.png"} alt="image" /></span>

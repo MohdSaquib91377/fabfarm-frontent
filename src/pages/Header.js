@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Signup from '../components/login/Signup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
+import Weather from '../components/weatherapi/Weather';
 const Header = ({ cart }) => {
     const [cartCount, setCartCount] = React.useState(0);
     const [cartState, setcartState] = React.useState(false)
@@ -67,33 +68,7 @@ const Header = ({ cart }) => {
     return (
         <>
             <header className={navBar ? 'header3_wrapper dark_header' : 'header3_wrapper'}>
-                <div className="d-flex flex-wrap top-bar">
-                    <div className="">
-                        <div className="location">
-                            <span className="fa fa-map"></span>
-                            <a href="#">Maharashtra</a>
-                        </div>
-                    </div>
-                    <div className="">
-                        <span className="fa fa-globe"></span>
-                        <a href="#">Language</a>
-
-                    </div>
-                    <div className="">
-                        <select >
-                            <option value="eng">En</option>
-                            <option value="eng">Hn</option>
-                        </select>
-                    </div>
-                    <div className="">
-                        <div className="weather">
-                            <a href="#">
-                                32.4 <sup>C |  F</sup>
-                            </a>
-                            <span>&nbsp; Sunset 6:23 PM</span>
-                        </div>
-                    </div>
-                </div>
+                <Weather/>
                 <div className="clv_header3">
                     <div className="row">
                         <div className="col-lg-2 col-md-2">

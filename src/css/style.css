@@ -638,7 +638,7 @@ ul {
 }
 .overflow-cart {
   width: 350px;
-  height: 350px;
+  /* height: 350px; */
   max-height: 90vh;
   overflow: auto;
 }
@@ -5255,13 +5255,13 @@ ul {
   margin-bottom: 23px;
 }
 .garden_shop_slide .item_details h5 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   text-transform: capitalize;
   color: #222222;
 }
 .garden_shop_slide .item_details h6 {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   text-transform: capitalize;
   color: #222222;
@@ -12392,4 +12392,8 @@ button.unset{
 .signup_form_section p {
   text-align: left !important;
   color: red;
+}
+
+.item_name h5{
+  font-size: 20px;
 }

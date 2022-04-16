@@ -56,7 +56,7 @@ const Cartdrawer = ({ cart, opencart, closecart}) => {
 
 
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between',marginRight:'30px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between',marginRight:'30px',position:'absolute',bottom:'80px',width:'320px' }}>
                                 <h3>Total</h3>
                                 <h4><small>Rs</small>{totalPrice}</h4>
                                 {/* <h4><span><FontAwesomeIcon icon={faRupee} /></span>{totalPrice}</h4> */}

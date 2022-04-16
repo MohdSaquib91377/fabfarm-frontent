@@ -7638,7 +7638,7 @@ ul {
   padding-right: 50px;
   outline: none;
 }
-.sidebar_search a {
+.sidebar_search span {
   position: absolute;
   top: 50%;
   right: 30px;

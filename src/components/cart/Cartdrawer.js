@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faShoppingCart, faRupee } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faShoppingCart, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 const Cartdrawer = ({ cart, opencart, closecart}) => {
 
     const [totalPrice, setTotalPrice] = React.useState(0);
@@ -58,8 +58,7 @@ const Cartdrawer = ({ cart, opencart, closecart}) => {
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between',marginRight:'30px',position:'absolute',bottom:'80px',width:'320px' }}>
                                 <h3>Total</h3>
-                                <h4><small>Rs</small>{totalPrice}</h4>
-                                {/* <h4><span><FontAwesomeIcon icon={faRupee} /></span>{totalPrice}</h4> */}
+                                <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{totalPrice}</h4>
                             </div>
                         </div>
                         <button style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color:'#fff' }} className="cart_action_btn">check out</button>

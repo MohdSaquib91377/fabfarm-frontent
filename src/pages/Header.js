@@ -61,9 +61,9 @@ const Header = ({ cart }) => {
         position: 'absolute',
         marginTop: '8px',
         fontSize: '14px',
-        width:'20px',
-        height:'20px',
-        textAlign:'center',
+        width: '20px',
+        height: '20px',
+        textAlign: 'center',
 
     }
     const countStyleNone = {
@@ -72,7 +72,7 @@ const Header = ({ cart }) => {
     return (
         <>
             <header className={navBar ? 'header3_wrapper dark_header' : 'header3_wrapper'}>
-                <Weather/>
+                <Weather />
                 <div className="clv_header3">
                     <div className="row">
                         <div className="col-lg-2 col-md-2">
@@ -122,11 +122,15 @@ const Header = ({ cart }) => {
                                             <li>
                                                 <a className="search_toggle" href="#"><FontAwesomeIcon color='#ffffff' icon={faSearch} /></a>
                                             </li>
-                                            <li onClick={openCart}>
-                                                <FontAwesomeIcon color='#ffffff' icon={faShoppingCart} />
-                                                <span
-                                                    style={cartCount >= 1 ? countStyleDisplay : countStyleNone}>{cartCount}</span>
+                                            <li>
+                                                <button
+                                                    style={{ all: 'unset', cursor: 'pointer' }}
+                                                    onClick={openCart}>
+                                                    <FontAwesomeIcon color='#ffffff' icon={faShoppingCart} />
+                                                    <span
+                                                        style={cartCount >= 1 ? countStyleDisplay : countStyleNone}>{cartCount}</span>
 
+                                                </button>
                                             </li>
                                             <li>
                                                 <label htmlFor="block-nav">

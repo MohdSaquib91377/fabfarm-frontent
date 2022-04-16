@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
-import { addToCart } from '../redux/actions/productActions';
+import React, { useEffect, useState } from 'react';
+import { addToCart, setProducts } from '../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faIndianRupee } from '@fortawesome/free-solid-svg-icons';
-const Seeds = ({ products, addToCart }) => {
+import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+const Seeds = ({ products, addToCart, setProducts }) => {
     const [productView, setProductView] = useState(false);
+    const [search, setSearch] = useState('')
+    useEffect(() => {
+        const fetchproducts = async () => {
+            const res = await axios.get(`http://localhost:5000/?q=${search}`)
+            setProducts(res.data)
+        }
+        fetchproducts();
+    }, [search]);
     const seedList = products.map((product, i) => {
         const { id, image, title, description, Qty: { first_otp, second_otp }, price } = product;
         return (
@@ -104,8 +113,8 @@ const Seeds = ({ products, addToCart }) => {
                                         <img src="images/footer_underline.png" alt="image" />
                                     </div>
                                     <div class="sidebar_search">
-                                        <input type="text" placeholder="Search here" />
-                                        <a href="javascript:;"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                        <input type="text" name='search' onChange={(e) => setSearch(e.target.value)} placeholder="Search here" />
+                                        <span><FontAwesomeIcon icon={faSearch} /></span>
                                     </div>
                                 </div>
                                 <div class="product_block">
@@ -290,6 +299,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        setProducts: (product) => dispatch(setProducts(product)),
         addToCart: (id) => dispatch(addToCart(id)),
     };
 };

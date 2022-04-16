@@ -42,32 +42,32 @@ const Seeds = ({ products, addToCart, setProducts }) => {
             //     </div>
             // </div>
             <li key={i}>
-                <div class="product_item_block">
-                    <div class="org_product_block">
-                        <span class="product_label">30% off</span>
-                        <div class="org_product_image"><img src={process.env.PUBLIC_URL + image} alt={title} /></div>
+                <div className="product_item_block">
+                    <div className="org_product_block">
+                        <span className="product_label">30% off</span>
+                        <div className="org_product_image"><img src={process.env.PUBLIC_URL + image} alt={title} /></div>
                         <h4>{title}</h4>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
                     </div>
-                    <div class="content_block">
-                        <div class="product_price_box">
+                    <div className="content_block">
+                        <div className="product_price_box">
                             <h3>{title}</h3>
                             <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
                         </div>
                         <p>Farm & Garden</p>
-                        <div class="rating_section">
+                        <div className="rating_section">
                             <span>4.1</span>
                             <ul>
-                                <li><a class="active" href="javascript:;"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a class="active" href="javascript:;"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a class="active" href="javascript:;"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="javascript:;"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="javascript:;"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
                             </ul>
                             <p>151 reviews</p>
                         </div>
-                        <ul class="product_code">
+                        <ul className="product_code">
                             <li>
                                 <p>product code: 12948</p>
                             </li>
@@ -102,110 +102,110 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                 </div>
             </div>
             {/* <!--Produst List--> */}
-            <div class="products_wrapper clv_section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3">
-                            <div class="product_sidebar">
-                                <div class="product_block">
-                                    <div class="sidebar_heading">
+            <div className="products_wrapper clv_section">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-3 col-md-3">
+                            <div className="product_sidebar">
+                                <div className="product_block">
+                                    <div className="sidebar_heading">
                                         <h3>search</h3>
                                         <img src="images/footer_underline.png" alt="image" />
                                     </div>
-                                    <div class="sidebar_search">
+                                    <div className="sidebar_search">
                                         <input type="text" name='search' onChange={(e) => setSearch(e.target.value)} placeholder="Search here" />
                                         <span><FontAwesomeIcon icon={faSearch} /></span>
                                     </div>
                                 </div>
-                                <div class="product_block">
-                                    <div class="sidebar_heading">
+                                <div className="product_block">
+                                    <div className="sidebar_heading">
                                         <h3>product categories</h3>
                                         <img src="images/footer_underline.png" alt="image" />
                                     </div>
-                                    <div class="product_category">
+                                    <div className="product_category">
                                         <ul>
                                             <li>
-                                                <input type="checkbox" id="cat1" checked />
-                                                <label for="cat1">all<span>(16)</span></label>
+                                                <input type="checkbox" id="cat1" />
+                                                <label htmlFor="cat1">all<span>(16)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="cat2" />
-                                                <label for="cat2">Organic Farming<span>(12)</span></label>
+                                                <label htmlFor="cat2">Organic Farming<span>(12)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="cat3" />
-                                                <label for="cat3">Organic Green Bell Pepper<span>(156)</span></label>
+                                                <label htmlFor="cat3">Organic Green Bell Pepper<span>(156)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="cat4" />
-                                                <label for="cat4">Permaculture<span>(260)</span></label>
+                                                <label htmlFor="cat4">Permaculture<span>(260)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="cat5" />
-                                                <label for="cat5">Precision Farming<span>(96)</span></label>
+                                                <label htmlFor="cat5">Precision Farming<span>(96)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="cat6" />
-                                                <label for="cat6">Conservation Agriculture<span>(12)</span></label>
+                                                <label htmlFor="cat6">Conservation Agriculture<span>(12)</span></label>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="product_block">
-                                    <div class="sidebar_heading">
+                                <div className="product_block">
+                                    <div className="sidebar_heading">
                                         <h3>filter by price</h3>
                                         <img src="images/footer_underline.png" alt="image" />
                                     </div>
-                                    <div class="ds_progress_rangeslider Range_slider">
-                                        <div id="slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                            <div class="ui-slider-range ui-corner-all ui-widget-header"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span></div>
+                                    <div className="ds_progress_rangeslider Range_slider">
+                                        <div id="slider-range" className="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                            <div className="ui-slider-range ui-corner-all ui-widget-header"></div><span tabIndex="0" className="ui-slider-handle ui-corner-all ui-state-default"></span><span tabIndex="0" className="ui-slider-handle ui-corner-all ui-state-default"></span></div>
 
-                                        <div class="price_range"><p><span id="amount"></span></p></div>
+                                        <div className="price_range"><p><span id="amount"></span></p></div>
 
                                     </div>
                                 </div>
-                                <div class="product_block">
-                                    <div class="sidebar_heading">
+                                <div className="product_block">
+                                    <div className="sidebar_heading">
                                         <h3>discount</h3>
                                         <img src="images/footer_underline.png" alt="image" />
                                     </div>
-                                    <div class="product_category">
+                                    <div className="product_category">
                                         <ul>
                                             <li>
-                                                <input type="checkbox" id="dis1" checked />
-                                                <label for="dis1">less than 20%<span>(16)</span></label>
+                                                <input type="checkbox" id="dis1" />
+                                                <label htmlFor="dis1">less than 20%<span>(16)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="dis2" />
-                                                <label for="dis2">20% or more<span>(12)</span></label>
+                                                <label htmlFor="dis2">20% or more<span>(12)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="dis3" />
-                                                <label for="dis3">30% or more<span>(156)</span></label>
+                                                <label htmlFor="dis3">30% or more<span>(156)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="dis4" />
-                                                <label for="dis4">50% or more<span>(260)</span></label>
+                                                <label htmlFor="dis4">50% or more<span>(260)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="dis5" />
-                                                <label for="dis5">70% or more<span>(96)</span></label>
+                                                <label htmlFor="dis5">70% or more<span>(96)</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="dis6" />
-                                                <label for="dis6">80% or more<span>(12)</span></label>
+                                                <label htmlFor="dis6">80% or more<span>(12)</span></label>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-9 col-md-9">
-                            {/* <div class="product_section">
-                                <div class="ads_section"><img src="https://via.placeholder.com/870x296" alt="image" /></div>
+                        <div className="col-lg-9 col-md-9">
+                            {/* <div className="product_section">
+                                <div className="ads_section"><img src="https://via.placeholder.com/870x296" alt="image" /></div>
                             </div> */}
-                            <div class="product_list_section">
-                                <div class="product_list_filter">
+                            <div className="product_list_section">
+                                <div className="product_list_filter">
                                     <ul>
                                         <li>
                                             <p>showing <span>1-6 of 9</span> result</p>
@@ -218,10 +218,10 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                                             </select>
                                         </li>
                                         <li>
-                                            <ul class="list_view_toggle">
+                                            <ul className="list_view_toggle">
                                                 <li><span>view style</span></li>
                                                 <li>
-                                                    <button onClick={() => setProductView(false)} class={productView ? "grid_view" : "active grid_view"}>
+                                                    <button onClick={() => setProductView(false)} className={productView ? "grid_view" : "active grid_view"}>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
                                                             <path
                                                                 fill="#707070"
@@ -232,7 +232,7 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button onClick={() => setProductView(true)} class={productView ? "active list_view" : "list_view"}>
+                                                    <button onClick={() => setProductView(true)} className={productView ? "active list_view" : "list_view"}>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10">
                                                             <path
                                                                 fill="#707070"
@@ -246,15 +246,15 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class={productView ? "product_items_section product_list_view" : "product_items_section"}>
+                                <div className={productView ? "product_items_section product_list_view" : "product_items_section"}>
                                     <ul>
                                         {seedList}
                                     </ul>
                                 </div>
-                                <div class="blog_pagination_section">
+                                <div className="blog_pagination_section">
                                     <ul>
-                                        <li class="blog_page_arrow">
-                                            <a href="javascript:;">
+                                        <li className="blog_page_arrow">
+                                            <a href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15">
                                                     <path
                                                         fill="#707070"
@@ -265,13 +265,13 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                                                 <span>prev</span>
                                             </a>
                                         </li>
-                                        <li><a href="javascript:;">01</a></li>
-                                        <li><a href="javascript:;">02</a></li>
-                                        <li><a href="javascript:;">....</a></li>
-                                        <li><a href="javascript:;">12</a></li>
-                                        <li><a href="javascript:;">13</a></li>
-                                        <li class="blog_page_arrow">
-                                            <a href="javascript:;">
+                                        <li><a href="#">01</a></li>
+                                        <li><a href="#">02</a></li>
+                                        <li><a href="#">....</a></li>
+                                        <li><a href="#">12</a></li>
+                                        <li><a href="#">13</a></li>
+                                        <li className="blog_page_arrow">
+                                            <a href="#">
                                                 <span>next</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="25">
                                                     <path

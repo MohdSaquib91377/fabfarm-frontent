@@ -160,7 +160,7 @@ const Contact = () => {
                             <h3>don't miss out on the good news!</h3>
                             <div className="newsletter_field_block">
                                 <input type="text" placeholder="Enter Your Email Here" />
-                                <a href="javascript:;">subscribe now</a>
+                                <a href="#">subscribe now</a>
                             </div>
                         </div>
                     </div>

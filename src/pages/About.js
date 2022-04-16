@@ -43,7 +43,7 @@ const About = () => {
                                     <div className="video_btn">
                                         <a href="https://www.youtube.com/watch?v=tqwRLdBsFw8" className="play_video"><span className="pulse"><i className="fa fa-play" aria-hidden="true"></i></span> watch video</a>
                                     </div>
-                                    <a href="javascript:;" className="clv_btn">read more</a>
+                                    <a href="#" className="clv_btn">read more</a>
                                 </div>
                             </div>
                         </div>
@@ -312,10 +312,10 @@ const About = () => {
                                                 <div className="social_overlay">
                                                     <p>you can join us</p>
                                                     <ul>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -324,7 +324,7 @@ const About = () => {
                                                     <h3>Rouis r. weons</h3>
                                                     <p>Poultry Farmers</p>
                                                     <span className="divider"></span>
-                                                    <a href="javascript:;">yourmail@example.com</a>
+                                                    <a href="#">yourmail@example.com</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -336,10 +336,10 @@ const About = () => {
                                                 <div className="social_overlay">
                                                     <p>you can join us</p>
                                                     <ul>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -348,7 +348,7 @@ const About = () => {
                                                     <h3>Rouis r. weons</h3>
                                                     <p>Poultry Farmers</p>
                                                     <span className="divider"></span>
-                                                    <a href="javascript:;">yourmail@example.com</a>
+                                                    <a href="#">yourmail@example.com</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -360,10 +360,10 @@ const About = () => {
                                                 <div className="social_overlay">
                                                     <p>you can join us</p>
                                                     <ul>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -372,7 +372,7 @@ const About = () => {
                                                     <h3>Rouis r. weons</h3>
                                                     <p>Poultry Farmers</p>
                                                     <span className="divider"></span>
-                                                    <a href="javascript:;">yourmail@example.com</a>
+                                                    <a href="#">yourmail@example.com</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -384,10 +384,10 @@ const About = () => {
                                                 <div className="social_overlay">
                                                     <p>you can join us</p>
                                                     <ul>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
-                                                        <li><a href="javascript:;"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-facebook" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-twitter" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
+                                                        <li><a href="#"><span><i className="fa fa-youtube-play" aria-hidden="true"></i></span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -396,7 +396,7 @@ const About = () => {
                                                     <h3>Rouis r. weons</h3>
                                                     <p>Poultry Farmers</p>
                                                     <span className="divider"></span>
-                                                    <a href="javascript:;">yourmail@example.com</a>
+                                                    <a href="#">yourmail@example.com</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -17,9 +17,7 @@ const Signin = ({ open, trigger, handleClose }) => {
         setIsSubmit(true)
     }
     useEffect(() => {
-        console.log(formErrors)
         if (Object.keys(formErrors).length === 0 && isSubmit) {
-            console.log(formValues)
         }
     }, [formErrors]);
     const validateSignin = (values) => {
@@ -65,10 +63,10 @@ const Signin = ({ open, trigger, handleClose }) => {
                         <p>Consectetur adipisicing elit sed do eiusmod por incididunt uttelabore et dolore magna aliqu.</p>
                         <button onClick={trigger} className="clv_btn white_btn pop_signup">sign up</button>
                         <ul>
-                            <li><a href="javascript:;"><span><FontAwesomeIcon icon={faFacebook} /></span></a></li>
-                            <li><a href="javascript:;"><span><FontAwesomeIcon icon={faTwitter} /></span></a></li>
-                            <li><a href="javascript:;"><span><FontAwesomeIcon icon={faLinkedin} /></span></a></li>
-                            <li><a href="javascript:;"><span><FontAwesomeIcon icon={faYoutube} /></span></a></li>
+                            <li><a href="#"><span><FontAwesomeIcon icon={faFacebook} /></span></a></li>
+                            <li><a href="#"><span><FontAwesomeIcon icon={faTwitter} /></span></a></li>
+                            <li><a href="#"><span><FontAwesomeIcon icon={faLinkedin} /></span></a></li>
+                            <li><a href="#"><span><FontAwesomeIcon icon={faYoutube} /></span></a></li>
                         </ul>
                     </div>
                     <div className="signup_form_section">

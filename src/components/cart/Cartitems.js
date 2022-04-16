@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, product }) => {
     return (
         <div
-            style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+            style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',margin:"15px 0" }}>
             <div className="cart_block">
                 <img
                     style={{ maxHeight: '100px', maxWidth: '100px' }}
@@ -26,9 +26,10 @@ const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, produ
                 </div>
             </div>
             <div className="cart_block">
-                <h4><span><FontAwesomeIcon icon={faRupee} /></span>{product.quantity * product.price}</h4>
+                <h4><small>RS</small>{product.quantity * product.price}</h4>
+                {/* <h4><span><FontAwesomeIcon icon={faRupee} /></span>{product.quantity * product.price}</h4> */}
             </div>
-            <button
+            <button className='unset redbtn'
                 onClick={() => removeFromCart(product.id)}
             >x</button>
         </div >

@@ -18,7 +18,7 @@ const Banner = () => {
                             backgroundImage: `url(${process.env.PUBLIC_URL}"images/banner1.jpg")`
                         }}
                     >
-                        <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(60, 63, 72, 0.88)' }}>
+                        <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                             <div className="clv_slide_inner" style={{ marginTop: '300px' }}>
                                 <h1>WELCOME TO</h1>
                                 <h2>Farmers Allaince For Business</h2>
@@ -37,7 +37,7 @@ const Banner = () => {
                             backgroundImage: `url(${process.env.PUBLIC_URL}"images/banner2.jpg")`
                         }}
                     >
-                        <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(60, 63, 72, 0.88)' }}>
+                        <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                             <div className="clv_slide_inner" style={{ marginTop: '300px' }}>
                                 <h1>WELCOME TO</h1>
                                 <h2>Farmers Allaince For Business</h2>

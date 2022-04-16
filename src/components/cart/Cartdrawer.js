@@ -38,7 +38,7 @@ const Cartdrawer = ({ cart, opencart, closecart}) => {
                     role="presentation"
                 >
                     <div className="clv_cart_box cart_box_open">
-                        <div className="cart_section" style={{ padding: '35px' }}>
+                        <div className="cart_section" style={{ padding: '20px' }}>
                             <div className="cart-header" >
                                 <div className="cart">
                                     <h5><FontAwesomeIcon icon={faShoppingCart} />Cart</h5>
@@ -56,12 +56,13 @@ const Cartdrawer = ({ cart, opencart, closecart}) => {
 
 
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <h3>total</h3>
-                                <h4><span><FontAwesomeIcon icon={faRupee} /></span>{totalPrice}</h4>
+                            <div style={{ display: 'flex', justifyContent: 'space-between',marginRight:'30px' }}>
+                                <h3>Total</h3>
+                                <h4><small>Rs</small>{totalPrice}</h4>
+                                {/* <h4><span><FontAwesomeIcon icon={faRupee} /></span>{totalPrice}</h4> */}
                             </div>
                         </div>
-                        <button style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center' }} className="cart_action_btn">check out</button>
+                        <button style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color:'#fff' }} className="cart_action_btn">check out</button>
                     </div>
                 </Box>
             </Drawer>

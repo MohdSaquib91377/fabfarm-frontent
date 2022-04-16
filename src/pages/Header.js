@@ -60,7 +60,11 @@ const Header = ({ cart }) => {
         paddingRight: '4px',
         position: 'absolute',
         marginTop: '8px',
-        fontSize: '14px'
+        fontSize: '14px',
+        width:'20px',
+        height:'20px',
+        textAlign:'center',
+
     }
     const countStyleNone = {
         display: 'None'
@@ -74,7 +78,7 @@ const Header = ({ cart }) => {
                         <div className="col-lg-2 col-md-2">
                             <div className="clv_left_header">
                                 <div className="clv_logo">
-                                    <a href="index.html"><img src="images/home/logo.png" alt="fab logo" /></a>
+                                    <a href="/"><img src="images/home/logo.png" alt="fab logo" /></a>
                                 </div>
                             </div>
                         </div>

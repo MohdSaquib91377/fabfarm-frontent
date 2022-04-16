@@ -88,7 +88,7 @@ const Seeds = ({ products, addToCart }) => {
                 <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
-                        <li>Seeds</li>
+                        <li> Seeds</li>
                     </ul>
                 </div>
             </div>

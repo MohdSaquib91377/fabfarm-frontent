@@ -192,9 +192,9 @@ const Seeds = ({ products, addToCart }) => {
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9">
-                            <div class="product_section">
+                            {/* <div class="product_section">
                                 <div class="ads_section"><img src="https://via.placeholder.com/870x296" alt="image" /></div>
-                            </div>
+                            </div> */}
                             <div class="product_list_section">
                                 <div class="product_list_filter">
                                     <ul>

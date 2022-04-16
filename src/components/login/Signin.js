@@ -2,39 +2,39 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faLinkedin, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons'
 const Signin = ({ open, trigger, handleClose }) => {
-    const initialValues = { email: '', password: '' }
-    const [input, setInput] = useState(initialValues)
-    const [inputErrors, setInputErrors] = useState({})
+    const initialValues = { email: "", password: "" };
+    const [formValues, setFormValues] = useState(initialValues)
+    const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
 
     const handleChange = (e) => {
-        const { name, value } = (e.target)
-        setInput({ ...input, [name]: value })
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value })
     }
     const handleSubmit = (e) => {
-        debugger;
         e.preventDefault();
-        setInputErrors(validateSignin(input))
+        setFormErrors(validateSignin(formValues));
         setIsSubmit(true)
     }
     useEffect(() => {
-        if (Object.keys(inputErrors).length === 0 && isSubmit) {
-            console.log(input)
+        console.log(formErrors)
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            console.log(formValues)
         }
-    }, [inputErrors])
-    const validateSignin = (value) => {
-        const erros = {};
+    }, [formErrors]);
+    const validateSignin = (values) => {
+        const errors = {};
         const regexemail = /\S+@\S+\.\S+/;
         const regexmobile = /^\d{10}$/;
-        if (!value.email) {
-            erros.email = 'Email is required'
+        if (!values.email) {
+            errors.email = 'Email is required!'
+        } else if (!regexemail.test(values.email)) {
+            errors.email = 'Enter a valid email!';
         }
-        else if (!value.email.test(regexemail)) {
-            erros.email = 'Enter a valid email';
+        if (!values.password) {
+            errors.password = 'Password is required!'
         }
-        if (!value.password) {
-            erros.password = 'Password is required'
-        }
+        return errors;
     }
     return (
         <>
@@ -74,26 +74,30 @@ const Signin = ({ open, trigger, handleClose }) => {
                     <div className="signup_form_section">
                         <h4>sign in account</h4>
                         <img src={process.env.PUBLIC_URL + "images/clv_underline.png"} alt="image" />
-                        <div className="form_block">
-                            <input
-                                type="text"
-                                name='email'
-                                value={input.email}
-                                className="form_field"
-                                placeholder="Email"
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="form_block">
-                            <input
-                                type="text"
-                                name='password'
-                                value={input.password}
-                                className="form_field"
-                                placeholder="Password"
-                                onChange={handleChange} />
-                        </div>
-                        <button onClick={() => handleSubmit()} className="clv_btn">sign in</button>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form_block">
+                                <input
+                                    type="text"
+                                    name='email'
+                                    value={formValues.email}
+                                    className="form_field"
+                                    placeholder="Email"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <p>{formErrors.email}</p>
+                            <div className="form_block">
+                                <input
+                                    type="text"
+                                    name='password'
+                                    value={formValues.password}
+                                    className="form_field"
+                                    placeholder="Password"
+                                    onChange={handleChange} />
+                            </div>
+                            <p>{formErrors.password}</p>
+                            <button type='submit' className="clv_btn">sign in</button>
+                        </form>
                         <div className="social_button_section">
                             <a href="#" className="fb_btn">
                                 <span><img src={process.env.PUBLIC_URL + "images/fb.png"} alt="image" /></span>

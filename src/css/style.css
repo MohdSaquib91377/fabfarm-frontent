@@ -12388,3 +12388,8 @@ button.unset{
 .redbtn{
   color: red;
 }
+
+.signup_form_section p {
+  text-align: left !important;
+  color: red;
+}

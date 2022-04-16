@@ -1,7 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faLinkedin, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons'
 const Signup = ({ open, triggersignin, handleClose }) => {
+    const initialValues = { name: '', email: "", password: "" };
+    const [formValues, setFormValues] = useState(initialValues)
+    const [formErrors, setFormErrors] = useState({})
+    const [isSubmit, setIsSubmit] = useState(false)
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setFormErrors(validateSignin(formValues));
+        setIsSubmit(true)
+    }
+    useEffect(() => {
+        console.log(formErrors)
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            console.log(formValues)
+        }
+    }, [formErrors]);
+    const validateSignin = (values) => {
+        const errors = {};
+        const regexemail = /\S+@\S+\.\S+/;
+        if (!values.name) {
+            errors.name = 'Name is required!'
+        }
+        if (!values.email) {
+            errors.email = 'Email is required!'
+        } else if (!regexemail.test(values.email)) {
+            errors.email = 'Enter a valid email!';
+        }
+        if (!values.password) {
+            errors.password = 'Password is required!'
+        }
+        return errors;
+    }
     return (
         <div class={open ? 'signup_wrapper open_signup' : "signup_wrapper"}>
             <div class="signup_inner">
@@ -22,16 +58,21 @@ const Signup = ({ open, triggersignin, handleClose }) => {
                 <div class="signup_form_section">
                     <h4>create account</h4>
                     <img src="images/clv_underline.png" alt="image" />
-                    <div class="form_block">
-                        <input type="text" class="form_field" placeholder="Name" />
-                    </div>
-                    <div class="form_block">
-                        <input type="text" class="form_field" placeholder="Email" />
-                    </div>
-                    <div class="form_block">
-                        <input type="text" class="form_field" placeholder="Password" />
-                    </div>
-                    <a href="javascript:;" class="clv_btn">sign up</a>
+                    <form onSubmit={handleSubmit}>
+                        <div class="form_block">
+                            <input type="text" name='name' value={formValues.name} onChange={handleChange} class="form_field" placeholder="Name" />
+                        </div>
+                            <p>{formErrors.name}</p>
+                        <div class="form_block">
+                            <input type="text" name='email' value={formValues.email} onChange={handleChange} class="form_field" placeholder="Email" />
+                        </div>
+                            <p>{formErrors.email}</p>
+                        <div class="form_block">
+                            <input type="text" name='password' value={formValues.password} onChange={handleChange} class="form_field" placeholder="Password" />
+                        </div>
+                            <p>{formErrors.password}</p>
+                        <button type='submit' class="clv_btn">sign up</button>
+                    </form>
                     <div class="social_button_section">
                         <a href="javascript:;" class="fb_btn">
                             <span><img src={process.env.PUBLIC_URL + "images/fb.png"} alt="image" /></span>

@@ -97,7 +97,7 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                 <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
-                        <li> Seeds</li>
+                        <li> &nbsp; Seeds</li>
                     </ul>
                 </div>
             </div>
@@ -262,7 +262,7 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                                                         d="M.324 8.222l6.793 6.463a1.144 1.144 0 001.564 0 1.016 1.016 0 000-1.488L2.67 7.478 8.681 1.76a1.019 1.019 0 000-1.49 1.151 1.151 0 00-1.565 0L.323 6.735a1.02 1.02 0 00.001 1.487z"
                                                     ></path>
                                                 </svg>
-                                                <span>prev</span>
+                                                <span>&nbsp; prev</span>
                                             </a>
                                         </li>
                                         <li><a href="#">01</a></li>
@@ -272,12 +272,12 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                                         <li><a href="#">13</a></li>
                                         <li className="blog_page_arrow">
                                             <a href="#">
-                                                <span>next</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="25">
+                                                <span>next &nbsp;</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="25" className='pt-2' >
                                                     <path
                                                         fill="#707070"
                                                         fillRule="evenodd"
-                                                        d="M13.676 13.222l-6.793 6.463a1.144 1.144 0 01-1.564 0 1.016 1.016 0 010-1.488l6.01-5.719-6.01-5.718a1.019 1.019 0 010-1.49 1.151 1.151 0 011.565 0l6.792 6.465c.216.205.324.474.324.743s-.108.539-.324.744z"
+                                                        d="M13.676 12.222l-6.793 6.463a1.144 1.144 0 01-1.564 0 1.016 1.016 0 010-1.488l6.01-5.719-6.01-5.718a1.019 1.019 0 010-1.49 1.151 1.151 0 011.565 0l6.792 6.465c.216.205.324.474.324.743s-.108.539-.324.744z"
                                                     ></path>
                                                 </svg>
                                             </a>

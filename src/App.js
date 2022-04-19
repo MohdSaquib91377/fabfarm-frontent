@@ -6,6 +6,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Footer from "./pages/Footer";
 import Profile from './components/profile/Profile';
+import Pagenotfound from './pages/Pagenotfound';
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/aboutus' element={<About />} />
           <Route exact path='/contact' element={<Contact />} />
           <Route exact path='/profile' element={<Profile />} />
+          <Route exact path='*' element={<Pagenotfound />} />
         </Routes>
         <Footer />
       </Router>

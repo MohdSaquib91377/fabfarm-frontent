@@ -90,8 +90,8 @@ const Header = ({ cart }) => {
                                             <li>
                                                 <Link to="/" >home</Link>
                                             </li>
-                                            <li>
-                                                <a href="#">Shop</a>
+                                            <li style={{ color: 'white' }}>
+                                                Shop
                                                 <ul>
                                                     <li><Link to="/seeds">Seeds</Link></li>
                                                     <li><a href="index.html">Fertilizers</a></li>

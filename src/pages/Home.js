@@ -3,8 +3,8 @@ import Testimonial from '../components/homepage/Testimonial';
 import Banner from '../components/homepage/Banner';
 import Services from '../components/homepage/Services';
 import Counter from '../components/homepage/Counter';
-import Shop from '../components/homepage/Shop';
-import Partner from '../components/homepage/Partner';
+// import Partner from '../components/homepage/Partner';
+import Topproducts from '../components/homepage/Topproducts';
 const Home = () => {
     return (
         <>
@@ -109,7 +109,7 @@ const Home = () => {
 
             {/* <!--Shop--> */}
 
-            <Shop />
+            <Topproducts />
 
             {/* <!--Partner--> */}
             {/* <Partner /> */}

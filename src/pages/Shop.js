@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-const Seeds = ({ products, addToCart, setProducts }) => {
+const Shop = ({ products, addToCart, setProducts }) => {
     const [productView, setProductView] = useState(false);
     const [search, setSearch] = useState('')
     useEffect(() => {
@@ -42,6 +42,7 @@ const Seeds = ({ products, addToCart, setProducts }) => {
             //     </div>
             // </div>
             <li key={i}>
+                <Link to={`/shop/${id}`}>
                 <div className="product_item_block">
                     <div className="org_product_block">
                         <span className="product_label">30% off</span>
@@ -78,6 +79,7 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                         <p>{description}</p>
                     </div>
                 </div>
+                </Link>
             </li>
         );
     })
@@ -89,7 +91,7 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
-                                <h3>Seeds</h3>
+                                <h3>Shop</h3>
                             </div>
                         </div>
                     </div>
@@ -97,7 +99,7 @@ const Seeds = ({ products, addToCart, setProducts }) => {
                 <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
-                        <li> &nbsp; Seeds</li>
+                        <li> &nbsp; Shop</li>
                     </ul>
                 </div>
             </div>
@@ -303,4 +305,4 @@ const mapDispatchToProps = (dispatch) => {
         addToCart: (id) => dispatch(addToCart(id)),
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Seeds);
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

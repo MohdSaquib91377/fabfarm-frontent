@@ -1,7 +1,7 @@
 import React from 'react'
 import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-const Shop = () => {
+const Topproducts = () => {
     const seeds = [
         {
             name: 'Spinach Seeds / Palak Seeds',
@@ -65,7 +65,7 @@ const Shop = () => {
                 </div>
             </Slide>
         );
-    })
+    })  
     return (
         <>
             <div className="garden_shop_wrapper clv_section">
@@ -190,4 +190,4 @@ const Shop = () => {
     )
 }
 
-export default Shop
+export default Topproducts

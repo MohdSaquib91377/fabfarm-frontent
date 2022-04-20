@@ -6146,12 +6146,16 @@ ul {
 .org_product_block .org_product_image {
   margin-bottom: 25px;
 }
-.org_product_block h4{
+.org_product_block h4 {
   font-size: 22px;
   color: #222222;
   text-transform: capitalize;
   font-weight: 600;
   margin-bottom: 10px;
+  padding:10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .org_product_block h3 {
   font-size: 26px;
@@ -7432,7 +7436,7 @@ ul {
 .breadcrumb_wrapper {
   position: relative;
   background: url("https://via.placeholder.com/1920x160") no-repeat center;
-  background-image: url('../../public/images/home/seed1.jpg');
+  background-image: url("../../public/images/home/seed1.jpg");
   background-size: cover;
   padding: 63px 0px 57px;
   z-index: 1;
@@ -9424,7 +9428,7 @@ ul {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color:#2a7d2e;
+  background-color: #2a7d2e;
   z-index: -1;
   border-radius: 10px 0px 0px 10px;
 }
@@ -10430,7 +10434,6 @@ ul {
   }
   .clv_counter_wrapper .counter_block > .counter_text > h4 {
     font-size: 32px;
-   
   }
   .service_main_wrapper .col-lg-8.col-md-8 {
     max-width: 100%;
@@ -12366,27 +12369,26 @@ input.check-nav {
   padding: 10px;
 }
 .clv_slide_inner h1,
-.clv_slide_inner h2{
-  color:#fff;
+.clv_slide_inner h2 {
+  color: #fff;
   margin: 10px 0;
 }
-.cart_block{
-  margin:10px  ;
+.cart_block {
+  margin: 10px;
 }
 .quantity_plus,
-.quantity_minus
-{
+.quantity_minus {
   background-color: transparent;
   border: 0;
 }
-button.unset{
+button.unset {
   background-color: transparent;
   border: 0;
 }
-.cart_block h5{
+.cart_block h5 {
   font-size: 16px;
 }
-.redbtn{
+.redbtn {
   color: red;
 }
 
@@ -12395,10 +12397,10 @@ button.unset{
   color: red;
 }
 
-.item_name h5{
+.item_name h5 {
   font-size: 20px;
 }
 
-.top-bar > p{
+.top-bar > p {
   color: #fff;
 }

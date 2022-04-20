@@ -78,7 +78,7 @@ const Header = ({ cart }) => {
                         <div className="col-lg-2 col-md-2">
                             <div className="clv_left_header">
                                 <div className="clv_logo">
-                                    <a href="/"><img src="images/home/logo.png" alt="fab logo" /></a>
+                                    <a href="/"><img src={process.env.PUBLIC_URL + "images/home/logo.png"} alt="fab logo" /></a>
                                 </div>
                             </div>
                         </div>
@@ -90,10 +90,10 @@ const Header = ({ cart }) => {
                                             <li>
                                                 <Link to="/" >home</Link>
                                             </li>
-                                            <li style={{ color: 'white' }}>
-                                                Shop
+                                            <li style={{ color: 'white', cursor: 'pointer' }}>
+                                                <Link to='/shop'>Shop</Link>
                                                 <ul>
-                                                    <li><Link to="/seeds">Seeds</Link></li>
+                                                    <li><a href='#'>Seeds</a></li>
                                                     <li><a href="index.html">Fertilizers</a></li>
 
                                                 </ul>
@@ -112,6 +112,9 @@ const Header = ({ cart }) => {
                                             </li>
 
                                             <li><Link to="/contact">Contact us</Link></li>
+                                            <li
+                                                style={{ color: 'white', cursor: 'pointer' }}
+                                                onClick={handleSigninOpen} >Signin</li>
                                         </ul>
                                     </div>
                                     <div className="cart_nav">
@@ -185,11 +188,11 @@ const Header = ({ cart }) => {
             <Cartdrawer opencart={cartState} closecart={closeCart} />
             <Signin open={openSignin} trigger={tiggerSignup} handleClose={handleSigninClose} />
             <Signup open={openSignup} triggersignin={tiggerSignin} handleClose={handleSignupClose} />
-            <div className='profile_toggle'>
+            {/* <div className='profile_toggle'>
                 <button onClick={handleSigninOpen} style={{ border: 'none' }}>
                     <img src={process.env.PUBLIC_URL + 'images/login.gif'} />
                 </button>
-            </div>
+            </div> */}
 
         </>
 

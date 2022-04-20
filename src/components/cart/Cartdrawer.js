@@ -7,6 +7,7 @@ import {
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faShoppingCart, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 const Cartdrawer = ({ cart, opencart, closecart }) => {
 
     const [totalPrice, setTotalPrice] = React.useState(0);
@@ -62,7 +63,7 @@ const Cartdrawer = ({ cart, opencart, closecart }) => {
                         </div>
                     </div>
                     {cart.length === 0 ? <></> :
-                        <button style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button>
+                        <Link to='/checkout'> <button onClick={closecart} style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button></Link>
                     }
                 </Box>
             </Drawer>

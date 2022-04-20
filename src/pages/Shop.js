@@ -18,36 +18,14 @@ const Shop = ({ products, addToCart, setProducts }) => {
     const seedList = products.map((product, i) => {
         const { id, image, title, description, Qty: { first_otp, second_otp }, price } = product;
         return (
-            // <div className="col" key={i}>
-            //     <div className="prodView">
-            //         <img src={process.env.PUBLIC_URL + image} alt={title} />
-            //         <h3>{title}</h3>
-            //         <p>
-            //             {description}
-            //         </p>
-            //     </div>
-            //     <div className="requiredQty">
-            //         <label>Qty</label>
-            //         <select>
-            //             <option>{first_otp}</option>
-            //             <option>{second_otp}</option>
-            //         </select>
-            //     </div>
-            //     <div className="prodPrice">
-            //         <h4>₹ {price}</h4>
-            //     </div>
-            //     <hr />
-            //     <div className="addCart">
-            //         <button onClick={() => addToCart(id)}>ADD TO CART</button>
-            //     </div>
-            // </div>
             <li key={i}>
-                <Link to={`/shop/${id}`}>
+
                 <div className="product_item_block">
                     <div className="org_product_block">
                         <span className="product_label">30% off</span>
-                        <div className="org_product_image"><img src={process.env.PUBLIC_URL + image} alt={title} /></div>
-                        <h4>{title}</h4>
+                        <Link to={`/shop/${id}`}>
+                            <div className="org_product_image"><img src={process.env.PUBLIC_URL + image} alt={title} /></div>
+                            <h4>{title}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
                     </div>
@@ -79,7 +57,7 @@ const Shop = ({ products, addToCart, setProducts }) => {
                         <p>{description}</p>
                     </div>
                 </div>
-                </Link>
+
             </li>
         );
     })
@@ -128,27 +106,15 @@ const Shop = ({ products, addToCart, setProducts }) => {
                                         <ul>
                                             <li>
                                                 <input type="checkbox" id="cat1" />
-                                                <label htmlFor="cat1">all<span>(16)</span></label>
+                                                <label htmlFor="cat1">all<span>({products.length})</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="cat2" />
-                                                <label htmlFor="cat2">Organic Farming<span>(12)</span></label>
+                                                <label htmlFor="cat2">Seeds<span>({products.length})</span></label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="cat3" />
-                                                <label htmlFor="cat3">Organic Green Bell Pepper<span>(156)</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="cat4" />
-                                                <label htmlFor="cat4">Permaculture<span>(260)</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="cat5" />
-                                                <label htmlFor="cat5">Precision Farming<span>(96)</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="cat6" />
-                                                <label htmlFor="cat6">Conservation Agriculture<span>(12)</span></label>
+                                                <label htmlFor="cat3">Fertilizers<span>({products.length})</span></label>
                                             </li>
                                         </ul>
                                     </div>
@@ -166,7 +132,7 @@ const Shop = ({ products, addToCart, setProducts }) => {
 
                                     </div>
                                 </div>
-                                <div className="product_block">
+                                {/* <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>discount</h3>
                                         <img src="images/footer_underline.png" alt="image" />
@@ -199,7 +165,7 @@ const Shop = ({ products, addToCart, setProducts }) => {
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="col-lg-9 col-md-9">
@@ -210,7 +176,7 @@ const Shop = ({ products, addToCart, setProducts }) => {
                                 <div className="product_list_filter">
                                     <ul>
                                         <li>
-                                            <p>showing <span>1-6 of 9</span> result</p>
+                                            <p>showing <span>1-6 of {products.length}</span> result</p>
                                         </li>
                                         <li>
                                             <select>

@@ -15,7 +15,7 @@ const Product = ({ products, addToCart }) => {
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
-                                <h3>Seeds</h3>
+                                <h3>{products[productID].title}</h3>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@ const Product = ({ products, addToCart }) => {
                 <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
-                        <li><Link to='/seeds'>&nbsp;Seeds</Link></li>
+                        <li><Link to='/shop'>&nbsp;Shop</Link></li>
                         <li> &nbsp; {productID}</li>
                     </ul>
                 </div>
@@ -42,16 +42,16 @@ const Product = ({ products, addToCart }) => {
                                         <img className="img-fluid" id="img-zoom" src={process.env.PUBLIC_URL + products[productID].image} data-zoom-image="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" alt="" />
                                     </div>
                                     <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative">
-                                        <a className="zoom-active" data-image="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" data-zoom-image={process.env.PUBLIC_URL + process.env.PUBLIC_URL + products[productID].image}>
+                                        <a className="zoom-active" data-image={process.env.PUBLIC_URL + products[productID].image} data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
                                             <img className="img-fluid" src={process.env.PUBLIC_URL + products[productID].image} alt="" />
                                         </a>
-                                        <a data-image="assets/img/product/gallery/gallery-large/product-gallery-large-2.jpg" data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
+                                        <a data-image={process.env.PUBLIC_URL + products[productID].image} data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
                                             <img className="img-fluid" src={process.env.PUBLIC_URL + products[productID].image} alt="" />
                                         </a>
-                                        <a data-image="assets/img/product/gallery/gallery-large/product-gallery-large-3.jpg" data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
+                                        <a data-image={process.env.PUBLIC_URL + products[productID].image} data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
                                             <img className="img-fluid" src={process.env.PUBLIC_URL + products[productID].image} alt="" />
                                         </a>
-                                        <a data-image="assets/img/product/gallery/gallery-large/product-gallery-large-4.jpg" data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
+                                        <a data-image={process.env.PUBLIC_URL + products[productID].image} data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
                                             <img className="img-fluid" src={process.env.PUBLIC_URL + products[productID].image} alt="" />
                                         </a>
                                     </div>

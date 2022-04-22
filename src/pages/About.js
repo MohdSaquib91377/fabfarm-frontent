@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Tabtitle from './Tabtitle'
 const About = () => {
+    Tabtitle('FAB | About us')
     return (
         <>
             {/* <!--Breadcrumb--> */}

@@ -3,16 +3,8 @@ import { ActionTypes } from "../contants/action-types"
 const initialState = {
     products: [],
     cart: [],
+    currentItem: null,
 }
-// export const productReducer = (state = initialState, { type, payload }) => {
-//     switch (type) {
-//         case ActionTypes.SET_PRODUCTS:
-//             return state;
-//         default:
-//             return state;
-//     }
-// }
-
 export const shopReducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.SET_PRODUCTS:
@@ -47,6 +39,11 @@ export const shopReducer = (state = initialState, action) => {
                 cart: state.cart.map(item => item.id === action.payload.id ?
                     { ...item, quantity: item.quantity - (item.quantity > 1 ? 1 : 0) }
                     : item)
+            };
+        case ActionTypes.LOAD_CURRENT_ITEM:
+            return {
+                ...state,
+                currentItem: action.payload,
             };
         default:
             return state;

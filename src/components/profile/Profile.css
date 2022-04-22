@@ -7,9 +7,10 @@
   padding: 40px 30px;
 }
 
-.my-account-menu .account-menu-list li a {
+.my-account-menu .account-menu-list li button {
+  all: unset;
   display: inline-block;
-  width: 100%;
+  width: 85%;
   height: 50px;
   line-height: 50px;
   padding: 0 20px;
@@ -19,10 +20,11 @@
   margin-top: -1px;
   transition: all 0.3s linear;
   text-decoration: none;
+  align-text: left;
 }
 
-.my-account-menu .account-menu-list li a:hover,
-.my-account-menu .account-menu-list li a.active {
+.my-account-menu .account-menu-list li button:hover,
+.my-account-menu .account-menu-list li button.active {
   background-color: #333;
   color: #fff;
   border-color: #333;

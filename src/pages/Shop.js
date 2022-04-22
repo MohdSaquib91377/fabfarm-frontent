@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { addToCart, setProducts } from '../redux/actions/productActions';
+import { addToCart, setProducts, loadCurrentItem } from '../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-const Shop = ({ products, addToCart, setProducts }) => {
-    const [productView, setProductView] = useState(false);
+import Tabtitle from './Tabtitle';
+const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
+    const [productView, setProductView] = useState('');
     const [search, setSearch] = useState('')
+    Tabtitle('FAB | Shop')
     useEffect(() => {
         const fetchproducts = async () => {
             const res = await axios.get(`http://localhost:5000/?q=${search}`)
@@ -24,14 +26,21 @@ const Shop = ({ products, addToCart, setProducts }) => {
                     <div className="org_product_block">
                         <span className="product_label">30% off</span>
                         <Link to={`/shop/${id}`}>
-                            <div className="org_product_image"><img src={process.env.PUBLIC_URL + image} alt={title} /></div>
-                            <h4>{title}</h4></Link>
+                            <div onClick={() => loadCurrentItem(product)} className="org_product_image"><img src={process.env.PUBLIC_URL + image} alt={title} /></div>
+                        </Link>
+                        <Link to={`/shop/${id}`}>    <h4 onClick={() => loadCurrentItem(product)}>{title}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
                     </div>
                     <div className="content_block">
                         <div className="product_price_box">
-                            <h3>{title}</h3>
+                            <Link to={`/shop/${id}`}>
+                                <h3
+                                    onClick={() => loadCurrentItem(product)}
+                                >
+                                    {title}
+                                </h3>
+                            </Link>
                             <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
                         </div>
                         <p>Farm & Garden</p>
@@ -189,7 +198,7 @@ const Shop = ({ products, addToCart, setProducts }) => {
                                             <ul className="list_view_toggle">
                                                 <li><span>view style</span></li>
                                                 <li>
-                                                    <button onClick={() => setProductView(false)} className={productView ? "grid_view" : "active grid_view"}>
+                                                    <button onClick={() => setProductView('list')} className={productView != 'list' ? "grid_view" : "active grid_view"}>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
                                                             <path
                                                                 fill="#707070"
@@ -200,7 +209,7 @@ const Shop = ({ products, addToCart, setProducts }) => {
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button onClick={() => setProductView(true)} className={productView ? "active list_view" : "list_view"}>
+                                                    <button onClick={() => setProductView('grid')} className={productView != 'list' ? "active list_view" : "list_view"}>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10">
                                                             <path
                                                                 fill="#707070"
@@ -214,7 +223,7 @@ const Shop = ({ products, addToCart, setProducts }) => {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className={productView ? "product_items_section product_list_view" : "product_items_section"}>
+                                <div className={productView != 'list' ? "product_items_section product_list_view" : "product_items_section"}>
                                     <ul>
                                         {seedList}
                                     </ul>
@@ -256,7 +265,7 @@ const Shop = ({ products, addToCart, setProducts }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
@@ -269,6 +278,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setProducts: (product) => dispatch(setProducts(product)),
         addToCart: (id) => dispatch(addToCart(id)),
+        loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);

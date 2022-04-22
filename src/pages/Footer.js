@@ -125,16 +125,16 @@ const Footer = () => {
                             </div>
                             <ul className="time_table">
                                 <li>
-                                    <Link to='/' onClick={() => window.scroll(0)}><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Home</p></Link>
+                                    <Link to='/' ><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Home</p></Link>
                                 </li>
                                 <li>
                                     <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Shop</p></Link>
                                 </li>
                                 <li>
-                                    <Link to='/aboutus' onClick={() => window.scroll(0)}> <p><span><FontAwesomeIcon icon={faAngleRight} /></span> About</p></Link>
+                                    <Link to='/aboutus' > <p><span><FontAwesomeIcon icon={faAngleRight} /></span> About</p></Link>
                                 </li>
                                 <li>
-                                    <Link to='/contact' onClick={() => window.scroll(0)}><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Contact</p></Link>
+                                    <Link to='/contact' ><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Contact</p></Link>
                                 </li>
                                 <li>
                                     <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Shop</p></Link>

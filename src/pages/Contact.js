@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Tabtitle from './Tabtitle'
 
 const Contact = () => {
+    Tabtitle('FAB | Contact us')
     return (
         <>
             <div className="breadcrumb_wrapper" style={{minHeight:'300px'}}>

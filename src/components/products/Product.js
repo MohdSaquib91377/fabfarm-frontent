@@ -1,12 +1,20 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../../redux/actions/productActions';
+import { addToCart, incrementQuantity, decrementQuantity } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
+import { faTruckLoading, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
+import Tabtitle from '../../pages/Tabtitle'
 import './product.css';
-const Product = ({ products, addToCart }) => {
-    const { productID } = useParams();
-    const { id, image, title, description, price } = products;
+const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity }) => {
+    const { id, image, title, description, price, quantity } = currentItem;
+    const [itemQuantity, setItemQuantity] = useState(1)
+    Tabtitle('FAB | Shop')
+    useEffect(() => {
+        setItemQuantity(quantity)
+    }, currentItem)
     return (
         <>
             {/* <!--Breadcrumb--> */}
@@ -15,7 +23,7 @@ const Product = ({ products, addToCart }) => {
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
-                                <h3>{products[productID].title}</h3>
+                                <h3>{title}</h3>
                             </div>
                         </div>
                     </div>
@@ -24,7 +32,7 @@ const Product = ({ products, addToCart }) => {
                     <ul>
                         <li><Link to='/'>home</Link></li>
                         <li><Link to='/shop'>&nbsp;Shop</Link></li>
-                        <li> &nbsp; {productID}</li>
+                        <li> &nbsp; {id}</li>
                     </ul>
                 </div>
             </div>
@@ -39,59 +47,58 @@ const Product = ({ products, addToCart }) => {
                             <div className="col-md-5">
                                 <div className="product-gallery-box product-gallery-box--default m-b-60">
                                     <div className="product-image--large product-image--large-horizontal">
-                                        <img className="img-fluid" id="img-zoom" src={process.env.PUBLIC_URL + products[productID].image} data-zoom-image="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" alt="" />
+                                        <img className="img-fluid" id="img-zoom" src={process.env.PUBLIC_URL + image} data-zoom-image="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" alt="" />
                                     </div>
                                     <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative">
-                                        <a className="zoom-active" data-image={process.env.PUBLIC_URL + products[productID].image} data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
-                                            <img className="img-fluid" src={process.env.PUBLIC_URL + products[productID].image} alt="" />
+                                        <a className="zoom-active" data-image={process.env.PUBLIC_URL + image} data-zoom-image={process.env.PUBLIC_URL + image}>
+                                            <img className="img-fluid" src={process.env.PUBLIC_URL + image} alt="" />
                                         </a>
-                                        <a data-image={process.env.PUBLIC_URL + products[productID].image} data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
-                                            <img className="img-fluid" src={process.env.PUBLIC_URL + products[productID].image} alt="" />
+                                        <a data-image={process.env.PUBLIC_URL + image} data-zoom-image={process.env.PUBLIC_URL + image}>
+                                            <img className="img-fluid" src={process.env.PUBLIC_URL + image} alt="" />
                                         </a>
-                                        <a data-image={process.env.PUBLIC_URL + products[productID].image} data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
-                                            <img className="img-fluid" src={process.env.PUBLIC_URL + products[productID].image} alt="" />
+                                        <a data-image={process.env.PUBLIC_URL + image} data-zoom-image={process.env.PUBLIC_URL + image}>
+                                            <img className="img-fluid" src={process.env.PUBLIC_URL + image} alt="" />
                                         </a>
-                                        <a data-image={process.env.PUBLIC_URL + products[productID].image} data-zoom-image={process.env.PUBLIC_URL + products[productID].image}>
-                                            <img className="img-fluid" src={process.env.PUBLIC_URL + products[productID].image} alt="" />
+                                        <a data-image={process.env.PUBLIC_URL + image} data-zoom-image={process.env.PUBLIC_URL + image}>
+                                            <img className="img-fluid" src={process.env.PUBLIC_URL + image} alt="" />
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-md-7">
                                 <div className="product-details-box m-b-60">
-                                    <h4 className="font--regular m-b-20">{products[productID].title}</h4>
+                                    <h4 className="font--regular m-b-20">{title}</h4>
                                     <ul className="product__review">
-                                        <li className="product__review--fill"><i className="icon-star"></i></li>
-                                        <li className="product__review--fill"><i className="icon-star"></i></li>
-                                        <li className="product__review--fill"><i className="icon-star"></i></li>
-                                        <li className="product__review--fill"><i className="icon-star"></i></li>
-                                        <li className="product__review--blank"><i className="icon-star"></i></li>
+                                        <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
+                                        <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
+                                        <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
+                                        <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
+                                        <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
                                     </ul>
                                     <div className="product__price m-t-5">
-                                        <span className="product__price product__price--large">{products[productID].price}</span>
+                                        <span className="product__price product__price--large">{price}</span>
                                         <span className="product__tag m-l-15 btn--tiny btn--green">-34%</span>
                                     </div>
 
                                     <div className="product__desc m-t-25 m-b-30">
-                                        <p>{products[productID].description}</p>
+                                        <p>{description}</p>
                                     </div>
                                     <div className="product-var p-tb-30">
                                         <div className="product__stock m-b-20">
-                                            <span className="product__stock--in"><i className="fas fa-check-circle"></i> 199 IN STOCK</span>
+                                            <span className="product__stock--in"><FontAwesomeIcon color='green' icon={faCheckCircle} /> 199 IN STOCK</span>
                                         </div>
                                         <div className="product-quantity product-var__item">
                                             <ul className="product-modal-group">
-                                                <li><a href="#modalSizeGuide" data-bs-toggle="modal" className="link--gray link--icon-left"><i className="fal fa-money-check-edit"></i>Size Guide</a></li>
-                                                <li><a href="#modalShippinginfo" data-bs-toggle="modal" className="link--gray link--icon-left"><i className="fal fa-truck-container"></i>Shipping</a></li>
-                                                <li><a href="#modalProductAsk" data-bs-toggle="modal" className="link--gray link--icon-left"><i className="fal fa-envelope"></i>Ask About This product</a></li>
+                                                <li><a href="#modalShippinginfo" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faTruckLoading} /> Shipping</a></li>
+                                                <li><a href="#modalProductAsk" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faEnvelope} /> Ask About This product</a></li>
                                             </ul>
                                         </div>
                                         <div className="product-quantity product-var__item d-flex align-items-center">
                                             <span className="product-var__text">Quantity: </span>
                                             <form className="quantity-scale m-l-20">
-                                                <div className="value-button" id="decrease" onclick="decreaseValue()">-</div>
-                                                <input type="number" id="number" value="1" />
-                                                <div className="value-button" id="increase" onclick="increaseValue()">+</div>
+                                                <button className="value-button" onclick={() => decrementQuantity(id)}>-</button>
+                                                <input type="number" id="number" value={itemQuantity} />
+                                                <button className="value-button" onclick={() => incrementQuantity(id)}>+</button>
                                             </form>
                                         </div>
                                         <div className="product-var__item">
@@ -120,9 +127,9 @@ const Product = ({ products, addToCart }) => {
                                         <div className="product-var__item d-flex align-items-center">
                                             <span className="product-var__text">Share: </span>
                                             <ul className="product-social m-l-20">
-                                                <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                                                <li><a href="#"><i className="fab fa-pinterest-p"></i></a></li>
+                                                <li><a href="#"><FontAwesomeIcon color='#4267B2' icon={faFacebook} /></a></li>
+                                                <li><a href="#"><FontAwesomeIcon color='#00acee' icon={faTwitter} /></a></li>
+                                                <li><a href="#"><FontAwesomeIcon color='#c8232c' icon={faPinterest} /></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -763,12 +770,14 @@ const Product = ({ products, addToCart }) => {
 }
 const mapStateToProps = (state) => {
     return {
-        products: state.shop.products,
+        currentItem: state.shop.currentItem,
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (id) => dispatch(addToCart(id)),
+        incrementQuantity: (id) => dispatch(incrementQuantity(id)),
+        decrementQuantity: (id) => dispatch(decrementQuantity(id)),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Product)

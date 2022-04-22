@@ -1,7 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './checkout.css'
-const Checkout = () => {
+import { connect } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faIndianRupee, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import Tabtitle from '../../pages/Tabtitle';
+const Checkout = ({ cartItem }) => {
+    const [totalPrice, setTotalPrice] = React.useState(0);
+    const [paymentMethodOne, setPaymentMethodOne] = useState(false);
+    const [paymentMethodTwo, setPaymentMethodTwo] = useState(false);
+    const [paymentMethodThree, setPaymentMethodThree] = useState(false);
+    Tabtitle('FAB | Checkout')
+    React.useEffect(() => {
+        let price = 0;
+        cartItem.forEach(item => {
+            price += item.quantity * item.price;
+        })
+        setTotalPrice(price);
+
+    }, [cartItem, totalPrice, setTotalPrice]);
+
+    const productList = cartItem.map((item, i) => {
+        const { title, price, quantity } = item;
+        return (
+            <li key={i} className="d-flex justify-content-between">
+                <span className="your-order-middle-left font--semi-bold">{title}  {quantity} X {price}</span>
+                <span className="your-order-middle-right font--semi-bold"><FontAwesomeIcon icon={faIndianRupee} />{quantity * price}</span>
+            </li>
+        )
+    });
     return (
         <>
             <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
@@ -17,12 +44,12 @@ const Checkout = () => {
                 <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
-                        <li> &nbsp; checkout</li>
+                        <li> &nbsp;checkout</li>
                     </ul>
                 </div>
             </div>
             <main id="main-container" style={{
-                marginTop:'100px'
+                marginTop: '100px'
             }} className="main-container">
                 <div className="container">
                     <div className="row">
@@ -34,25 +61,25 @@ const Checkout = () => {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-box__single-group">
-                                            <label for="form-first-name">First Name</label>
+                                            <label htmlFor="form-first-name">First Name</label>
                                             <input type="text" id="form-first-name" />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-box__single-group">
-                                            <label for="form-last-name">Last Name</label>
+                                            <label htmlFor="form-last-name">Last Name</label>
                                             <input type="text" id="form-last-name" />
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-box__single-group">
-                                            <label for="form-company-name">Company Name</label>
+                                            <label htmlFor="form-company-name">Company Name</label>
                                             <input type="text" id="form-company-name" />
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-box__single-group">
-                                            <label for="form-country">* Country</label>
+                                            <label htmlFor="form-country">* Country</label>
                                             <select id="form-country">
                                                 <option value="select-country" selected>Select a country</option>
                                                 <option value="BD">Bangladesh</option>
@@ -65,14 +92,14 @@ const Checkout = () => {
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-box__single-group">
-                                            <label for="form-address-1">Street Address</label>
+                                            <label htmlFor="form-address-1">Street Address</label>
                                             <input type="text" id="form-address-1" placeholder="House number and street name" />
                                             <input type="text" className="m-t-10" id="form-address-2" placeholder="Apartment, suite, unit etc." />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-box__single-group">
-                                            <label for="form-state">* Region / State</label>
+                                            <label htmlFor="form-state">* Region / State</label>
                                             <select id="form-state">
                                                 <option value="Dha" selected>Dhaka</option>
                                                 <option value="Kha">Khulna</option>
@@ -84,35 +111,35 @@ const Checkout = () => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-box__single-group">
-                                            <label for="form-zipcode">* Zip/Postal Code</label>
+                                            <label htmlFor="form-zipcode">* Zip/Postal Code</label>
                                             <input type="text" id="form-zipcode" />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-box__single-group">
-                                            <label for="form-phone">Phone</label>
+                                            <label htmlFor="form-phone">Phone</label>
                                             <input type="text" id="form-phone" />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-box__single-group">
-                                            <label for="form-email">Email Address</label>
+                                            <label htmlFor="form-email">Email Address</label>
                                             <input type="email" id="form-email" />
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="m-tb-20">
-                                            <label for="check-account">
+                                            <label htmlFor="check-account">
                                                 <input type="checkbox" name="check-account" className="creat-account" id="check-account" />
                                                 <span>Create an account?</span>
                                             </label>
                                             <div className="toogle-form open-create-account">
                                                 <div className="form-box__single-group">
-                                                    <label for="form-email-new-account">Email Address</label>
+                                                    <label htmlFor="form-email-new-account">Email Address</label>
                                                     <input type="email" id="form-email-new-account" />
                                                 </div>
                                                 <div className="form-box__single-group">
-                                                    <label for="form-password-new-account">Password</label>
+                                                    <label htmlFor="form-password-new-account">Password</label>
                                                     <input type="password" id="form-password-new-account" />
                                                 </div>
                                                 <div className="from-box__buttons m-t-25">
@@ -124,13 +151,13 @@ const Checkout = () => {
                                     <div className="col-md-12">
                                         <div className="form-box__single-group">
                                             <h6>Additional information</h6>
-                                            <label for="form-additional-info">Order notes</label>
+                                            <label htmlFor="form-additional-info">Order notes</label>
                                             <textarea id="form-additional-info" rows="5" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="m-tb-20">
-                                            <label for="shipping-account">
+                                            <label htmlFor="shipping-account">
                                                 <input type="checkbox" name="check-account" className="shipping-account" id="shipping-account" />
                                                 <span>Ship to a different address?</span>
                                             </label>
@@ -138,25 +165,25 @@ const Checkout = () => {
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-first-name">First Name</label>
+                                                            <label htmlFor="shipping-form-first-name">First Name</label>
                                                             <input type="text" id="shipping-form-first-name" />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-last-name">Last Name</label>
+                                                            <label htmlFor="shipping-form-last-name">Last Name</label>
                                                             <input type="text" id="shipping-form-last-name" />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-12">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-company-name">Company Name</label>
+                                                            <label htmlFor="shipping-form-company-name">Company Name</label>
                                                             <input type="text" id="shipping-form-company-name" />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-12">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-country">* Country</label>
+                                                            <label htmlFor="shipping-form-country">* Country</label>
                                                             <select id="shipping-form-country">
                                                                 <option value="select-country" selected>Select a country</option>
                                                                 <option value="BD">Bangladesh</option>
@@ -169,14 +196,14 @@ const Checkout = () => {
                                                     </div>
                                                     <div className="col-md-12">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-address-1">Street Address</label>
+                                                            <label htmlFor="shipping-form-address-1">Street Address</label>
                                                             <input type="text" id="shipping-form-address-1" placeholder="House number and street name" />
                                                             <input type="text" className="m-t-10" id="shipping-form-address-2" placeholder="Apartment, suite, unit etc." />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-state">* Region / State</label>
+                                                            <label htmlFor="shipping-form-state">* Region / State</label>
                                                             <select id="shipping-form-state">
                                                                 <option value="Dha" selected>Dhaka</option>
                                                                 <option value="Kha">Khulna</option>
@@ -188,19 +215,19 @@ const Checkout = () => {
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-zipcode">* Zip/Postal Code</label>
+                                                            <label htmlFor="shipping-form-zipcode">* Zip/Postal Code</label>
                                                             <input type="text" id="shipping-form-zipcode" />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-phone">Phone</label>
+                                                            <label htmlFor="shipping-form-phone">Phone</label>
                                                             <input type="text" id="shipping-form-phone" />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-box__single-group">
-                                                            <label for="shipping-form-email">Email Address</label>
+                                                            <label htmlFor="shipping-form-email">Email Address</label>
                                                             <input type="email" id="shipping-form-email" />
                                                         </div>
                                                     </div>
@@ -224,14 +251,7 @@ const Checkout = () => {
                                             <h6 className="your-order-top-right font--bold">Total</h6>
                                         </div>
                                         <ul className="your-order-middle">
-                                            <li className="d-flex justify-content-between">
-                                                <span className="your-order-middle-left font--semi-bold">Product Name X 1</span>
-                                                <span className="your-order-middle-right font--semi-bold">$329</span>
-                                            </li>
-                                            <li className="d-flex justify-content-between">
-                                                <span className="your-order-middle-left font--semi-bold">Product Name X 1</span>
-                                                <span className="your-order-middle-right font--semi-bold">$329</span>
-                                            </li>
+                                            {productList}
                                         </ul>
                                         <div className="your-order-bottom d-flex justify-content-between">
                                             <h6 className="your-order-bottom-left font--bold">Shipping</h6>
@@ -239,49 +259,49 @@ const Checkout = () => {
                                         </div>
                                         <div className="your-order-total d-flex justify-content-between">
                                             <h5 className="your-order-total-left font--bold">Total</h5>
-                                            <h5 className="your-order-total-right font--bold">$329</h5>
+                                            <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{totalPrice}</h5>
                                         </div>
 
                                         <div className="payment-method">
                                             <div className="payment-accordion element-mrg">
                                                 <div className="panel-group" id="accordion">
                                                     <div className="panel payment-accordion">
-                                                        <div className="panel-heading" id="method-one">
+                                                        <div className="panel-heading" onClick={() => setPaymentMethodOne(!paymentMethodOne)}>
                                                             <h4 className="panel-title">
-                                                                <a className="collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-parent="#accordion" href="#method1" aria-expanded="false">
-                                                                    Direct bank transfer <i className="far fa-chevron-down"></i>
+                                                                <a className=" d-flex justify-content-between align-items-center">
+                                                                    Direct bank transfer <FontAwesomeIcon icon={paymentMethodOne ? faChevronUp : faChevronDown} />
                                                                 </a>
                                                             </h4>
                                                         </div>
-                                                        <div id="method1" className="panel-collapse collapse">
+                                                        <div id="method1" className={paymentMethodOne ? 'panel-collapse collapse show' : 'panel-collapse collapse'}>
                                                             <div className="panel-body">
                                                                 <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="panel payment-accordion">
-                                                        <div className="panel-heading" id="method-two">
+                                                        <div className="panel-heading" onClick={() => setPaymentMethodTwo(!paymentMethodTwo)} >
                                                             <h4 className="panel-title">
-                                                                <a className="collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-parent="#accordion" href="#method2" aria-expanded="false">
-                                                                    Check payments <i className="far fa-chevron-down"></i>
+                                                                <a className=" d-flex justify-content-between align-items-center" >
+                                                                    Check payments <FontAwesomeIcon icon={paymentMethodTwo ? faChevronUp : faChevronDown} />
                                                                 </a>
                                                             </h4>
                                                         </div>
-                                                        <div id="method2" className="panel-collapse collapse" >
+                                                        <div id="method2" className={paymentMethodTwo ? 'panel-collapse collapse show' : 'panel-collapse collapse'} >
                                                             <div className="panel-body">
                                                                 <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="panel payment-accordion">
-                                                        <div className="panel-heading" id="method-three">
+                                                        <div className="panel-heading" onClick={() => setPaymentMethodThree(!paymentMethodThree)}>
                                                             <h4 className="panel-title">
-                                                                <a className="collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-parent="#accordion" href="#method3" aria-expanded="false">
-                                                                    Cash on delivery <i className="far fa-chevron-down"></i>
+                                                                <a className=" d-flex justify-content-between align-items-center">
+                                                                    Cash on delivery <FontAwesomeIcon icon={paymentMethodThree ? faChevronUp : faChevronDown} />
                                                                 </a>
                                                             </h4>
                                                         </div>
-                                                        <div id="method3" className="panel-collapse collapse">
+                                                        <div id="method3" className={paymentMethodThree ? 'panel-collapse collapse show' : 'panel-collapse collapse'}>
                                                             <div className="panel-body">
                                                                 <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                                                             </div>
@@ -303,5 +323,9 @@ const Checkout = () => {
         </>
     )
 }
-
-export default Checkout
+const mapStateToProps = (state) => {
+    return {
+        cartItem: state.shop.cart
+    }
+}
+export default connect(mapStateToProps)(Checkout);

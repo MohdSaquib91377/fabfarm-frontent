@@ -45,3 +45,9 @@ export const decrementQuantity = (itemID) => {
         },
     };
 };
+export const loadCurrentItem = (item) => {
+    return {
+        type: ActionTypes.LOAD_CURRENT_ITEM,
+        payload: item
+    }
+};

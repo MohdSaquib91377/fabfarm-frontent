@@ -99,17 +99,6 @@ const Header = ({ cart }) => {
                                                 </ul>
                                             </li>
                                             <li><Link to="/aboutus">about us</Link></li>
-                                            <li>
-                                                <a href="#">pages</a>
-                                                <ul>
-                                                    <li><a href="profile.html">profile</a></li>
-                                                    <li><a href="products.html">products</a></li>
-                                                    <li><a href="product_single.html">product single</a></li>
-                                                    <li><a href="checkout.html">checkout</a></li>
-                                                    <li><a href="cart_single.html">my cart</a></li>
-                                                    <li><a href="404.html">404</a></li>
-                                                </ul>
-                                            </li>
 
                                             <li><Link to="/contact">Contact us</Link></li>
                                             <li

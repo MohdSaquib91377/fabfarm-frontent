@@ -5,7 +5,9 @@ import Services from '../components/homepage/Services';
 import Counter from '../components/homepage/Counter';
 // import Partner from '../components/homepage/Partner';
 import Topproducts from '../components/homepage/Topproducts';
+import Tabtitle from './Tabtitle';
 const Home = () => {
+    Tabtitle('FAB')
     return (
         <>
             <Banner />

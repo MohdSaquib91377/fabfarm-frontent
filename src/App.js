@@ -9,11 +9,13 @@ import Profile from './components/profile/Profile';
 import Pagenotfound from './pages/Pagenotfound';
 import Product from './components/products/Product';
 import Checkout from './components/checkout/Checkout';
+import ScrollToTop from './pages/ScrollToTop';
 function App() {
   return (
     <>
       <Router>
         <Header />
+        <ScrollToTop />
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/shop' element={<Shop />} />

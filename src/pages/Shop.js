@@ -99,7 +99,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                 <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>search</h3>
-                                        <img src="images/footer_underline.png" alt="image" />
+                                        <img src="images/garden_underline.png" alt="image" />
                                     </div>
                                     <div className="sidebar_search">
                                         <input type="text" name='search' onChange={(e) => setSearch(e.target.value)} placeholder="Search here" />
@@ -109,7 +109,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                 <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>product categories</h3>
-                                        <img src="images/footer_underline.png" alt="image" />
+                                        <img src="images/garden_underline.png" alt="image" />
                                     </div>
                                     <div className="product_category">
                                         <ul>
@@ -131,7 +131,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                 <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>filter by price</h3>
-                                        <img src="images/footer_underline.png" alt="image" />
+                                        <img src="images/garden_underline.png" alt="image" />
                                     </div>
                                     <div className="ds_progress_rangeslider Range_slider">
                                         <div id="slider-range" className="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
@@ -144,7 +144,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                 {/* <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>discount</h3>
-                                        <img src="images/footer_underline.png" alt="image" />
+                                        <img src="images/garden_underline.png" alt="image" />
                                     </div>
                                     <div className="product_category">
                                         <ul>

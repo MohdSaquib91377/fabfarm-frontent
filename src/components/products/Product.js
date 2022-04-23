@@ -4,7 +4,7 @@ import { addToCart, incrementQuantity, decrementQuantity } from '../../redux/act
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
-import { faTruckLoading, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faTruckLoading, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
 import './product.css';
@@ -75,7 +75,7 @@ const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity 
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                         <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
                                     </ul>
-                                    <div className="product__price m-t-5">
+                                    <div className="product__price m-t-5">Rs
                                         <span className="product__price product__price--large">{price}</span>
                                         <span className="product__tag m-l-15 btn--tiny btn--green">-34%</span>
                                     </div>
@@ -89,26 +89,28 @@ const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity 
                                         </div>
                                         <div className="product-quantity product-var__item">
                                             <ul className="product-modal-group">
-                                                <li><a href="#modalShippinginfo" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faTruckLoading} /> Shipping</a></li>
-                                                <li><a href="#modalProductAsk" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faEnvelope} /> Ask About This product</a></li>
+                                                <li><a href="#modalShippinginfo" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faTruckLoading} /> &nbsp; Shipping</a></li>
+                                                <li><a href="#modalProductAsk" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faEnvelope} /> &nbsp; Ask About This product</a></li>
                                             </ul>
                                         </div>
                                         <div className="product-quantity product-var__item d-flex align-items-center">
                                             <span className="product-var__text">Quantity: </span>
                                             <form className="quantity-scale m-l-20">
                                                 <button className="value-button" onclick={() => decrementQuantity(id)}>-</button>
-                                                <input type="number" id="number" value={itemQuantity} />
+                                                <input className='input-items-number' type="number" id="number" value={itemQuantity} />
                                                 <button className="value-button" onclick={() => incrementQuantity(id)}>+</button>
                                             </form>
                                         </div>
                                         <div className="product-var__item">
                                             <a href="#modalAddCart" data-bs-toggle="modal" data-bs-dismiss="modal" className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</a>
-                                            <a href="wishlist.html" className="btn btn--round btn--round-size-small btn--green btn--green-hover-black"><i className="fas fa-heart"></i></a>
+                                            <a href="wishlist.html" className="btn btn--round btn--round-size-small btn--green btn--green-hover-black">
+                                            <FontAwesomeIcon icon={faHeart} />
+                                            </a>
                                         </div>
                                         <div className="product-var__item">
                                             <div className="dynmiac_checkout--button">
                                                 <input type="checkbox" id="buy-now-check" value="1" className="p-r-30" />
-                                                <label htmlFor="buy-now-check" className="m-b-20">I agree with the terms and condition</label>
+                                                <label htmlFor="buy-now-check" className="m-b-20 pl-4">I agree with the terms and condition</label>
                                                 <a href="cart.html" className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</a>
                                             </div>
                                         </div>

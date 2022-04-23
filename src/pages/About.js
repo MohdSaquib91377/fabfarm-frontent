@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Tabtitle from './Tabtitle'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 const About = () => {
     Tabtitle('FAB | About us')
     return (
@@ -43,7 +45,7 @@ const About = () => {
                                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fuiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offi deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error  eivoluptatem accusantium doloremque laudantium.</p>
                                 <div className="video_block">
                                     <div className="video_btn">
-                                        <a href="https://www.youtube.com/watch?v=tqwRLdBsFw8" className="play_video"><span className="pulse"><i className="fa fa-play" aria-hidden="true"></i></span> watch video</a>
+                                        <a href="https://www.youtube.com/watch?v=tqwRLdBsFw8" className="play_video"><span className="pulse"><FontAwesomeIcon icon={faPlay} /></span> watch video</a>
                                     </div>
                                     <a href="#" className="clv_btn">read more</a>
                                 </div>
@@ -182,7 +184,7 @@ const About = () => {
                         <div className="col-lg-6 col-md-6">
                             <div className="clv_heading">
                                 <h3>Discover Services We Provided</h3>
-                                <div className="clv_underline"><img src="images/underline3.png" alt="image" /></div>
+                                <div className="clv_underline"><img src="images/garden_underline.png" alt="image" /></div>
                                 <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dole magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.</p>
                             </div>
                         </div>
@@ -298,7 +300,7 @@ const About = () => {
                         <div className="col-lg-6 col-md-6">
                             <div className="clv_heading">
                                 <h3>our team</h3>
-                                <div className="clv_underline"><img src="images/underline3.png" alt="image" /></div>
+                                <div className="clv_underline"><img src="images/garden_underline.png" alt="image" /></div>
                                 <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dole magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.</p>
                             </div>
                         </div>

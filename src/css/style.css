@@ -1824,7 +1824,7 @@ ul {
   visibility: hidden;
   transform: translateY(-60px);
   z-index: -1;
-  background-color: rgba(254, 192, 7, 0.9);
+  background-color: #1fa12ec5;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -12403,4 +12403,13 @@ button.unset {
 
 .top-bar > p {
   color: #fff;
+}
+.input-items-number{
+  width: 20px;
+  margin-left: 10px;
+}
+.play_video .pulse{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }

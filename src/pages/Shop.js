@@ -26,7 +26,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                     <div className="org_product_block">
                         <span className="product_label">30% off</span>
                         <Link to={`/shop/${id}`}>
-                            <div onClick={() => loadCurrentItem(product)} className="org_product_image"><img src={process.env.PUBLIC_URL + image} alt={title} /></div>
+                            <div onClick={() => loadCurrentItem(product)} className="org_product_image"><img src={process.env.REACT_APP_LOCAL_URL + image[0]} alt={title} /></div>
                         </Link>
                         <Link to={`/shop/${id}`}>    <h4 onClick={() => loadCurrentItem(product)}>{title}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>

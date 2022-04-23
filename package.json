@@ -20,6 +20,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-facebook-login": "^4.1.1",
+    "react-image-magnify": "^2.7.4",
     "react-redux": "^7.2.8",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.0",

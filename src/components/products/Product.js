@@ -7,14 +7,25 @@ import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
 import { faTruckLoading, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
+import ReactImageMagnify from 'react-image-magnify';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
 import './product.css';
 const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity }) => {
     const { id, image, title, description, price, quantity } = currentItem;
     const [itemQuantity, setItemQuantity] = useState(1)
+    const [prevImage, setPrevImage] = useState(0)
     Tabtitle('FAB | Shop')
     useEffect(() => {
         setItemQuantity(quantity)
     }, currentItem)
+    const thumbImages = image.map((item, i) => {
+        return (
+            <SwiperSlide key={i} onClick={() => setPrevImage(i)} ><img src={process.env.REACT_APP_LOCAL_URL + item} alt='' /></SwiperSlide>
+        )
+    })
     return (
         <>
             {/* <!--Breadcrumb--> */}
@@ -46,22 +57,27 @@ const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity 
                         <div className="row">
                             <div className="col-md-5">
                                 <div className="product-gallery-box product-gallery-box--default m-b-60">
-                                    <div className="product-image--large product-image--large-horizontal">
-                                        <img className="img-fluid" id="img-zoom" src={process.env.PUBLIC_URL + image} data-zoom-image="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" alt="" />
-                                    </div>
+                                    <ReactImageMagnify {...{
+                                        smallImage: {
+                                            alt: 'Wristwatch by Ted Baker London',
+                                            isFluidWidth: true,
+                                            src: process.env.REACT_APP_LOCAL_URL + image[prevImage]
+                                        },
+                                        largeImage: {
+                                            src: process.env.REACT_APP_LOCAL_URL + image[prevImage],
+                                            width: 1200,
+                                            height: 1800
+                                        },
+                                        enlargedImageContainerDimensions: {
+                                            width: '200%',
+                                            height: '100%',
+                                        }
+                                    }} />
+
                                     <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative">
-                                        <a className="zoom-active" data-image={process.env.PUBLIC_URL + image} data-zoom-image={process.env.PUBLIC_URL + image}>
-                                            <img className="img-fluid" src={process.env.PUBLIC_URL + image} alt="" />
-                                        </a>
-                                        <a data-image={process.env.PUBLIC_URL + image} data-zoom-image={process.env.PUBLIC_URL + image}>
-                                            <img className="img-fluid" src={process.env.PUBLIC_URL + image} alt="" />
-                                        </a>
-                                        <a data-image={process.env.PUBLIC_URL + image} data-zoom-image={process.env.PUBLIC_URL + image}>
-                                            <img className="img-fluid" src={process.env.PUBLIC_URL + image} alt="" />
-                                        </a>
-                                        <a data-image={process.env.PUBLIC_URL + image} data-zoom-image={process.env.PUBLIC_URL + image}>
-                                            <img className="img-fluid" src={process.env.PUBLIC_URL + image} alt="" />
-                                        </a>
+                                        <Swiper navigation={true} slidesPerView={4} spaceBetween={10} modules={[Navigation]} className="mySwiper">
+                                            {thumbImages}
+                                        </Swiper>
                                     </div>
                                 </div>
                             </div>

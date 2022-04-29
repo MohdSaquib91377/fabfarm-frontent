@@ -17,7 +17,7 @@ const Weather = () => {
             setLat(position.coords.latitude);
             setLong(position.coords.longitude);
         });
-        getWeatherData();
+        // getWeatherData();
     }, [lat, long]);
     let timeZone = 'Asia/Kolkata';
     return (

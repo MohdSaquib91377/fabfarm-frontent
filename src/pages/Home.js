@@ -1,18 +1,25 @@
-import React from 'react'
-import Testimonial from '../components/homepage/Testimonial';
-import Banner from '../components/homepage/Banner';
-import Services from '../components/homepage/Services';
-import Counter from '../components/homepage/Counter';
-// import Partner from '../components/homepage/Partner';
-import Topproducts from '../components/homepage/Topproducts';
+import React, { lazy, Suspense } from 'react'
 import Tabtitle from './Tabtitle';
+const Banner = lazy(() => import('../components/homepage/Banner'))
+const Testimonial = lazy(() => import('../components/homepage/Testimonial'))
+const Services = lazy(() => import('../components/homepage/Services'))
+const Counter = lazy(() => import('../components/homepage/Counter'))
+const Topproducts = lazy(() => import('../components/homepage/Topproducts'))
+
 const Home = () => {
     Tabtitle('FAB')
     return (
         <>
-            <Banner />
-            <Services />
-            <Counter />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Banner />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Services />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Counter />
+            </Suspense>
+
             <div className="garden_service_about_wrapper clv_section">
                 <div className="container">
                     <div className="row">
@@ -33,7 +40,9 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <Testimonial />
+            {/* <Suspense fallback={<div>Loading...</div>}>
+                <Testimonial />
+            </Suspense> */}
             <div className="garden_service2_wrapper clv_section">
                 <div className="container">
                     <div className="row justify-content-center">
@@ -111,8 +120,9 @@ const Home = () => {
 
             {/* <!--Shop--> */}
 
-            <Topproducts />
-
+            <Suspense fallback={<div>Loading...</div>}>
+                <Topproducts />
+            </Suspense>
             {/* <!--Partner--> */}
             {/* <Partner /> */}
         </>

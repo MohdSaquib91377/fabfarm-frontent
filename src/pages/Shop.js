@@ -4,21 +4,28 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
 import Tabtitle from './Tabtitle';
 const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
     const [productView, setProductView] = useState('');
     const [search, setSearch] = useState('')
+    const [page, setPage] = useState(1)
     Tabtitle('FAB | Shop')
-    useEffect(() => {
-        const fetchproducts = async () => {
-            const res = await axios.get(`http://localhost:5000/?q=${search}`)
+    const fetchproducts = async () => {
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/store/product/`)
+            console.log(res)
             setProducts(res.data)
+        } catch (error) {
+            console.log(error);
         }
+    }
+    useEffect(() => {
         fetchproducts();
-    }, [search]);
+    }, [search, page]);
     const seedList = products.map((product, i) => {
-        const { id, image, title, description, Qty: { first_otp, second_otp }, price } = product;
+        const { id, image: [{ image }], name, description, price } = product;
         return (
             <li key={i}>
 
@@ -26,9 +33,9 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                     <div className="org_product_block">
                         <span className="product_label">30% off</span>
                         <Link to={`/shop/${id}`}>
-                            <div onClick={() => loadCurrentItem(product)} className="org_product_image"><img src={process.env.REACT_APP_LOCAL_URL + image[0]} alt={title} /></div>
+                            <div onClick={() => loadCurrentItem(product)} className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
                         </Link>
-                        <Link to={`/shop/${id}`}>    <h4 onClick={() => loadCurrentItem(product)}>{title}</h4></Link>
+                        <Link to={`/shop/${id}`}>    <h4 onClick={() => loadCurrentItem(product)}>{name}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
                     </div>
@@ -38,7 +45,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                 <h3
                                     onClick={() => loadCurrentItem(product)}
                                 >
-                                    {title}
+                                    {name}
                                 </h3>
                             </Link>
                             <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
@@ -185,7 +192,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                 <div className="product_list_filter">
                                     <ul>
                                         <li>
-                                            <p>showing <span>1-6 of {products.length}</span> result</p>
+                                            <p>showing <span>1-{products.length} of {products.length}</span> result</p>
                                         </li>
                                         <li>
                                             <select>
@@ -198,7 +205,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                             <ul className="list_view_toggle">
                                                 <li><span>view style</span></li>
                                                 <li>
-                                                    <button onClick={() => setProductView('list')} className={productView != 'list' ? "grid_view" : "active grid_view"}>
+                                                    <button onClick={() => setProductView('list')} className={productView !== 'list' ? "grid_view" : "active grid_view"}>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
                                                             <path
                                                                 fill="#707070"
@@ -209,7 +216,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button onClick={() => setProductView('grid')} className={productView != 'list' ? "active list_view" : "list_view"}>
+                                                    <button onClick={() => setProductView('grid')} className={productView !== 'list' ? "active list_view" : "list_view"}>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="10">
                                                             <path
                                                                 fill="#707070"
@@ -223,12 +230,25 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className={productView != 'list' ? "product_items_section product_list_view" : "product_items_section"}>
-                                    <ul>
-                                        {seedList}
-                                    </ul>
-                                </div>
-                                <div className="blog_pagination_section">
+                                <InfiniteScroll
+                                    dataLength={products.length} //This is important field to render the next data
+                                    next={() => setPage(page + 1)}
+                                    hasMore={true}
+                                    // loader={<h4>Loading...</h4>}
+                                    scrollableTarget='products_list'
+                                    endMessage={
+                                        <p style={{ textAlign: 'center' }}>
+                                            <b>Yay! You have seen it all</b>
+                                        </p>
+                                    }
+                                >
+                                    <div id='products_list' className={productView !== 'list' ? "product_items_section product_list_view" : "product_items_section"}>
+                                        <ul>
+                                            {seedList}
+                                        </ul>
+                                    </div>
+                                </InfiniteScroll>
+                                {/* <div className="blog_pagination_section">
                                     <ul>
                                         <li className="blog_page_arrow">
                                             <a href="#">
@@ -260,7 +280,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

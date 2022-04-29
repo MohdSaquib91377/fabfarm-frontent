@@ -6152,7 +6152,7 @@ ul {
   text-transform: capitalize;
   font-weight: 600;
   margin-bottom: 10px;
-  padding:10px;
+  padding: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -8157,7 +8157,7 @@ ul {
 28. product Page start
 *******************************************************/
 .products_wrapper {
-  padding-top: 125px;
+  padding-top: 60px;
 }
 .product_block {
   margin-bottom: 30px;
@@ -8245,9 +8245,6 @@ ul {
   text-transform: capitalize;
   font-weight: 600;
 }
-.product_list_section {
-  margin-top: 65px;
-}
 .product_list_filter > ul > li {
   display: inline-block;
   width: 33%;
@@ -8328,6 +8325,10 @@ ul {
 }
 .product_items_section {
   margin-top: 18px;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 .product_items_section > ul {
   margin: 0px -15px;
@@ -8369,6 +8370,9 @@ ul {
 }
 .product_list_section .blog_pagination_section {
   margin-top: 10px;
+}
+.product_list_section {
+  overflow: hidden;
 }
 .product_items_section.product_list_view > ul > li {
   width: 100%;
@@ -12404,11 +12408,11 @@ button.unset {
 .top-bar > p {
   color: #fff;
 }
-.input-items-number{
+.input-items-number {
   width: 20px;
   margin-left: 10px;
 }
-.play_video .pulse{
+.play_video .pulse {
   display: flex !important;
   justify-content: center;
   align-items: center;

@@ -4,32 +4,33 @@ import { faIndianRupee, faMinus, faPlus, faTrash } from '@fortawesome/free-solid
 import { removeFromCart, incrementQuantity, decrementQuantity } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, product }) => {
+    const { id, image: [{ image }], name, price, quantity } = product;
     return (
         <div
             style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', margin: "15px 0" }}>
             <div className="cart_block">
                 <img
                     style={{ maxHeight: '100px', maxWidth: '100px' }}
-                    src={process.env.PUBLIC_URL + product.image} alt={product.title}
+                    src={process.env.REACT_APP_BASE_URL + image} alt={name}
                 />
             </div>
             <div className="cart_block">
-                <h5>{product.title}</h5>
+                <h5>{name}</h5>
                 <div className="item_quantity" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <button className="quantity_minus" onClick={() => decrementQuantity(product.id)} ><FontAwesomeIcon icon={faMinus} /></button>
+                    <button className="quantity_minus" onClick={() => decrementQuantity(id)} ><FontAwesomeIcon icon={faMinus} /></button>
                     <input
                         type="text"
-                        value={product.quantity}
+                        value={quantity}
                         className="quantity"
                         disabled />
-                    <button className="quantity_plus" onClick={() => incrementQuantity(product.id)} ><FontAwesomeIcon icon={faPlus} /></button>
+                    <button className="quantity_plus" onClick={() => incrementQuantity(id)} ><FontAwesomeIcon icon={faPlus} /></button>
                 </div>
             </div>
             <div className="cart_block">
-                <h4 style={{ display: 'flex' }}><span><FontAwesomeIcon icon={faIndianRupee} /></span>{product.quantity * product.price}</h4>
+                <h4 style={{ display: 'flex' }}><span><FontAwesomeIcon icon={faIndianRupee} /></span>{quantity * price}</h4>
             </div>
             <button className='unset redbtn'
-                onClick={() => removeFromCart(product.id)}
+                onClick={() => removeFromCart(id)}
             ><FontAwesomeIcon icon={faTrash} /></button>
         </div >
     )

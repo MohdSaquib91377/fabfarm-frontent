@@ -16,7 +16,7 @@ import "swiper/css/navigation";
 import './product.css';
 import Relatedproducts from './Relatedproducts';
 const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity }) => {
-    const { id, image, title, description, price, quantity } = currentItem;
+    const { id, image, name, description, price, quantity } = currentItem;
     const [itemQuantity, setItemQuantity] = useState(1)
     const [prevImage, setPrevImage] = useState(0)
     Tabtitle('FAB | Shop')
@@ -25,7 +25,7 @@ const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity 
     }, currentItem)
     const thumbImages = image.map((item, i) => {
         return (
-            <SwiperSlide key={i} onClick={() => setPrevImage(i)} ><img src={process.env.REACT_APP_LOCAL_URL + item} alt='' /></SwiperSlide>
+            <SwiperSlide key={i} onClick={() => setPrevImage(i)} ><img src={process.env.REACT_APP_BASE_URL + item.thumbnail} alt={item.image_caption} /></SwiperSlide>
         )
     })
     return (
@@ -36,7 +36,7 @@ const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity 
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
-                                <h3>{title}</h3>
+                                <h3>{name}</h3>
                             </div>
                         </div>
                     </div>
@@ -61,12 +61,12 @@ const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity 
                                 <div className="product-gallery-box product-gallery-box--default m-b-60">
                                     <ReactImageMagnify {...{
                                         smallImage: {
-                                            alt: 'Wristwatch by Ted Baker London',
+                                            alt: image[prevImage].image_caption,
                                             isFluidWidth: true,
-                                            src: process.env.REACT_APP_LOCAL_URL + image[prevImage]
+                                            src: process.env.REACT_APP_BASE_URL + image[prevImage].image
                                         },
                                         largeImage: {
-                                            src: process.env.REACT_APP_LOCAL_URL + image[prevImage],
+                                            src: process.env.REACT_APP_BASE_URL + image[prevImage].image,
                                             width: 1200,
                                             height: 1800
                                         },
@@ -85,7 +85,7 @@ const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity 
                             </div>
                             <div className="col-md-7">
                                 <div className="product-details-box m-b-60">
-                                    <h4 className="font--regular m-b-20">{title}</h4>
+                                    <h4 className="font--regular m-b-20">{name}</h4>
                                     <ul className="product__review">
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>

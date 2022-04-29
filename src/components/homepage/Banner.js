@@ -1,6 +1,7 @@
 import React from 'react'
 import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import { Link } from 'react-router-dom';
 const Banner = () => {
     return (
         <>
@@ -25,7 +26,7 @@ const Banner = () => {
                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br />nostrud exercitation ullamco laboris nisi ut aliquipea commodand.</p>
                                 <div className="banner_btn">
                                     <span className="left_line"></span>
-                                    <a href="#" className="clv_btn">Shop Now</a>
+                                    <Link to='/shop' className="clv_btn">Shop Now</Link>
                                     <span className="right_line"></span>
                                 </div>
                             </div>

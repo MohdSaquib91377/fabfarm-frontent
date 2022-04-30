@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 const productsPersistConfig = {
     key: 'root',
     storage: storage,
-    blacklist: ['products']
+    blacklist: ['products,currentItem']
 }
 const reducers = combineReducers({
     shop: persistReducer(productsPersistConfig, shopReducer),

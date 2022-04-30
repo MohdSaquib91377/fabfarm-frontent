@@ -111,16 +111,16 @@ const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity 
                                                 <li><a href="#modalProductAsk" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faEnvelope} /> &nbsp; Ask About This product</a></li>
                                             </ul>
                                         </div>
-                                        <div className="product-quantity product-var__item d-flex align-items-center">
+                                        {/* <div className="product-quantity product-var__item d-flex align-items-center">
                                             <span className="product-var__text">Quantity: </span>
-                                            <form className="quantity-scale m-l-20">
-                                                <button className="value-button" onClick={() => decrementQuantity(id)}>-</button>
+                                            <div className="quantity-scale m-l-20">
+                                                <button className="value-button" >-</button>
                                                 <input className='input-items-number' type="text" readOnly id="number" value={itemQuantity} />
-                                                <button className="value-button" onClick={() => incrementQuantity(id)}>+</button>
-                                            </form>
-                                        </div>
+                                                <button className="value-button" >+</button>
+                                            </div>
+                                        </div> */}
                                         <div className="product-var__item">
-                                            <a href="#modalAddCart" data-bs-toggle="modal" data-bs-dismiss="modal" className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</a>
+                                            <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</button>
                                             <a href="wishlist.html" className="btn btn--round btn--round-size-small btn--green btn--green-hover-black">
                                                 <FontAwesomeIcon icon={faHeart} />
                                             </a>

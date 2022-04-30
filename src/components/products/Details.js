@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux';
 
-const Details = () => {
+const Details = ({ currentItem }) => {
     const [detailsState, setDetailsState] = useState('product-desc');
+    const { description } = currentItem;
     return (
         <>
             <div className="product-details-tab-area">
@@ -19,7 +21,7 @@ const Details = () => {
                                         {/* Start Tab -  Product Description */}
                                         <div className={detailsState == 'product-desc' ? 'tab-pane show active' : 'tab-pane'} id="product-desc">
                                             <div className="para__content">
-                                                <p className="para__text">Use the Canon VIXIA GX10 Camcorder to capture UHD 4K video at 60 fps, recording in MP4 to dual SD memory card slots. This camcorder packs several pro-style features into its compact form, including Dual-Pixel Autofocus (DPAF). The GX10's 1" 8.29MP CMOS sensor and dual DIGIC DV 6 image processors support Wide DR Gamma with high sensitivity and low noise. Slow and fast-motion recording up to 120 fps offers special looks for highlighting sports and other special events. Smooth, steady shooting is assisted by the GX10's five-axis optical image stabilization. For composing and viewing your footage, the VIXIA GX10 incorporates a flip-out 3.5" touchscreen LCD, and a 0.24" electronic viewfinder. </p>
+                                                {/* <p className="para__text">Use the Canon VIXIA GX10 Camcorder to capture UHD 4K video at 60 fps, recording in MP4 to dual SD memory card slots. This camcorder packs several pro-style features into its compact form, including Dual-Pixel Autofocus (DPAF). The GX10's 1" 8.29MP CMOS sensor and dual DIGIC DV 6 image processors support Wide DR Gamma with high sensitivity and low noise. Slow and fast-motion recording up to 120 fps offers special looks for highlighting sports and other special events. Smooth, steady shooting is assisted by the GX10's five-axis optical image stabilization. For composing and viewing your footage, the VIXIA GX10 incorporates a flip-out 3.5" touchscreen LCD, and a 0.24" electronic viewfinder. </p>
                                                 <p className="para__text">Additional GX10 features include an HDMI 2.0 port for outputting your 4K UHD footage, assignable user buttons, and remote control using the included WL-D89 controller. Wi-Fi connectivity offers live streaming, FTP file sharing, and remote control via iOS and Android apps.</p>
                                                 <h6 className="para__title">Product Highlights:</h6>
                                                 <ul className="para__list">
@@ -33,7 +35,8 @@ const Details = () => {
                                                     <li>Records 4K UHD/HD to Dual SD Card Slots</li>
                                                     <li>3.5" Touchscreen LCD &amp; 0.24" EVF</li>
                                                     <li>Live Stream/FTP/Remote App via Wi-Fi</li>
-                                                </ul>
+                                                </ul> */}
+                                                {description}
                                             </div>
                                         </div>  {/* End Tab - Product Description */}
 
@@ -209,5 +212,9 @@ const Details = () => {
         </>
     )
 }
-
-export default Details
+const mapStateToProps = (state) => {
+    return {
+        currentItem: state.shop.currentItem
+    }
+}
+export default connect(mapStateToProps)(Details)

@@ -16,6 +16,12 @@ const Home = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <Services />
             </Suspense>
+
+            {/* <!--Shop--> */}
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <Topproducts />
+            </Suspense>
             <Suspense fallback={<div>Loading...</div>}>
                 <Counter />
             </Suspense>
@@ -118,11 +124,6 @@ const Home = () => {
             </div>
 
 
-            {/* <!--Shop--> */}
-
-            <Suspense fallback={<div>Loading...</div>}>
-                <Topproducts />
-            </Suspense>
             {/* <!--Partner--> */}
             {/* <Partner /> */}
         </>

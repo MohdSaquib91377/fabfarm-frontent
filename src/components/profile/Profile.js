@@ -101,7 +101,7 @@ const Profile = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>Dashboard
+                                                    <tr>
                                                         <td>1</td>
                                                         <td>Mostarizing Oil</td>
                                                         <td>Aug 22, 2020</td>

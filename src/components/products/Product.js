@@ -17,12 +17,12 @@ import './product.css';
 import Relatedproducts from './Relatedproducts';
 const Product = ({ currentItem, addToCart, incrementQuantity, decrementQuantity }) => {
     const { id, image, name, description, price, quantity } = currentItem;
-    const [itemQuantity, setItemQuantity] = useState(1)
+    // const [itemQuantity, setItemQuantity] = useState(1)
     const [prevImage, setPrevImage] = useState(0)
     Tabtitle('FAB | Shop')
-    useEffect(() => {
-        setItemQuantity(quantity)
-    }, currentItem)
+    // useEffect(() => {
+    //     setItemQuantity(quantity)
+    // }, currentItem)
     const thumbImages = image.map((item, i) => {
         return (
             <SwiperSlide key={i} onClick={() => setPrevImage(i)} ><img src={process.env.REACT_APP_BASE_URL + item.thumbnail} alt={item.image_caption} /></SwiperSlide>

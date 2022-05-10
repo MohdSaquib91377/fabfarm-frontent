@@ -10,6 +10,7 @@ import Tabtitle from './Tabtitle';
 const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
     const [productView, setProductView] = useState('');
     const [search, setSearch] = useState('')
+    const [categories, setCategories] = useState([])
     const [page, setPage] = useState(1)
     Tabtitle('FAB | Shop')
     const fetchproducts = async () => {
@@ -20,9 +21,28 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
             console.log(error);
         }
     }
+    const fetchproductsCategroies = async () => {
+        try {
+            const res = await axios.get(`https://whispering-wildwood-66684.herokuapp.com/api/v1/store/category/`)
+            setCategories(res.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    console.log(categories)
     useEffect(() => {
         fetchproducts();
+        fetchproductsCategroies();
     }, [search, page]);
+    const productCategories = categories.map((categories, i) => {
+        const { name } = categories;
+        return (
+            <li key={i}>
+                <input type="checkbox" id={`cat${i}`}/>
+                <label htmlFor={`cat${i}`}>{name}<span>({products.length})</span></label>
+            </li>
+        )
+    })
     const seedList = products.map((product, i) => {
         const { id, image: [{ image }], name, description, price } = product;
         return (
@@ -120,17 +140,10 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                     <div className="product_category">
                                         <ul>
                                             <li>
-                                                <input type="checkbox" id="cat1" />
-                                                <label htmlFor="cat1">all<span>({products.length})</span></label>
+                                                <input type="checkbox" id="cat" />
+                                                <label htmlFor="cat">all<span>({products.length})</span></label>
                                             </li>
-                                            <li>
-                                                <input type="checkbox" id="cat2" />
-                                                <label htmlFor="cat2">Seeds<span>({products.length})</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="cat3" />
-                                                <label htmlFor="cat3">Fertilizers<span>({products.length})</span></label>
-                                            </li>
+                                            {productCategories}
                                         </ul>
                                     </div>
                                 </div>

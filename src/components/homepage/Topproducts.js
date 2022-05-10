@@ -84,6 +84,7 @@ const Topproducts = () => {
                             <div className="garden_shop_slider">
                                 <div className="swiper-container">
                                     <div className="swiper-wrapper">
+                                    <div className="swiper-slide">
                                         <CarouselProvider
                                             naturalSlideWidth={100}
                                             naturalSlideHeight={160}
@@ -97,6 +98,7 @@ const Topproducts = () => {
                                                 {productSeeds}
                                             </Slider>
                                         </CarouselProvider>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

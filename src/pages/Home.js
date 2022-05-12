@@ -5,6 +5,8 @@ const Testimonial = lazy(() => import('../components/homepage/Testimonial'))
 const Services = lazy(() => import('../components/homepage/Services'))
 const Counter = lazy(() => import('../components/homepage/Counter'))
 const Topproducts = lazy(() => import('../components/homepage/Topproducts'))
+const Weare = lazy(() => import('../components/homepage/Weare'))
+const Featuredproducts = lazy(() => import('../components/homepage/allproducts/Featuredproducts'))
 
 const Home = () => {
     Tabtitle('FAB')
@@ -13,14 +15,20 @@ const Home = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <Banner />
             </Suspense>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense >
                 <Services />
             </Suspense>
 
+            <Suspense fallback={<div>Loading...</div>}>
+                <Featuredproducts />
+            </Suspense>
             {/* <!--Shop--> */}
 
             <Suspense fallback={<div>Loading...</div>}>
                 <Topproducts />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Weare />
             </Suspense>
             <Suspense fallback={<div>Loading...</div>}>
                 <Counter />

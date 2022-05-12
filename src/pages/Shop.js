@@ -15,7 +15,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
     Tabtitle('FAB | Shop')
     const fetchproducts = async () => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/store/product/`)
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/store/category-product/`)
             setProducts(res.data)
         } catch (error) {
             console.log(error);
@@ -23,7 +23,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
     }
     const fetchproductsCategroies = async () => {
         try {
-            const res = await axios.get(`https://whispering-wildwood-66684.herokuapp.com/api/v1/store/category/`)
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/store/category/   `)
             setCategories(res.data)
         } catch (error) {
             console.log(error);
@@ -43,59 +43,59 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
             </li>
         )
     })
-    const seedList = products.map((product, i) => {
-        const { id, image: [{ image }], name, description, price } = product;
-        return (
-            <li key={i}>
+    // const seedList = products.map((product, i) => {
+    //     const { id, image: [{ image }], name, description, price } = product;
+    //     return (
+    //         <li key={i}>
 
-                <div className="product_item_block">
-                    <div className="org_product_block">
-                        <span className="product_label">30% off</span>
-                        <Link to={`/shop/${id}`}>
-                            <div onClick={() => loadCurrentItem(product)} className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
-                        </Link>
-                        <Link to={`/shop/${id}`}>    <h4 onClick={() => loadCurrentItem(product)}>{name}</h4></Link>
-                        <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
-                        <button onClick={() => addToCart(id)}>add to cart</button>
-                    </div>
-                    <div className="content_block">
-                        <div className="product_price_box">
-                            <Link to={`/shop/${id}`}>
-                                <h3
-                                    onClick={() => loadCurrentItem(product)}
-                                >
-                                    {name}
-                                </h3>
-                            </Link>
-                            <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
-                        </div>
-                        <p>Farm & Garden</p>
-                        <div className="rating_section">
-                            <span>4.1</span>
-                            <ul>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                            </ul>
-                            <p>151 reviews</p>
-                        </div>
-                        <ul className="product_code">
-                            <li>
-                                <p>product code: 12948</p>
-                            </li>
-                            <li>
-                                <p>availability: <span>in stock</span></p>
-                            </li>
-                        </ul>
-                        <p>{description}</p>
-                    </div>
-                </div>
+    //             <div className="product_item_block">
+    //                 <div className="org_product_block">
+    //                     <span className="product_label">30% off</span>
+    //                     <Link to={`/shop/${id}`}>
+    //                         <div onClick={() => loadCurrentItem(product)} className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
+    //                     </Link>
+    //                     <Link to={`/shop/${id}`}>    <h4 onClick={() => loadCurrentItem(product)}>{name}</h4></Link>
+    //                     <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
+    //                     <button onClick={() => addToCart(id)}>add to cart</button>
+    //                 </div>
+    //                 <div className="content_block">
+    //                     <div className="product_price_box">
+    //                         <Link to={`/shop/${id}`}>
+    //                             <h3
+    //                                 onClick={() => loadCurrentItem(product)}
+    //                             >
+    //                                 {name}
+    //                             </h3>
+    //                         </Link>
+    //                         <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
+    //                     </div>
+    //                     <p>Farm & Garden</p>
+    //                     <div className="rating_section">
+    //                         <span>4.1</span>
+    //                         <ul>
+    //                             <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+    //                             <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+    //                             <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+    //                             <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+    //                             <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+    //                         </ul>
+    //                         <p>151 reviews</p>
+    //                     </div>
+    //                     <ul className="product_code">
+    //                         <li>
+    //                             <p>product code: 12948</p>
+    //                         </li>
+    //                         <li>
+    //                             <p>availability: <span>in stock</span></p>
+    //                         </li>
+    //                     </ul>
+    //                     <p>{description}</p>
+    //                 </div>
+    //             </div>
 
-            </li>
-        );
-    })
+    //         </li>
+    //     );
+    // })
     return (
         <>
             {/* <!--Breadcrumb--> */}
@@ -256,7 +256,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
                                 >
                                     <div id='products_list' className={productView !== 'list' ? "product_items_section product_list_view" : "product_items_section"}>
                                         <ul>
-                                            {seedList}
+                                            {/* {seedList} */}
                                         </ul>
                                     </div>
                                 </InfiniteScroll>

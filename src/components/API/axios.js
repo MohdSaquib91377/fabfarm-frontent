@@ -1,10 +1,7 @@
 import axios from 'axios';
 
+const instance = axios.create({
+    baseURL: `${process.env.REACT_APP_BASE_URL}`
+});
 
-// const weatherAxios = axios.create({
-//     baseURL: process.env.REACT_APP_OPENWEATHERAPI_URL,
-//     headers:{
-
-//     }
-
-// 
+export default instance;

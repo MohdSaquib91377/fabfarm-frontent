@@ -4,6 +4,9 @@ const initialState = {
     products: [],
     cart: [],
     currentItem: null,
+    user: [],
+    signinOpen: true,
+    signupOpen: false,
 }
 export const shopReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -46,6 +49,21 @@ export const shopReducer = (state = initialState, action) => {
                 ...state,
                 currentItem: action.payload,
             };
+        case ActionTypes.SET_USER:
+            return {
+                ...state,
+                user: action.payload,
+            };
+        case ActionTypes.SET_SIGNIN_MODAL:
+            return{
+                ...state,
+                signinOpen: !state.signinOpen
+            };
+        case ActionTypes.SET_SIGNUP_MODAL:
+            return{
+                ...state,
+                signupOpen: !state.signupOpen
+            }
         default:
             return state;
     }

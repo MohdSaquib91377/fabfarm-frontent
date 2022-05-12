@@ -7,11 +7,10 @@ import Signup from '../components/login/Signup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import Weather from '../components/weatherapi/Weather';
-const Header = ({ cart }) => {
+import { setSigninOpen } from '../redux/actions/productActions';
+const Header = ({ cart, setSigninOpen }) => {
     const [cartCount, setCartCount] = React.useState(0);
     const [cartState, setcartState] = React.useState(false)
-    const [openSignin, setSigninOpen] = React.useState(false);
-    const [openSignup, setSignupOpen] = React.useState(false);
     const [navBar, setNavBar] = React.useState(false);
     const openCart = () => {
         setcartState(true)
@@ -19,23 +18,7 @@ const Header = ({ cart }) => {
     const closeCart = () => {
         setcartState(false)
     }
-    const handleSigninOpen = () => {
-        setSigninOpen(true);
-    };
-    const handleSigninClose = () => {
-        setSigninOpen(false);
-    };
-    const handleSignupClose = () => {
-        setSignupOpen(false);
-    };
-    const tiggerSignup = () => {
-        setSigninOpen(false);
-        setSignupOpen(true);
-    }
-    const tiggerSignin = () => {
-        setSignupOpen(false);
-        setSigninOpen(true);
-    }
+   
     const onScroll = () => {
         if (window.scrollY >= 80) {
             setNavBar(true);
@@ -103,7 +86,7 @@ const Header = ({ cart }) => {
                                             <li><Link to="/contact">Contact us</Link></li>
                                             <li
                                                 style={{ color: 'white', cursor: 'pointer' }}
-                                                onClick={handleSigninOpen} >Signin</li>
+                                                onClick={() => setSigninOpen()} >Signin</li>
                                         </ul>
                                     </div>
                                     <div className="cart_nav">
@@ -175,8 +158,8 @@ const Header = ({ cart }) => {
                 </div>
             </header>
             <Cartdrawer opencart={cartState} closecart={closeCart} />
-            <Signin open={openSignin} trigger={tiggerSignup} handleClose={handleSigninClose} />
-            <Signup open={openSignup} triggersignin={tiggerSignin} handleClose={handleSignupClose} />
+            <Signin />
+            <Signup />
             {/* <div className='profile_toggle'>
                 <button onClick={handleSigninOpen} style={{ border: 'none' }}>
                     <img src={process.env.PUBLIC_URL + 'images/login.gif'} />
@@ -192,4 +175,9 @@ const mapStateToProps = (state) => {
         cart: state.shop.cart,
     }
 }
-export default connect(mapStateToProps)(Header)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setSigninOpen: () => dispatch(setSigninOpen()),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

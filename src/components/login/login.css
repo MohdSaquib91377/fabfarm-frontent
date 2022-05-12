@@ -1,0 +1,38 @@
+.disabled {
+  display: none !important;
+}
+.enabled {
+  display: block !important;
+}
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #2a7d2e;
+  cursor: pointer;
+}
+
+.spinner {
+  animation: spin infinite 1s linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.signin-forgot-pass {
+  position: absolute;
+  top: 245px;
+  right: 76px;
+}

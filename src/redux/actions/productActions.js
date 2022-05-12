@@ -51,3 +51,23 @@ export const loadCurrentItem = (item) => {
         payload: item
     }
 };
+
+export const setUser = (user) => {
+    return {
+        type: ActionTypes.SET_USER,
+        payload: user,
+    }
+}
+
+export const setSigninOpen = () => {
+    return {
+        type: ActionTypes.SET_SIGNIN_MODAL,
+        payload: null,
+    }
+}
+export const setSignupOpen = () => {
+    return {
+        type: ActionTypes.SET_SIGNUP_MODAL,
+        payload: null,
+    }
+}

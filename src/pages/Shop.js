@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import axios from 'axios';
+import axios from '../components/API/axios';
 import Tabtitle from './Tabtitle';
 const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
     const [productView, setProductView] = useState('');
@@ -15,7 +15,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
     Tabtitle('FAB | Shop')
     const fetchproducts = async () => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/store/category-product/`)
+            const res = await axios.get('/api/v1/store/category-product/')
             setProducts(res.data)
         } catch (error) {
             console.log(error);
@@ -23,7 +23,7 @@ const Shop = ({ products, addToCart, setProducts, loadCurrentItem }) => {
     }
     const fetchproductsCategroies = async () => {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/store/category/   `)
+            const res = await axios.get('/api/v1/store/category/')
             setCategories(res.data)
         } catch (error) {
             console.log(error);

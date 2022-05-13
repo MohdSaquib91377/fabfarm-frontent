@@ -1,7 +1,7 @@
 import axios from '../../API/axios';
 import React, { useEffect, useState } from 'react'
 import Carouselfeatured from './Carouselfeatured';
-
+import './product.css'
 const Featuredproducts = () => {
 
     const [featuredproducts, setFeaturedProducts] = useState([]);

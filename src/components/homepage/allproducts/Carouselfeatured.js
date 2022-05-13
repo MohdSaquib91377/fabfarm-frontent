@@ -5,11 +5,11 @@ import { Navigation } from "swiper";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faShoppingCart, faSliders, faHeart, faEye } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import "swiper/css";
 import "swiper/css/navigation";
 
-const Carouselfeatured = ({ products }) => {
-  console.log(products)
+const Carouselfeatured = ({ products, addToCart }) => {
   SwiperCore.use([Autoplay]);
   const Product = products.map((item, i) => {
     const { id, name, image: [{ image }], price } = item
@@ -17,14 +17,14 @@ const Carouselfeatured = ({ products }) => {
       <SwiperSlide key={i}>
         <div className="product__box product__default--single text-center">
           <div className="product__img-box  pos-relative">
-            <a href="product-single-default.html" className="product__img--link">
+            <Link to={`/product/${id}`} className="product__img--link">
               <img className="product__img img-fluid"
                 src={process.env.REACT_APP_BASE_URL + image} alt={name} />
-            </a>
+            </Link>
             <span className="product__label product__label--sale-dis">-34%</span>
             <ul className="product__action--link pos-absolute">
-              <li><a href="#modalAddCart" data-bs-toggle="modal"><FontAwesomeIcon icon={faShoppingCart} /></a></li>
-              <li><a href="compare.html"><FontAwesomeIcon icon={faSliders} /></a></li>
+              <li><button  ><FontAwesomeIcon icon={faShoppingCart} /></button></li>
+              <li><button ><FontAwesomeIcon icon={faSliders} /></button></li>
               <li><a href="wishlist.html"><FontAwesomeIcon icon={faHeart} /></a></li>
               <li><a href="#modalQuickView" data-bs-toggle="modal"><FontAwesomeIcon icon={faEye} /></a></li>
             </ul>
@@ -37,13 +37,13 @@ const Carouselfeatured = ({ products }) => {
               <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
               <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
             </ul>
-            <a href="product-single-default.html" className="product__link">{name}</a>
+            <Link to={`/shop/${id}`} className="product__link">{name}</Link>
             <div className="product__price m-t-5">
               <span className="product__price">{price}</span>
             </div>
           </div>
         </div>
-      </SwiperSlide>
+      </SwiperSlide >
     )
   })
   return (
@@ -57,5 +57,10 @@ const Carouselfeatured = ({ products }) => {
     </>
   )
 }
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     addToCart: (id) => dispatch(addToCart(id)),
+//   }
 
+// }
 export default Carouselfeatured

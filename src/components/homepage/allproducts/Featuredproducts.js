@@ -2,6 +2,7 @@ import axios from '../../API/axios';
 import React, { useEffect, useState } from 'react'
 import Carouselfeatured from './Carouselfeatured';
 import './product.css'
+import { Link } from 'react-router-dom';
 const Featuredproducts = () => {
 
     const [featuredproducts, setFeaturedProducts] = useState([]);
@@ -24,6 +25,9 @@ const Featuredproducts = () => {
                     return (
                         <div key={i}>
                             <h3>{name}</h3>
+                            <Link to={`/shop/${id}`}>
+                                <button>View more</button>
+                            </Link>
                             <Carouselfeatured products={products} />
                         </div>
                     )

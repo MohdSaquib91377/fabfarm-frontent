@@ -17,17 +17,24 @@ const Featuredproducts = () => {
         }
         fecthFeaturedProducts();
     }, [])
+    console.log(featuredproducts)
     return (
         <div className="garden_about_wrapper clv_section">
             <div className="container">
                 {featuredproducts.map((allproducts, i) => {
                     const { id, name, products } = allproducts;
                     return (
-                        <div key={i}>
-                            <h3>{name}</h3>
-                            <Link to={`/shop/${id}`}>
-                                <button>View more</button>
-                            </Link>
+                        <div key={i} style={{
+                            marginTop: '30px'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between'
+                            }}>
+                                <h3>{name}</h3>
+                                <Link to={`/shop/${id}`}>
+                                    <button>View more</button>
+                                </Link></div>
                             <Carouselfeatured products={products} />
                         </div>
                     )

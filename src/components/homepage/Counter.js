@@ -1,4 +1,5 @@
 import React from 'react'
+import Countup from '../countup/Countup'
 
 const Counter = () => {
     return (
@@ -21,7 +22,9 @@ const Counter = () => {
                                     <span className="red_bg"><img src="images/counter_customer.png" alt="image" className="img-fluid" /></span>
                                 </div>
                                 <div className="counter_text">
-                                    <h4><span className="count_no" data-to="26" data-speed="3000">26</span><span>k+</span></h4>
+                                    <h4><span className="count_no" data-to="26" data-speed="3000">
+                                        <Countup start={0} end={26} timer={50} />
+                                    </span><span>k+</span></h4>
                                     <h5>happy customers</h5>
                                 </div>
                             </div>
@@ -32,7 +35,9 @@ const Counter = () => {
                                     <span className="yellow_bg"><img src="images/counter_project.png" alt="image" className="img-fluid" /></span>
                                 </div>
                                 <div className="counter_text">
-                                    <h4><span className="count_no" data-to="700" data-speed="3000">700</span><span>+</span></h4>
+                                    <h4><span className="count_no" data-to="700" data-speed="3000">
+                                    <Countup start={0} end={700} timer={50} />
+                                        </span><span>+</span></h4>
                                     <h5>Seeds Types</h5>
                                 </div>
                             </div>
@@ -43,7 +48,9 @@ const Counter = () => {
                                     <span className="orange_bg"><img src="images/counter_branch.png" alt="image" className="img-fluid" /></span>
                                 </div>
                                 <div className="counter_text">
-                                    <h4><span className="count_no" data-to="200" data-speed="3000">200</span><span>+</span></h4>
+                                    <h4><span className="count_no" data-to="200" data-speed="3000">
+                                        <Countup start={0} end={200} timer={50} />
+                                    </span><span>+</span></h4>
                                     <h5>Soil Types</h5>
                                 </div>
                             </div>
@@ -54,7 +61,9 @@ const Counter = () => {
                                     <span className="blue_bg"><img src="images/counter_winner.png" alt="image" className="img-fluid" /></span>
                                 </div>
                                 <div className="counter_text">
-                                    <h4><span className="count_no" data-to="6" data-speed="3000">6</span><span>k+</span></h4>
+                                    <h4><span className="count_no" data-to="6" data-speed="3000">
+                                    <Countup start={0} end={6} timer={100} />
+                                        </span><span>k+</span></h4>
                                     <h5>award winner</h5>
                                 </div>
                             </div>

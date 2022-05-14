@@ -50,7 +50,7 @@ const Carouselfeatured = ({ products, addToCart }) => {
     <>
       <Swiper
         autoplay={true}
-        loop={true}
+        // loop={true}
         navigation={true} slidesPerView={4} spaceBetween={10} modules={[Navigation]} className="mySwiper">
         {Product}
       </Swiper>

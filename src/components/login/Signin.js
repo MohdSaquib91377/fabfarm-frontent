@@ -33,7 +33,7 @@ const Signin = ({ setSigninOpen, setSignupOpen, signinOpen, setUser, handleClose
         setFormErrors(validateForgotEmail(formValues))
         setIsForgotSubmit(true);
         setIsSubmit(false);
-
+        errorText.current = null;
     }
     const handleVerifySubmit = (e) => {
         e.preventDefault();
@@ -107,6 +107,7 @@ const Signin = ({ setSigninOpen, setSignupOpen, signinOpen, setUser, handleClose
                     console.log(response)
                     setLoader(false)
                     setRestPassScreen(true)
+                    setOtpScreen(false)
                 })
                 .catch(response => {
                     console.log(response.data)
@@ -116,11 +117,11 @@ const Signin = ({ setSigninOpen, setSignupOpen, signinOpen, setUser, handleClose
     const validateSignin = (values) => {
         const errors = {};
         const regexemail = /\S+@\S+\.\S+/;
-        const regexmobile = /^\d{10}$/;
+        const regexmobile = /^([+]\d{2})?\d{10}$/;
         if (!values.email) {
             errors.email = 'Email is required!'
-        } else if (!regexemail.test(values.email)) {
-            errors.email = 'Enter a valid email!';
+        } else if (!regexemail.test(values.email) && !regexmobile.test(values.email)) {
+            errors.email = 'Enter a valid email or mobile!';
         }
         if (!values.password) {
             errors.password = 'Password is required!'

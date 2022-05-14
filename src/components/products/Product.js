@@ -75,7 +75,7 @@ const Product = ({ addToCart, incrementQuantity, decrementQuantity }) => {
                             <div className="breadcrumb_block">
                                 <ul>
                                     <li><Link to='/'>home</Link></li>
-                                    <li><Link to='/shop/'>&nbsp;Shop</Link></li>
+                                    {/* <li><Link to='/shop/'>&nbsp;Shop</Link></li> */}
                                     <li> &nbsp; {id} </li>
                                 </ul>
                             </div>
@@ -170,7 +170,7 @@ const Product = ({ addToCart, incrementQuantity, decrementQuantity }) => {
                             </div>{/* End Product Details Gallery */}
 
                             {/* Start Product Details Tab */}
-                            <Details />
+                            {/* <Details /> */}
                             {/* End Product Details Tab */}
 
                             {/* ::::::  Start  Product Style - Default Section  ::::::  */}

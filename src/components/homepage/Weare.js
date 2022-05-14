@@ -4,7 +4,7 @@ const Weare = () => {
     return (
         <div className="garden_about_wrapper clv_section">
             <div className="container">
-                <div style={{ position: 'relative', top: '150px' }} className="garden_about_section">
+                <div style={{ position: 'relative', top: '150px', marginBottom:'100px' }} className="garden_about_section">
                     <div className="row">
                         <div className="col-ld-6 col-md-6">
                             <div className="garden_about_image">

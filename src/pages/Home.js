@@ -4,10 +4,11 @@ const Banner = lazy(() => import('../components/homepage/Banner'))
 const Testimonial = lazy(() => import('../components/homepage/Testimonial'))
 const Services = lazy(() => import('../components/homepage/Services'))
 const Counter = lazy(() => import('../components/homepage/Counter'))
-const Topproducts = lazy(() => import('../components/homepage/Topproducts'))
 const Weare = lazy(() => import('../components/homepage/Weare'))
 const Featuredproducts = lazy(() => import('../components/homepage/allproducts/Featuredproducts'))
-
+const Seeds = lazy(() => import('../components/homepage/topproducts/Seeds'))
+const Fertilizers = lazy(() => import('../components/homepage/topproducts/Fertilizers'))
+const Soils = lazy(()=>import('../components/homepage/topproducts/Soils'))
 const Home = () => {
     Tabtitle('FAB')
     return (
@@ -25,15 +26,21 @@ const Home = () => {
             {/* <!--Shop--> */}
 
             <Suspense fallback={<div>Loading...</div>}>
-                <Topproducts />
+                <Seeds />
+                {/* <Topproducts /> */}
             </Suspense>
             <Suspense fallback={<div>Loading...</div>}>
                 <Weare />
             </Suspense>
             <Suspense fallback={<div>Loading...</div>}>
+                <Fertilizers />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
                 <Counter />
             </Suspense>
-
+            <Suspense fallback={<div>Loading...</div>}>
+                <Soils />
+            </Suspense>
             <div className="garden_service_about_wrapper clv_section">
                 <div className="container">
                     <div className="row">

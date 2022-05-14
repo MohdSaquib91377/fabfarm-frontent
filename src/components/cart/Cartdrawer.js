@@ -8,9 +8,11 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faShoppingCart, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-const Cartdrawer = ({ cart, opencart, closecart }) => {
+import axios from '../API/axios';
+const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
 
     const [totalPrice, setTotalPrice] = React.useState(0);
+
     React.useEffect(() => {
         let price = 0;
         cart.forEach(item => {
@@ -18,7 +20,24 @@ const Cartdrawer = ({ cart, opencart, closecart }) => {
         })
         setTotalPrice(price);
 
-    }, [cart, totalPrice, setTotalPrice]);
+        if (isAuthorized) {
+            const postCartData = () => {
+                axios.post('/api/v1/cart/add-to-cart/', cart, {
+                    headers: {
+                        Authorization: `Bearer ${user.access}`
+                    }
+                })
+                    .then(response => {
+                        console.log(response)
+                    })
+                    .catch(response => {
+                        console.log(response)
+                    })
+            }
+            postCartData()
+        }
+
+    }, [cart, totalPrice, setTotalPrice, isAuthorized, user]);
     const cartItems = cart.map((products, i) => {
         return (
             <Cartitems product={products} key={i} />
@@ -73,6 +92,8 @@ const Cartdrawer = ({ cart, opencart, closecart }) => {
 const mapStateToProps = (state) => {
     return {
         cart: state.shop.cart,
+        isAuthorized: state.shop.isAuthorized,
+        user: state.shop.user
     }
 }
 

@@ -36,15 +36,15 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
         fetchproducts();
         fetchproductsCategroies();
     }, [search, page]);
-    const productCategories = categories.map((categories, i) => {
-        const { name } = categories;
-        return (
-            <li key={i}>
-                <input type="checkbox" id={`cat${i}`} />
-                <label htmlFor={`cat${i}`}>{name}<span>({products.length})</span></label>
-            </li>
-        )
-    })
+    // const productCategories = categories.map((categories, i) => {
+    //     const { name } = categories;
+    //     return (
+    //         <li key={i}>
+    //             <input type="checkbox" id={`cat${i}`} />
+    //             <label htmlFor={`cat${i}`}>{name}<span>({products.length})</span></label>
+    //         </li>
+    //     )
+    // })
     const seedList = products.map((product, i) => {
         const { id, image: [{ image }], name, description, price } = product;
         return (
@@ -54,18 +54,16 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                     <div className="org_product_block">
                         <span className="product_label">30% off</span>
                         <Link to={`/product/${id}`}>
-                            <div onClick={() => loadCurrentItem(product)} className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
+                            <div className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
                         </Link>
-                        <Link to={`/product/${id}`}>    <h4 onClick={() => loadCurrentItem(product)}>{name}</h4></Link>
+                        <Link to={`/product/${id}`}>    <h4 >{name}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
                     </div>
                     <div className="content_block">
                         <div className="product_price_box">
                             <Link to={`/product/${id}`}>
-                                <h3
-                                    onClick={() => loadCurrentItem(product)}
-                                >
+                                <h3>
                                     {name}
                                 </h3>
                             </Link>
@@ -95,7 +93,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                     </div>
                 </div>
 
-            </li>
+            </li >
         );
     })
     return (
@@ -134,21 +132,21 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                                         <span><FontAwesomeIcon icon={faSearch} /></span>
                                     </div>
                                 </div>
-                                <div className="product_block">
+                                {/* <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>product categories</h3>
                                         <img src="images/garden_underline.png" alt="image" />
                                     </div>
-                                    <div className="product_category">
+                                     <div className="product_category">
                                         <ul>
                                             <li>
                                                 <input type="checkbox" id="cat" />
                                                 <label htmlFor="cat">all<span>({products.length})</span></label>
                                             </li>
-                                            {productCategories}
+                                             {productCategories}
                                         </ul>
-                                    </div>
-                                </div>
+                                    </div> 
+                                </div> */}
                                 <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>filter by price</h3>
@@ -312,7 +310,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setProducts: (product) => dispatch(setProducts(product)),
         addToCart: (id) => dispatch(addToCart(id)),
-        loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
+        // loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);

@@ -71,3 +71,9 @@ export const setSignupOpen = () => {
         payload: null,
     }
 }
+export const setIsAuthorized = () => {
+    return {
+        type: ActionTypes.SET_IS_AUTHORIZED,
+        payload: null
+    }
+}

@@ -7,14 +7,15 @@ const initialState = {
     user: [],
     signinOpen: true,
     signupOpen: false,
+    isAuthorized: false,
 }
 export const shopReducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.SET_PRODUCTS:
             return { ...state, products: action.payload }
         case ActionTypes.ADD_TO_CART:
-            // const item = state.currentItem !== null ? state.currentItem : state.products.find((prod) => prod.id === action.payload.id);
-            const item = state.products.find((prod) => prod.id === action.payload.id);
+            const item = state.currentItem !== null ? state.currentItem : state.products.find((prod) => prod.id === action.payload.id);
+            // const item = state.cart.find((prod) => prod.id === action.payload.id);
             const inCart = state.cart.find((item) =>
                 item.id === action.payload.id ? true : false
             );
@@ -55,14 +56,19 @@ export const shopReducer = (state = initialState, action) => {
                 user: action.payload,
             };
         case ActionTypes.SET_SIGNIN_MODAL:
-            return{
+            return {
                 ...state,
                 signinOpen: !state.signinOpen
             };
         case ActionTypes.SET_SIGNUP_MODAL:
-            return{
+            return {
                 ...state,
                 signupOpen: !state.signupOpen
+            }
+        case ActionTypes.SET_IS_AUTHORIZED:
+            return {
+                ...state,
+                isAuthorized: !state.isAuthorized
             }
         default:
             return state;

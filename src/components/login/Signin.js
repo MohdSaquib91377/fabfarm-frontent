@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faLinkedin, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
-import { setSignupOpen, setSigninOpen, setUser } from '../../redux/actions/productActions';
+import { setSignupOpen, setSigninOpen, setUser, setIsAuthorized } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import './login.css'
-const Signin = ({ setSigninOpen, setSignupOpen, signinOpen, setUser, handleClose }) => {
+const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, setUser, handleClose }) => {
     const initialValues = { email: "", password: "", otp: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -61,7 +61,9 @@ const Signin = ({ setSigninOpen, setSignupOpen, signinOpen, setUser, handleClose
             })
                 .then((response) => {
                     setLoader(false)
-                    setUser(response.data)
+                    setIsAuthorized()
+                    setSigninOpen()
+                    setUser(response.data.data)
                 })
                 .catch((error) => {
                     setLoader(false)
@@ -108,6 +110,7 @@ const Signin = ({ setSigninOpen, setSignupOpen, signinOpen, setUser, handleClose
                     setLoader(false)
                     setRestPassScreen(true)
                     setOtpScreen(false)
+                    setIsAuthorized()
                 })
                 .catch(response => {
                     console.log(response.data)
@@ -313,7 +316,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setUser: (user) => dispatch(setUser(user)),
         setSigninOpen: () => dispatch(setSigninOpen()),
-        setSignupOpen: () => dispatch(setSignupOpen())
+        setSignupOpen: () => dispatch(setSignupOpen()),
+        setIsAuthorized: () => dispatch(setIsAuthorized())
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Signin)
+export default connect(mapStateToProps, mapDispatchToProps)(Signin)

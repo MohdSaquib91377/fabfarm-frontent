@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import Weather from '../components/weatherapi/Weather';
 import { setSigninOpen } from '../redux/actions/productActions';
-const Header = ({ cart, setSigninOpen }) => {
+const Header = ({ isAuthorized, cart, setSigninOpen }) => {
     const [cartCount, setCartCount] = React.useState(0);
     const [cartState, setcartState] = React.useState(false)
     const [navBar, setNavBar] = React.useState(false);
@@ -18,7 +18,7 @@ const Header = ({ cart, setSigninOpen }) => {
     const closeCart = () => {
         setcartState(false)
     }
-   
+
     const onScroll = () => {
         if (window.scrollY >= 80) {
             setNavBar(true);
@@ -73,27 +73,34 @@ const Header = ({ cart, setSigninOpen }) => {
                                             <li>
                                                 <Link to="/" >home</Link>
                                             </li>
-                                            <li style={{ color: 'white', cursor: 'pointer' }}>
+                                            {/* <li style={{ color: 'white', cursor: 'pointer' }}>
                                                 Products
                                                 <ul>
                                                     <li><Link to='/shop'>Seeds</Link></li>
                                                     <li><a href="index.html">Fertilizers</a></li>
 
                                                 </ul>
-                                            </li>
+                                            </li> */}
                                             <li><Link to="/aboutus">about us</Link></li>
 
                                             <li><Link to="/contact">Contact us</Link></li>
-                                            <li
-                                                style={{ color: 'white', cursor: 'pointer' }}
-                                                onClick={() => setSigninOpen()} >Signin</li>
+
                                         </ul>
                                     </div>
                                     <div className="cart_nav">
                                         <ul>
-                                            <li>
-                                                <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /></Link>
-                                            </li>
+                                            {
+                                                isAuthorized ?
+                                                    <li>
+                                                        <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /></Link>
+                                                    </li> :
+                                                    <li
+                                                        style={{ color: 'white', cursor: 'pointer' }}
+                                                        onClick={() => setSigninOpen()} >
+                                                        Signin
+                                                    </li>
+
+                                            }
                                             <li>
                                                 <a className="search_toggle" href="#"><FontAwesomeIcon color='#ffffff' icon={faSearch} /></a>
                                             </li>
@@ -158,8 +165,11 @@ const Header = ({ cart, setSigninOpen }) => {
                 </div>
             </header>
             <Cartdrawer opencart={cartState} closecart={closeCart} />
-            <Signin />
-            <Signup />
+            {isAuthorized ? undefined :
+                <>
+                    <Signin />
+                    <Signup />
+                </>}
             {/* <div className='profile_toggle'>
                 <button onClick={handleSigninOpen} style={{ border: 'none' }}>
                     <img src={process.env.PUBLIC_URL + 'images/login.gif'} />
@@ -173,6 +183,7 @@ const Header = ({ cart, setSigninOpen }) => {
 const mapStateToProps = (state) => {
     return {
         cart: state.shop.cart,
+        isAuthorized: state.shop.isAuthorized,
     }
 }
 const mapDispatchToProps = (dispatch) => {

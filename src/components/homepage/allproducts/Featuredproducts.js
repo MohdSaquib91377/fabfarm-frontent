@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import Carouselfeatured from './Carouselfeatured';
 import './product.css'
 import { Link } from 'react-router-dom';
-const Featuredproducts = () => {
+import { setProducts } from '../../../redux/actions/productActions';
+import { connect } from 'react-redux';
+const Featuredproducts = ({ setProducts }) => {
 
     const [featuredproducts, setFeaturedProducts] = useState([]);
     useEffect(() => {
@@ -17,7 +19,6 @@ const Featuredproducts = () => {
         }
         fecthFeaturedProducts();
     }, [])
-    console.log(featuredproducts)
     return (
         <div className="garden_about_wrapper clv_section">
             <div className="container">
@@ -33,7 +34,7 @@ const Featuredproducts = () => {
                             }}>
                                 <h3>{name}</h3>
                                 <Link to={`/shop/${id}`}>
-                                    <button>View more</button>
+                                    <button onClick={() => setProducts(products)}>View more</button>
                                 </Link></div>
                             <Carouselfeatured products={products} />
                         </div>
@@ -43,5 +44,10 @@ const Featuredproducts = () => {
         </div>
     )
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setProducts: (products) => dispatch(setProducts(products))
+    }
+}
 
-export default Featuredproducts
+export default connect(null, mapDispatchToProps)(Featuredproducts)

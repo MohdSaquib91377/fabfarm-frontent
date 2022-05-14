@@ -10,7 +10,8 @@ import Pagenotfound from './pages/Pagenotfound';
 import Product from './components/products/Product';
 import Checkout from './components/checkout/Checkout';
 import ScrollToTop from './pages/ScrollToTop';
-function App() {
+import { connect } from 'react-redux';
+function App({ isAuthorized }) {
   return (
     <>
       <Router>
@@ -22,7 +23,10 @@ function App() {
           <Route exact path='/product/:productID' element={<Product />} />
           <Route exact path='/aboutus' element={<About />} />
           <Route exact path='/contact' element={<Contact />} />
-          <Route exact path='/profile' element={<Profile />} />
+          {isAuthorized ?
+            <Route exact path='/profile' element={<Profile />} />
+            :
+            undefined}
           <Route exact path='/checkout' element={<Checkout />} />
           <Route exact path='*' element={<Pagenotfound />} />
         </Routes>
@@ -31,5 +35,9 @@ function App() {
     </>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthorized: state.shop.isAuthorized
+  }
+}
+export default connect(mapStateToProps)(App);

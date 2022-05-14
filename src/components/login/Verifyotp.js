@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
-import { setUser, setSigninOpen, setSignupOpen } from '../../redux/actions/productActions';
+import { setUser, setSigninOpen, setSignupOpen, setIsAuthorized } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
-const Verifyotp = ({ signupOpen, setSigninOpen, setSignupOpen, setUser, state, id }) => {
+const Verifyotp = ({ signupOpen, setSigninOpen, setSignupOpen, setIsAuthorized, setUser, state, id }) => {
     const initialValues = { otp: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -30,6 +30,7 @@ const Verifyotp = ({ signupOpen, setSigninOpen, setSignupOpen, setUser, state, i
                     setLoader(false)
                     console.log(response.data)
                     setUser(response.data)
+                    setIsAuthorized()
                 })
                 .catch(response => {
                     console.log(response.data)
@@ -69,6 +70,7 @@ const Verifyotp = ({ signupOpen, setSigninOpen, setSignupOpen, setUser, state, i
 const mapDispatchToProps = (dispatch) => {
     return {
         setUser: (user) => dispatch(setUser(user)),
+        setIsAuthorized: () => dispatch(setIsAuthorized())
     }
 }
 export default connect(null, mapDispatchToProps)(Verifyotp);

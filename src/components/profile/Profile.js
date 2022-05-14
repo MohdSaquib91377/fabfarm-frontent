@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faCloudDownloadAlt, faMapMarkerAlt, faUser, faSignOutAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
 import './Profile.css'
 import Tabtitle from '../../pages/Tabtitle';
-const Profile = () => {
+import { setIsAuthorized, setUser } from '../../redux/actions/productActions';
+const Profile = ({ setIsAuthorized,setUser }) => {
+    let Navigate = useNavigate();
     const [profileState, setProfileState] = useState('Dashboard');
     Tabtitle('FAB | Profile')
+    const Logout = () => {
+        setIsAuthorized()   
+        setUser([])
+        Navigate("/")
+    }
     return (
         <>
             {/* <!--Breadcrumb--> */}
@@ -65,7 +73,7 @@ const Profile = () => {
                                     <li
                                         onClick={() => setProfileState('Logout')}
                                     >
-                                        <button className={profileState == 'Logout' ? 'active' : undefined}>
+                                        <button onClick={() => Logout()} className={profileState == 'Logout' ? 'active' : undefined}>
                                             <FontAwesomeIcon icon={faSignOutAlt} /> Logout</button>
                                     </li>
                                 </ul>
@@ -237,5 +245,10 @@ const Profile = () => {
         </>
     )
 }
-
-export default Profile
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setIsAuthorized: () => dispatch(setIsAuthorized()),
+        setUser:(user)=>dispatch(setUser(user))
+    }
+}
+export default connect(null, mapDispatchToProps)(Profile)

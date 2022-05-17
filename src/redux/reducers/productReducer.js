@@ -3,7 +3,7 @@ import { ActionTypes } from "../contants/action-types"
 const initialState = {
     products: [],
     cart: [],
-    currentItem: null,
+    // currentItem: null,
     user: [],
     signinOpen: true,
     signupOpen: false,
@@ -14,8 +14,8 @@ export const shopReducer = (state = initialState, action) => {
         case ActionTypes.SET_PRODUCTS:
             return { ...state, products: action.payload }
         case ActionTypes.ADD_TO_CART:
-            const item = state.currentItem !== null ? state.currentItem : state.products.find((prod) => prod.id === action.payload.id);
-            // const item = state.cart.find((prod) => prod.id === action.payload.id);
+            // const item = state.currentItem !== null ? state.currentItem : state.products.find((prod) => prod.id === action.payload.id);
+            const item = state.products.find((prod) => prod.id === action.payload.id);
             const inCart = state.cart.find((item) =>
                 item.id === action.payload.id ? true : false
             );

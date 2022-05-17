@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { addToCart, incrementQuantity, decrementQuantity } from '../../redux/actions/productActions';
+import { addToCart, incrementQuantity, decrementQuantity, setProducts } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
@@ -15,7 +15,7 @@ import Relatedproducts from './Relatedproducts';
 import axios from '../API/axios';
 import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
-const Product = ({ addToCart, incrementQuantity, decrementQuantity }) => {
+const Product = ({ setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
     let { productID } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
     // const [itemQuantity, setItemQuantity] = useState(1)
@@ -29,6 +29,7 @@ const Product = ({ addToCart, incrementQuantity, decrementQuantity }) => {
             axios.get(`/api/v1/store/product-details/${productID}/`)
                 .then(response => {
                     setCurrentItem(response.data[0])
+                    setProducts(response.data)
                 }
                 )
                 .catch(error => {
@@ -40,7 +41,7 @@ const Product = ({ addToCart, incrementQuantity, decrementQuantity }) => {
     }, [])
     const { id, image, name, description, price, quantity } = currentItem;
 
-
+    console.log(id)
     return (
         <>
             {/* <!--Breadcrumb--> */}
@@ -243,6 +244,7 @@ const mapDispatchToProps = (dispatch) => {
         addToCart: (id) => dispatch(addToCart(id)),
         incrementQuantity: (id) => dispatch(incrementQuantity(id)),
         decrementQuantity: (id) => dispatch(decrementQuantity(id)),
+        setProducts: (id) => dispatch(setProducts(id))
     };
 };
 export default connect(null, mapDispatchToProps)(Product)

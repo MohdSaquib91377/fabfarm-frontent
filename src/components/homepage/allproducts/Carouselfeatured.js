@@ -22,12 +22,12 @@ const Carouselfeatured = ({ products, addToCart }) => {
                 src={process.env.REACT_APP_BASE_URL + image} alt={name} />
             </Link>
             <span className="product__label product__label--sale-dis">-34%</span>
-            <ul className="product__action--link pos-absolute">
+            {/* <ul className="product__action--link pos-absolute">
               <li><button  ><FontAwesomeIcon icon={faShoppingCart} /></button></li>
               <li><button ><FontAwesomeIcon icon={faSliders} /></button></li>
               <li><a href="wishlist.html"><FontAwesomeIcon icon={faHeart} /></a></li>
               <li><a href="#modalQuickView" data-bs-toggle="modal"><FontAwesomeIcon icon={faEye} /></a></li>
-            </ul>
+            </ul> */}
           </div>
           <div className="product__content m-t-20">
             <ul className="product__review">
@@ -37,7 +37,7 @@ const Carouselfeatured = ({ products, addToCart }) => {
               <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
               <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
             </ul>
-            <Link to={`/shop/${id}`} className="product__link">{name}</Link>
+            <Link to={`/product/${id}`} className="product__link">{name}</Link>
             <div className="product__price m-t-5">
               <span className="product__price">{price}</span>
             </div>

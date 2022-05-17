@@ -29,11 +29,7 @@ const Header = ({ isAuthorized, cart, setSigninOpen }) => {
     }
     window.addEventListener('scroll', onScroll)
     useEffect(() => {
-        let count = 0;
-        cart.forEach((item) => {
-            count += item.quantity;
-        });
-        setCartCount(count)
+        setCartCount(cart.length)
     }, [cart, cartCount]);
     const countStyleDisplay = {
         display: 'inline-block',

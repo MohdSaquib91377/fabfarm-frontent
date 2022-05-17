@@ -2,9 +2,29 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { removeFromCart, incrementQuantity, decrementQuantity } from '../../redux/actions/productActions';
+import axios from '../API/axios';
 import { connect } from 'react-redux';
-const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, product }) => {
+const Cartitems = ({ user, isAuthorized, removeFromCart, incrementQuantity, decrementQuantity, product }) => {
     const { id, image: [{ image }], name, price, quantity } = product;
+    const deleteCartItems = (id) => {
+        removeFromCart(id);
+        if (isAuthorized) {
+            axios.delete('/api/v1/cart/add-to-cart/', {
+                headers: {
+                    Authorization: `Bearer ${user.access}`
+                },
+                data: {
+                    product_id: id
+                }
+            })
+                .then(response => {
+                    console.log(response)
+                })  
+                .catch(response => {
+                    console.log(response)
+                })
+        }
+    }
     return (
         <div
             style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', margin: "15px 0" }}>
@@ -30,10 +50,16 @@ const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, produ
                 <h4 style={{ display: 'flex' }}><span><FontAwesomeIcon icon={faIndianRupee} /></span>{quantity * price}</h4>
             </div>
             <button className='unset redbtn'
-                onClick={() => removeFromCart(id)}
+                onClick={() => deleteCartItems(id)}
             ><FontAwesomeIcon icon={faTrash} /></button>
         </div >
     )
+}
+const mapStateToProps = (state) => {
+    return {
+        isAuthorized: state.shop.isAuthorized,
+        user: state.shop.user
+    }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -42,4 +68,4 @@ const mapDispatchToProps = (dispatch) => {
         decrementQuantity: (id) => dispatch(decrementQuantity(id))
     };
 };
-export default connect(null, mapDispatchToProps)(Cartitems)
+export default connect(mapStateToProps, mapDispatchToProps)(Cartitems)

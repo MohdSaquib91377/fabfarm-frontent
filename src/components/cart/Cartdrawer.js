@@ -12,38 +12,74 @@ import axios from '../API/axios';
 const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
 
     const [totalPrice, setTotalPrice] = React.useState(0);
-
+    const [cartProducts, setCartProducts] = React.useState([])
+    const [cartDataifloggedin, setCartDataifLoggedin] = React.useState([])
     React.useEffect(() => {
         let price = 0;
         cart.forEach(item => {
             price += item.quantity * item.price;
         })
         setTotalPrice(price);
-
+        let items = [];
+        cart.forEach(item => {
+            items.push(
+                {
+                    product_id: item.id,
+                    quantity: item.quantity
+                }
+            )
+        })
+        setCartProducts(items)
         if (isAuthorized) {
             const postCartData = () => {
-                axios.post('/api/v1/cart/add-to-cart/', cart, {
+                axios.post('/api/v1/cart/add-to-cart/', cartProducts, {
                     headers: {
                         Authorization: `Bearer ${user.access}`
                     }
                 })
                     .then(response => {
-                        console.log(response)
+                        // console.log(response)
                     })
                     .catch(response => {
                         console.log(response)
                     })
             }
             postCartData()
+
         }
+        if (isAuthorized) {
+            const fetchCartData = () => {
+                axios.get('/api/v1/cart/add-to-cart/', {
+                    headers: {
+                        Authorization: `Bearer ${user.access}`
+                    }
+                })
+                    .then(response => {
+                        setCartDataifLoggedin(response.data)
+                    })
+                    .catch(response => {
+                        console.log(response)
+                    })
+            }
+            fetchCartData()
+        }
+
 
     }, [cart, totalPrice, setTotalPrice, isAuthorized, user]);
     const cartItems = cart.map((products, i) => {
-        return (
-            <Cartitems product={products} key={i} />
-        );
+        if(!isAuthorized){
+            return (
+                <Cartitems product={products} key={i} />
+            );
+        }
     });
-
+    const cartItemsIflogged = cartDataifloggedin.map((data, i) => {
+        if(Object.keys(data).some(key=>key==='product')){
+            return (
+                <Cartitems product={data.product} key={i} />
+            )
+        }
+    })
     return (
         <div>
             <Drawer
@@ -72,7 +108,7 @@ const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
                             </div>
                             <div className="overflow-cart">
                                 {cart.length === 0 ? <p>your cart is empty</p> :
-                                    <> {cartItems}</>
+                                    isAuthorized ? <>{cartItemsIflogged}</> : <> {cartItems}</>
                                 }
                             </div>
                             {cart.length === 0 ? <></> : <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>

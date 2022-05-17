@@ -52,6 +52,7 @@ const Header = ({ isAuthorized, cart, setSigninOpen }) => {
     const countStyleNone = {
         display: 'None'
     }
+    const totalCartItems = window.localStorage.getItem('totalCartItems')
     return (
         <>
             <header className={navBar ? 'header3_wrapper dark_header' : 'header3_wrapper'}>
@@ -110,7 +111,9 @@ const Header = ({ isAuthorized, cart, setSigninOpen }) => {
                                                     onClick={openCart}>
                                                     <FontAwesomeIcon color='#ffffff' icon={faShoppingCart} />
                                                     <span
-                                                        style={cartCount >= 1 ? countStyleDisplay : countStyleNone}>{cartCount}</span>
+                                                        style={cartCount >= 1 ? countStyleDisplay : countStyleNone}>{
+                                                            isAuthorized ? totalCartItems : cartCount
+                                                        }</span>
 
                                                 </button>
                                             </li>

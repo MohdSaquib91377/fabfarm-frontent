@@ -67,16 +67,21 @@ const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
 
     }, [cart, totalPrice, setTotalPrice, isAuthorized, user]);
     const cartItems = cart.map((products, i) => {
-        if(!isAuthorized){
+        if (!isAuthorized) {
             return (
                 <Cartitems product={products} key={i} />
             );
         }
     });
     const cartItemsIflogged = cartDataifloggedin.map((data, i) => {
-        if(Object.keys(data).some(key=>key==='product')){
+        if (Object.keys(data).some(key => key === 'product')) {
             return (
                 <Cartitems product={data.product} key={i} />
+            )
+        }
+        else if(Object.keys(data).some(key => key === 'cart_item')){
+            return(
+             window.localStorage.setItem('totalCartItems',data.cart_item)
             )
         }
     })

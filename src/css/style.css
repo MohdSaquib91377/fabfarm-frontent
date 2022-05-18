@@ -3374,6 +3374,7 @@ ul {
 }
 .agri_social_links {
   margin-top: 20px;
+  color: #fff;
 }
 .agri_social_links > li {
   display: inline-block;
@@ -12430,10 +12431,45 @@ button.unset {
     transform: rotate(360deg);
   }
 }
-
+/* 
 @media only screen and (max-width: 600px) {
   .clv_logo {
     height: 40px;
     width: 40px;
+  }
+} */
+.clv_right_header .clv_menu .clv_menu_nav.act-menu{
+  transform: translateX(0px);
+  top:193px;
+}
+@media (max-width:991px){
+  .clv_logo img{
+    max-width: 100px;
+  }
+  .header3_wrapper.dark_header{
+    height: 147px;
+  }
+.clv_right_header .clv_menu .clv_menu_nav.act-menu{
+  top:147px;
+
+}
+}
+@media (max-width:767px){
+  .clv_logo img,
+  .clv_footer_wrapper .footer_block .footer_logo a img{
+    max-width: 100px;
+  }
+  .header3_wrapper.dark_header{
+    height: 186px;
+  }
+  .top-bar > *{
+    font-size: 12px;
+  }
+  .clv_logo{
+    margin-bottom: 10px;
+  }
+  .clv_right_header .clv_menu .clv_menu_nav.act-menu{
+    top:186px;
+  
   }
 }

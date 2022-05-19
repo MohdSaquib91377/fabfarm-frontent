@@ -77,3 +77,10 @@ export const setIsAuthorized = () => {
         payload: null
     }
 }
+
+export const makeCartEmpty = (empty) => {
+    return {
+        type: ActionTypes.MAKE_CART_EMPTY,
+        payload: empty
+    }
+}

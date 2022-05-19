@@ -5,14 +5,15 @@ import { faShoppingCart, faCloudDownloadAlt, faMapMarkerAlt, faUser, faSignOutAl
 import { connect } from 'react-redux';
 import './Profile.css'
 import Tabtitle from '../../pages/Tabtitle';
-import { setIsAuthorized, setUser } from '../../redux/actions/productActions';
-const Profile = ({ setIsAuthorized,setUser }) => {
+import { makeCartEmpty, setIsAuthorized, setUser } from '../../redux/actions/productActions';
+const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
     let Navigate = useNavigate();
     const [profileState, setProfileState] = useState('Dashboard');
     Tabtitle('FAB | Profile')
     const Logout = () => {
-        setIsAuthorized()   
+        setIsAuthorized()
         setUser([])
+        makeCartEmpty([])
         Navigate("/")
     }
     return (
@@ -248,7 +249,8 @@ const Profile = ({ setIsAuthorized,setUser }) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setIsAuthorized: () => dispatch(setIsAuthorized()),
-        setUser:(user)=>dispatch(setUser(user))
+        setUser: (user) => dispatch(setUser(user)),
+        makeCartEmpty: (empty) => dispatch(makeCartEmpty(empty))
     }
 }
 export default connect(null, mapDispatchToProps)(Profile)

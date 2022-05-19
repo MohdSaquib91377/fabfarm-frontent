@@ -70,6 +70,11 @@ export const shopReducer = (state = initialState, action) => {
                 ...state,
                 isAuthorized: !state.isAuthorized
             }
+        case ActionTypes.MAKE_CART_EMPTY:
+            return {
+                ...state,
+                cart: action.payload
+            }
         default:
             return state;
     }

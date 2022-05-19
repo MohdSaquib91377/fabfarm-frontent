@@ -12473,3 +12473,6 @@ button.unset {
   
   }
 }
+.footer_logo img{
+  max-width: 150px;
+}

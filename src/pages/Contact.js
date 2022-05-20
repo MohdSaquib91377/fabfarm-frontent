@@ -63,7 +63,7 @@ const Contact = () => {
                             <div className="contact_form_section">
                                 <div className="row">
                                     <div className="col-md-12 col-lg-12">
-                                        <h3>send message us</h3>
+                                        <h3> Send Us A Message.</h3>
                                     </div>
                                     <form>
                                         <div className="col-md-6 col-lg-6">
@@ -168,6 +168,8 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
+            <br/>
+            <br/>
         </>
     )
 }

@@ -84,3 +84,10 @@ export const makeCartEmpty = (empty) => {
         payload: empty
     }
 }
+
+export const setTotalCartCount = (total) => {
+    return {
+        type: ActionTypes.SET_TOTAL_CART_COUNT,
+        payload: total
+    }
+}

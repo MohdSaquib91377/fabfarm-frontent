@@ -8,7 +8,7 @@ const Counter = () => {
                 <div className="row justify-content-center">
                     <div className="col-lg-6 col-md-6">
                         <div className="clv_heading white_heading">
-                            <h3>we are an expert in this field</h3>
+                            <h3>We Are The Experts Of This Field.</h3>
                             <div className="clv_underline"><img src="images/underline2.png" alt="image" /></div>
                             <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dole magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.</p>
                         </div>

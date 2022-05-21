@@ -31,7 +31,7 @@ const About = () => {
                     <div className="row">
                         <div className="col-md-6">
                             <div className="about_img">
-                                <img src="https://via.placeholder.com/570x510" alt="image" />
+                                <img src="images/hands-g0eecfe8b7_640.jpg" alt="image" />
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -60,7 +60,7 @@ const About = () => {
                     <div className="row justify-content-center">
                         <div className="col-lg-6 col-md-6">
                             <div className="clv_heading white_heading">
-                                <h3>we are an expert in this field</h3>
+                                <h3>We Are The Experts Of This Field.</h3>
                                 <div className="clv_underline"><img src="images/underline2.png" alt="image" /></div>
                                 <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dole magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.</p>
                             </div>
@@ -150,7 +150,7 @@ const About = () => {
                         </div>
                         <div className="col-md-6 col-lg-6">
                             <div className="about_product_image">
-                                <img src="https://via.placeholder.com/530x570" alt="image" />
+                                <img src="images/hands-g0eecfe8b7_640.jpg" alt="image" />
                                 <div className="play_btn_block">
                                     <a href="https://www.youtube.com/watch?v=tqwRLdBsFw8" className="play_video">
                                         <span className="agri_play_icon">
@@ -233,7 +233,7 @@ const About = () => {
                             </div>
                             <div className="col-lg-4 col-md-4">
                                 <div className="service_girl_img">
-                                    <img src="https://via.placeholder.com/642x852" alt="image" />
+                                    <img src="images/hands-g0eecfe8b7_640.jpg" alt="image" />
                                 </div>
                             </div>
                         </div>

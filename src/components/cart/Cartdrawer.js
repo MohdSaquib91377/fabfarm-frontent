@@ -9,11 +9,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faShoppingCart, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import axios from '../API/axios';
-const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
+import CartitemIflogged from './CartitemIflogged';
+import { setTotalCartCount } from '../../redux/actions/productActions';
+const Cartdrawer = ({ setTotalCartCount, user, isAuthorized, cart, opencart, closecart }) => {
 
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [cartProducts, setCartProducts] = React.useState([])
-    const [cartDataifloggedin, setCartDataifLoggedin] = React.useState([])
+    const [items, setItems] = React.useState([])
+    // const [cartDataifloggedin, setCartDataifLoggedin] = React.useState([])
     React.useEffect(() => {
         let price = 0;
         cart.forEach(item => {
@@ -30,7 +33,7 @@ const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
             )
         })
         setCartProducts(items)
-        if (isAuthorized) {
+        if (isAuthorized && cart.length !== 0) {
             const postCartData = () => {
                 axios.post('/api/v1/cart/add-to-cart/', cartProducts, {
                     headers: {
@@ -48,20 +51,23 @@ const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
 
         }
         if (isAuthorized) {
-            const fetchCartData = () => {
-                axios.get('/api/v1/cart/add-to-cart/', {
-                    headers: {
-                        Authorization: `Bearer ${user.access}`
-                    }
+            axios.get('/api/v1/cart/add-to-cart/', {
+                headers: {
+                    Authorization: `Bearer ${user.access}`
+                }
+            })
+                .then(response => {
+                    setItems(response.data)
+                    response.data.map((data) => {
+                        if (Object.keys(data).some(key => key === 'cart_item')) {
+                            setTotalCartCount(data.cart_item)
+                        }
+                    })
+
                 })
-                    .then(response => {
-                        setCartDataifLoggedin(response.data)
-                    })
-                    .catch(response => {
-                        console.log(response)
-                    })
-            }
-            fetchCartData()
+                .catch(response => {
+                    console.log(response)
+                })
         }
 
 
@@ -73,18 +79,6 @@ const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
             );
         }
     });
-    const cartItemsIflogged = cartDataifloggedin.map((data, i) => {
-        if (Object.keys(data).some(key => key === 'product')) {
-            return (
-                <Cartitems product={data.product} key={i} />
-            )
-        }
-        else if(Object.keys(data).some(key => key === 'cart_item')){
-            return(
-             window.localStorage.setItem('totalCartItems',data.cart_item)
-            )
-        }
-    })
     return (
         <div>
             <Drawer
@@ -112,8 +106,9 @@ const Cartdrawer = ({ user, isAuthorized, cart, opencart, closecart }) => {
                                 </div>
                             </div>
                             <div className="overflow-cart">
-                                {cart.length === 0 ? <p>your cart is empty</p> :
-                                    isAuthorized ? <>{cartItemsIflogged}</> : <> {cartItems}</>
+                                {/* {cart.length === 0 ? <p>your cart is empty</p> : */}
+                                {
+                                    isAuthorized ? <CartitemIflogged items={items} /> : <> {cartItems}</>
                                 }
                             </div>
                             {cart.length === 0 ? <></> : <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
@@ -137,5 +132,9 @@ const mapStateToProps = (state) => {
         user: state.shop.user
     }
 }
-
-export default connect(mapStateToProps)(Cartdrawer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setTotalCartCount: (total) => dispatch(setTotalCartCount(total))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cartdrawer);

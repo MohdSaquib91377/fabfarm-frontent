@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import Weather from '../components/weatherapi/Weather';
 import { setSigninOpen } from '../redux/actions/productActions';
-const Header = ({ isAuthorized, cart, setSigninOpen }) => {
+const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
     const [cartCount, setCartCount] = React.useState(0);
     const [cartState, setcartState] = React.useState(false)
     const [navBar, setNavBar] = React.useState(false);
@@ -29,7 +29,11 @@ const Header = ({ isAuthorized, cart, setSigninOpen }) => {
     }
     window.addEventListener('scroll', onScroll)
     useEffect(() => {
-        setCartCount(cart.length)
+        let count = 0;
+        cart.map(item => {
+            count += item.quantity
+        })
+        setCartCount(count)
     }, [cart, cartCount]);
     const countStyleDisplay = {
         display: 'inline-block',
@@ -48,7 +52,6 @@ const Header = ({ isAuthorized, cart, setSigninOpen }) => {
     const countStyleNone = {
         display: 'None'
     }
-    const totalCartItems = window.localStorage.getItem('totalCartItems')
     return (
         <>
             <header className={navBar ? 'header3_wrapper dark_header' : 'header3_wrapper'}>
@@ -108,7 +111,7 @@ const Header = ({ isAuthorized, cart, setSigninOpen }) => {
                                                     <FontAwesomeIcon color='#ffffff' icon={faShoppingCart} />
                                                     <span
                                                         style={cartCount >= 1 ? countStyleDisplay : countStyleNone}>{
-                                                            isAuthorized ? totalCartItems : cartCount
+                                                            isAuthorized ? totalCartCount : cartCount
                                                         }</span>
 
                                                 </button>
@@ -183,6 +186,7 @@ const mapStateToProps = (state) => {
     return {
         cart: state.shop.cart,
         isAuthorized: state.shop.isAuthorized,
+        totalCartCount: state.shop.totalCartCount
     }
 }
 const mapDispatchToProps = (dispatch) => {

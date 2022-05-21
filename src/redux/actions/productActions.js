@@ -77,3 +77,9 @@ export const setIsAuthorized = () => {
         payload: null
     }
 }
+export const setTotalCartCount = (total) => {
+    return {
+        type: ActionTypes.SET_TOTAL_CART_COUNT,
+        payload: total
+    }
+}

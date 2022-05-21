@@ -44,37 +44,37 @@ const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
                                 <ul className="nav account-menu-list flex-column nav-pills" id="pills-tab" role="tablist">
                                     <li
                                         onClick={() => setProfileState('Dashboard')}>
-                                        <button className={profileState == 'Dashboard' ? 'active' : undefined}>
+                                        <button className={profileState === 'Dashboard' ? 'active' : undefined}>
                                             <FontAwesomeIcon icon={faTachometerAlt} />  Dashboard</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Order')}
                                     >
-                                        <button className={profileState == 'Order' ? 'active' : undefined}>
+                                        <button className={profileState === 'Order' ? 'active' : undefined}>
                                             <FontAwesomeIcon icon={faShoppingCart} /> Order</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Download')}
                                     >
-                                        <button className={profileState == 'Download' ? 'active' : undefined}>
+                                        <button className={profileState === 'Download' ? 'active' : undefined}>
                                             <FontAwesomeIcon icon={faCloudDownloadAlt} /> Download</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Address')}
                                     >
-                                        <button className={profileState == 'Address' ? 'active' : undefined}>
+                                        <button className={profileState === 'Address' ? 'active' : undefined}>
                                             <FontAwesomeIcon icon={faMapMarkerAlt} /> Address</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Account')}
                                     >
-                                        <button className={profileState == 'Account' ? 'active' : undefined}>
+                                        <button className={profileState === 'Account' ? 'active' : undefined}>
                                             <FontAwesomeIcon icon={faUser} /> Account Details</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Logout')}
                                     >
-                                        <button onClick={() => Logout()} className={profileState == 'Logout' ? 'active' : undefined}>
+                                        <button onClick={() => Logout()} className={profileState === 'Logout' ? 'active' : undefined}>
                                             <FontAwesomeIcon icon={faSignOutAlt} /> Logout</button>
                                     </li>
                                 </ul>
@@ -82,7 +82,7 @@ const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
                         </div>
                         <div className="col-xl-8 col-md-8">
                             <div className="tab-content my-account-tab" id="pills-tabContent">
-                                <div className={profileState == 'Dashboard' ? 'tab-pane fade show active' : 'tab-pane fade '}>
+                                <div className={profileState === 'Dashboard' ? 'tab-pane fade show active' : 'tab-pane fade '}>
                                     <div className="my-account-dashboard account-wrapper">
                                         <h4 className="account-title">Dashboard</h4>
                                         <div className="welcome-dashboard m-t-30">
@@ -94,7 +94,7 @@ const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
                                             account details.</p>
                                     </div>
                                 </div>
-                                <div className={profileState == 'Order' ? 'tab-pane fade show active' : 'tab-pane fade '}>
+                                <div className={profileState === 'Order' ? 'tab-pane fade show active' : 'tab-pane fade '}>
                                     <div className="my-account-order account-wrapper">
                                         <h4 className="account-title">Orders</h4>
                                         <div className="account-table text-center m-t-30 table-responsive">
@@ -139,7 +139,7 @@ const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={profileState == 'Download' ? 'tab-pane fade show active' : 'tab-pane fade '}>
+                                <div className={profileState === 'Download' ? 'tab-pane fade show active' : 'tab-pane fade '}>
                                     <div className="my-account-download account-wrapper">
                                         <h4 className="account-title">Download</h4>
                                         <div className="account-table text-center m-t-30 table-responsive">
@@ -171,7 +171,7 @@ const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
                                     </div>
                                 </div>
 
-                                <div className={profileState == 'Address' ? 'tab-pane fade show active' : 'tab-pane fade '}>
+                                <div className={profileState === 'Address' ? 'tab-pane fade show active' : 'tab-pane fade '}>
                                     <div className="my-account-address account-wrapper">
                                         <h4 className="account-title">Address</h4>
                                         <div className="account-address m-t-30">
@@ -182,7 +182,7 @@ const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={profileState == 'Account' ? 'tab-pane fade show active' : 'tab-pane fade '}>
+                                <div className={profileState === 'Account' ? 'tab-pane fade show active' : 'tab-pane fade '}>
                                     <div className="my-account-details account-wrapper">
                                         <h4 className="account-title">Account Details</h4>
 

@@ -16,18 +16,27 @@ const Productimages = ({ image }) => {
             <ReactImageMagnify {...{
                 smallImage: {
                     alt: image[prevImage].image_caption,
-                    isFluidWidth: true,
-                    src: process.env.REACT_APP_BASE_URL + image[prevImage].image
+                    isFluidWidth: false,
+                    src: process.env.REACT_APP_BASE_URL + image[prevImage].image,
+                    width: 400,
+                    height: 500
                 },
                 largeImage: {
                     src: process.env.REACT_APP_BASE_URL + image[prevImage].image,
                     width: 1200,
-                    height: 1800
+                    height: 1800,
+                    opacity:'100',
+                    backgroundColor:'black'
                 },
                 enlargedImageContainerDimensions: {
                     width: '200%',
                     height: '100%',
-                }
+                },
+                enlargedImageContainerStyle:{
+                    border:'red 1px solid',
+                    zIndex:'1',
+                    background:'white'
+                },
             }} />
 
             <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative">

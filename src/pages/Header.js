@@ -5,13 +5,17 @@ import Signin from '../components/login/Signin';
 import { connect } from 'react-redux';
 import Signup from '../components/login/Signup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faSearch, faUser, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
 import Weather from '../components/weatherapi/Weather';
 import { setSigninOpen } from '../redux/actions/productActions';
+import Desktopmenu from '../components/header/Desktopmenu';
+import Mobilemenu from '../components/header/Mobilemenu';
 const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
     const [cartCount, setCartCount] = React.useState(0);
     const [cartState, setcartState] = React.useState(false)
     const [navBar, setNavBar] = React.useState(false);
+    const [responsive, setResponsive] = React.useState(false);
+    const [menuOpen, setMenuOpen] = React.useState(false);
     const openCart = () => {
         setcartState(true)
     }
@@ -35,6 +39,19 @@ const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
         })
         setCartCount(count)
     }, [cart, cartCount]);
+
+    const handleResize = () => {
+        if (window.innerWidth < 988) {
+            setResponsive(true)
+        }
+        else {
+            setResponsive(false)
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize)
+    }, [])
     const countStyleDisplay = {
         display: 'inline-block',
         backgroundColor: 'white',
@@ -68,25 +85,12 @@ const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
                         <div className="col-lg-10 col-md-10">
                             <div className="clv_right_header">
                                 <div className="clv_menu">
-                                    <div className="clv_menu_nav">
-                                        <ul>
-                                            <li>
-                                                <Link to="/" >home</Link>
-                                            </li>
-                                            {/* <li style={{ color: 'white', cursor: 'pointer' }}>
-                                                Products
-                                                <ul>
-                                                    <li><Link to='/shop'>Seeds</Link></li>
-                                                    <li><a href="index.html">Fertilizers</a></li>
-
-                                                </ul>
-                                            </li> */}
-                                            <li><Link to="/aboutus">about us</Link></li>
-
-                                            <li><Link to="/contact">Contact us</Link></li>
-
-                                        </ul>
-                                    </div>
+                                    {
+                                        responsive ?
+                                            <Mobilemenu menuOpen={menuOpen} />
+                                            :
+                                            <Desktopmenu />
+                                    }
                                     <div className="cart_nav">
                                         <ul>
                                             {
@@ -132,29 +136,11 @@ const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
                                                 </ul>
                                             </li>
                                             <li className="menu_toggle">
-                                                <span>
-                                                    <svg
-                                                        version="1.1"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                                                        x="0px"
-                                                        y="0px"
-                                                        viewBox="0 0 53 53"
-                                                        style={{ enableBackground: "new 0 0 53 53" }}
-                                                        xmlSpace="preserve"
-                                                        width="20px"
-                                                        height="20px"
-                                                    >
-                                                        <g>
-                                                            <g>
-                                                                <path d="M2,13.5h49c1.104,0,2-0.896,2-2s-0.896-2-2-2H2c-1.104,0-2,0.896-2,2S0.896,13.5,2,13.5z" />
-                                                                <path d="M2,28.5h49c1.104,0,2-0.896,2-2s-0.896-2-2-2H2c-1.104,0-2,0.896-2,2S0.896,28.5,2,28.5z" />
-                                                                <path d="M2,43.5h49c1.104,0,2-0.896,2-2s-0.896-2-2-2H2c-1.104,0-2,0.896-2,2S0.896,43.5,2,43.5z" />
-                                                            </g>
-                                                        </g>
-                                                    </svg>
-
-                                                </span>
+                                                <button
+                                                    onClick={() => setMenuOpen(!menuOpen)}
+                                                >
+                                                    {menuOpen ? <FontAwesomeIcon icon={faClose} /> : <FontAwesomeIcon icon={faBars} />}
+                                                </button>
                                             </li>
 
                                         </ul>

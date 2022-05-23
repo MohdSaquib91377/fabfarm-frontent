@@ -50,6 +50,12 @@ const Cartdrawer = ({ setTotalCartCount, setSigninOpen, user, isAuthorized, cart
             postCartData()
 
         }
+
+
+
+    }, [cart, totalPrice, setTotalPrice, isAuthorized, user]);
+
+    React.useEffect(() => {
         if (isAuthorized) {
             axios.get('/api/v1/cart/add-to-cart/', {
                 headers: {
@@ -69,9 +75,7 @@ const Cartdrawer = ({ setTotalCartCount, setSigninOpen, user, isAuthorized, cart
                     console.log(response)
                 })
         }
-
-
-    }, [cart, totalPrice, setTotalPrice, isAuthorized, user]);
+    }, [cartProducts, totalPrice])
     const cartItems = cart.map((products, i) => {
         if (!isAuthorized) {
             return (
@@ -117,7 +121,7 @@ const Cartdrawer = ({ setTotalCartCount, setSigninOpen, user, isAuthorized, cart
                             </div>}
                         </div>
                     </div>
-                    {cart.length === 0 ? <></> :
+                    {
                         isAuthorized ?
                             <Link to='/checkout'> <button onClick={closecart} style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button></Link> :
                             <button onClick={() => setSigninOpen()} style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button>

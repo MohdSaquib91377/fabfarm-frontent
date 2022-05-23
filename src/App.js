@@ -11,6 +11,7 @@ import Product from './components/products/Product';
 import Checkout from './components/checkout/Checkout';
 import ScrollToTop from './pages/ScrollToTop';
 import { connect } from 'react-redux';
+import Orderlist from './components/orders/Orderlist';
 function App({ isAuthorized }) {
   return (
     <>
@@ -26,6 +27,9 @@ function App({ isAuthorized }) {
           {isAuthorized ?
             <Route exact path='/profile' element={<Profile />} />
             :
+            undefined}
+          {isAuthorized ?
+            <Route exact path='/orderlist' element={<Orderlist />} /> :
             undefined}
           <Route exact path='/checkout' element={<Checkout />} />
           <Route exact path='*' element={<Pagenotfound />} />

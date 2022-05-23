@@ -10,8 +10,8 @@ import { faClose, faShoppingCart, faIndianRupee } from '@fortawesome/free-solid-
 import { Link } from 'react-router-dom';
 import axios from '../API/axios';
 import CartitemIflogged from './CartitemIflogged';
-import { setTotalCartCount } from '../../redux/actions/productActions';
-const Cartdrawer = ({ setTotalCartCount, user, isAuthorized, cart, opencart, closecart }) => {
+import { setSigninOpen, setTotalCartCount } from '../../redux/actions/productActions';
+const Cartdrawer = ({ setTotalCartCount, setSigninOpen, user, isAuthorized, cart, opencart, closecart }) => {
 
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [cartProducts, setCartProducts] = React.useState([])
@@ -118,7 +118,9 @@ const Cartdrawer = ({ setTotalCartCount, user, isAuthorized, cart, opencart, clo
                         </div>
                     </div>
                     {cart.length === 0 ? <></> :
-                        <Link to='/checkout'> <button onClick={closecart} style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button></Link>
+                        isAuthorized ?
+                            <Link to='/checkout'> <button onClick={closecart} style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button></Link> :
+                            <button onClick={() => setSigninOpen()} style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button>
                     }
                 </Box>
             </Drawer>
@@ -134,7 +136,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        setTotalCartCount: (total) => dispatch(setTotalCartCount(total))
+        setTotalCartCount: (total) => dispatch(setTotalCartCount(total)),
+        setSigninOpen: () => dispatch(setSigninOpen()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cartdrawer);

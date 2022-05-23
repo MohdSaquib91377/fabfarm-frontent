@@ -4,7 +4,7 @@ import { addToCart, incrementQuantity, decrementQuantity, setProducts } from '..
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
-import { faTruckLoading, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faTruckLoading, faEnvelope, faHeart, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
 import Details from './Details';
@@ -15,14 +15,12 @@ import Relatedproducts from './Relatedproducts';
 import axios from '../API/axios';
 import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
-const Product = ({ setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
+const Product = ({ products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
     let { productID } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
-    // const [itemQuantity, setItemQuantity] = useState(1)
+    // const [productCount, setProductCount] = useState()
     Tabtitle('FAB | Shop')
-    // useEffect(() => {
-    //     setItemQuantity(quantity)
-    // }, currentItem)
+    const { id, image, name, description, price, maxQuantity } = currentItem;
 
     useEffect(() => {
         const fetchCurrentItem = () => {
@@ -38,10 +36,9 @@ const Product = ({ setProducts, addToCart, incrementQuantity, decrementQuantity 
                 })
         }
         fetchCurrentItem();
-    }, [])
-    const { id, image, name, description, price, quantity } = currentItem;
 
-    console.log(id)
+
+    }, [])
     return (
         <>
             {/* <!--Breadcrumb--> */}
@@ -122,14 +119,19 @@ const Product = ({ setProducts, addToCart, incrementQuantity, decrementQuantity 
                                                             <li><a href="#modalProductAsk" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faEnvelope} /> &nbsp; Ask About This product</a></li>
                                                         </ul>
                                                     </div>
-                                                    {/* <div className="product-quantity product-var__item d-flex align-items-center">
-                                            <span className="product-var__text">Quantity: </span>
-                                            <div className="quantity-scale m-l-20">
-                                                <button className="value-button" >-</button>
-                                                <input className='input-items-number' type="text" readOnly id="number" value={itemQuantity} />
-                                                <button className="value-button" >+</button>
-                                            </div>
-                                        </div> */}
+                                                    <div className="product-quantity product-var__item d-flex align-items-center">
+                                                        <span className="product-var__text">Quantity: </span>
+                                                        <div className="quantity-scale m-l-20">
+                                                            <button className="value-button" onClick={() => decrementQuantity(id)} >
+                                                                <FontAwesomeIcon icon={faMinus} />
+                                                            </button>
+                                                            <input className='input-items-number' type="text" readOnly id="number" value={products[0].quantity} />
+                                                            <button className="value-button" onClick={() => incrementQuantity(id)
+                                                            }>
+                                                                <FontAwesomeIcon icon={faPlus} />
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                     <div className="product-var__item">
                                                         <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</button>
                                                         <a href="wishlist.html" className="btn btn--round btn--round-size-small btn--green btn--green-hover-black">
@@ -238,6 +240,11 @@ const Product = ({ setProducts, addToCart, incrementQuantity, decrementQuantity 
         </>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        products: state.shop.products
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -247,4 +254,4 @@ const mapDispatchToProps = (dispatch) => {
         setProducts: (id) => dispatch(setProducts(id))
     };
 };
-export default connect(null, mapDispatchToProps)(Product)
+export default connect(mapStateToProps, mapDispatchToProps)(Product)

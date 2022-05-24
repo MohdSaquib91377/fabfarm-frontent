@@ -12,6 +12,7 @@ import Checkout from './components/checkout/Checkout';
 import ScrollToTop from './pages/ScrollToTop';
 import { connect } from 'react-redux';
 import Orderlist from './components/orders/Orderlist';
+import OrderproductDetails from './components/orders/OrderproductDetails';
 function App({ isAuthorized }) {
   return (
     <>
@@ -30,6 +31,9 @@ function App({ isAuthorized }) {
             undefined}
           {isAuthorized ?
             <Route exact path='/orderlist' element={<Orderlist />} /> :
+            undefined}
+          {isAuthorized ?
+            <Route exact path='/orderproductdetails/:prodID' element={<OrderproductDetails />} /> :
             undefined}
           <Route exact path='/checkout' element={<Checkout />} />
           <Route exact path='*' element={<Pagenotfound />} />

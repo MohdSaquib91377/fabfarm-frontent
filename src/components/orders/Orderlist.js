@@ -31,21 +31,22 @@ const Orderlist = ({ user }) => {
         }
         fetchOrderList()
     }, [user])
-    console.log(items)
     const orderList = items.map((data, i) => {
-        const { product: { name, image }, order, price, quantity, status } = data;
+        const { product: { id, name, image }, order, price, quantity, status } = data;
         return (
             <div key={i} style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignContent: 'center'
             }}>
-                <h6>{name}</h6>
+                <Link to={`/orderproductdetails/${order}`}><h6>{name}</h6></Link>
                 <div style={{
                     height: '100px',
                     width: '100px'
                 }}>
-                    <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+                    <Link to={`/orderproductdetails/${order}`}>
+                        <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+                    </Link>
                 </div>
                 <h6>order id : {order}</h6>
                 <h6>price: {price}</h6>

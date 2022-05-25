@@ -1,7 +1,7 @@
 import React from 'react'
 import Countup from '../countup/Countup'
 
-const Counter = () => {
+const Counterabout = () => {
     return (
         <div className="clv_counter_wrapper clv_section">
             <div className="container">
@@ -23,7 +23,7 @@ const Counter = () => {
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="26" data-speed="3000">
-                                        <Countup start={0} end={26} timer={50} scrollStart={4800} />
+                                        <Countup start={0} end={26} timer={50} scrollStart={400} />
                                     </span><span>k+</span></h4>
                                     <h5>happy customers</h5>
                                 </div>
@@ -36,7 +36,7 @@ const Counter = () => {
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="700" data-speed="3000">
-                                        <Countup start={0} end={700} timer={50} scrollStart={4800} />
+                                        <Countup start={0} end={700} timer={50} scrollStart={400} />
                                     </span><span>+</span></h4>
                                     <h5>Seeds Types</h5>
                                 </div>
@@ -49,7 +49,7 @@ const Counter = () => {
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="200" data-speed="3000">
-                                        <Countup start={0} end={200} timer={50} scrollStart={4800} />
+                                        <Countup start={0} end={200} timer={50} scrollStart={400} />
                                     </span><span>+</span></h4>
                                     <h5>Soil Types</h5>
                                 </div>
@@ -62,7 +62,7 @@ const Counter = () => {
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="6" data-speed="3000">
-                                        <Countup start={0} end={6} timer={100} scrollStart={4800} />
+                                        <Countup start={0} end={6} timer={100} scrollStart={400} />
                                     </span><span>k+</span></h4>
                                     <h5>award winner</h5>
                                 </div>
@@ -75,4 +75,4 @@ const Counter = () => {
     )
 }
 
-export default Counter
+export default Counterabout

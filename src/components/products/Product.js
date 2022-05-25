@@ -142,7 +142,11 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                         <div className="dynmiac_checkout--button">
                                                             {/* <input type="checkbox" id="buy-now-check" value="1" className="p-r-30" />
                                                             <label htmlFor="buy-now-check" className="m-b-20 pl-4">I agree with the terms and condition</label> */}
-                                                            <a href="cart.html" className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</a>
+                                                            <Link to='/checkout'>
+                                                                <button style={{
+                                                                    width:"285px"
+                                                                }} className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</button>
+                                                            </Link>
                                                         </div>
                                                     </div>
                                                     <div className="product-var__item">

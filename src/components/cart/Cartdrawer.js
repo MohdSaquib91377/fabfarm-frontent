@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import axios from '../API/axios';
 import CartitemIflogged from './CartitemIflogged';
 import { setSigninOpen, setTotalCartCount } from '../../redux/actions/productActions';
-const Cartdrawer = ({ setTotalCartCount, setSigninOpen, user, isAuthorized, cart, opencart, closecart }) => {
+const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, isAuthorized, cart, opencart, closecart }) => {
 
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [cartProducts, setCartProducts] = React.useState([])
@@ -110,9 +110,11 @@ const Cartdrawer = ({ setTotalCartCount, setSigninOpen, user, isAuthorized, cart
                                 </div>
                             </div>
                             <div className="overflow-cart">
-                                {/* {cart.length === 0 ? <p>your cart is empty</p> : */}
                                 {
-                                    isAuthorized ? <CartitemIflogged items={items} /> : <> {cartItems}</>
+                                    isAuthorized ?
+                                        totalCartCount !== 0 ? <CartitemIflogged items={items} /> : <p>your cart is empty</p>
+                                        :
+                                        cart.length !== 0 ? <> {cartItems}</> : <p>your cart is empty</p>
                                 }
                             </div>
                             {cart.length === 0 ? <></> : <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
@@ -123,8 +125,39 @@ const Cartdrawer = ({ setTotalCartCount, setSigninOpen, user, isAuthorized, cart
                     </div>
                     {
                         isAuthorized ?
-                            <Link to='/checkout'> <button onClick={closecart} style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button></Link> :
-                            <button onClick={() => setSigninOpen()} style={{ backgroundColor: '#2a7d2e', width: '100%', height: '50px', alignItem: 'center', color: '#fff' }} className="cart_action_btn">check out</button>
+                            totalCartCount !== 0 ?
+                                <Link to='/checkout'>
+                                    <button
+                                        onClick={closecart}
+                                        style={{
+                                            backgroundColor: '#2a7d2e',
+                                            width: '100%',
+                                            height: '50px',
+                                            alignItem: 'center',
+                                            color: '#fff'
+                                        }}
+                                        className="cart_action_btn">
+                                        check out</button>
+                                </Link> :
+                                undefined
+                            :
+                            cart.length !== 0 ?
+                                <Link to='/checkout'>
+                                    <button
+                                        onClick={closecart}
+                                        style={{
+                                            backgroundColor: '#2a7d2e',
+                                            width: '100%',
+                                            height: '50px',
+                                            alignItem: 'center',
+                                            color: '#fff'
+                                        }}
+                                        className="cart_action_btn">
+                                        check out
+                                    </button>
+                                </Link>
+                                : undefined
+
                     }
                 </Box>
             </Drawer>
@@ -135,7 +168,8 @@ const mapStateToProps = (state) => {
     return {
         cart: state.shop.cart,
         isAuthorized: state.shop.isAuthorized,
-        user: state.shop.user
+        user: state.shop.user,
+        totalCartCount: state.shop.totalCartCount
     }
 }
 const mapDispatchToProps = (dispatch) => {

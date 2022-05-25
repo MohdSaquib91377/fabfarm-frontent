@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-const Countup = ({ start, end, timer }) => {
+const Countup = ({ start, end, timer, scrollStart }) => {
     const [isMounted, setIsMounted] = useState(false)
     const [state, setState] = useState(null);
     const ref = useRef(start);
     const acc = end / 200;
+    const scroll = scrollStart;
     const updateCounter = () => {
 
         if (ref.current < end) {
@@ -17,7 +18,7 @@ const Countup = ({ start, end, timer }) => {
     };
 
     const onScroll = () => {
-        if (window.scrollY >= 4800) {
+        if (window.scrollY >= scroll) {
             setIsMounted(true);
         }
         else {

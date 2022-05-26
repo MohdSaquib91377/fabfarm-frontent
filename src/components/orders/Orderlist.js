@@ -34,7 +34,7 @@ const Orderlist = ({ user }) => {
     const orderList = items.map((data, i) => {
         const { product: { id, name, image }, order, price, quantity, status } = data;
         return (
-            <div key={i} style={{
+            <div key={i} className="order_list_top" style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignContent: 'center'

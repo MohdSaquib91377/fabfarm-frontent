@@ -1440,6 +1440,10 @@ button.close {
 .product__box .product__link {
   margin-top: 8px;
   margin-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 10px;
 }
 
 .product__box:hover .product__action--link {

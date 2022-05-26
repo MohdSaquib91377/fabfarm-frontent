@@ -7951,7 +7951,7 @@ ul {
   padding: 0;
 }
 .form_block {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 .form_block .form_field {
   height: 50px;
@@ -12400,6 +12400,8 @@ button.unset {
 .signup_form_section p {
   text-align: left !important;
   color: red;
+  margin: 0;
+  padding-bottom: 10px;
 }
 
 .item_name h5 {
@@ -12482,4 +12484,14 @@ button.unset {
 }
 .product__img.img-fluid{
   height: 300px;
+}
+.order_list_top a:first-child{  
+  width: 20%;
+}
+.order_list_top{
+  padding: 20px;
+}
+.order_list_top button{  
+  line-height: 1;
+  height: 15px;
 }

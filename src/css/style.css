@@ -11105,7 +11105,7 @@ ul {
 }
 @media (max-width: 767px) and (orientation: landscape) {
   .signup_wrapper > .signup_inner {
-    margin: 405px 0 30px 0;
+    margin: 35px 0 30px 0;
   }
 }
 @media (max-width: 767px) {
@@ -12479,4 +12479,7 @@ button.unset {
 
 .site_logo img{
   max-width: 150px;
+}
+.product__img.img-fluid{
+  height: 300px;
 }

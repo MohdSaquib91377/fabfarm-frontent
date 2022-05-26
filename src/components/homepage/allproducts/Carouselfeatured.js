@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const Carouselfeatured = ({ products, addToCart }) => {
-  SwiperCore.use([Autoplay]);
+  SwiperCore.use([Autoplay]);TypeError
   const Product = products.map((item, i) => {
     const { id, name, image: [{ image }], price } = item
     return (

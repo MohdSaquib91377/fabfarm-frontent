@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupee, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Tabtitle from '../../pages/Tabtitle';
 import axios from '../API/axios';
-const Checkout = ({ isAuthorized, user, cartItem }) => {
+import { setSigninOpen } from '../../redux/actions/productActions';
+const Checkout = ({ setSigninOpen, isAuthorized, user, cartItem }) => {
     let Navigate = useNavigate()
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [paymentMethodOne, setPaymentMethodOne] = useState(false);
@@ -371,6 +372,15 @@ const Checkout = ({ isAuthorized, user, cartItem }) => {
                                                     <h5 className="your-order-total-left font--bold">Total</h5>
                                                     <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{totalPrice}</h5>
                                                 </div>
+                                                <div className="your-order-total d-flex justify-content-between">
+                                                    <input
+                                                        name='couponcode'
+                                                        // value={formValues.pincode}
+                                                        // onChange={handleChange}
+                                                        placeholder='Coupon code'
+                                                        type="text" id="form-zipcode" />
+                                                    <button>Apply</button>
+                                                </div>
 
                                                 <div className="payment-method">
                                                     <div className="payment-accordion element-mrg">
@@ -433,7 +443,9 @@ const Checkout = ({ isAuthorized, user, cartItem }) => {
                         </div>
                     </main>
                     :
-                    undefined
+                    <button
+                        onClick={() => setSigninOpen()}
+                    >click here to sign in </button>
             }
         </>
     )
@@ -445,4 +457,9 @@ const mapStateToProps = (state) => {
         isAuthorized: state.shop.isAuthorized,
     }
 }
-export default connect(mapStateToProps)(Checkout);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setSigninOpen: () => dispatch(setSigninOpen())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

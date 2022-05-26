@@ -145,7 +145,9 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                             <Link to='/checkout'>
                                                                 <button style={{
                                                                     width:"285px"
-                                                                }} className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</button>
+                                                                }} 
+                                                                onClick={() => addToCart(id)}
+                                                                className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</button>
                                                             </Link>
                                                         </div>
                                                     </div>

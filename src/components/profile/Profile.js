@@ -6,15 +6,28 @@ import { connect } from 'react-redux';
 import './Profile.css'
 import Tabtitle from '../../pages/Tabtitle';
 import { makeCartEmpty, setIsAuthorized, setUser } from '../../redux/actions/productActions';
-const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
+import axios from '../API/axios';
+const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
     let Navigate = useNavigate();
     const [profileState, setProfileState] = useState('Dashboard');
     Tabtitle('FAB | Profile')
     const Logout = () => {
-        setIsAuthorized()
-        setUser([])
-        makeCartEmpty([])
-        Navigate("/")
+        let refresh = user.refresh;
+        axios.post('/api/v1/account/logout/', { refresh }, {
+            headers: {
+                Authorization: `Bearer ${user.access}`
+            },
+        })
+            .then(response => {
+                console.log(response)
+                setIsAuthorized()
+                setUser([])
+                makeCartEmpty([])
+                Navigate("/")
+            })
+            .catch(response => {
+                console.log(response)
+            })
     }
     return (
         <>
@@ -246,6 +259,11 @@ const Profile = ({ makeCartEmpty, setIsAuthorized, setUser }) => {
         </>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        user: state.shop.user,
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         setIsAuthorized: () => dispatch(setIsAuthorized()),
@@ -253,4 +271,4 @@ const mapDispatchToProps = (dispatch) => {
         makeCartEmpty: (empty) => dispatch(makeCartEmpty(empty))
     }
 }
-export default connect(null, mapDispatchToProps)(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

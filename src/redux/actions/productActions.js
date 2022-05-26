@@ -91,3 +91,11 @@ export const setTotalCartCount = (total) => {
         payload: total
     }
 }
+export const buyNow = (itemID) => {
+    return {
+        type: ActionTypes.BUY_NOW,
+        payload: {
+            id: itemID
+        },
+    };
+}

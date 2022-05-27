@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 const Weather = () => {
     const [lat, setLat] = useState([]);
     const [long, setLong] = useState([]);
@@ -53,6 +55,12 @@ const Weather = () => {
                         </div>
                     </>
                 }
+                    {/* social media icon add stytles here  */}
+                <div>
+                    <FontAwesomeIcon color='#4267B2' icon={faFacebook} />
+                    <FontAwesomeIcon color='#fb3958' icon={faInstagram} />
+                    <FontAwesomeIcon color='#00acee' icon={faTwitter} />
+                </div>
             </div>
 
         </>

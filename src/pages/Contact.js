@@ -6,8 +6,8 @@ const Contact = () => {
     Tabtitle('FAB | Contact us')
     return (
         <>
-            <div className="breadcrumb_wrapper" style={{minHeight:'300px'}}>
-                <div className="container" style={{marginTop:'130px'}}>
+            <div className="breadcrumb_wrapper" style={{ minHeight: '300px' }}>
+                <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
@@ -68,12 +68,7 @@ const Contact = () => {
                                     <form>
                                         <div className="col-md-6 col-lg-6">
                                             <div className="form_block">
-                                                <input type="text" name="first_name" className="form_field require" placeholder="First Name" />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 col-lg-6">
-                                            <div className="form_block">
-                                                <input type="text" name="last_name" className="form_field require" placeholder="Last Name" />
+                                                <input type="text" name="full_name" className="form_field require" placeholder="Full Name" />
                                             </div>
                                         </div>
                                         <div className="col-md-6 col-lg-6">
@@ -81,11 +76,7 @@ const Contact = () => {
                                                 <input type="text" name="email" className="form_field require" placeholder="Email" data-valid="email" data-error="Email should be valid." />
                                             </div>
                                         </div>
-                                        <div className="col-md-6 col-lg-6">
-                                            <div className="form_block">
-                                                <input type="text" name="subject" className="form_field require" placeholder="Subject" />
-                                            </div>
-                                        </div>
+                                        {/* add select option here */}
                                         <div className="col-md-12 col-lg-12">
                                             <div className="form_block">
                                                 <textarea placeholder="Message" name="message" className="form_field require" ></textarea>
@@ -107,32 +98,8 @@ const Contact = () => {
                                     <h5>working hours</h5>
                                     <ul>
                                         <li>
-                                            <p>monday</p>
+                                            <p>monday to saturday</p>
                                             <p>9:30 am - 6:00 pm</p>
-                                        </li>
-                                        <li>
-                                            <p>tuesday</p>
-                                            <p>9:00 am - 6:00 pm</p>
-                                        </li>
-                                        <li>
-                                            <p>wednesday</p>
-                                            <p>9:45 am - 6:00 pm</p>
-                                        </li>
-                                        <li>
-                                            <p>thursday</p>
-                                            <p>10:30 am - 6:00 pm</p>
-                                        </li>
-                                        <li>
-                                            <p>friday</p>
-                                            <p>9:30 am - 6:00 pm</p>
-                                        </li>
-                                        <li>
-                                            <p>saturday</p>
-                                            <p>9:30 am - 6:00 pm</p>
-                                        </li>
-                                        <li>
-                                            <p>sunday</p>
-                                            <p>close</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -146,30 +113,11 @@ const Contact = () => {
                 </div>
             </div>
             {/* <!--Contact Map--> */}
-            {/* <div className="contact_map_wrapper">
-                <div id="map"></div>
-            </div> */}
-            {/* <!--Partners--> */}
-            <div className="clv_partner_wrapper clv_section">
-                <div className="container">
-
-                    <div className="clv_newsletter_wrapper">
-                        <div className="newsletter_text">
-                            <h2>get update from <br />anywhere</h2>
-                            <h4>subscribe us to get more info</h4>
-                        </div>
-                        <div className="newsletter_field">
-                            <h3>don't miss out on the good news!</h3>
-                            <div className="newsletter_field_block">
-                                <input type="text" placeholder="Enter Your Email Here" />
-                                <a href="#">subscribe now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div className="contact_map_wrapper">
+                <div id="map"> here map will be shown</div>
             </div>
-            <br/>
-            <br/>
+            <br />
+            <br />
         </>
     )
 }

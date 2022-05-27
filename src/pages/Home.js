@@ -19,28 +19,27 @@ const Home = () => {
             <Suspense >
                 <Services />
             </Suspense>
-
+            <Suspense fallback={<div>Loading...</div>}>
+                <Weare />
+            </Suspense>
             <Suspense fallback={<div>Loading...</div>}>
                 <Featuredproducts />
             </Suspense>
             {/* <!--Shop--> */}
 
-            <Suspense fallback={<div>Loading...</div>}>
+            {/* <Suspense fallback={<div>Loading...</div>}>
                 <Seeds />
-                {/* <Topproducts /> */}
-            </Suspense>
-            <Suspense fallback={<div>Loading...</div>}>
-                <Weare />
-            </Suspense>
+            </Suspense> */}
+{/* 
             <Suspense fallback={<div>Loading...</div>}>
                 <Fertilizers />
-            </Suspense>
+            </Suspense> */}
             <Suspense fallback={<div>Loading...</div>}>
                 <Counter />
             </Suspense>
-            <Suspense fallback={<div>Loading...</div>}>
+            {/* <Suspense fallback={<div>Loading...</div>}>
                 <Soils />
-            </Suspense>
+            </Suspense> */}
             <div className="garden_service_about_wrapper clv_section">
                 <div className="container">
                     <div className="row">
@@ -81,25 +80,25 @@ const Home = () => {
                                 <div className="service2_block">
                                     <div className="service2_image"><img src="images/garden_service4.png" alt="image" /></div>
                                     <div className="service2_content">
-                                        <h3>Hedge Cutting</h3>
+                                        <h3>Seeds</h3>
                                         <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            {/* <div className="col-md-4">
                                 <div className="service2_block">
                                     <div className="service2_image"><img src="images/garden_service5.png" alt="image" /></div>
                                     <div className="service2_content">
-                                        <h3>Garden Clean Up</h3>
+                                        <h3>Fertilizers</h3>
                                         <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="col-md-4">
                                 <div className="service2_block">
                                     <div className="service2_image"><img src="images/garden_service6.png" alt="image" /></div>
                                     <div className="service2_content">
-                                        <h3>Watering</h3>
+                                        <h3>Fertilizers</h3>
                                         <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                     </div>
                                 </div>
@@ -110,25 +109,25 @@ const Home = () => {
                                 <div className="service2_block">
                                     <div className="service2_image"><img src="images/garden_service7.png" alt="image" /></div>
                                     <div className="service2_content">
-                                        <h3>Snow & Ice Removal</h3>
+                                        <h3>Soil Testing</h3>
                                         <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            {/* <div className="col-md-4">
                                 <div className="service2_block">
                                     <div className="service2_image"><img src="images/garden_service8.png" alt="image" /></div>
                                     <div className="service2_content">
-                                        <h3>Tree Planting</h3>
+                                        <h3>Types Of Soil</h3>
                                         <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="col-md-4">
                                 <div className="service2_block">
                                     <div className="service2_image"><img src="images/garden_service9.png" alt="image" /></div>
                                     <div className="service2_content">
-                                        <h3>Rush Removal</h3>
+                                        <h3>Types Of Soil</h3>
                                         <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                     </div>
                                 </div>

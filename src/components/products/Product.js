@@ -85,15 +85,29 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                             {/* Start Product Details Gallery */}
                             <div className="product-details">
                                 <div className="container">
-                                    <div className="row">
-                                        <div className="col-md-5">
-                                            <div className="product-gallery-box product-gallery-box--default m-b-60">
+                                    <div style={{
+                                        display: 'flex',
+                                    }}>
+                                        <div style={{
+                                            width:'800px'
+                                        }} className>
+                                            <div >
                                                 <Productimages image={image} />
+                                            </div>
+                                            <div>
+                                                <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</button>
+                                                <Link to='/checkout'>
+                                                    <button style={{
+                                                        width: "285px"
+                                                    }}
+                                                        onClick={() => addToCart(id)}
+                                                        className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</button>
+                                                </Link>
                                             </div>
                                         </div>
                                         <div className="col-md-7">
                                             <div className="product-details-box m-b-60">
-                                                <h4 className="font--regular m-b-20">{ }</h4>
+                                                <h4 className="font--regular m-b-20">{name}</h4>
                                                 <ul className="product__review">
                                                     <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                                     <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
@@ -101,6 +115,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                     <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                                     <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
                                                 </ul>
+                                                <h6>Special price</h6>
                                                 <div className="product__price m-t-5">Rs
                                                     <span className="product__price product__price--large">{price}</span>
                                                     <span className="product__tag m-l-15 btn--tiny btn--green">-34%</span>
@@ -111,7 +126,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                 </div>
                                                 <div className="product-var p-tb-30">
                                                     <div className="product__stock m-b-20">
-                                                        <span className="product__stock--in"><FontAwesomeIcon color='green' icon={faCheckCircle} /> 199 IN STOCK</span>
+                                                        <span className="product__stock--in"><FontAwesomeIcon color='green' icon={faCheckCircle} /> {maxQuantity} IN STOCK</span>
                                                     </div>
                                                     <div className="product-quantity product-var__item">
                                                         <ul className="product-modal-group">
@@ -132,25 +147,24 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <div className="product-var__item">
+                                                    {/* <div className="product-var__item">
                                                         <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</button>
                                                         <a href="wishlist.html" className="btn btn--round btn--round-size-small btn--green btn--green-hover-black">
                                                             <FontAwesomeIcon icon={faHeart} />
                                                         </a>
-                                                    </div>
-                                                    <div className="product-var__item">
+                                                    </div> */}
+                                                    {/* <div className="product-var__item">
                                                         <div className="dynmiac_checkout--button">
-                                                            {/* <input type="checkbox" id="buy-now-check" value="1" className="p-r-30" />
-                                                            <label htmlFor="buy-now-check" className="m-b-20 pl-4">I agree with the terms and condition</label> */}
+                                                            
                                                             <Link to='/checkout'>
                                                                 <button style={{
-                                                                    width:"285px"
-                                                                }} 
-                                                                onClick={() => addToCart(id)}
-                                                                className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</button>
+                                                                    width: "285px"
+                                                                }}
+                                                                    onClick={() => addToCart(id)}
+                                                                    className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</button>
                                                             </Link>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
                                                     <div className="product-var__item">
                                                         <span className="product-var__text">Guaranteed safe checkout </span>
                                                         <ul className="payment-icon m-t-5">
@@ -161,6 +175,13 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                             <li><img src="assets/img/icon/payment/shoify.svg" alt="" /></li>
                                                             <li><img src="assets/img/icon/payment/mastercard.svg" alt="" /></li>
                                                             <li><img src="assets/img/icon/payment/gpay.svg" alt="" /></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div className="product-var__item">
+                                                        <span className="product-var__text">services</span>
+                                                        <ul>
+                                                            <li>7 days return policy</li>
+                                                            <li>Cash on Delivery available</li>
                                                         </ul>
                                                     </div>
                                                     <div className="product-var__item d-flex align-items-center">

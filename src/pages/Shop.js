@@ -122,16 +122,13 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                     <div className="row">
                         <div className="col-lg-3 col-md-3">
                             <div className="product_sidebar">
-                                <div className="product_block">
+                                {/* <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>search</h3>
                                         <img src="images/garden_underline.png" alt="image" />
                                     </div>
-                                    <div className="sidebar_search">
-                                        <input type="text" name='search' onChange={(e) => setSearch(e.target.value)} placeholder="Search here" />
-                                        <span><FontAwesomeIcon icon={faSearch} /></span>
-                                    </div>
-                                </div>
+
+                                </div> */}
                                 {/* <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>product categories</h3>
@@ -150,7 +147,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                                 <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>filter by price</h3>
-                                        <img src="images/garden_underline.png" alt="image" />
+                                        {/* <img src="images/garden_underline.png" alt="image" /> */}
                                     </div>
                                     <div className="ds_progress_rangeslider Range_slider">
                                         <div id="slider-range" className="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
@@ -203,9 +200,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                             <div className="product_list_section">
                                 <div className="product_list_filter">
                                     <ul>
-                                        <li>
-                                            <p>showing <span>1-{products.length} of {products.length}</span> result</p>
-                                        </li>
+
                                         <li>
                                             <select>
                                                 <option value="sort by popularity">sort by popularity</option>
@@ -240,7 +235,14 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                                                 </li>
                                             </ul>
                                         </li>
+                                        <li>
+                                            <div className="sidebar_search">
+                                                <input type="text" name='search' onChange={(e) => setSearch(e.target.value)} placeholder="Search here" />
+                                                <span><FontAwesomeIcon icon={faSearch} /></span>
+                                            </div>
+                                        </li>
                                     </ul>
+
                                 </div>
                                 <InfiniteScroll
                                     dataLength={products.length} //This is important field to render the next data
@@ -294,6 +296,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                                     </ul>
                                 </div> */}
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -66,24 +66,24 @@ const Contact = () => {
                                         <h3> Send Us A Message.</h3>
                                     </div>
                                     <form>
-                                        <div className="col-md-6 col-lg-6">
+                                        <div className="col-md-6 col-lg-6 my-3">
                                             <div className="form_block">
                                                 <input type="text" name="full_name" className="form_field require" placeholder="Full Name" />
                                             </div>
                                         </div>
-                                        <div className="col-md-6 col-lg-6">
+                                        <div className="col-md-6 col-lg-6 my-3">
                                             <div className="form_block">
                                                 <input type="text" name="email" className="form_field require" placeholder="Email" data-valid="email" data-error="Email should be valid." />
                                             </div>
                                         </div>
                                         {/* add select option here */}
-                                        <div className="col-md-12 col-lg-12">
+                                        <div className="col-md-12 col-lg-12 my-3">
                                             <div className="form_block">
                                                 <textarea placeholder="Message" name="message" className="form_field require" ></textarea>
                                                 <div className="response"></div>
                                             </div>
                                         </div>
-                                        <div className="col-md-12 col-lg-12">
+                                        <div className="col-md-12 col-lg-12 my-3">
                                             <div className="form_block">
                                                 <button type="button" className="clv_btn submitForm" data-type="contact">send</button>
                                             </div>

@@ -75,7 +75,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="garden_service2_section">
-                        <div className="row">
+                        <div className="row justify-content-center">
                             <div className="col-md-4">
                                 <div className="service2_block">
                                     <div className="service2_image"><img src="images/garden_service4.png" alt="image" /></div>
@@ -104,7 +104,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row justify-content-center">
                             <div className="col-md-4">
                                 <div className="service2_block">
                                     <div className="service2_image"><img src="images/garden_service7.png" alt="image" /></div>

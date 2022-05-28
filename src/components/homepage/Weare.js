@@ -6,12 +6,12 @@ const Weare = () => {
             <div className="container">
                 <div style={{ position: 'relative', top: '20px', marginBottom:'100px' }} className="garden_about_section">
                     <div className="row">
-                        <div className="col-ld-6 col-md-6">
+                        <div className="col-lg-5 col-md-6">
                             <div className="garden_about_image">
                                 <img src={process.env.PUBLIC_URL + "images//home/seed.jpg"} alt="" />
                             </div>
                         </div>
-                        <div className="col-ld-6 col-md-6">
+                        <div className="col-lg-7 col-md-6">
                             <div className="garden_about_content">
                                 <h2>We Are Nice People With A <br />Lot Of Experience.</h2>
                                 <h6>Farming is not just for growing crops, it is for the cultivation of human beings !!!</h6>

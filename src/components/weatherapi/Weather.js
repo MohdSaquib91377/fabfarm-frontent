@@ -24,10 +24,11 @@ const Weather = () => {
     let timeZone = 'Asia/Kolkata';
     return (
         <>
-            <div className="d-flex flex-wrap top-bar" >
+            <div className="d-flex flex-wrap top-bar justify-content-between" >
                 {weatherdata.length === 0 ? <p>loading...</p> :
 
                     <>
+                    <div className='d-flex flex-wrap '>
                         <div className="">
                             <div className="location">
                                 <span className="fa fa-map"></span>
@@ -53,14 +54,28 @@ const Weather = () => {
                                 <span>&nbsp; Sunset {new Intl.DateTimeFormat('en-US', { timeStyle: 'short', timeZone }).format(weatherdata.sys.sunset)}</span>
                             </div>
                         </div>
+                        </div>
+                        <div>
+                    <a>
+                        <FontAwesomeIcon color='#fff' icon={faFacebook} />
+                    </a>
+                    &nbsp;
+                    &nbsp;
+                    <a>
+                    <FontAwesomeIcon color='#fff' icon={faInstagram} />
+                    </a>
+                    &nbsp;
+                    &nbsp;
+                    <a>
+                    <FontAwesomeIcon color='#fff' icon={faTwitter} />
+                    </a>
+                    &nbsp;
+                    &nbsp;
+                </div>
                     </>
                 }
                     {/* social media icon add stytles here  */}
-                <div>
-                    <FontAwesomeIcon color='#4267B2' icon={faFacebook} />
-                    <FontAwesomeIcon color='#fb3958' icon={faInstagram} />
-                    <FontAwesomeIcon color='#00acee' icon={faTwitter} />
-                </div>
+            
             </div>
 
         </>

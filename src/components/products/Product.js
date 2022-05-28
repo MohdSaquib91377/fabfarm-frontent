@@ -21,7 +21,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
     const [currentItem, setCurrentItem] = useState([]);
     // const [productCount, setProductCount] = useState()
     Tabtitle('FAB | Shop')
-    const { id, image, name, description, price, maxQuantity, category } = currentItem;
+    const { id, image, name, description, price, maxQuantity, category, old_price } = currentItem;
 
     useEffect(() => {
         const fetchCurrentItem = () => {
@@ -125,6 +125,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                 <h6>Special price</h6>
                                                 <div className="product__price m-t-5">Rs
                                                     <span className="product__price product__price--large">{price}</span>
+                                                    <span> <s>Rs {old_price}</s></span>
                                                     <span className="product__tag m-l-15 btn--tiny btn--green">-34%</span>
                                                 </div>
 

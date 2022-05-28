@@ -46,6 +46,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
     //     )
     // })
     const seedList = products.map((product, i) => {
+        console.log(products)
         const { id, image: [{ image }], name, description, price } = product;
         return (
             <li key={i}>

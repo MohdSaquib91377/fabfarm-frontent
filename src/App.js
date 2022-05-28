@@ -22,7 +22,7 @@ function App({ isAuthorized }) {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/shop/:categoryId' element={<Shop />} />
-          <Route exact path='/product/:productID' element={<Product />} />
+          <Route exact path='/shop/:categoryId/product/:productID' element={<Product />} />
           <Route exact path='/aboutus' element={<About />} />
           <Route exact path='/contact' element={<Contact />} />
           {isAuthorized ?

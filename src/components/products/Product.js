@@ -17,10 +17,11 @@ import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
 const Product = ({ products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
     let { productID } = useParams();
+    let { categoryId } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
     // const [productCount, setProductCount] = useState()
     Tabtitle('FAB | Shop')
-    const { id, image, name, description, price, maxQuantity } = currentItem;
+    const { id, image, name, description, price, maxQuantity, category } = currentItem;
 
     useEffect(() => {
         const fetchCurrentItem = () => {
@@ -73,7 +74,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                             <div className="breadcrumb_block">
                                 <ul>
                                     <li><Link to='/'>home</Link></li>
-                                    {/* <li><Link to='/shop/'>&nbsp;Shop</Link></li> */}
+                                    <li><Link to={`/shop/${categoryId}`}>&nbsp;{category}</Link></li>
                                     <li> &nbsp; {id} </li>
                                 </ul>
                             </div>
@@ -84,12 +85,18 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
 
                             {/* Start Product Details Gallery */}
                             <div className="product-details">
+                                <div>
+                                    <p>
+                                        <Link to='/'>home </Link> >
+                                        <Link to={`/shop/${categoryId}`}>&nbsp;{category}</Link> >
+                                        &nbsp; {name} </p>
+                                </div>
                                 <div className="container">
                                     <div style={{
                                         display: 'flex',
                                     }}>
                                         <div style={{
-                                            width:'800px'
+                                            width: '800px'
                                         }} className>
                                             <div >
                                                 <Productimages image={image} />

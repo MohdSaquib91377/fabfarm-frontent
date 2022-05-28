@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 const Featuredproducts = ({ setProducts }) => {
 
     const [featuredproducts, setFeaturedProducts] = useState([]);
+    const [allCatProducts, setAllCatProducts] = useState([]);
     useEffect(() => {
         const fecthFeaturedProducts = async () => {
             try {
@@ -19,6 +20,22 @@ const Featuredproducts = ({ setProducts }) => {
         }
         fecthFeaturedProducts();
     }, [])
+    useEffect(() => {
+        let mounted = true;
+        if (mounted) {
+            featuredproducts.map((content) => {
+                const { products } = content;
+                products.map(items => {
+                    setAllCatProducts(allCatProducts => [...allCatProducts, items])
+                })
+            })
+        }
+        setProducts(allCatProducts)
+        return () => {
+            mounted = false;
+        }
+    }, [featuredproducts])
+    console.log(allCatProducts)
     return (
         <div className="garden_about_wrapper clv_section">
             <div className="container">
@@ -36,7 +53,7 @@ const Featuredproducts = ({ setProducts }) => {
                                 <Link to={`/shop/${id}`}>
                                     <button onClick={() => setProducts(products)}>View more</button>
                                 </Link></div>
-                            <Carouselfeatured products={products} />
+                            <Carouselfeatured catID={id} products={products} />
                         </div>
                     )
                 })}

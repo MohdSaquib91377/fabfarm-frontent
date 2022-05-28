@@ -26,7 +26,7 @@ const Banner = () => {
                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br />nostrud exercitation ullamco laboris nisi ut aliquipea commodand.</p>
                                 <div className="banner_btn">
                                     <span className="left_line"></span>
-                                    <Link to='/shop' className="clv_btn">Shop Now</Link>
+                                    <Link to='/contact' className="clv_btn">Contact us</Link>
                                     <span className="right_line"></span>
                                 </div>
                             </div>

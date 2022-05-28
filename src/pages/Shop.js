@@ -12,7 +12,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
     const [productView, setProductView] = useState('');
     const [products, setProducts] = useState([])
     const [search, setSearch] = useState('')
-    const [categories, setCategories] = useState([])
+    // const [categories, setCategories] = useState([])
     const [page, setPage] = useState(1)
     Tabtitle('FAB | Shop')
 
@@ -24,17 +24,17 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
             console.log(error);
         }
     }
-    const fetchproductsCategroies = async () => {
-        try {
-            const res = await axios.get('/api/v1/store/category/')
-            setCategories(res.data)
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // const fetchproductsCategroies = async () => {
+    //     try {
+    //         const res = await axios.get('/api/v1/store/category/')
+    //         setCategories(res.data)
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
     useEffect(() => {
         fetchproducts();
-        fetchproductsCategroies();
+        // fetchproductsCategroies();
     }, [search, page]);
     // const productCategories = categories.map((categories, i) => {
     //     const { name } = categories;
@@ -53,16 +53,16 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                 <div className="product_item_block">
                     <div className="org_product_block">
                         <span className="product_label">30% off</span>
-                        <Link to={`/product/${id}`}>
+                        <Link to={`/shop/${categoryId}/product/${id}`}>
                             <div className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
                         </Link>
-                        <Link to={`/product/${id}`}>    <h4 >{name}</h4></Link>
+                        <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
                     </div>
                     <div className="content_block">
                         <div className="product_price_box">
-                            <Link to={`/product/${id}`}>
+                            <Link to={`/shop/${categoryId}/product/${id}`}>
                                 <h3>
                                     {name}
                                 </h3>
@@ -104,7 +104,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
-                                <h3>Shop</h3>
+                                <h3>{products.length !== 0 ? products[0].category : undefined}</h3>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                 <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
-                        <li> &nbsp; Shop</li>
+                        <li> &nbsp; {products.length !== 0 ? products[0].category : undefined}</li>
                     </ul>
                 </div>
             </div>

@@ -16,7 +16,6 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
         let refresh = user.refresh;
         axiosPrivate.post('/api/v1/account/logout/', { refresh })
             .then(response => {
-                console.log(response)
                 setIsAuthorized()
                 setUser([])
                 makeCartEmpty([])

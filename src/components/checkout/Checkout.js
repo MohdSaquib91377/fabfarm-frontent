@@ -56,7 +56,6 @@ const Checkout = ({ setSigninOpen, isAuthorized, user, cartItem }) => {
         setTotalPrice(price);
 
     }, [cartItem, totalPrice, setTotalPrice]);
-    console.log(formValues)
     const productList = cartItem.map((item, i) => {
         const { title, price, quantity } = item;
         return (
@@ -66,7 +65,6 @@ const Checkout = ({ setSigninOpen, isAuthorized, user, cartItem }) => {
             </li>
         )
     });
-    console.log(user.access)
     return (
         <>
             <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>

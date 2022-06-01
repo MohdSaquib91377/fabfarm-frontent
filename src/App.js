@@ -13,6 +13,7 @@ import ScrollToTop from './pages/ScrollToTop';
 import { connect } from 'react-redux';
 import Orderlist from './components/orders/Orderlist';
 import OrderproductDetails from './components/orders/OrderproductDetails';
+import Wishlist from './components/wishlist/Wishlist';
 function App({ isAuthorized }) {
   return (
     <>
@@ -34,6 +35,9 @@ function App({ isAuthorized }) {
             undefined}
           {isAuthorized ?
             <Route exact path='/orderproductdetails/:prodID' element={<OrderproductDetails />} /> :
+            undefined}
+          {isAuthorized ?
+            <Route exact path='/wishlist' element={<Wishlist />} /> :
             undefined}
           <Route exact path='/checkout' element={<Checkout />} />
           <Route exact path='*' element={<Pagenotfound />} />

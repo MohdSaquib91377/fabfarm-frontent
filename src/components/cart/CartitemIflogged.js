@@ -41,7 +41,6 @@ const CartitemIflogged = ({ items, user, isAuthorized, removeFromCart, increment
     // }, [isAuthorized, user])
     const cartItems = items.map((data, i) => {
         if (Object.keys(data).some(key => key === 'cartQuantity')) {
-            console.log(data)
             const { cartQuantity, product: { id, image: [{ image }], name, price, quantity } } = data;
 
             return (

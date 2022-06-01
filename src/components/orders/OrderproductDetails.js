@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import Tabtitle from '../../pages/Tabtitle';
 
 
 export function Orderdetails({ items }) {
+    Tabtitle('FAB | Orders Details')
 
     const { order } = items;
     const { address, alternate_number, city, country, full_name, landmark, locality, message, payment_mode, pincode, state } = order;

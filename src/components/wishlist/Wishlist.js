@@ -1,53 +1,61 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
-import Tabtitle from '../../pages/Tabtitle'
+import Tabtitle from '../../pages/Tabtitle';
 
-const Orderlist = ({ user }) => {
-    Tabtitle('FAB | Order List')
-    const [items, setItems] = useState([])
+const Wishlist = () => {
+    Tabtitle('FAB | Wish List')
     const axiosPrivate = useAxiosPrivate();
-    const cancelOrder = (order) => {
-        axiosPrivate.put(`/api/v1/order/order-cancel/${order}/`)
+    const [wishlistItems, setWishlistItems] = useState([])
+    const removeItem = (id) => {
+        axiosPrivate.delete(`/api/v1/wishlist/wishlist/add-to-wishlist/`, {
+            data:{
+                product_id: id
+            }
+        })
             .then(response => console.log(response))
             .catch(response => console.log(response))
     }
     useEffect(() => {
-        const fetchOrderList = () => {
-            axiosPrivate.get('/api/v1/order/place-order/')
-                .then(response => {
-                    setItems(response.data)
-                })
-                .catch(response => {
-                    console.log(response)
-                })
+        let isMounted = true;
+        const controller = new AbortController();
+
+        const getWishList = async () => {
+            try {
+                const response = await axiosPrivate.get('/api/v1/wishlist/wishlist/add-to-wishlist/')
+                isMounted && setWishlistItems(response.data)
+            } catch (error) {
+                throw error
+            }
         }
-        fetchOrderList()
-    }, [user])
-    const orderList = items.map((data, i) => {
-        const { product: { id, name, image }, order, price, quantity, status } = data;
+        getWishList();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        }
+    }, [])
+    const wishlist = wishlistItems.map((data, i) => {
+        const { product: { id, name, image, price, quantity, } } = data;
         return (
             <div key={i} className="order_list_top" style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignContent: 'center'
             }}>
-                <Link to={`/orderproductdetails/${order}`}><h6>{name}</h6></Link>
+                <h6>{name}</h6>
                 <div style={{
                     height: '100px',
                     width: '100px'
                 }}>
-                    <Link to={`/orderproductdetails/${order}`}>
-                        <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
-                    </Link>
+
+                    <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+
                 </div>
-                <h6>order id : {order}</h6>
                 <h6>price: {price}</h6>
                 <h6>quantity: {quantity}</h6>
-                <h6>status: {status}</h6>
 
-                <button onClick={() => cancelOrder(order)}>Cancle Order</button>
+                <button onClick={() => removeItem(id)}>Remove</button>
             </div>
         )
     })
@@ -58,7 +66,7 @@ const Orderlist = ({ user }) => {
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
-                                <h3>order list</h3>
+                                <h3>Wish list</h3>
                             </div>
                         </div>
                     </div>
@@ -66,7 +74,7 @@ const Orderlist = ({ user }) => {
                 <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
-                        <li> &nbsp;order list</li>
+                        <li> &nbsp;Wish list</li>
                     </ul>
                 </div>
             </div>
@@ -76,14 +84,10 @@ const Orderlist = ({ user }) => {
                 height: '100vh',
                 width: 'auto'
             }}>
-                {orderList}
+                {wishlist}
             </div>
         </>
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        user: state.shop.user
-    }
-}
-export default connect(mapStateToProps)(Orderlist)
+
+export default Wishlist

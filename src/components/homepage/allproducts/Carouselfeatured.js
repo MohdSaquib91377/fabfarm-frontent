@@ -10,9 +10,18 @@ import { Link } from 'react-router-dom';
 import "swiper/css";
 import "swiper/css/navigation";
 import { connect } from 'react-redux';
-
-const Carouselfeatured = ({catID, products, addToCart }) => {
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
+const Carouselfeatured = ({ isAuthorized, catID, products, addToCart }) => {
   SwiperCore.use([Autoplay]);
+  const axiosPrivate = useAxiosPrivate()
+  const addToWishList = (id) => {
+    if (isAuthorized) {
+      axiosPrivate.post('/api/v1/wishlist/wishlist/add-to-wishlist/', { product_id: id })
+        .then(response => console.log(response))
+        .catch(response => console.log(response))
+    }
+  }
+
   const Product = products.map((item, i) => {
     const { id, name, image: [{ image }], price } = item
     return (
@@ -27,7 +36,7 @@ const Carouselfeatured = ({catID, products, addToCart }) => {
             <ul className="product__action--link pos-absolute">
               <li><button onClick={() => addToCart(id)}><FontAwesomeIcon icon={faShoppingCart} /></button></li>
               <li><Link to='/checkout'><button onClick={() => addToCart(id)}>Buy</button></Link></li>
-              <li><a href="wishlist.html"><FontAwesomeIcon icon={faHeart} /></a></li>
+              <li><button onClick={() => addToWishList(id)}><FontAwesomeIcon icon={faHeart} /></button></li>
             </ul>
           </div>
           <div className="product__content m-t-20">
@@ -76,10 +85,15 @@ const Carouselfeatured = ({catID, products, addToCart }) => {
     </>
   )
 }
+const mapStateToProps = (state) => {
+  return {
+    isAuthorized: state.shop.isAuthorized
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (id) => dispatch(addToCart(id)),
   }
 
 }
-export default connect(null, mapDispatchToProps)(Carouselfeatured)
+export default connect(mapStateToProps, mapDispatchToProps)(Carouselfeatured)

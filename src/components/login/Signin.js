@@ -81,7 +81,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                     setOtpScreen(true)
                 })
                 .catch(response => {
-                    console.log(response.data)
+                    console.log(response)
                 })
         }
         if (Object.keys(formErrors).length === 0 && isVerified) {
@@ -113,7 +113,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                     setIsAuthorized()
                 })
                 .catch(response => {
-                    console.log(response.data)
+                    console.log(response)
                 })
         }
     }, [formErrors]);

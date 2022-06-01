@@ -30,7 +30,7 @@ const Registoruser = ({ state, setOtpScreen, setId }) => {
                     setId(response.data.id)
                 })
                 .catch(response => {
-                    console.log(response.data)
+                    console.log(response)
                 })
         }
     }, [formErrors]);

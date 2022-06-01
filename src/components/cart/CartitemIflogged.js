@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { removeFromCart, incrementQuantity, decrementQuantity } from '../../redux/actions/productActions';
-import axios from '../API/axios';
 import { connect } from 'react-redux';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 const CartitemIflogged = ({ items, user, isAuthorized, removeFromCart, incrementQuantity, decrementQuantity }) => {
     // const [items, setItems] = useState([])
     // const { id, image: [{ image }], name, price, quantity } = items;
+    const axiosPrivate = useAxiosPrivate();
     const deleteCartItems = (id) => {
         removeFromCart(id);
         if (isAuthorized) {
-            axios.delete('/api/v1/cart/add-to-cart/', {
-                headers: {
-                    Authorization: `Bearer ${user.access}`
-                },
-                data: {
+            axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
+                 data: {
                     product_id: id
                 }
             })

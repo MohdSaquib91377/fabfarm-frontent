@@ -5,10 +5,11 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupee, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Tabtitle from '../../pages/Tabtitle';
-import axios from '../API/axios';
 import { setSigninOpen } from '../../redux/actions/productActions';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 const Checkout = ({ setSigninOpen, isAuthorized, user, cartItem }) => {
     let Navigate = useNavigate()
+    const axiosPrivate = useAxiosPrivate();
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [paymentMethodOne, setPaymentMethodOne] = useState(false);
     const [paymentMethodTwo, setPaymentMethodTwo] = useState(false);
@@ -36,11 +37,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, user, cartItem }) => {
         setFormValues({ ...formValues, [name]: value })
     }
     const placeOrder = () => {
-        axios.post('/api/v1/order/place-order/', formValues, {
-            headers: {
-                Authorization: `Bearer ${user.access}`
-            },
-        })
+        axiosPrivate.post('/api/v1/order/place-order/', formValues)
             .then(response => {
                 console.log(response)
                 if (response.status === 200) {

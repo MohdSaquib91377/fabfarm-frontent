@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import axios from '../API/axios'
+import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 
 const Orderlist = ({ user }) => {
     const [items, setItems] = useState([])
-
+    const axiosPrivate = useAxiosPrivate();
     const cancelOrder = (order) => {
-        axios.put(`/api/v1/order/order-cancel/${order}/`, {
-            headers: {
-                Authorization: `Bearer ${user.access}`
-            }
-        })
+        axiosPrivate.put(`/api/v1/order/order-cancel/${order}/`)
             .then(response => console.log(response))
             .catch(response => console.log(response))
     }
     useEffect(() => {
         const fetchOrderList = () => {
-            axios.get('/api/v1/order/place-order/', {
-                headers: {
-                    Authorization: `Bearer ${user.access}`
-                }
-            })
+            axiosPrivate.get('/api/v1/order/place-order/')
                 .then(response => {
                     setItems(response.data)
                 })

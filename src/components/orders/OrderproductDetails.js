@@ -1,7 +1,7 @@
-import axios from '../API/axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 
 export function Orderdetails({ items }) {
@@ -36,13 +36,10 @@ function Productdetails({ items }) {
 
 function OrderproductDetails({ user }) {
     let { prodID } = useParams();
+    const axiosPrivate = useAxiosPrivate();
     const [items, setItems] = useState([]);
     useEffect(() => {
-        axios.get(`/api/v1/order/order-details/${prodID}/ `, {
-            headers: {
-                Authorization: `Bearer ${user.access}`
-            }
-        })
+        axiosPrivate.get(`/api/v1/order/order-details/${prodID}/`)
             .then(response => {
                 setItems(response.data[0])
             })

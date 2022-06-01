@@ -8,11 +8,11 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faShoppingCart, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import axios from '../API/axios';
 import CartitemIflogged from './CartitemIflogged';
 import { setSigninOpen, setTotalCartCount } from '../../redux/actions/productActions';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, isAuthorized, cart, opencart, closecart }) => {
-
+    const axiosPrivate = useAxiosPrivate();
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [cartProducts, setCartProducts] = React.useState([])
     const [items, setItems] = React.useState([])
@@ -35,11 +35,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
         setCartProducts(items)
         if (isAuthorized && cart.length !== 0) {
             const postCartData = () => {
-                axios.post('/api/v1/cart/add-to-cart/', cartProducts, {
-                    headers: {
-                        Authorization: `Bearer ${user.access}`
-                    }
-                })
+                axiosPrivate.post('/api/v1/cart/add-to-cart/', cartProducts)
                     .then(response => {
                         // console.log(response)
                     })
@@ -57,11 +53,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
 
     React.useEffect(() => {
         if (isAuthorized) {
-            axios.get('/api/v1/cart/add-to-cart/', {
-                headers: {
-                    Authorization: `Bearer ${user.access}`
-                }
-            })
+            axiosPrivate.get('/api/v1/cart/add-to-cart/')
                 .then(response => {
                     setItems(response.data)
                     response.data.map((data) => {

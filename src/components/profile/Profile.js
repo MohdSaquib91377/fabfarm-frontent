@@ -6,18 +6,15 @@ import { connect } from 'react-redux';
 import './Profile.css'
 import Tabtitle from '../../pages/Tabtitle';
 import { makeCartEmpty, setIsAuthorized, setUser } from '../../redux/actions/productActions';
-import axios from '../API/axios';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
     let Navigate = useNavigate();
+    const axiosPrivate = useAxiosPrivate();
     const [profileState, setProfileState] = useState('Dashboard');
     Tabtitle('FAB | Profile')
     const Logout = () => {
         let refresh = user.refresh;
-        axios.post('/api/v1/account/logout/', { refresh }, {
-            headers: {
-                Authorization: `Bearer ${user.access}`
-            },
-        })
+        axiosPrivate.post('/api/v1/account/logout/', { refresh })
             .then(response => {
                 console.log(response)
                 setIsAuthorized()

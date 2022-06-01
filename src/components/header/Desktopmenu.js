@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function Desktopmenu() {
+
     return (
         <div className="clv_menu_nav">
             <ul>
@@ -18,7 +19,6 @@ function Desktopmenu() {
                 <li><Link to="/aboutus">about us</Link></li>
 
                 <li><Link to="/contact">Contact us</Link></li>
-
             </ul>
         </div>
     )

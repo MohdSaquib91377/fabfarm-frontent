@@ -52,6 +52,11 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         setSigninOpen();
         setSignupOpen();
     }
+    const handleCloseButton = () => {
+        setIsForgotSubmit(false);
+        setSigninOpen();
+        setFormErrors({});
+    }
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setLoader(true)
@@ -283,7 +288,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                         </div>
                     </div>
                     <span className="close"
-                        onClick={() => setSigninOpen()}
+                        onClick={() => handleCloseButton()}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

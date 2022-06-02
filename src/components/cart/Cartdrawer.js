@@ -52,20 +52,28 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
     }, [cart, totalPrice, setTotalPrice, isAuthorized, user]);
 
     React.useEffect(() => {
-        if (isAuthorized) {
-            axiosPrivate.get('/api/v1/cart/add-to-cart/')
-                .then(response => {
+        let isMounted = true;
+        const controller = new AbortController();
+        const getCartItems = async () => {
+            try {
+                const response = await axiosPrivate.get('/api/v1/cart/add-to-cart/')
+                if (isAuthorized && isMounted) {
                     setItems(response.data)
                     response.data.map((data) => {
                         if (Object.keys(data).some(key => key === 'cart_item')) {
                             setTotalCartCount(data.cart_item)
                         }
                     })
+                }
+            } catch (error) {
+                throw error
+            }
+        }
 
-                })
-                .catch(response => {
-                    console.log(response)
-                })
+        getCartItems();
+        return () => {
+            isMounted = false;
+            controller.abort();
         }
     }, [cartProducts, totalPrice])
     const cartItems = cart.map((products, i) => {

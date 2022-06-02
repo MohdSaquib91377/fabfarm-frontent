@@ -9,7 +9,6 @@ const useRefreshtoken = () => {
             refresh: user.refresh
         }
         const response = await axios.post('/api/v1/account/api/token/refresh/', data)
-        console.log(response.data)
         dispatch(setUser({
             refresh: user.refresh,
             access: response.data.access

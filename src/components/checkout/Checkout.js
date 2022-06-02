@@ -5,9 +5,10 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupee, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Tabtitle from '../../pages/Tabtitle';
-import { setSigninOpen } from '../../redux/actions/productActions';
+import { setCouponDetails, setSigninOpen } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-const Checkout = ({ setSigninOpen, isAuthorized, user, cartItem }) => {
+import Coupon from '../coupon/Coupon';
+const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized, user, cartItem }) => {
     let Navigate = useNavigate()
     const axiosPrivate = useAxiosPrivate();
     const [totalPrice, setTotalPrice] = React.useState(0);
@@ -54,7 +55,6 @@ const Checkout = ({ setSigninOpen, isAuthorized, user, cartItem }) => {
             price += item.quantity * item.price;
         })
         setTotalPrice(price);
-
     }, [cartItem, totalPrice, setTotalPrice]);
     const productList = cartItem.map((item, i) => {
         const { title, price, quantity } = item;
@@ -367,16 +367,22 @@ const Checkout = ({ setSigninOpen, isAuthorized, user, cartItem }) => {
                                                     <h5 className="your-order-total-left font--bold">Total</h5>
                                                     <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{totalPrice}</h5>
                                                 </div>
-                                                <div className="your-order-total d-flex justify-content-between">
-                                                    <input
-                                                        name='couponcode'
-                                                        // value={formValues.pincode}
-                                                        // onChange={handleChange}
-                                                        placeholder='Coupon code'
-                                                        type="text" id="form-zipcode" />
-                                                    <button>Apply</button>
+                                                <div className="your-order-bottom d-flex justify-content-between">
+                                                    <Coupon />
                                                 </div>
-
+                                                {
+                                                    couponDetails.length !== 0 ?
+                                                        <div className="your-order-total d-flex justify-content-between">
+                                                            <h6 className="your-order-bottom-left font--bold">Disconted amount</h6>
+                                                            <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.discounted_price }</h5>
+                                                        </div> :
+                                                        undefined
+                                                }
+                                                <div className={couponDetails.length !== 0 ? "your-order-top d-flex justify-content-between" : "your-order-total d-flex justify-content-between"}>
+                                                    <h5 className="your-order-total-left font--bold">Total payable</h5>
+                                                    <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.length !== 0 ? couponDetails.total_amount_payble : totalPrice}</h5>
+                                                </div>
+                                                <br />
                                                 <div className="payment-method">
                                                     <div className="payment-accordion element-mrg">
                                                         <div className="panel-group" id="accordion">
@@ -450,11 +456,13 @@ const mapStateToProps = (state) => {
         cartItem: state.shop.cart,
         user: state.shop.user,
         isAuthorized: state.shop.isAuthorized,
+        couponDetails: state.shop.couponDetails
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        setSigninOpen: () => dispatch(setSigninOpen())
+        setSigninOpen: () => dispatch(setSigninOpen()),
+        setCouponDetails: () => dispatch(setCouponDetails())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

@@ -8,7 +8,8 @@ const initialState = {
     signinOpen: true,
     signupOpen: false,
     isAuthorized: false,
-    totalCartCount: 0
+    totalCartCount: 0,
+    couponDetails: []
 }
 export const shopReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -111,6 +112,11 @@ export const shopReducer = (state = initialState, action) => {
             return {
                 ...state,
                 totalCartCount: action.payload
+            }
+        case ActionTypes.SET_COUPON_DETAILS:
+            return {
+                ...state,
+                couponDetails: action.payload
             }
         default:
             return state;

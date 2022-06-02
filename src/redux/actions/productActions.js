@@ -99,3 +99,10 @@ export const buyNow = (itemID) => {
         },
     };
 }
+
+export const setCouponDetails = (coupon) => {
+    return {
+        type: ActionTypes.SET_COUPON_DETAILS,
+        payload: coupon,
+    }
+}

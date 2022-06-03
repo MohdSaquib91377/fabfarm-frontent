@@ -9,10 +9,17 @@ import { connect } from 'react-redux';
 const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
 
     const [otpScreen, setOtpScreen] = useState(false)
+    const [close, setClose] = useState(false);
     const [id, setId] = useState('')
     const triggersignin = () => {
+        setClose(!close)
         setSigninOpen();
         setSignupOpen();
+    }
+    const handleCloseButton = () => {
+        setClose(!close)
+        setSignupOpen()
+        setOtpScreen(false)
     }
     return (
         <div className={signupOpen ? 'signup_wrapper open_signup' : "signup_wrapper"}>
@@ -31,10 +38,10 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
                         <li><a href="#"><span><FontAwesomeIcon icon={faYoutube} /></span></a></li>
                     </ul>
                 </div>
-                <Registoruser state={otpScreen} setOtpScreen={setOtpScreen} setId={setId} />
+                <Registoruser state={otpScreen} close={close} setOtpScreen={setOtpScreen} setId={setId} />
                 <Verifyotp state={otpScreen} id={id} />
                 <span className="close"
-                    onClick={() => setSignupOpen()}>
+                    onClick={() => handleCloseButton()}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="11"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { FaSpinner } from 'react-icons/fa';
-const Registoruser = ({ state, setOtpScreen, setId }) => {
+const Registoruser = ({ close, state, setOtpScreen, setId }) => {
     const initialValues = { name: '', email: "", password: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -17,6 +17,11 @@ const Registoruser = ({ state, setOtpScreen, setId }) => {
         setIsSubmit(true)
     }
     useEffect(() => {
+        setFormErrors({});
+        setIsSubmit(false)
+        setFormValues(initialValues)
+    }, [close])
+    useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setLoader(true)
             axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/account/register/`, {
@@ -29,8 +34,9 @@ const Registoruser = ({ state, setOtpScreen, setId }) => {
                     setLoader(false)
                     setId(response.data.id)
                 })
-                .catch(response => {
-                    console.log(response)
+                .catch(error => {
+                    setLoader(false)
+                    setFormErrors({ email: error?.response?.data?.message })
                 })
         }
     }, [formErrors]);

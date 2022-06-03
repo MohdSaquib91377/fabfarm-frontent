@@ -18,7 +18,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
     const [resetPassScreen, setRestPassScreen] = useState(false)
     const [isRestSubmit, setIsRestSubmit] = useState(false)
     const [id, setID] = useState('')
-    const errorText = useRef(null)
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
@@ -33,7 +32,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         setFormErrors(validateForgotEmail(formValues))
         setIsForgotSubmit(true);
         setIsSubmit(false);
-        errorText.current = null;
     }
     const handleVerifySubmit = (e) => {
         e.preventDefault();
@@ -49,11 +47,16 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
     }
     const trigger = (e) => {
         e.preventDefault();
+        setFormValues(initialValues)
+        setFormErrors({});
+        setIsSubmit(false)
         setSigninOpen();
         setSignupOpen();
     }
     const handleCloseButton = () => {
         setIsForgotSubmit(false);
+        setIsVerified(false);
+        setFormValues(initialValues)
         setSigninOpen();
         setFormErrors({});
     }
@@ -72,7 +75,10 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                 })
                 .catch((error) => {
                     setLoader(false)
-                    errorText.current = error.response.data.message
+                    setFormErrors({
+                        email: error.response.data.message,
+                        password: error.response.data.message
+                    })
                 })
         }
         if (Object.keys(formErrors).length === 0 && isForgotSubmit) {
@@ -85,8 +91,9 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                     setID(response.data.id)
                     setOtpScreen(true)
                 })
-                .catch(response => {
-                    console.log(response)
+                .catch(error => {
+                    setLoader(false)
+                    setFormErrors({ email: error.response.data.message })
                 })
         }
         if (Object.keys(formErrors).length === 0 && isVerified) {
@@ -101,7 +108,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                 })
                 .catch((error) => {
                     setLoader(false)
-                    errorText.current = error.response.data.message
+                    setFormErrors({ otp: error.response.data.message })
                 })
         }
         if (Object.keys(formErrors).length === 0 && isRestSubmit) {
@@ -222,7 +229,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                     onChange={handleChange} />
                             </div>
                             <p>{formErrors.password}</p>
-                            <p>{errorText.current}</p>
                             <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'sign in'}</button>
                         </form>
                         <button style={formErrors.email ? { top: '285px' } : { top: '245px' }} onClick={handleForgotPass} className='signin-forgot-pass'>Forgot ?</button>
@@ -253,7 +259,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                     />
                                 </div>
                                 <p>{formErrors.otp}</p>
-                                <p>{errorText.current}</p>
                                 <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'Verify'}</button>
                             </form>
                         </div>

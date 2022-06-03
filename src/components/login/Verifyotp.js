@@ -9,7 +9,6 @@ const Verifyotp = ({ signupOpen, setSigninOpen, setSignupOpen, setIsAuthorized, 
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
     const [loader, setLoader] = useState(false)
-    const otpErrorText = useRef('');
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
@@ -32,10 +31,9 @@ const Verifyotp = ({ signupOpen, setSigninOpen, setSignupOpen, setIsAuthorized, 
                     setUser(response.data)
                     setIsAuthorized()
                 })
-                .catch(response => {
-                    console.log(response.data)
-                    // otpErrorText.current.value = response.data.message
-                    console.log(otpErrorText)
+                .catch(error => {
+                    setLoader(false)
+                    setFormErrors({ otp: error.response.data.message })
                 })
         }
     }, [formErrors]);
@@ -60,7 +58,6 @@ const Verifyotp = ({ signupOpen, setSigninOpen, setSignupOpen, setIsAuthorized, 
                     <input type="text" name='otp' value={formValues.otp} onChange={handleChange} className="form_field" placeholder="OTP" autoComplete='off' />
                 </div>
                 <p>{formErrors.otp}</p>
-                <p>{otpErrorText.current.value}</p>
                 <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'Verify'}</button>
             </form>
         </div>

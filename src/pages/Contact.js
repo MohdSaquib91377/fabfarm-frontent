@@ -31,8 +31,9 @@ const Contact = () => {
                                 <span></span>
                                 <div className="contact_icon"><img src="images/contact_icon1.png" alt="image" /></div>
                                 <h4>contact us</h4>
-                                <p>+1-202-555-0101</p>
-                                <p>+1-202-555-0132</p>
+                                <p>
+                                    09112293300
+                                </p>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4">
@@ -40,8 +41,9 @@ const Contact = () => {
                                 <span></span>
                                 <div className="contact_icon"><img src="images/contact_icon2.png" alt="image" /></div>
                                 <h4>email</h4>
-                                <p>agriculture@example.com</p>
-                                <p>Cultivation@example.in</p>
+                                <p>
+                                    farmersallianceforbusiness@gmail.com
+                                </p>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4">
@@ -49,8 +51,9 @@ const Contact = () => {
                                 <span></span>
                                 <div className="contact_icon"><img src="images/contact_icon3.png" alt="image" /></div>
                                 <h4>address</h4>
-                                <p>8654 Bellevue Drive</p>
-                                <p>Rock Hill, SC 29730</p>
+                                <p>
+                                    Baramati, Maharastra, India.
+                                </p>
                             </div>
                         </div>
                     </div>

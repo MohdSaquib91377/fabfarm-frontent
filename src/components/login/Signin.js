@@ -75,10 +75,17 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                 })
                 .catch((error) => {
                     setLoader(false)
-                    setFormErrors({
-                        email: error.response.data.message,
-                        password: error.response.data.message
-                    })
+                    if (error.response.status === 403) {
+                        setFormErrors({
+                            email: error.response.data.message
+                        })
+                    } else {
+
+                        setFormErrors({
+                            email: error.response.data.message,
+                            password: error.response.data.message
+                        })
+                    }
                 })
         }
         if (Object.keys(formErrors).length === 0 && isForgotSubmit) {

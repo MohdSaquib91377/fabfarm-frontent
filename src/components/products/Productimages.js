@@ -8,7 +8,7 @@ const Productimages = ({ image }) => {
 
     const thumbImages = image.map((item, i) => {
         return (
-            <SwiperSlide key={i} onClick={() => setPrevImage(i)} ><img src={process.env.REACT_APP_BASE_URL + item.thumbnail} alt={item.image_caption} /></SwiperSlide>
+            <SwiperSlide key={i} onClick={() => setPrevImage(i)} ><img src={process.env.REACT_APP_BASE_URL + item.image} alt={item.image_caption} /></SwiperSlide>
         )
     })
     return (

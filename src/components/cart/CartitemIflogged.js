@@ -33,7 +33,7 @@ const CartitemIflogged = ({ items, isAuthorized, removeFromCart, incrementQuanti
     useEffect(() => {
         items.map((data) => {
             if (Object.keys(data).some(key => key === 'cartQuantity')) {
-                if (data.product.id == decrease && data.cartQuantity < 2 ) {
+                if (data.product.id == decrease && data.cartQuantity === 1 ) {
                     console.log(data.cartQuantity)
                     setloader(true)
                     axiosPrivate.delete('/api/v1/cart/add-to-cart/', {

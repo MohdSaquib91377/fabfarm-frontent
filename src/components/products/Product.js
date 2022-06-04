@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
 import { faTruckLoading, faEnvelope, faHeart, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faPinterest, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
 import Details from './Details';
 import "swiper/css";
@@ -15,13 +15,23 @@ import Relatedproducts from './Relatedproducts';
 import axios from '../API/axios';
 import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 const Product = ({ products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
+    const [decrease, setDecrease] = useState(false);
+    const [decreaseID, setDecreaseID] = useState("");
+    const [loader, setloader] = useState(false);
     // const [productCount, setProductCount] = useState()
+    let axiosPrivate = useAxiosPrivate();
     Tabtitle('FAB | Shop')
     const { id, image, name, description, price, maxQuantity, category, old_price } = currentItem;
+    const decreaseCount = (id) => {
+        setDecrease(!decrease)
+        setDecreaseID(id)
+        decrementQuantity(id)
+    }
 
     useEffect(() => {
         const fetchCurrentItem = () => {
@@ -40,6 +50,25 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
 
 
     }, [])
+
+    useEffect(() => {
+        if (products[0].quantity === 1) {
+            setloader(true)
+            axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
+                data: {
+                    product_id: decreaseID
+                }
+            })
+                .then(response => {
+                    setloader(false)
+                    console.log(response)
+                })
+                .catch(response => {
+                    setloader(false)
+                    console.log(response)
+                })
+        }
+    }, [decrease, decreaseID])
     return (
         <>
             {/* <!--Breadcrumb--> */}
@@ -104,7 +133,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                             <div className='   button-buy-parent'>
                                                 <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20 button-buy">Add to cart</button>
                                                 <Link to='/checkout'>
-                                                    <button 
+                                                    <button
                                                         onClick={() => addToCart(id)}
                                                         className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase button-buy">Buy It Now</button>
                                                 </Link>
@@ -143,7 +172,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                     <div className="product-quantity product-var__item d-flex align-items-center">
                                                         <span className="product-var__text">Quantity: </span>
                                                         <div className="quantity-scale m-l-20">
-                                                            <button className="value-button" onClick={() => decrementQuantity(id)} >
+                                                            <button className="value-button" onClick={() => decreaseCount(id)} >
                                                                 <FontAwesomeIcon icon={faMinus} />
                                                             </button>
                                                             <input className='input-items-number' type="text" readOnly id="number" value={products[0].quantity} />
@@ -174,7 +203,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                     <div className="product-var__item">
                                                         <span className="product-var__text">Guaranteed safe checkout </span>
                                                         <ul className="payment-icon m-t-5">
-                                                            <li><img src="assets/img/icon/payment/paypal.svg" alt="" /></li>
+                                                            <li><FontAwesomeIcon icon={faPaypal} /></li>
                                                             <li><img src="assets/img/icon/payment/amex.svg" alt="" /></li>
                                                             <li><img src="assets/img/icon/payment/ipay.svg" alt="" /></li>
                                                             <li><img src="assets/img/icon/payment/visa.svg" alt="" /></li>

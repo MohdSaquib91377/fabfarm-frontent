@@ -7476,8 +7476,12 @@ ul {
   display: inline-block;
   color: #ffffff;
   position: relative;
-  margin-right: 15px;
+  padding-right: 15px;
   text-transform: capitalize;
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .breadcrumb_block ul li a {
   color: #ffffff;
@@ -7491,7 +7495,7 @@ ul {
   transform: translateY(-50%);
 }
 .breadcrumb_block ul li:after {
-  right: -15px;
+  right: 2px;
 }
 .breadcrumb_block ul li:last-child {
   margin: 0;
@@ -12457,13 +12461,14 @@ button.unset {
 
 }
 }
+
 @media (max-width:767px){
   .clv_logo img,
   .clv_footer_wrapper .footer_block .footer_logo a img{
     max-width: 100px;
   }
   .header3_wrapper.dark_header{
-    height: 186px;
+    height: 200px;
   }
   .top-bar > *{
     font-size: 12px;
@@ -12495,4 +12500,11 @@ button.unset {
 .order_list_top button{  
   line-height: 1;
   height: 15px;
+}
+.breadcrum-width-dot{
+  white-space: nowrap;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }

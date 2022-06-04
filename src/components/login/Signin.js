@@ -238,7 +238,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                             <p>{formErrors.password}</p>
                             <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'sign in'}</button>
                         </form>
-                        <button style={formErrors.email ? { top: '285px' } : { top: '245px' }} onClick={handleForgotPass} className='signin-forgot-pass'>Forgot ?</button>
+                        <button style={formErrors.email ? { top: '250px' } : { top: '225px' }} onClick={handleForgotPass} className='signin-forgot-pass'>Forgot ?</button>
                         <div className="social_button_section">
                             <a href="#" className="fb_btn">
                                 <span><img src={process.env.PUBLIC_URL + "images/fb.png"} alt="image" /></span>

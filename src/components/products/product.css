@@ -783,14 +783,17 @@ ul {
   border-color: #89c74a;
 }
 .btn--long {
-  width: 240px;
+  width: 150px;
   height: 42px;
   line-height: 42px;
   font-size: 16px;
 }
+.swiper-backface-hidden .swiper-slide{
+  height: 80px !important;
+}
 @media (min-width: 992px) {
   .btn--long {
-    width: 285px;
+    width: 150px;
   }
 }
 .btn--large {

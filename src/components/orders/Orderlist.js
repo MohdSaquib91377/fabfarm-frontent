@@ -73,7 +73,7 @@ const Orderlist = ({ user }) => {
             <div style={{
                 position: 'relative',
                 top: '200px',
-                height: '100vh',
+                minHeight: '100vh',
                 width: 'auto'
             }}>
                 {orderList}

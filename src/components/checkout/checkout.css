@@ -779,14 +779,18 @@ dl, ol, ul {
   border-color: #89c74a;
 }
 .btn--long {
-  width: 240px;
+  width: 150px;
   height: 42px;
   line-height: 42px;
   font-size: 16px;
 }
+.button-buy-parent{
+
+}
+
 @media (min-width: 992px) {
   .btn--long {
-    width: 285px;
+    width: 175px;
   }
 }
 .btn--large {
@@ -6301,4 +6305,29 @@ table tbody > tr td a:hover {
 
 .border-top-1 {
   border-top: 1px solid #ddd;
+}
+.parent-wishlist .order_list_top h6:first-child{
+  width: 30%;
+}
+.parent-wishlist .order_list_top {
+  align-items: center;
+}
+.parent-wishlist .order_list_top div:nth-child(2){
+  margin-right: 30px; 
+}
+.parent-wishlist .order_list_top div:nth-child(2) img{
+  margin-right: 30px; 
+  height: 100%;
+  object-fit: cover;
+}
+
+.button-buy{
+ width: 190px; 
+}
+.button-buy-parent{
+  width: 400px;
+  margin-top: 10px;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
 }

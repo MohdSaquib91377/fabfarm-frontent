@@ -18,7 +18,7 @@ const Productimages = ({ image }) => {
             <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative">
                 <Swiper direction={"vertical"}
                     navigation={true}
-                    slidesPerView={4}
+                    slidesPerView={3}
                     spaceBetween={10}
                     modules={[Navigation]}
                     className="mySwiper">

@@ -7481,9 +7481,9 @@ ul {
 .breadcrumb_block ul li a {
   color: #ffffff;
 }
-.breadcrumb_block ul li:before,
+/* .breadcrumb_block ul li:before, */
 .breadcrumb_block ul li:after {
-  content: "/";
+  content: ">";
   position: absolute;
   top: 50%;
   right: -10px;

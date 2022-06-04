@@ -75,7 +75,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                 <ul>
                                     <li><Link to='/'>home</Link></li>
                                     <li><Link to={`/shop/${categoryId}`}>&nbsp;{category}</Link></li>
-                                    <li> &nbsp; {id} </li>
+                                    <li> &nbsp; {name} </li>
                                 </ul>
                             </div>
                         </div>
@@ -85,12 +85,12 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
 
                             {/* Start Product Details Gallery */}
                             <div className="product-details">
-                                <div>
+                                {/* <div className='container my-3'>
                                     <p>
                                         <Link to='/'>home </Link> >
                                         <Link to={`/shop/${categoryId}`}>&nbsp;{category}</Link> >
                                         &nbsp; {name} </p>
-                                </div>
+                                </div> */}
                                 <div className="container">
                                     <div style={{
                                         display: 'flex',
@@ -101,14 +101,12 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                             <div >
                                                 <Productimages image={image} />
                                             </div>
-                                            <div>
-                                                <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</button>
+                                            <div className='   button-buy-parent'>
+                                                <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20 button-buy">Add to cart</button>
                                                 <Link to='/checkout'>
-                                                    <button style={{
-                                                        width: "285px"
-                                                    }}
+                                                    <button 
                                                         onClick={() => addToCart(id)}
-                                                        className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</button>
+                                                        className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase button-buy">Buy It Now</button>
                                                 </Link>
                                             </div>
                                         </div>

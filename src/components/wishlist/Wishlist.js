@@ -78,10 +78,11 @@ const Wishlist = () => {
                     </ul>
                 </div>
             </div>
-            <div style={{
-                position: 'relative',
+            <div className='parent-wishlist' style={{
+                position: 'unset',
+                margin: '50px auto',
                 top: '200px',
-                height: '100vh',
+                minHeight: '100vh',
                 width: 'auto'
             }}>
                 {wishlist}

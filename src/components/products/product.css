@@ -788,6 +788,16 @@ ul {
   line-height: 42px;
   font-size: 16px;
 }
+.PRODUCT-RESPONSIVE img{
+  border-radius: 5px;
+}
+.PRODUCT-RESPONSIVE{
+  margin-top: 0 !important;
+  margin-right: 5px;
+}
+.add-image-radius img{
+  border-radius: 5px;
+}
 .PRODUCT-RESPONSIVE .swiper-backface-hidden .swiper-slide{
   height: 80px !important;
 }

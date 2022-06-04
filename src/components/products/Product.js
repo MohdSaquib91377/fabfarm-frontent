@@ -98,7 +98,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                         <div style={{
                                             width: '800px'
                                         }} className>
-                                            <div >
+                                            <div className='add-image-radius'>
                                                 <Productimages image={image} />
                                             </div>
                                             <div className='   button-buy-parent'>

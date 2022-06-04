@@ -345,6 +345,7 @@ ul {
 .clv_right_header .clv_menu .clv_menu_nav > ul > li > a:hover:after {
   width: 60%;
 }
+
 .clv_right_header .clv_menu .clv_menu_nav > ul > li > ul {
   position: absolute;
   top: 100%;

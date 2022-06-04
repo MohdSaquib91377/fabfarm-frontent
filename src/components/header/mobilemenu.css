@@ -1,11 +1,11 @@
 .display-menu {
-  background: black;
   position: relative;
   top: 50px;
   color: white;
   display: block;
   border: red 1px solid;
 }
+
 .display-none {
   display: none;
 }

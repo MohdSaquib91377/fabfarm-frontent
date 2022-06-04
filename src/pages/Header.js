@@ -91,20 +91,10 @@ const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
                                             :
                                             <Desktopmenu />
                                     }
+
+                                    
                                     <div className="cart_nav">
                                         <ul>
-                                            {
-                                                isAuthorized ?
-                                                    <li>
-                                                        <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /></Link>
-                                                    </li> :
-                                                    <li
-                                                        style={{ color: 'white', cursor: 'pointer' }}
-                                                        onClick={() => setSigninOpen()} >
-                                                        Signin
-                                                    </li>
-
-                                            }
                                             <li>
                                                 <a className="search_toggle" href="#"><FontAwesomeIcon color='#ffffff' icon={faSearch} /></a>
                                             </li>

@@ -7476,8 +7476,12 @@ ul {
   display: inline-block;
   color: #ffffff;
   position: relative;
-  margin-right: 15px;
+  padding-right: 15px;
   text-transform: capitalize;
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .breadcrumb_block ul li a {
   color: #ffffff;
@@ -7491,7 +7495,7 @@ ul {
   transform: translateY(-50%);
 }
 .breadcrumb_block ul li:after {
-  right: -15px;
+  right: 2px;
 }
 .breadcrumb_block ul li:last-child {
   margin: 0;

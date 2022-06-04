@@ -6322,7 +6322,7 @@ table tbody > tr td a:hover {
 }
 
 .button-buy{
- width: 190px; 
+ width: 190px !important; 
 }
 .button-buy-parent{
   width: 400px;

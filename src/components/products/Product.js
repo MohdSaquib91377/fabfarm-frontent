@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
 import { faTruckLoading, faEnvelope, faHeart, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faPinterest ,faPaypal} from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
 import Details from './Details';
 import "swiper/css";
@@ -71,27 +71,29 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                     </div>
                                 </div>
                             </div>
-                            <div className="breadcrumb_block">
+                            {/* <div className="breadcrumb_block">
                                 <ul>
                                     <li><Link to='/'>home</Link></li>
                                     <li><Link to={`/shop/${categoryId}`}>&nbsp;{category}</Link></li>
                                     <li> &nbsp; {name} </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                         <div id="main-container" style={{
-                            marginTop: '100px'
+                            marginTop: '30px'
                         }}>
 
                             {/* Start Product Details Gallery */}
                             <div className="product-details">
-                                {/* <div className='container my-3'>
-                                    <p>
-                                        <Link to='/'>home </Link> >
-                                        <Link to={`/shop/${categoryId}`}>&nbsp;{category}</Link> >
-                                        &nbsp; {name} </p>
-                                </div> */}
-                                <div className="container">
+                                <div className='container mt-3'>
+                                    <p className='m-0'>
+                                        <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                                        <span className='breadcrum-width-dot'>&nbsp;>&nbsp;</span>
+                                        <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}`}>&nbsp;{category}</Link> > </span>
+                                        <span className='breadcrum-width-dot'> &nbsp; > &nbsp;</span>
+                                        <span className='breadcrum-width-dot'>   {name}</span> </p>
+                                </div>
+                                <div className="container pt-3">
                                     <div style={{
                                         display: 'flex',
                                     }}>
@@ -127,10 +129,10 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                     <span className="product__tag m-l-15 btn--tiny btn--green">-34%</span>
                                                 </div>
 
-                                                <div className="product__desc m-t-25 m-b-30">
+                                                <div className="product__desc m-t-25 m-b-10">
                                                     <p>{description}</p>
                                                 </div>
-                                                <div className="product-var p-tb-30">
+                                                <div className="product-var p-tb-10">
                                                     <div className="product__stock m-b-20">
                                                         <span className="product__stock--in"><FontAwesomeIcon color='green' icon={faCheckCircle} /> {maxQuantity} IN STOCK</span>
                                                     </div>
@@ -174,13 +176,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                     <div className="product-var__item">
                                                         <span className="product-var__text">Guaranteed safe checkout </span>
                                                         <ul className="payment-icon m-t-5">
-                                                            <li><img src="assets/img/icon/payment/paypal.svg" alt="" /></li>
-                                                            <li><img src="assets/img/icon/payment/amex.svg" alt="" /></li>
-                                                            <li><img src="assets/img/icon/payment/ipay.svg" alt="" /></li>
-                                                            <li><img src="assets/img/icon/payment/visa.svg" alt="" /></li>
-                                                            <li><img src="assets/img/icon/payment/shoify.svg" alt="" /></li>
-                                                            <li><img src="assets/img/icon/payment/mastercard.svg" alt="" /></li>
-                                                            <li><img src="assets/img/icon/payment/gpay.svg" alt="" /></li>
+                                                            <li><FontAwesomeIcon icon={faPaypal} color=""/></li>
                                                         </ul>
                                                     </div>
                                                     <div className="product-var__item">

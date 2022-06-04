@@ -6306,7 +6306,10 @@ table tbody > tr td a:hover {
 .border-top-1 {
   border-top: 1px solid #ddd;
 }
-.parent-wishlist .order_list_top h6:first-child{
+.parent-wishlist .order_list_top {
+  border-bottom: 1px solid #ddd;
+}
+.parent-wishlist .order_list_top h6:nth-child(2){
   width: 30%;
 }
 .parent-wishlist .order_list_top {

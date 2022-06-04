@@ -43,7 +43,6 @@ const Wishlist = () => {
                 justifyContent: 'space-between',
                 alignContent: 'center'
             }}>
-                <h6>{name}</h6>
                 <div style={{
                     height: '100px',
                     width: '100px'
@@ -52,7 +51,9 @@ const Wishlist = () => {
                     <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
 
                 </div>
-                <h6>price: {price}</h6>
+                <h6>{name}</h6>
+                {/* <h6>price: {price}</h6> */}
+                <h6>₹{price}</h6>
                 <h6>quantity: {quantity}</h6>
 
                 <button onClick={() => removeItem(id)}>Remove</button>
@@ -78,14 +79,17 @@ const Wishlist = () => {
                     </ul>
                 </div>
             </div>
-            <div className='parent-wishlist' style={{
-                position: 'unset',
-                margin: '50px auto',
-                top: '200px',
-                minHeight: '100vh',
-                width: 'auto'
-            }}>
+            <div className='p-3'>
+
+                <div className='parent-wishlist' style={{
+                    position: 'unset',
+                    margin: '50px auto',
+                    top: '200px',
+                    minHeight: '100vh',
+                    width: 'auto'
+                }}>
                 {wishlist}
+                </div>
             </div>
         </>
     )

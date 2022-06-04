@@ -6326,7 +6326,7 @@ table tbody > tr td a:hover {
 }
 .button-buy-parent{
   width: 400px;
-  margin-top: 10px;
+  margin-top: 10px  ;
   margin-left: auto;
   display: flex;
   justify-content: space-between;

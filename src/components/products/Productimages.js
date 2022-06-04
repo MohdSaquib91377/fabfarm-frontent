@@ -15,7 +15,7 @@ const Productimages = ({ image }) => {
         <div style={{
             display: 'flex'
         }}>
-            <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative">
+            <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative PRODUCT-RESPONSIVE">
                 <Swiper direction={"vertical"}
                     navigation={true}
                     slidesPerView={3}

@@ -185,7 +185,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                             <a href="index.html"> <img src={process.env.PUBLIC_URL + "images/logo.png"} alt="image" /></a>
                         </div>
                         <h3>welcome to cultivation!</h3>
-                        <svg
+                        {/* <svg
                             xmlns="http://www.w3.org/2000/svg"
                             x="0px"
                             y="0px"
@@ -200,7 +200,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                 fillRule="evenodd"
                                 clipRule="evenodd"
                             />
-                        </svg>
+                        </svg> */}
 
                         <p>Consectetur adipisicing elit sed do eiusmod por incididunt uttelabore et dolore magna aliqu.</p>
                         <button onClick={trigger} className="clv_btn white_btn pop_signup">sign up</button>

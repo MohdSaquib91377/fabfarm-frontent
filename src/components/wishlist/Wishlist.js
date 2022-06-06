@@ -1,4 +1,7 @@
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
+import { FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import Tabtitle from '../../pages/Tabtitle';
@@ -7,14 +10,25 @@ const Wishlist = () => {
     Tabtitle('FAB | Wish List')
     const axiosPrivate = useAxiosPrivate();
     const [wishlistItems, setWishlistItems] = useState([])
+    const [onclickRemove, setOnlickRemove] = useState(false);
+    const [loader, setLoader] = useState(false);
     const removeItem = (id) => {
+        setLoader(true)
         axiosPrivate.delete(`/api/v1/wishlist/wishlist/add-to-wishlist/`, {
-            data:{
+            data: {
                 product_id: id
             }
         })
-            .then(response => console.log(response))
-            .catch(response => console.log(response))
+            .then(
+                () => {
+                    setLoader(false);
+                    setOnlickRemove(!onclickRemove);
+                }
+            )
+            .catch(error => {
+                setLoader(false);
+                throw error;
+            })
     }
     useEffect(() => {
         let isMounted = true;
@@ -34,7 +48,7 @@ const Wishlist = () => {
             isMounted = false;
             controller.abort();
         }
-    }, [])
+    }, [onclickRemove])
     const wishlist = wishlistItems.map((data, i) => {
         const { product: { id, name, image, price, quantity, } } = data;
         return (
@@ -56,7 +70,7 @@ const Wishlist = () => {
                 <h6>₹{price}</h6>
                 <h6>quantity: {quantity}</h6>
 
-                <button onClick={() => removeItem(id)}>Remove</button>
+                <button onClick={() => removeItem(id)}>{loader ? <FaSpinner icon="spinner" className="spinner" /> : <FontAwesomeIcon color='red' icon={faTrash} />}</button>
             </div>
         )
     })
@@ -88,7 +102,7 @@ const Wishlist = () => {
                     minHeight: '100vh',
                     width: 'auto'
                 }}>
-                {wishlist}
+                    {wishlist}
                 </div>
             </div>
         </>

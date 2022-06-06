@@ -64,6 +64,7 @@ const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
         width: '20px',
         height: '20px',
         textAlign: 'center',
+        whiteSpace:"nowrap",
 
     }
     const countStyleNone = {

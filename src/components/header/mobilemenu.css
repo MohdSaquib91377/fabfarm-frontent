@@ -1,11 +1,35 @@
 .display-menu {
-  position: relative;
-  top: 50px;
+  position: fixed;
+  
+  top:200px;
+  left: 0;
   color: white;
   display: block;
-  border: red 1px solid;
+  /* border: red 1px solid; */
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  transition: .3s;
 }
-
+.display-menu li {
+  margin: 10px 0;
+}
+.display-menu li button {
+  margin: 10px 0 !important;
+}
 .display-none {
-  display: none;
+  position: fixed;
+  top:200px;
+  left: -500px;
+  color: white;
+  display: block;
+  /* border: red 1px solid; */
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  transition: .3s;
 }

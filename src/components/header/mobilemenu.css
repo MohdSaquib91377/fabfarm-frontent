@@ -15,9 +15,11 @@
 }
 .display-menu li {
   margin: 10px 0;
+  color: #000 !important;
 }
 .display-menu li button {
   margin: 10px 0 !important;
+  color: #000;
 }
 .display-none {
   position: fixed;

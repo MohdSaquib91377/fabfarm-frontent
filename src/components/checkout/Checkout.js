@@ -444,9 +444,12 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                         </div>
                     </main>
                     :
-                    <button
+                    <div className='text-center'>
+                        <p className='para-text-sign-in'>You Are Not sign in </p>
+                        <button className='text-signin'
                         onClick={() => setSigninOpen()}
-                    >click here to sign in </button>
+                        >click here to sign in </button>
+                    </div>
             }
         </>
     )

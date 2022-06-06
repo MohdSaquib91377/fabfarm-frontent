@@ -6334,3 +6334,15 @@ table tbody > tr td a:hover {
   display: flex;
   justify-content: space-between;
 }
+.text-signin{
+  display: inline-block;
+  background-color: #2a7d2e;
+  padding: 10px 40px;
+  color: #fff;
+  border-radius: 10px;
+  margin: 0 0 50px auto;
+}
+.para-text-sign-in{
+  margin: 50px 0 0 auto;
+
+}

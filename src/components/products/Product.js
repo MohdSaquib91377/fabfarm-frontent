@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
 import { faTruckLoading, faEnvelope, faHeart, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitter, faPinterest ,faPaypal} from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faPinterest, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
 import Details from './Details';
 import "swiper/css";
@@ -50,9 +50,8 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
 
 
     }, [])
-
     useEffect(() => {
-        if (products[0].quantity === 1) {
+        if (products[0]?.quantity === 1 && typeof (decreaseID) === 'number') {
             setloader(true)
             axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
                 data: {
@@ -205,7 +204,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                                     <div className="product-var__item">
                                                         <span className="product-var__text">Guaranteed safe checkout </span>
                                                         <ul className="payment-icon m-t-5">
-                                                            <li><FontAwesomeIcon icon={faPaypal} color=""/></li>
+                                                            <li><FontAwesomeIcon icon={faPaypal} color="" /></li>
                                                         </ul>
                                                     </div>
                                                     <div className="product-var__item">
@@ -300,7 +299,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
 }
 const mapStateToProps = (state) => {
     return {
-        products: state.shop.products
+        products: state.shop.products,
     }
 }
 

@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import Cartdrawer from '../components/cart/Cartdrawer';
 import Signin from '../components/login/Signin';
 import { connect } from 'react-redux';
 import Signup from '../components/login/Signup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faSearch, faUser, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faSearch, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
 import Weather from '../components/weatherapi/Weather';
-import { setSigninOpen } from '../redux/actions/productActions';
 import Desktopmenu from '../components/header/Desktopmenu';
 import Mobilemenu from '../components/header/Mobilemenu';
-const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
+const Header = ({ totalCartCount, isAuthorized, cart }) => {
     const [cartCount, setCartCount] = React.useState(0);
     const [cartState, setcartState] = React.useState(false)
     const [navBar, setNavBar] = React.useState(false);
@@ -64,7 +62,7 @@ const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
         width: '20px',
         height: '20px',
         textAlign: 'center',
-        whiteSpace:"nowrap",
+        whiteSpace: "nowrap",
 
     }
     const countStyleNone = {
@@ -93,7 +91,7 @@ const Header = ({ totalCartCount, isAuthorized, cart, setSigninOpen }) => {
                                             <Desktopmenu />
                                     }
 
-                                    
+
                                     <div className="cart_nav">
                                         <ul>
                                             <li>
@@ -166,9 +164,4 @@ const mapStateToProps = (state) => {
         totalCartCount: state.shop.totalCartCount
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setSigninOpen: () => dispatch(setSigninOpen()),
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps)(Header)

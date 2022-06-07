@@ -17,6 +17,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
     const [cartProducts, setCartProducts] = React.useState([])
     const [items, setItems] = React.useState([])
     const [ifloggedTotalPrice, setIfloggedTotalPrice] = React.useState()
+    const [cartLoading, setCartLoading] = React.useState(false);
     // const [cartDataifloggedin, setCartDataifLoggedin] = React.useState([])
     React.useEffect(() => {
         let price = 0;
@@ -58,8 +59,10 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
         const getCartItems = async () => {
             try {
                 if (isAuthorized && isMounted) {
+                    setCartLoading(true)
                     const response = await axiosPrivate.get('/api/v1/cart/add-to-cart/')
                     setItems(response.data)
+                    setCartLoading(false)
                     response.data.map((data) => {
                         if (Object.keys(data).some(key => key === 'cart_item')) {
                             setTotalCartCount(data.cart_item)
@@ -68,6 +71,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
                     })
                 }
             } catch (error) {
+                setCartLoading(false)
                 throw error
             }
         }
@@ -114,7 +118,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
                             <div className="overflow-cart">
                                 {
                                     isAuthorized ?
-                                        totalCartCount !== 0 ? <CartitemIflogged items={items} /> : <p>your cart is empty</p>
+                                        totalCartCount !== 0 ? <CartitemIflogged cartLoading={cartLoading} items={items} /> : <p>your cart is empty</p>
                                         :
                                         cart.length !== 0 ? <> {cartItems}</> : <p>your cart is empty</p>
                                 }
@@ -124,7 +128,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
                                     ifloggedTotalPrice !== 0 ?
                                         <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
                                             <h3>Total</h3>
-                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{ifloggedTotalPrice}</h4>
+                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{cartLoading ? "Loading..." : ifloggedTotalPrice}</h4>
                                         </div> :
                                         undefined
                                     :

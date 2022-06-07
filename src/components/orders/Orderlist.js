@@ -1,3 +1,5 @@
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -46,8 +48,10 @@ const Orderlist = ({ user }) => {
                 <h6>price: {price}</h6>
                 <h6>quantity: {quantity}</h6>
                 <h6>status: {status}</h6>
-
-                <button onClick={() => cancelOrder(order)}>Cancle Order</button>
+                {
+                    status !== "Cancel" ?
+                        <button onClick={() => cancelOrder(order)}><FontAwesomeIcon color='red' icon={faTrash} /></button> : <div></div>
+                }
             </div>
         )
     })

@@ -29,8 +29,8 @@ const Featuredproducts = ({ setProducts }) => {
                     setAllCatProducts(allCatProducts => [...allCatProducts, items])
                 })
             })
+            setProducts(allCatProducts)
         }
-        setProducts(allCatProducts)
         return () => {
             mounted = false;
         }

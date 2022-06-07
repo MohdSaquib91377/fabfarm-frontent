@@ -44,15 +44,15 @@ const Featuredproducts = ({ setProducts }) => {
                         <div key={i} style={{
                             marginTop: '30px'
                         }}>
-                            <div style={{
-                                display: 'flex',
-                                justifyContent: 'space-between'
-                            }}>
-                                <h3>{name}</h3>
-                                <Link to={`/shop/${id}`}>
-                                    <button onClick={() => setProducts(products)}>View more</button>
-                                </Link></div>
+
+                            <h3>{name}</h3>
                             <Carouselfeatured catID={id} products={products} />
+                            <Link style={{
+                                position: 'relative',
+                                float: 'right'
+                            }} to={`/shop/${id}`}>
+                                <button onClick={() => setProducts(products)}>View more</button>
+                            </Link>
                         </div>
                     )
                 })}

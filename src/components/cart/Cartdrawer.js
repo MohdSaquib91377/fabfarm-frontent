@@ -16,6 +16,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [cartProducts, setCartProducts] = React.useState([])
     const [items, setItems] = React.useState([])
+    const [ifloggedTotalPrice, setIfloggedTotalPrice] = React.useState()
     // const [cartDataifloggedin, setCartDataifLoggedin] = React.useState([])
     React.useEffect(() => {
         let price = 0;
@@ -56,12 +57,13 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
         const controller = new AbortController();
         const getCartItems = async () => {
             try {
-                const response = await axiosPrivate.get('/api/v1/cart/add-to-cart/')
                 if (isAuthorized && isMounted) {
+                    const response = await axiosPrivate.get('/api/v1/cart/add-to-cart/')
                     setItems(response.data)
                     response.data.map((data) => {
                         if (Object.keys(data).some(key => key === 'cart_item')) {
                             setTotalCartCount(data.cart_item)
+                            setIfloggedTotalPrice(data.cart_total)
                         }
                     })
                 }
@@ -75,7 +77,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
             isMounted = false;
             controller.abort();
         }
-    }, [cartProducts, totalPrice])
+    }, [cartProducts, totalPrice, isAuthorized])
     const cartItems = cart.map((products, i) => {
         if (!isAuthorized) {
             return (
@@ -117,10 +119,23 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
                                         cart.length !== 0 ? <> {cartItems}</> : <p>your cart is empty</p>
                                 }
                             </div>
-                            {cart.length === 0 ? <></> : <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
-                                <h3>Total</h3>
-                                <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{totalPrice}</h4>
-                            </div>}
+                            {
+                                isAuthorized ?
+                                    ifloggedTotalPrice !== 0 ?
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
+                                            <h3>Total</h3>
+                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{ifloggedTotalPrice}</h4>
+                                        </div> :
+                                        undefined
+                                    :
+                                    cart.length !== 0 ?
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
+                                            <h3>Total</h3>
+                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{totalPrice}</h4>
+                                        </div>
+                                        :
+                                        undefined
+                            }
                         </div>
                     </div>
                     {
@@ -159,8 +174,8 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
                                 : undefined
 
                     }
-                </Box>
-            </Drawer>
+                </Box >
+            </Drawer >
         </div >
     );
 };

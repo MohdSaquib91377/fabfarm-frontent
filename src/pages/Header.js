@@ -102,10 +102,17 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                                                     style={{ all: 'unset', cursor: 'pointer' }}
                                                     onClick={openCart}>
                                                     <FontAwesomeIcon color='#ffffff' icon={faShoppingCart} />
-                                                    <span
-                                                        style={cartCount >= 1 ? countStyleDisplay : countStyleNone}>{
-                                                            isAuthorized ? totalCartCount : cartCount
-                                                        }</span>
+                                                    {
+                                                        isAuthorized ?
+                                                            <span
+                                                                style={totalCartCount >= 1 ? countStyleDisplay : countStyleNone}>{
+                                                                    totalCartCount
+                                                                }</span> :
+                                                            <span
+                                                                style={cartCount >= 1 ? countStyleDisplay : countStyleNone}>{
+                                                                    cartCount
+                                                                }</span>
+                                                    }
 
                                                 </button>
                                             </li>

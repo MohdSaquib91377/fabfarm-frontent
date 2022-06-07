@@ -6342,6 +6342,9 @@ table tbody > tr td a:hover {
   border-radius: 10px;
   margin: 0 0 50px auto;
 }
+.box-shadow-adding{
+  box-shadow: 2px 2px 10px -5px;
+}
 .para-text-sign-in{
   margin: 50px 0 0 auto;
 

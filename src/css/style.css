@@ -12491,7 +12491,11 @@ button.unset {
 .product__img.img-fluid{
   height: 300px;
 }
-.order_list_top a:first-child{  
+.order_list_top{
+  border-bottom: 1px solid #bbb;
+  align-items: center;
+}
+.order_list_top a:nth-child(2){  
   width: 20%;
 }
 .order_list_top{
@@ -12506,5 +12510,4 @@ button.unset {
   max-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }

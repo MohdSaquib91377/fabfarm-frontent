@@ -30,12 +30,12 @@ const Orderlist = ({ user }) => {
     const orderList = items.map((data, i) => {
         const { product: { id, name, image }, order, price, quantity, status } = data;
         return (
+            
             <div key={i} className="order_list_top" style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignContent: 'center'
             }}>
-                <Link to={`/orderproductdetails/${order}`}><h6>{name}</h6></Link>
                 <div style={{
                     height: '100px',
                     width: '100px'
@@ -44,6 +44,7 @@ const Orderlist = ({ user }) => {
                         <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
                     </Link>
                 </div>
+                <Link to={`/orderproductdetails/${order}`}><h6>{name}</h6></Link>
                 <h6>order id : {order}</h6>
                 <h6>price: {price}</h6>
                 <h6>quantity: {quantity}</h6>
@@ -53,6 +54,7 @@ const Orderlist = ({ user }) => {
                         <button onClick={() => cancelOrder(order)}><FontAwesomeIcon color='red' icon={faTrash} /></button> : <div></div>
                 }
             </div>
+            
         )
     })
     return (
@@ -74,14 +76,18 @@ const Orderlist = ({ user }) => {
                     </ul>
                 </div>
             </div>
-            <div style={{
+
+            <div className='p-3'>
+
+            <div className='box-shadow-adding' style={{
                 position: 'relative',
                 top: '200px',
-                height: '100vh',
+                marginBottom: '280px',
                 width: 'auto'
             }}>
                 {orderList}
             </div>
+        </div>
         </>
     )
 }

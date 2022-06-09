@@ -7,15 +7,35 @@ import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from '../components/API/axios';
 import Tabtitle from './Tabtitle';
+import Slider from '@material-ui/core/Slider';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles({
+    root: {
+        width: '60%'
+    },
+    thumb: {
+        color: 'green'
+    },
+    rail: {
+        color: 'red'
+    },
+    track: {
+        color: 'yellow'
+    },
+});
+
 
 const Shop = ({ addToCart }) => {
+    const classes = useStyles();
     let { categoryId } = useParams();
     const [productView, setProductView] = useState('');
     const [products, setProducts] = useState([])
     const [filterData, setFilterData] = useState([])
     const [applyFilter, setApplyFilter] = useState(false);
     const [page, setPage] = useState(1);
-    // const [priceValue, setPriceValue] = useState([1, 1000])
+    const [priceValue, setPriceValue] = useState([100, 1000])
+
     Tabtitle('FAB | Shop')
 
     const fetchproducts = async () => {
@@ -35,6 +55,14 @@ const Shop = ({ addToCart }) => {
         setFilterData(filterData)
     }
 
+    const handePriceFilterChange = (event, value) => {
+        setApplyFilter(true)
+        setPriceValue(value);
+        const filterData = products.filter((value) => {
+            return value.price > priceValue[0] && value.price < priceValue[1];
+        })
+        setFilterData(filterData)
+    }
 
     useEffect(() => {
         fetchproducts();
@@ -178,6 +206,22 @@ const Shop = ({ addToCart }) => {
 
                                         <div className="price_range"><p><span id="amount"></span></p></div> */}
 
+
+                                        <div className={classes.root}
+                                        >
+                                            <Slider
+                                                value={priceValue}
+                                                min={100}
+                                                max={1000}
+                                                valueLabelDisplay='auto'
+                                                onChange={handePriceFilterChange}
+                                                classes={{
+                                                    thumb: classes.thumb,
+                                                    rail: classes.rail,
+                                                    track: classes.track
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -7,13 +7,15 @@ import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from '../components/API/axios';
 import Tabtitle from './Tabtitle';
-const Shop = ({ addToCart, loadCurrentItem }) => {
+
+const Shop = ({ addToCart }) => {
     let { categoryId } = useParams();
     const [productView, setProductView] = useState('');
     const [products, setProducts] = useState([])
-    const [search, setSearch] = useState('')
-    // const [categories, setCategories] = useState([])
-    const [page, setPage] = useState(1)
+    const [filterData, setFilterData] = useState([])
+    const [applyFilter, setApplyFilter] = useState(false);
+    const [page, setPage] = useState(1);
+    // const [priceValue, setPriceValue] = useState([1, 1000])
     Tabtitle('FAB | Shop')
 
     const fetchproducts = async () => {
@@ -24,29 +26,72 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
             console.log(error);
         }
     }
-    // const fetchproductsCategroies = async () => {
-    //     try {
-    //         const res = await axios.get('/api/v1/store/category/')
-    //         setCategories(res.data)
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    const handleFilter = (event) => {
+        setApplyFilter(true)
+        const searchWord = event.target.value;
+        const filterData = products.filter((value) => {
+            return value.name.toLowerCase().includes(searchWord.toLowerCase());
+        })
+        setFilterData(filterData)
+    }
+
+
     useEffect(() => {
         fetchproducts();
-        // fetchproductsCategroies();
-    }, [search, page]);
-    // const productCategories = categories.map((categories, i) => {
-    //     const { name } = categories;
-    //     return (
-    //         <li key={i}>
-    //             <input type="checkbox" id={`cat${i}`} />
-    //             <label htmlFor={`cat${i}`}>{name}<span>({products.length})</span></label>
-    //         </li>
-    //     )
-    // })
-    const seedList = products.map((product, i) => {
-        console.log(products)
+    }, []);
+
+    const productFilterList = filterData.map((product, i) => {
+        const { id, image: [{ image }], name, description, price } = product;
+        return (
+            <li key={i}>
+
+                <div className="product_item_block">
+                    <div className="org_product_block">
+                        <span className="product_label">30% off</span>
+                        <Link to={`/shop/${categoryId}/product/${id}`}>
+                            <div className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
+                        </Link>
+                        <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
+                        <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
+                        <button onClick={() => addToCart(id)}>add to cart</button>
+                    </div>
+                    <div className="content_block">
+                        <div className="product_price_box">
+                            <Link to={`/shop/${categoryId}/product/${id}`}>
+                                <h3>
+                                    {name}
+                                </h3>
+                            </Link>
+                            <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
+                        </div>
+                        <p>Farm & Garden</p>
+                        <div className="rating_section">
+                            <span>4.1</span>
+                            <ul>
+                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
+                            </ul>
+                            <p>151 reviews</p>
+                        </div>
+                        <ul className="product_code">
+                            <li>
+                                <p>product code: 12948</p>
+                            </li>
+                            <li>
+                                <p>availability: <span>in stock</span></p>
+                            </li>
+                        </ul>
+                        <p>{description}</p>
+                    </div>
+                </div>
+
+            </li >
+        );
+    })
+    const productList = products.map((product, i) => {
         const { id, image: [{ image }], name, description, price } = product;
         return (
             <li key={i}>
@@ -123,81 +168,22 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                     <div className="row">
                         <div className="col-lg-3 col-md-3">
                             <div className="product_sidebar">
-                                {/* <div className="product_block">
-                                    <div className="sidebar_heading">
-                                        <h3>search</h3>
-                                        <img src="images/garden_underline.png" alt="image" />
-                                    </div>
-
-                                </div> */}
-                                {/* <div className="product_block">
-                                    <div className="sidebar_heading">
-                                        <h3>product categories</h3>
-                                        <img src="images/garden_underline.png" alt="image" />
-                                    </div>
-                                     <div className="product_category">
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" id="cat" />
-                                                <label htmlFor="cat">all<span>({products.length})</span></label>
-                                            </li>
-                                             {productCategories}
-                                        </ul>
-                                    </div> 
-                                </div> */}
                                 <div className="product_block">
                                     <div className="sidebar_heading">
                                         <h3>filter by price</h3>
-                                        {/* <img src="images/garden_underline.png" alt="image" /> */}
                                     </div>
                                     <div className="ds_progress_rangeslider Range_slider">
-                                        <div id="slider-range" className="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                        {/* <div id="slider-range" className="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                                             <div className="ui-slider-range ui-corner-all ui-widget-header"></div><span tabIndex="0" className="ui-slider-handle ui-corner-all ui-state-default"></span><span tabIndex="0" className="ui-slider-handle ui-corner-all ui-state-default"></span></div>
 
-                                        <div className="price_range"><p><span id="amount"></span></p></div>
+                                        <div className="price_range"><p><span id="amount"></span></p></div> */}
 
                                     </div>
                                 </div>
-                                {/* <div className="product_block">
-                                    <div className="sidebar_heading">
-                                        <h3>discount</h3>
-                                        <img src="images/garden_underline.png" alt="image" />
-                                    </div>
-                                    <div className="product_category">
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" id="dis1" />
-                                                <label htmlFor="dis1">less than 20%<span>(16)</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="dis2" />
-                                                <label htmlFor="dis2">20% or more<span>(12)</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="dis3" />
-                                                <label htmlFor="dis3">30% or more<span>(156)</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="dis4" />
-                                                <label htmlFor="dis4">50% or more<span>(260)</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="dis5" />
-                                                <label htmlFor="dis5">70% or more<span>(96)</span></label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="dis6" />
-                                                <label htmlFor="dis6">80% or more<span>(12)</span></label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div> */}
                             </div>
                         </div>
                         <div className="col-lg-9 col-md-9">
-                            {/* <div className="product_section">
-                                <div className="ads_section"><img src="https://via.placeholder.com/870x296" alt="image" /></div>
-                            </div> */}
+
                             <div className="product_list_section">
                                 <div className="product_list_filter">
                                     <ul>
@@ -206,7 +192,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                                             <select>
                                                 <option value="sort by popularity">sort by popularity</option>
                                                 <option value="sort by price">sort by price</option>
-                                                <option value="sort by category">sort by category</option>
+                                                {/* <option value="sort by category">sort by category</option> */}
                                             </select>
                                         </li>
                                         <li>
@@ -238,7 +224,7 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                                         </li>
                                         <li>
                                             <div className="sidebar_search">
-                                                <input type="text" name='search' onChange={(e) => setSearch(e.target.value)} placeholder="Search here" />
+                                                <input type="text" name='search' onChange={handleFilter} placeholder="Search here" />
                                                 <span><FontAwesomeIcon icon={faSearch} /></span>
                                             </div>
                                         </li>
@@ -259,43 +245,13 @@ const Shop = ({ addToCart, loadCurrentItem }) => {
                                 >
                                     <div id='products_list' className={productView !== 'list' ? "product_items_section product_list_view" : "product_items_section"}>
                                         <ul>
-                                            {seedList}
+                                            {applyFilter ?
+                                                filterData.length !== 0 ? productFilterList : "no data found" :
+                                                productList
+                                            }
                                         </ul>
                                     </div>
                                 </InfiniteScroll>
-                                {/* <div className="blog_pagination_section">
-                                    <ul>
-                                        <li className="blog_page_arrow">
-                                            <a href="#">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15">
-                                                    <path
-                                                        fill="#707070"
-                                                        fillRule="evenodd"
-                                                        d="M.324 8.222l6.793 6.463a1.144 1.144 0 001.564 0 1.016 1.016 0 000-1.488L2.67 7.478 8.681 1.76a1.019 1.019 0 000-1.49 1.151 1.151 0 00-1.565 0L.323 6.735a1.02 1.02 0 00.001 1.487z"
-                                                    ></path>
-                                                </svg>
-                                                <span>&nbsp; prev</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="#">01</a></li>
-                                        <li><a href="#">02</a></li>
-                                        <li><a href="#">....</a></li>
-                                        <li><a href="#">12</a></li>
-                                        <li><a href="#">13</a></li>
-                                        <li className="blog_page_arrow">
-                                            <a href="#">
-                                                <span>next &nbsp;</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="25" className='pt-2' >
-                                                    <path
-                                                        fill="#707070"
-                                                        fillRule="evenodd"
-                                                        d="M13.676 12.222l-6.793 6.463a1.144 1.144 0 01-1.564 0 1.016 1.016 0 010-1.488l6.01-5.719-6.01-5.718a1.019 1.019 0 010-1.49 1.151 1.151 0 011.565 0l6.792 6.465c.216.205.324.474.324.743s-.108.539-.324.744z"
-                                                    ></path>
-                                                </svg>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div> */}
                             </div>
 
                         </div>

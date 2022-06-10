@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToCart, setProducts, loadCurrentItem } from '../redux/actions/productActions';
+import { addToCart, setProducts, buyNow } from '../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 });
 
 
-const Shop = ({ addToCart }) => {
+const Shop = ({ buyNow, addToCart }) => {
     const classes = useStyles();
     let { categoryId } = useParams();
     const [productView, setProductView] = useState('');
@@ -146,6 +146,7 @@ const Shop = ({ addToCart }) => {
                         <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
+                        <button onClick={() => buyNow(id)}>Buy now</button>
                     </div>
                     <div className="content_block">
                         <div className="product_price_box">
@@ -248,7 +249,7 @@ const Shop = ({ addToCart }) => {
                                         <li>
                                             <select onChange={handleSelectChange}>
                                                 <option value="popularity">sort by popularity</option>
-                                                <option value="price">sort by price</option>
+                                                <option value="price">sort by price </option>
                                                 {/* <option value="sort by category">sort by category</option> */}
                                             </select>
                                         </li>
@@ -327,7 +328,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setProducts: (product) => dispatch(setProducts(product)),
         addToCart: (id) => dispatch(addToCart(id)),
-        // loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
+        buyNow: (id) => dispatch(buyNow(id))
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);

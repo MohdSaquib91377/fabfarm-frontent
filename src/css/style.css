@@ -6149,7 +6149,7 @@ ul {
   margin-bottom: 25px;
 }
 .org_product_block h4 {
-  font-size: 20px;
+  font-size: 18px;
   color: #222222;
   text-transform: capitalize;
   font-weight: 600;
@@ -6160,7 +6160,7 @@ ul {
   text-overflow: ellipsis;
 }
 .org_product_block h3 {
-  font-size: 24px;
+  font-size: 20px;
   color: #222222;
   text-transform: capitalize;
   margin-bottom: 24px;
@@ -8337,7 +8337,7 @@ ul {
   overflow-y: scroll;
 }
 .product_items_section > ul {
-  margin: 0px -15px;
+  /* margin: 0px -15px; */
 }
 .product_items_section > ul > li {
   width: 33%;
@@ -8355,6 +8355,10 @@ ul {
 }
 .product_items_section ul li .org_product_block .org_product_image > img {
   max-width: 100%;
+  height: 280px ;
+  object-fit: cover;
+  width: 100%;
+
 }
 .product_items_section ul li .org_product_block button {
   position: absolute;

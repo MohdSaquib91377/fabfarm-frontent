@@ -12,27 +12,47 @@ export function Orderdetails({ items }) {
     const { address, alternate_number, city, country, full_name, landmark, locality, message, payment_mode, pincode, state } = order;
     return (
         //add stytle here for address section 
-        <p>
-            {address},{alternate_number}, {city}, {country}, {full_name}, {landmark}, {locality}, {message}, {payment_mode}, {pincode}
-            {state}
-        </p>
+        <div className='address-place'>
+            <div className='addresss-bg'>
+
+                <h4> <b> Delivery Address</b></h4>
+                <p>
+                    {address},{alternate_number}, {city}, {country}, {full_name}, {landmark}, {locality}, {message}, {payment_mode}, {pincode}
+                    {state}
+                </p>
+                <h6><b> Mobile:</b> <span>9049877048</span> </h6>
+            </div>
+        </div>
     )
 }
 function Productdetails({ items }) {
     const { status, product: { name, description, image } } = items;
     return (
         //add stytle here for product section 
-        <p>
-            {name},
-            {description},
-            <div>
-                <img style={{
-                    height: '150px',
-                    width: '150px'
-                }} src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+        <div className='product-page-wrap'>
+            <div className='product-page'>
+                <div className='left'>
+
+
+                        <div>
+                            <img style={{
+                                height: '150px',
+                                width: '150px'
+                            }} src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+                        </div>
+                        <div>
+                            <h5>
+                                {name}
+                            </h5> 
+                            <p>
+                                {description}
+                            </p>
+                            <div>status:{status}</div>
+                        </div>
+                    
+                </div>
             </div>
-            <div>status:{status}</div>
-        </p>
+        </div>
     )
 }
 

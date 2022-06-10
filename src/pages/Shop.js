@@ -35,7 +35,7 @@ const Shop = ({ addToCart }) => {
     const [applyFilter, setApplyFilter] = useState(false);
     const [page, setPage] = useState(1);
     const [priceValue, setPriceValue] = useState([100, 1000])
-
+    const [selectedSortMethod, setSelectedSortMethod] = useState('popularity')
     Tabtitle('FAB | Shop')
 
     const fetchproducts = async () => {
@@ -63,11 +63,24 @@ const Shop = ({ addToCart }) => {
         })
         setFilterData(filterData)
     }
-
+    const handleSelectChange = (event) => {
+        setSelectedSortMethod(event.target.value)
+        setApplyFilter(true)
+    }
     useEffect(() => {
         fetchproducts();
     }, []);
 
+    useEffect(() => {
+        if (selectedSortMethod === 'price') {
+            const filterData = products.sort((a, b) => {
+                return a.price > b.price ? 1 : -1;
+            })
+            setFilterData(filterData)
+        } else {
+            setApplyFilter(false)
+        }
+    }, [selectedSortMethod])
     const productFilterList = filterData.map((product, i) => {
         const { id, image: [{ image }], name, description, price } = product;
         return (
@@ -233,9 +246,9 @@ const Shop = ({ addToCart }) => {
                                     <ul>
 
                                         <li>
-                                            <select>
-                                                <option value="sort by popularity">sort by popularity</option>
-                                                <option value="sort by price">sort by price</option>
+                                            <select onChange={handleSelectChange}>
+                                                <option value="popularity">sort by popularity</option>
+                                                <option value="price">sort by price</option>
                                                 {/* <option value="sort by category">sort by category</option> */}
                                             </select>
                                         </li>

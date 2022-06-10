@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './checkout.css'
 import { connect } from 'react-redux'
@@ -8,13 +8,15 @@ import Tabtitle from '../../pages/Tabtitle';
 import { setCouponDetails, setSigninOpen } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Coupon from '../coupon/Coupon';
-const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized, user, cartItem }) => {
+import { FaSpinner } from 'react-icons/fa';
+const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
     let Navigate = useNavigate()
     const axiosPrivate = useAxiosPrivate();
-    const [totalPrice, setTotalPrice] = React.useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [paymentMethodOne, setPaymentMethodOne] = useState(false);
     const [paymentMethodTwo, setPaymentMethodTwo] = useState(false);
     const [paymentMethodThree, setPaymentMethodThree] = useState(false);
+    const [formErrors, setFormErrors] = useState({})
     const initialValues = {
         full_name: "",
         city: "",
@@ -28,34 +30,92 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
         payment_mode: "",
         message: "",
         payment_mode: "upi",
-        locality: ""
+        locality: "",
+        couponCode: ""
     };
     const [formValues, setFormValues] = useState(initialValues)
+    const [isSubmit, setIsSubmit] = useState(false)
+    const [loader, setLoader] = useState(false)
     Tabtitle('FAB | Checkout')
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
     }
-    const placeOrder = () => {
-        axiosPrivate.post('/api/v1/order/place-order/', formValues)
-            .then(response => {
-                console.log(response)
-                if (response.status === 200) {
-                    Navigate('/orderlist')
-                }
-            })
-            .catch(response => {
-                console.log(response)
-            })
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setFormErrors(validateCheckout(formValues));
+        setIsSubmit(true);
     }
-    React.useEffect(() => {
+    useEffect(() => {
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            setLoader(true)
+            axiosPrivate.post('/api/v1/order/place-order/', formValues)
+                .then(response => {
+                    if (response.status === 200) {
+                        setLoader(false)
+                        Navigate('/orderlist')
+                    }
+                })
+                .catch(error => {
+                    setLoader(false)
+                    throw error
+                })
+        }
+        return () => {
+            setIsSubmit(false)
+        }
+    }, [formErrors])
+    useEffect(() => {
         let price = 0;
         cartItem.forEach(item => {
             price += item.quantity * item.price;
         })
         setTotalPrice(price);
     }, [cartItem, totalPrice, setTotalPrice]);
+
+    useEffect(() => {
+        if (couponDetails.length !== 0) {
+            setFormValues({ couponCode: couponDetails.couponName })
+        }
+    }, [couponDetails])
+    const validateCheckout = (values) => {
+        const errors = {};
+        const regexPincode = /^[1-9][0-9]{5}$/;
+        const regexmobile = /^([+]\d{2})?\d{10}$/;
+        if (!values.full_name) {
+            errors.full_name = 'Full Name is required'
+        }
+        if (!values.country) {
+            errors.country = 'Select country'
+        }
+        if (!values.address) {
+            errors.address = 'Address is required'
+        }
+        if (!values.locality) {
+            errors.locality = 'Locality is required'
+        }
+        if (!values.landmark) {
+            errors.landmark = 'Landmark is required'
+        }
+        if (!values.state) {
+            errors.state = 'Select state'
+        }
+        if (!values.city) {
+            errors.city = 'Select city'
+        }
+        if (!values.pincode) {
+            errors.pincode = 'Pincode is required'
+        } else if (!regexPincode.test(values.pincode)) {
+            errors.pincode = 'Enter a valid pincode!';
+        }
+        if (!values.alternate_number) {
+            errors.alternate_number = 'Email is required!'
+        } else if (!regexmobile.test(values.alternate_number)) {
+            errors.alternate_number = 'Enter a valid mobile number!';
+        }
+        return errors;
+    }
     const productList = cartItem.map((item, i) => {
         const { title, price, quantity } = item;
         return (
@@ -106,6 +166,7 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                         onChange={handleChange}
                                                         type="text"
                                                         id="form-first-name" />
+                                                    <p>{formErrors.full_name}</p>
                                                 </div>
                                             </div>
                                             {/* <div className="col-md-6">
@@ -140,6 +201,7 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                     <option value="TR">Turkey</option>
                                                     <option value="CA">Canada</option> */}
                                                     </select>
+                                                    <p>{formErrors.country}</p>
                                                 </div>
                                             </div>
                                             <div className="col-md-12">
@@ -152,6 +214,8 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                         type="text"
                                                         id="form-address-1"
                                                         placeholder="Address" />
+                                                    <p>{formErrors.address}</p>
+
                                                     <input
                                                         name='locality'
                                                         value={formValues.locality}
@@ -159,6 +223,8 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                         type="text" className="m-t-10"
                                                         id="form-address-2"
                                                         placeholder="Locality" />
+                                                    <p>{formErrors.locality}</p>
+
                                                     <input
                                                         name='landmark'
                                                         value={formValues.landmark}
@@ -166,6 +232,8 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                         type="text" className="m-t-10"
                                                         id="form-address-3"
                                                         placeholder="Landmark" />
+                                                    <p>{formErrors.landmark}</p>
+
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -183,6 +251,8 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                     <option value="Syl">Sylet</option>
                                                     <option value="Chi">Chittagong</option> */}
                                                     </select>
+                                                    <p>{formErrors.state}</p>
+
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -200,6 +270,8 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                     <option value="Syl">Sylet</option>
                                                     <option value="Chi">Chittagong</option> */}
                                                     </select>
+                                                    <p>{formErrors.city}</p>
+
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -210,6 +282,8 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                         value={formValues.pincode}
                                                         onChange={handleChange}
                                                         type="text" id="form-zipcode" />
+                                                    <p>{formErrors.pincode}</p>
+
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -220,15 +294,19 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                         value={formValues.alternate_number}
                                                         onChange={handleChange}
                                                         type="text" id="form-phone" />
+                                                    <p>{formErrors.alternate_number}</p>
+
                                                 </div>
                                             </div>
-                                            <div className="col-md-6">
+                                            {/* <div className="col-md-6">
                                                 <div className="form-box__single-group">
                                                     <label htmlFor="form-email">Email Address</label>
                                                     <input
+                                                        name='email'
                                                         type="email" id="form-email" />
+                                                    <p>{formErrors.email}</p>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             {/* <div className="col-md-12">
                                             <div className="m-tb-20">
                                                 <label htmlFor="check-account">
@@ -374,13 +452,13 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                                     couponDetails.length !== 0 ?
                                                         <div className="your-order-total d-flex justify-content-between">
                                                             <h6 className="your-order-bottom-left font--bold">Disconted amount</h6>
-                                                            <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.discounted_price }</h5>
+                                                            <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.couponDetails.discounted_price}</h5>
                                                         </div> :
                                                         undefined
                                                 }
                                                 <div className={couponDetails.length !== 0 ? "your-order-top d-flex justify-content-between" : "your-order-total d-flex justify-content-between"}>
                                                     <h5 className="your-order-total-left font--bold">Total payable</h5>
-                                                    <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.length !== 0 ? couponDetails.total_amount_payble : totalPrice}</h5>
+                                                    <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.length !== 0 ? couponDetails.couponDetails.total_amount_payble : totalPrice}</h5>
                                                 </div>
                                                 <br />
                                                 <div className="payment-method">
@@ -435,8 +513,8 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                                         </div>
                                         <div className="text-center">
                                             <button
-                                                onClick={() => placeOrder()}
-                                                className="btn btn--small btn--radius btn--green btn--green-hover-black btn--uppercase font--bold" type="submit">PLACE ORDER</button>
+                                                onClick={handleSubmit}
+                                                className="btn btn--small btn--radius btn--green btn--green-hover-black btn--uppercase font--bold" type="submit">{loader ? <FaSpinner icon="spinner" className="spinner" /> : "PLACE ORDER"}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -447,7 +525,7 @@ const Checkout = ({ setCouponDetails, couponDetails, setSigninOpen, isAuthorized
                     <div className='text-center'>
                         <p className='para-text-sign-in'>You Are Not sign in </p>
                         <button className='text-signin'
-                        onClick={() => setSigninOpen()}
+                            onClick={() => setSigninOpen()}
                         >click here to sign in </button>
                     </div>
             }

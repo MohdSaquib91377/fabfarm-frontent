@@ -16,7 +16,10 @@ const Coupon = ({ setCouponDetails }) => {
     const applyCoupon = async () => {
         try {
             const response = await axiosPrivate.get(`/api/v1/coupon/apply/${coupon.couponcode}/`)
-            setCouponDetails(response.data.data)
+            setCouponDetails({
+                couponDetails: response.data.data,
+                couponName: coupon.couponcode
+            })
         } catch (error) {
             throw error
         }

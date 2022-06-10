@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { addToCart, setProducts, buyNow } from '../redux/actions/productActions';
 import { connect } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -29,6 +29,7 @@ const useStyles = makeStyles({
 const Shop = ({ buyNow, addToCart }) => {
     const classes = useStyles();
     let { categoryId } = useParams();
+    let Navigate = useNavigate();
     const [productView, setProductView] = useState('');
     const [products, setProducts] = useState([])
     const [filterData, setFilterData] = useState([])
@@ -66,6 +67,12 @@ const Shop = ({ buyNow, addToCart }) => {
     const handleSelectChange = (event) => {
         setSelectedSortMethod(event.target.value)
         setApplyFilter(true)
+    }
+
+    const buyButton = (id) => {
+        debugger
+        buyNow(id)
+        Navigate('/checkout');
     }
     useEffect(() => {
         fetchproducts();
@@ -146,7 +153,7 @@ const Shop = ({ buyNow, addToCart }) => {
                         <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
-                        <button onClick={() => buyNow(id)}>Buy now</button>
+                        <button onClick={() => buyButton(id)}>Buy now</button>
                     </div>
                     <div className="content_block">
                         <div className="product_price_box">

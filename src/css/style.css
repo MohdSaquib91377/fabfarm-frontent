@@ -12582,6 +12582,33 @@ button.unset {
   margin: 20px 0;
   font-size: 14px;
 }
-.product-page .left div:last-child{
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  width: 10px;
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: #000;
+  border-radius: 10px;
+}
+@-moz-document url-prefix() {
+  .scroller {
+    scrollbar-width: thin;
+    scrollbar-color: #000;
+  }
+}
+/* Handle on hover */
+
+#root::-webkit-scrollbar-thumb:hover {
+  width: 10px;
+  background: #555;
 }

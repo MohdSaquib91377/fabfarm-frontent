@@ -102,7 +102,12 @@ const Wishlist = () => {
                     minHeight: '100vh',
                     width: 'auto'
                 }}>
-                    {wishlist}
+                    {
+                        wishlistItems.length !== 0 ?
+                            wishlist
+                            :
+                            "No items"
+                    }
                 </div>
             </div>
         </>

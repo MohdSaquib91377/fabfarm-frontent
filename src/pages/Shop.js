@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToCart, setProducts, buyNow } from '../redux/actions/productActions';
+import { addToCart, setProducts } from '../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 });
 
 
-const Shop = ({ buyNow, addToCart }) => {
+const Shop = ({ addToCart }) => {
     const classes = useStyles();
     let { categoryId } = useParams();
     let Navigate = useNavigate();
@@ -34,7 +34,7 @@ const Shop = ({ buyNow, addToCart }) => {
     const [products, setProducts] = useState([])
     const [filterData, setFilterData] = useState([])
     const [applyFilter, setApplyFilter] = useState(false);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(2);
     const [priceValue, setPriceValue] = useState([100, 1000])
     const [selectedSortMethod, setSelectedSortMethod] = useState('popularity')
     Tabtitle('FAB | Shop')
@@ -70,8 +70,7 @@ const Shop = ({ buyNow, addToCart }) => {
     }
 
     const buyButton = (id) => {
-        debugger
-        buyNow(id)
+        addToCart(id)
         Navigate('/checkout');
     }
     useEffect(() => {
@@ -102,6 +101,7 @@ const Shop = ({ buyNow, addToCart }) => {
                         <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
                         <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
                         <button onClick={() => addToCart(id)}>add to cart</button>
+                        <button onClick={() => buyButton(id)}>Buy now</button>
                     </div>
                     <div className="content_block">
                         <div className="product_price_box">
@@ -139,7 +139,7 @@ const Shop = ({ buyNow, addToCart }) => {
             </li >
         );
     })
-    const productList = products.map((product, i) => {
+    const productList = products.slice(0, page).map((product, i) => {
         const { id, image: [{ image }], name, description, price } = product;
         return (
             <li key={i}>
@@ -298,7 +298,7 @@ const Shop = ({ buyNow, addToCart }) => {
                                 </div>
                                 <InfiniteScroll
                                     dataLength={products.length} //This is important field to render the next data
-                                    next={() => setPage(page + 1)}
+                                    next={() => setPage(page + 2)}
                                     hasMore={true}
                                     // loader={<h4>Loading...</h4>}
                                     scrollableTarget='products_list'
@@ -335,7 +335,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setProducts: (product) => dispatch(setProducts(product)),
         addToCart: (id) => dispatch(addToCart(id)),
-        buyNow: (id) => dispatch(buyNow(id))
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);

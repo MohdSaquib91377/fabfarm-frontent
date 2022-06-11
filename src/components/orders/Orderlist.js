@@ -81,7 +81,7 @@ const Orderlist = ({ user }) => {
 
             <div className='box-shadow-adding' style={{
                 position: 'relative',
-                top: '200px',
+                top: '50px',
                 marginBottom: '280px',
                 width: 'auto'
             }}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from 'swiper';
 import { Navigation } from "swiper";
@@ -14,6 +14,7 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
 const Carouselfeatured = ({ isAuthorized, catID, products, addToCart }) => {
   SwiperCore.use([Autoplay]);
   const axiosPrivate = useAxiosPrivate()
+  const [loop, setLoop] = useState(false);
   const addToWishList = (id) => {
     if (isAuthorized) {
       axiosPrivate.post('/api/v1/wishlist/wishlist/add-to-wishlist/', { product_id: id })
@@ -21,7 +22,11 @@ const Carouselfeatured = ({ isAuthorized, catID, products, addToCart }) => {
         .catch(response => console.log(response))
     }
   }
-
+  useEffect(() => {
+    if (products.length > 4) {
+      setLoop(true)
+    }
+  }, [products])
   const Product = products.map((item, i) => {
     const { id, name, image: [{ image }], price } = item
     return (
@@ -60,7 +65,7 @@ const Carouselfeatured = ({ isAuthorized, catID, products, addToCart }) => {
     <>
       <Swiper
         autoplay={true}
-        // loop={true}
+        loop={loop}
         navigation={true}
         slidesPerView={1}
         spaceBetween={10}

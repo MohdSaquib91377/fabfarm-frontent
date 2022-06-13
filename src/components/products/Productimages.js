@@ -21,7 +21,7 @@ const Productimages = ({ image }) => {
                     slidesPerView={3}
                     spaceBetween={10}
                     modules={[Navigation]}
-                    className="mySwiper">
+                    className="swiper-container-vertical">
                     {thumbImages}
                 </Swiper>
             </div>

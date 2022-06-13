@@ -34,7 +34,7 @@ const Shop = ({ addToCart }) => {
     const [products, setProducts] = useState([])
     const [filterData, setFilterData] = useState([])
     const [applyFilter, setApplyFilter] = useState(false);
-    const [page, setPage] = useState(2);
+    // const [page, setPage] = useState(2);
     const [priceValue, setPriceValue] = useState([100, 1000])
     const [selectedSortMethod, setSelectedSortMethod] = useState('popularity')
     Tabtitle('FAB | Shop')
@@ -139,7 +139,7 @@ const Shop = ({ addToCart }) => {
             </li >
         );
     })
-    const productList = products.slice(0, page).map((product, i) => {
+    const productList = products.map((product, i) => {
         const { id, image: [{ image }], name, description, price } = product;
         return (
             <li key={i}>
@@ -296,9 +296,9 @@ const Shop = ({ addToCart }) => {
                                     </ul>
 
                                 </div>
-                                <InfiniteScroll
+                                {/* <InfiniteScroll
                                     dataLength={products.length} //This is important field to render the next data
-                                    next={() => setPage(page + 2)}
+                                    next={() => setPage(page + 1)}
                                     hasMore={true}
                                     // loader={<h4>Loading...</h4>}
                                     scrollableTarget='products_list'
@@ -307,7 +307,7 @@ const Shop = ({ addToCart }) => {
                                             <b>Yay! You have seen it all</b>
                                         </p>
                                     }
-                                >
+                                > */}
                                     <div id='products_list' className={productView !== 'list' ? "product_items_section product_list_view" : "product_items_section"}>
                                         <ul>
                                             {applyFilter ?
@@ -316,7 +316,7 @@ const Shop = ({ addToCart }) => {
                                             }
                                         </ul>
                                     </div>
-                                </InfiniteScroll>
+                                {/* </InfiniteScroll> */}
                             </div>
 
                         </div>

@@ -8395,6 +8395,7 @@ ul {
 }
 .product_items_section.product_list_view > ul > li {
   width: 100%;
+  margin-bottom: -30px
 }
 .product_items_section.product_list_view > ul > li > .product_item_block {
   display: flex;

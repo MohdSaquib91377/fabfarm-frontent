@@ -788,17 +788,17 @@ ul {
   line-height: 42px;
   font-size: 16px;
 }
-.PRODUCT-RESPONSIVE img{
+.PRODUCT-RESPONSIVE img {
   border-radius: 5px;
 }
-.PRODUCT-RESPONSIVE{
+.PRODUCT-RESPONSIVE {
   margin-top: 0 !important;
   margin-right: 5px;
 }
-.add-image-radius img{
+.add-image-radius img {
   border-radius: 10px;
 }
-.PRODUCT-RESPONSIVE .swiper-backface-hidden .swiper-slide{
+.PRODUCT-RESPONSIVE .swiper-backface-hidden .swiper-slide {
   height: 80px !important;
 }
 @media (min-width: 992px) {
@@ -6356,36 +6356,35 @@ table tbody > tr td a:hover {
 .border-top-1 {
   border-top: 1px solid #ddd;
 }
-.breadcrum-width-dot{
+.breadcrum-width-dot {
   white-space: nowrap;
   max-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
 }
-.parent-wishlist{
+.parent-wishlist {
   padding: 10px;
   box-shadow: 2px 2px 10px -5px;
 }
 
-
-/* slider perv next buttons start here*/ 
+/* slider perv next buttons start here*/
 
 .swiper-container-vertical {
   .swiper-button-next,
   .swiper-button-prev {
-    left: 50%;
-    transform: rotate(90deg);
-    transform-origin: left center;
+    left: 50% !important;
+    transform: rotate(90deg) !important;
+    transform-origin: left center !important;
   }
 
   .swiper-button-prev {
-    top: 10px;
+    top: 10px !important;
   }
 
   .swiper-button-next {
-    top: auto;
-    bottom: 10px;
+    top: auto !important;
+    bottom: 10px !important;
   }
 }
 

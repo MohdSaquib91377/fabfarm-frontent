@@ -71,7 +71,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
     return (
         <>
             <header className={navBar ? 'header3_wrapper dark_header' : 'header3_wrapper'}>
-                <Weather />
+                {/* <Weather /> */}
                 <div className="clv_header3">
                     <div className="row">
                         <div className="col-lg-2 col-md-2">
@@ -98,9 +98,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                                                 <a className="search_toggle" href="#"><FontAwesomeIcon color='#ffffff' icon={faSearch} /></a>
                                             </li>
                                             <li>
-                                                <button
-                                                    style={{ all: 'unset', cursor: 'pointer' }}
-                                                    onClick={openCart}>
+                                                <button style={{ all: 'unset', cursor: 'pointer' }} onClick={openCart}>
                                                     <FontAwesomeIcon color='#ffffff' icon={faShoppingCart} />
                                                     {
                                                         isAuthorized ?

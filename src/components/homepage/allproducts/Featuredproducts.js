@@ -37,14 +37,13 @@ const Featuredproducts = ({ setProducts }) => {
     }, [featuredproducts])
     return (
         <div className="garden_about_wrapper clv_section">
-            <div className="container">
+            <div className="container pageTitle">
                 {featuredproducts.map((allproducts, i) => {
                     const { id, name, products } = allproducts;
                     return (
                         <div key={i} style={{
                             marginTop: '30px'
                         }}>
-
                             <h3>{name}</h3>
                             <Carouselfeatured catID={id} products={products} />
                             <Link style={{

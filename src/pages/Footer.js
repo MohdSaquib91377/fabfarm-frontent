@@ -9,7 +9,7 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
 
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <div className="footer_block">
                             <div className="footer_logo"><Link to='/'><img src={process.env.PUBLIC_URL + "images/logo.png"} alt="image" /></Link></div>
                             <p><span>
@@ -108,7 +108,7 @@ const Footer = () => {
                                         />
                                     </g>
                                 </svg>
-                            </span> cultivation@example.com</p>
+                            </span>info@example.com</p>
                             <ul className="agri_social_links">
                                 <li><FontAwesomeIcon icon={faFacebook} /></li>
                                 <li><FontAwesomeIcon icon={faInstagram} /></li>
@@ -117,32 +117,38 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-6">
                         <div className="footer_block">
                             <div className="footer_heading">
                                 <h4>Quick Links</h4>
                                 <img src={process.env.PUBLIC_URL + "images/garden_underline3.png"} alt="image" />
                             </div>
-                            <ul className="time_table">
-                                <li>
-                                    <Link to='/' ><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Home</p></Link>
-                                </li>
-                                <li>
-                                    <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Shop</p></Link>
-                                </li>
-                                <li>
-                                    <Link to='/aboutus' > <p><span><FontAwesomeIcon icon={faAngleRight} /></span> About</p></Link>
-                                </li>
-                                <li>
-                                    <Link to='/contact' ><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Contact</p></Link>
-                                </li>
-                                <li>
-                                    <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Shop</p></Link>
-                                </li>
-                            </ul>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <ul className="time_table">
+                                        <li>
+                                            <Link to='/' ><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Home</p></Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/aboutus' > <p><span><FontAwesomeIcon icon={faAngleRight} /></span> About</p></Link>
+                                        </li>                                       
+                                    </ul>   
+                                </div>
+                                <div className="col-md-6">
+                                    <ul className="time_table">                                        
+                                        <li>
+                                            <Link to='/contact' ><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Contact</p></Link>
+                                        </li>
+                                        <li>
+                                            <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Shop</p></Link>
+                                        </li>
+                                    </ul>   
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <div className="footer_block">
                             <div className="footer_heading">
                                 <h4>Your safety</h4>

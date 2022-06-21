@@ -49,7 +49,7 @@ function Desktopmenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthoriz
                         <li
                             style={{ color: 'white', cursor: 'pointer' }}
                             onClick={() => setSigninOpen()} >
-                            Signin
+                            Sign In
                         </li>
                 }
             </ul>

@@ -311,4 +311,4 @@ const mapDispatchToProps = (dispatch) => {
         setProducts: (id) => dispatch(setProducts(id))
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Product)
+export default connect(mapStateToProps, mapDispatchToProps)(Product)        

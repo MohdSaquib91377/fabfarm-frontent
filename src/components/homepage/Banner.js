@@ -2,25 +2,26 @@ import React from 'react'
 import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Link } from 'react-router-dom';
+
 const Banner = () => {
     return (
-        <>
+        <>            
             <CarouselProvider
                 naturalSlideWidth={100}
                 naturalSlideHeight={70}
-                totalSlides={2}
+                totalSlides={3}
                 interval={5000}
                 isPlaying={true}
             >
                 <Slider>
-                    <Slide
+                <Slide
                         index={0}
                         style={{
-                            backgroundImage: `url(${process.env.PUBLIC_URL}"images/banner1.jpg")`
+                            background: `url(${process.env.PUBLIC_URL}"images/banner1.jpg") no-repeat 0 0`
                         }}
                     >
                         <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                            <div className="clv_slide_inner" style={{ marginTop: '300px' }}>
+                            <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
                                 <h1>WELCOME TO</h1>
                                 <h2>Farmers Allaince For Business</h2>
                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br />nostrud exercitation ullamco laboris nisi ut aliquipea commodand.</p>
@@ -35,17 +36,37 @@ const Banner = () => {
                     <Slide
                         index={1}
                         style={{
-                            backgroundImage: `url(${process.env.PUBLIC_URL}"images/banner2.jpg")`
+                            background: `url(${process.env.PUBLIC_URL}"images/banner2.jpg") no-repeat 0 0`
                         }}
                     >
                         <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                            <div className="clv_slide_inner" style={{ marginTop: '300px' }}>
+                            <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
                                 <h1>WELCOME TO</h1>
                                 <h2>Farmers Allaince For Business</h2>
                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br />nostrud exercitation ullamco laboris nisi ut aliquipea commodand.</p>
                                 <div className="banner_btn">
                                     <span className="left_line"></span>
                                     <a href="#" className="clv_btn">Shop Now</a>
+                                    <span className="right_line"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </Slide>
+                    <Slide
+                        index={2}
+                        style={{
+                            background: `url(${process.env.PUBLIC_URL}"images/banner3.jpg")  no-repeat 0 0`
+                        }}
+                    >
+                       <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                            <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
+                                <h1>WELCOME TO</h1>
+                                <h2>Farmers Allaince For Business</h2>
+                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br />nostrud exercitation ullamco laboris nisi ut aliquipea commodand.</p>
+                                <div className="banner_btn">
+                                    <span className="left_line"></span>
+                                    <Link to='/contact' className="clv_btn">Contact us</Link>
                                     <span className="right_line"></span>
                                 </div>
                             </div>

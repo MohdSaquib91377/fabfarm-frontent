@@ -9,7 +9,7 @@ const Contact = () => {
             <div className="breadcrumb_wrapper" style={{ minHeight: '300px' }}>
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
-                        <div className="col-md-4">
+                        <div className="col-md-12">
                             <div className="breadcrumb_inner">
                                 <h3>contact us</h3>
                             </div>
@@ -23,42 +23,7 @@ const Contact = () => {
                     </ul>
                 </div>
             </div>
-            <div className="contact_blocks_wrapper clv_section">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-4 col-md-4">
-                            <div className="contact_block">
-                                <span></span>
-                                <div className="contact_icon"><img src="images/contact_icon1.png" alt="image" /></div>
-                                <h4>contact us</h4>
-                                <p>
-                                    09112293300
-                                </p>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4">
-                            <div className="contact_block">
-                                <span></span>
-                                <div className="contact_icon"><img src="images/contact_icon2.png" alt="image" /></div>
-                                <h4>email</h4>
-                                <p>
-                                    farmersallianceforbusiness@gmail.com
-                                </p>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4">
-                            <div className="contact_block">
-                                <span></span>
-                                <div className="contact_icon"><img src="images/contact_icon3.png" alt="image" /></div>
-                                <h4>address</h4>
-                                <p>
-                                    Baramati, Maharastra, India.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div className="contact_form_wrapper clv_section">
                 <div className="container">
                     <div className="row">
@@ -110,6 +75,42 @@ const Contact = () => {
                                     <h5>toll free number</h5>
                                     <h3>+1-202-555-0101</h3>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="contact_blocks_wrapper clv_section">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-4 col-md-4">
+                            <div className="contact_block">
+                                <span></span>
+                                <div className="contact_icon"><img src="images/contact_icon1.png" alt="image" /></div>
+                                <h4>contact us</h4>
+                                <p>
+                                    09112293300
+                                </p>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-md-4">
+                            <div className="contact_block">
+                                <span></span>
+                                <div className="contact_icon"><img src="images/contact_icon2.png" alt="image" /></div>
+                                <h4>email</h4>
+                                <p>
+                                    farmersallianceforbusiness@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-md-4">
+                            <div className="contact_block">
+                                <span></span>
+                                <div className="contact_icon"><img src="images/contact_icon3.png" alt="image" /></div>
+                                <h4>address</h4>
+                                <p>
+                                    Baramati, Maharastra, India.
+                                </p>
                             </div>
                         </div>
                     </div>

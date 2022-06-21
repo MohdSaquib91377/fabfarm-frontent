@@ -6,11 +6,10 @@ const Counter = () => {
         <div className="clv_counter_wrapper clv_section">
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="col-lg-6 col-md-6">
+                    <div className="col-lg-8 col-md-8">
                         <div className="clv_heading white_heading">
                             <h3>We Are The Experts Of This Field.</h3>
-                            <div className="clv_underline"><img src="images/underline2.png" alt="image" /></div>
-                            <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dole magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.</p>
+                            <div className="clv_underline"><img src="images/underline2.png" alt="image" /></div>                            
                         </div>
                     </div>
                 </div>

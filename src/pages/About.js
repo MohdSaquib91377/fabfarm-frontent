@@ -12,7 +12,7 @@ const About = () => {
             <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
-                        <div className="col-md-4">
+                        <div className="col-md-12">
                             <div className="breadcrumb_inner">
                                 <h3>about us</h3>
                             </div>

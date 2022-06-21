@@ -104,6 +104,7 @@ ul {
 .container {
   max-width: 1200px;
 }
+.pageTitile h3{ font-size:18px; line-height:1.4; margin-bottom:20px}
 .justify-content-center {
   -ms-flex-pack: center !important;
   justify-content: center !important;
@@ -280,7 +281,7 @@ ul {
   height: 35px;
   color: #2a7d2e;
   font-size: 18px;
-  float: left;
+  float:left;
   margin-right: 11px;
   display: inline-block;
   border-radius: 7px;
@@ -4397,7 +4398,7 @@ ul {
   -moz-transition: all 0.3s ease-in-out;
 }
 .index_v4 .header3_wrapper.dark_header {
-  background-color: #000000;
+  background:linear-gradient(to bottom, #0c260e, #317b31);
 }
 .index_v4
   .header3_wrapper.dark_header
@@ -4415,6 +4416,7 @@ ul {
   width: 100%;
   max-width: 1720px;
   margin: 0 auto;
+  padding: 15px;
 }
 .index_v4 .clv_right_header .clv_menu {
   background-color: unset;
@@ -4435,6 +4437,7 @@ ul {
   align-items: center;
   height: 100%;
 }
+.index_v4 .header3_wrapper.dark_header img{ width:160px;}
 .index_v4 .clv_right_header .clv_menu .cart_nav {
   margin-right: 30px;
   padding: 0;
@@ -4546,12 +4549,15 @@ ul {
 }
 .index_v4 .clv_btn:hover {
   color: #2a7d2e;
+  background-color:#fff;
+  border-radius: 50px;
+  border:1px solid #fff;
 }
 .index_v4 .clv_btn::before {
   background-color: #2a7d2e;
 }
 .index_v4 .clv_btn::after {
-  border: 1px solid #2a7d2e;
+  border: none;
 }
 .index_v4 .clv_slide_inner {
   text-align: center;
@@ -5055,7 +5061,6 @@ ul {
   padding-top: 88px;
 }
 .garden_service2_section {
-  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   padding: 0px 15px;
   overflow: hidden;
@@ -5066,8 +5071,7 @@ ul {
 }
 .garden_service2_section .service2_block {
   position: relative;
-  background: url("../../public/images/home/apples.jpg") no-repeat center;
-  background-size: cover;
+  background: linear-gradient(to right, #1fa12e, #2a7d2e, #1fa12e);
   text-align: center;
   padding: 40px 20px;
   z-index: 1;
@@ -5076,6 +5080,7 @@ ul {
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
+  border-radius: 10px;
 }
 .garden_service2_section .service2_block:before {
   content: "";
@@ -5089,6 +5094,7 @@ ul {
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
+  border-radius: 10px;
 }
 .garden_service2_section .service2_block:hover:before {
   background-color: rgba(0, 0, 0, 0.7);
@@ -5689,9 +5695,9 @@ ul {
 /*Garden Footer Start*/
 .index_v4 .clv_footer_wrapper {
   background: none;
-  background-color: #222222;
-  padding-top: 93px;
-  padding-bottom: 90px;
+  background: linear-gradient(to top, #0c260e, #317b31);
+  padding-top: 45px;
+  padding-bottom: 40px;
 }
 .index_v4 .footer_block > p {
   margin-bottom: 10px;
@@ -12395,7 +12401,7 @@ input.check-nav {
   color: #fff;
 }
 .top-bar {
-  background-color: #1fa12e;
+  background: rgba(42, 125, 46, 0.94);
   padding: 10px;
 }
 .clv_slide_inner h1,
@@ -12418,6 +12424,7 @@ button.unset {
 .cart_block h5 {
   font-size: 16px;
 }
+.cart_block img{ border-radius: 5px;}
 .redbtn {
   color: red;
 }

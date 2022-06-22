@@ -9,13 +9,35 @@ import { setCouponDetails, setSigninOpen } from '../../redux/actions/productActi
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Coupon from '../coupon/Coupon';
 import { FaSpinner } from 'react-icons/fa';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
+
+const loadRazorpay = (src) => {
+    return new Promise(resolve => {
+        const script = document.createElement('script')
+        script.src = src
+        script.onload = () => {
+            resolve(true)
+        }
+        script.onerror = () => {
+            resolve(false)
+        }
+        document.body.appendChild(script)
+    })
+}
+
+
 const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
     let Navigate = useNavigate()
     const axiosPrivate = useAxiosPrivate();
     const [totalPrice, setTotalPrice] = useState(0);
-    const [paymentMethodOne, setPaymentMethodOne] = useState(false);
-    const [paymentMethodTwo, setPaymentMethodTwo] = useState(false);
-    const [paymentMethodThree, setPaymentMethodThree] = useState(false);
+    // const [paymentMethodOne, setPaymentMethodOne] = useState(false);
+    // const [paymentMethodTwo, setPaymentMethodTwo] = useState(false);
+    // const [paymentMethodThree, setPaymentMethodThree] = useState(false);
     const [formErrors, setFormErrors] = useState({})
     const initialValues = {
         full_name: "",
@@ -29,7 +51,6 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
         alternate_number: "",
         payment_mode: "",
         message: "",
-        payment_mode: "upi",
         locality: "",
         couponCode: ""
     };
@@ -47,11 +68,69 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
         setFormErrors(validateCheckout(formValues));
         setIsSubmit(true);
     }
+
+    // razorpay code 
+
+    const displayRazorpay = async (data) => {
+        debugger
+        const { razorpay_order_id, amount } = data
+        const res = await loadRazorpay('https://checkout.razorpay.com/v1/checkout.js')
+
+        if (!res) {
+            alert('Razorpay sdk failed to load. Are you online ?')
+        }
+
+        const options = {
+            "key": "rzp_test_dDKHklaSWC4N3X", // Enter the Key ID generated from the Dashboard
+            "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "FAB",
+            "description": "Test Transaction",
+            "image": "images/home/logo.png",
+            "order_id": razorpay_order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                alert(response.razorpay_payment_id);
+                alert(response.razorpay_order_id);
+                alert(response.razorpay_signature)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open()
+        rzp1.on('payment.failed', function (response) {
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+        });
+
+    }
+
+    // razorpay code ends
+
+
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setLoader(true)
             axiosPrivate.post('/api/v1/order/place-order/', formValues)
                 .then(response => {
+                    console.log(response)
+                    if (response.status === 201) {
+                        displayRazorpay(response.data);
+                    }
                     if (response.status === 200) {
                         setLoader(false)
                         Navigate('/orderlist')
@@ -113,6 +192,9 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
             errors.alternate_number = 'Email is required!'
         } else if (!regexmobile.test(values.alternate_number)) {
             errors.alternate_number = 'Enter a valid mobile number!';
+        }
+        if (!values.payment_mode) {
+            errors.payment_mode = 'Select payment mode'
         }
         return errors;
     }
@@ -464,7 +546,7 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
                                                 <div className="payment-method">
                                                     <div className="payment-accordion element-mrg">
                                                         <div className="panel-group" id="accordion">
-                                                            <div className="panel payment-accordion">
+                                                            {/* <div className="panel payment-accordion">
                                                                 <div className="panel-heading" onClick={() => setPaymentMethodOne(!paymentMethodOne)}>
                                                                     <h4 className="panel-title">
                                                                         <a className=" d-flex justify-content-between align-items-center">
@@ -505,6 +587,22 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
                                                                         <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                                                                     </div>
                                                                 </div>
+                                                            </div> */}
+                                                            <div>
+                                                                <FormControl>
+                                                                    <FormLabel>Select Payment Mode</FormLabel>
+                                                                    <RadioGroup
+                                                                        name="payment_mode"
+                                                                        value={formValues.payment_mode}
+                                                                        onChange={handleChange}
+                                                                    >
+                                                                        <FormControlLabel value="razor_pay" control={<Radio />} label="Razor Pay" />
+                                                                        <FormControlLabel value="cod" control={<Radio />} label="Cash on delevery" />
+                                                                    </RadioGroup>
+                                                                    <p style={{
+                                                                        color: 'red'
+                                                                    }}>{formErrors.payment_mode}</p>
+                                                                </FormControl>
                                                             </div>
                                                         </div>
                                                     </div>

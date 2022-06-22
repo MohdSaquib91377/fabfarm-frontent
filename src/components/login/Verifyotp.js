@@ -11,7 +11,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
     const [loader, setLoader] = useState(false)
     const [resendOtpLoader, setResendOptLoader] = useState(false)
     const [counter, setCounter] = useState(0)
-    const [otp_id, setOtp_Id] = useState(id);
+    const [otp_id, setOtp_Id] = useState()
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
@@ -19,7 +19,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
     const handleOTPSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validateOTP(formValues));
-        setIsSubmit(true)
+        setIsSubmit(true)   
     }
     const resendOtp = (e) => {
         e.preventDefault();
@@ -31,6 +31,9 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
                 setResendOptLoader(false)
             })
     }
+    useEffect(()=>{
+        setOtp_Id(id)
+    },[id])
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setLoader(true)

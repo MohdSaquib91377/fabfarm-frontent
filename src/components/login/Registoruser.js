@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { FaSpinner } from 'react-icons/fa';
-const Registoruser = ({ close, state, setOtpScreen, setId }) => {
+const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail,setResendCounter }) => {
     const initialValues = { name: '', email: "", password: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -33,6 +33,10 @@ const Registoruser = ({ close, state, setOtpScreen, setId }) => {
                     setOtpScreen(true)
                     setLoader(false)
                     setId(response.data.id)
+                    setResendEmail({
+                        email_or_mobile: formValues.email,
+                    })
+                    setResendCounter(60)
                 })
                 .catch(error => {
                     setLoader(false)

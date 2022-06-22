@@ -11,6 +11,8 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
     const [otpScreen, setOtpScreen] = useState(false)
     const [close, setClose] = useState(false);
     const [id, setId] = useState('')
+    const [resendEmail, setResendEmail] = useState([])
+    const [resendCounter, setResendCounter] = useState(0)
     const triggersignin = () => {
         setClose(!close)
         setSigninOpen();
@@ -38,8 +40,20 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
                         <li><a href="#"><span><FontAwesomeIcon icon={faYoutube} /></span></a></li>
                     </ul>
                 </div>
-                <Registoruser state={otpScreen} close={close} setOtpScreen={setOtpScreen} setId={setId} />
-                <Verifyotp state={otpScreen} id={id} />
+                <Registoruser
+                    state={otpScreen}
+                    close={close}
+                    setOtpScreen={setOtpScreen}
+                    setId={setId}
+                    setResendEmail={setResendEmail}
+                    setResendCounter={setResendCounter}
+                />
+                <Verifyotp
+                    state={otpScreen}
+                    id={id}
+                    resendEmail={resendEmail}
+                    resendCounter={resendCounter}
+                />
                 <span className="close"
                     onClick={() => handleCloseButton()}>
                     <svg

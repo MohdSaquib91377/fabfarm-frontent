@@ -17,6 +17,8 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
     const [otpScreen, setOtpScreen] = useState(false)
     const [resetPassScreen, setRestPassScreen] = useState(false)
     const [isRestSubmit, setIsRestSubmit] = useState(false)
+    const [counter, setCounter] = useState(0)
+    const [resendOtpLoader, setResendOptLoader] = useState(false)
     const [id, setID] = useState('')
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -60,6 +62,21 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         setSigninOpen();
         setFormErrors({});
     }
+
+    const resendOtp = (e) => {
+        e.preventDefault();
+        setResendOptLoader(true)
+        axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/account/send-otp/`, {
+            email_or_mobile: formValues.email
+        })
+            .then(response => {
+                setID(response.data.id)
+                setCounter(60)
+                setResendOptLoader(false)
+            })
+    }
+
+
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setLoader(true)
@@ -95,6 +112,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
             })
                 .then(response => {
                     setLoader(false)
+                    setCounter(60)
                     setID(response.data.id)
                     setOtpScreen(true)
                 })
@@ -110,6 +128,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                 otp: formValues.otp
             })
                 .then(response => {
+                    setUser(response.data.data)
                     setLoader(false)
                     setRestPassScreen(true)
                 })
@@ -136,6 +155,12 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                 })
         }
     }, [formErrors]);
+
+    useEffect(() => {
+        const timer = counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+        return () => clearInterval(timer);
+    }, [counter])
+
     const validateSignin = (values) => {
         const errors = {};
         const regexemail = /\S+@\S+\.\S+/;
@@ -265,7 +290,18 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                         onChange={handleChange}
                                     />
                                 </div>
-                                <p>{formErrors.otp}</p>
+                                <div style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between'
+                                }}>
+                                    <p>{formErrors.otp}</p>
+                                    {
+                                        counter !== 0 ?
+                                            <span>Resend OTP in {counter} </span>
+                                            :
+                                            <button onClick={(e) => resendOtp(e)}>{resendOtpLoader ? <FaSpinner icon="spinner" className="spinner" /> : 'Resend OTP'}</button>
+                                    }
+                                </div>
                                 <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'Verify'}</button>
                             </form>
                         </div>

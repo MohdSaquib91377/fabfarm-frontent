@@ -72,8 +72,7 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
     // razorpay code 
 
     const displayRazorpay = async (data) => {
-        debugger
-        const { razorpay_order_id, amount } = data
+        const { razorpay_order_id, amount, razorpay_key_id } = data
         const res = await loadRazorpay('https://checkout.razorpay.com/v1/checkout.js')
 
         if (!res) {
@@ -81,7 +80,7 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
         }
 
         const options = {
-            "key": "rzp_test_dDKHklaSWC4N3X", // Enter the Key ID generated from the Dashboard
+            "key": razorpay_key_id, // Enter the Key ID generated from the Dashboard
             "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "FAB",
@@ -89,9 +88,14 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
             "image": "images/home/logo.png",
             "order_id": razorpay_order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response) {
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature)
+                axiosPrivate.post('/api/v1/payment/payment-success/', response)
+                    .then(res => {
+                        console.log(res)
+                        Navigate('/orderlist')
+                    })
+                    .catch(error => {
+                        throw error
+                    })
             },
             "prefill": {
                 "name": "Gaurav Kumar",
@@ -108,13 +112,20 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
         const rzp1 = new window.Razorpay(options);
         rzp1.open()
         rzp1.on('payment.failed', function (response) {
-            alert(response.error.code);
-            alert(response.error.description);
-            alert(response.error.source);
-            alert(response.error.step);
-            alert(response.error.reason);
-            alert(response.error.metadata.order_id);
-            alert(response.error.metadata.payment_id);
+            const { error: { code, description, source, step, reason, metadata: { order_id, payment_id } } } = response
+            const data = {
+                error_code: code,
+                error_description: description,
+                error_source: source,
+                error_step: step,
+                error_reason: reason,
+                error_order_id: order_id,
+                error_payment_id: payment_id
+            }
+            axiosPrivate.post('/api/v1/payment/payment-failure/', data)
+                .catch(error => {
+                    throw error
+                })
         });
 
     }
@@ -129,6 +140,7 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
                 .then(response => {
                     console.log(response)
                     if (response.status === 201) {
+                        setLoader(false)
                         displayRazorpay(response.data);
                     }
                     if (response.status === 200) {

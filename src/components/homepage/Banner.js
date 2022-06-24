@@ -1,23 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Link } from 'react-router-dom';
+import axios from '../API/axios';
 
 const Banner = () => {
-    return (
-        <>            
-            <CarouselProvider
-                naturalSlideWidth={100}
-                naturalSlideHeight={70}
-                totalSlides={3}
-                interval={5000}
-                isPlaying={true}
-            >
-                <Slider>
-                <Slide
-                        index={0}
+    const [bannerimages, setBannerImages] = useState([])
+    useEffect(() => {
+        let isMounted = true
+        if (isMounted) {
+            axios.get('/api/v1/banner/home/')
+                .then(response => {
+                    setBannerImages(response.data[0].baners)
+                })
+        }
+
+        return (() => {
+            isMounted = false
+        })
+    }, [])
+    const Banner = bannerimages.map((items,index)=>{
+        const {image_or_video}=items;
+        return(
+            <Slide
+                        index={index}
                         style={{
-                            background: `url(${process.env.PUBLIC_URL}"images/banner1.jpg") no-repeat 0 0`
+                            background: `url(${image_or_video}) no-repeat 0 0`
                         }}
                     >
                         <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
@@ -33,7 +41,21 @@ const Banner = () => {
                             </div>
                         </div>
                     </Slide>
-                    <Slide
+        )
+    })
+
+    return (
+        <>
+            <CarouselProvider
+                naturalSlideWidth={100}
+                naturalSlideHeight={70}
+                totalSlides={bannerimages.length}
+                interval={5000}
+                isPlaying={true}
+            >
+                <Slider>
+                    
+                    {/* <Slide
                         index={1}
                         style={{
                             background: `url(${process.env.PUBLIC_URL}"images/banner2.jpg") no-repeat 0 0`
@@ -51,7 +73,7 @@ const Banner = () => {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </Slide>
                     <Slide
                         index={2}
@@ -59,7 +81,7 @@ const Banner = () => {
                             background: `url(${process.env.PUBLIC_URL}"images/banner3.jpg")  no-repeat 0 0`
                         }}
                     >
-                       <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                        <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                             <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
                                 <h1>WELCOME TO</h1>
                                 <h2>Farmers Allaince For Business</h2>
@@ -71,7 +93,11 @@ const Banner = () => {
                                 </div>
                             </div>
                         </div>
-                    </Slide>
+                    </Slide> */}
+
+                    {
+                        Banner
+                    }
                 </Slider>
             </CarouselProvider>
             {/* <div className="clv_banner_slider">

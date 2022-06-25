@@ -1,46 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Link } from 'react-router-dom';
-import axios from '../API/axios';
-
+import useBannerImages from '../../hooks/useBannerImages';
 const Banner = () => {
-    const [bannerimages, setBannerImages] = useState([])
-    useEffect(() => {
-        let isMounted = true
-        if (isMounted) {
-            axios.get('/api/v1/banner/home/')
-                .then(response => {
-                    setBannerImages(response.data[0].baners)
-                })
-        }
-
-        return (() => {
-            isMounted = false
-        })
-    }, [])
-    const Banner = bannerimages.map((items,index)=>{
-        const {image_or_video}=items;
-        return(
+    const bannerimages = useBannerImages('home');
+    console.log(bannerimages)
+    const Banner = bannerimages.map((items, index) => {
+        const { image_or_video, caption, description } = items;
+        return (
             <Slide
-                        index={index}
-                        style={{
-                            background: `url(${image_or_video}) no-repeat 0 0`
-                        }}
-                    >
-                        <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                            <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
-                                <h1>WELCOME TO</h1>
-                                <h2>Farmers Allaince For Business</h2>
-                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br />nostrud exercitation ullamco laboris nisi ut aliquipea commodand.</p>
-                                <div className="banner_btn">
-                                    <span className="left_line"></span>
-                                    <Link to='/contact' className="clv_btn">Contact us</Link>
-                                    <span className="right_line"></span>
-                                </div>
-                            </div>
+                index={index}
+                style={{
+                    background: `url(${image_or_video}) no-repeat 0 0`
+                }}
+            >
+                <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                    <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
+                        <h1>{caption}</h1>
+                        <p>{description}</p>
+                        <div className="banner_btn">
+                            <span className="left_line"></span>
+                            <Link to='/contact' className="clv_btn">Contact us</Link>
+                            <span className="right_line"></span>
                         </div>
-                    </Slide>
+                    </div>
+                </div>
+            </Slide>
         )
     })
 
@@ -54,47 +40,6 @@ const Banner = () => {
                 isPlaying={true}
             >
                 <Slider>
-                    
-                    {/* <Slide
-                        index={1}
-                        style={{
-                            background: `url(${process.env.PUBLIC_URL}"images/banner2.jpg") no-repeat 0 0`
-                        }}
-                    >
-                        <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                            <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
-                                <h1>WELCOME TO</h1>
-                                <h2>Farmers Allaince For Business</h2>
-                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br />nostrud exercitation ullamco laboris nisi ut aliquipea commodand.</p>
-                                <div className="banner_btn">
-                                    <span className="left_line"></span>
-                                    <a href="#" className="clv_btn">Shop Now</a>
-                                    <span className="right_line"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </Slide>
-                    <Slide
-                        index={2}
-                        style={{
-                            background: `url(${process.env.PUBLIC_URL}"images/banner3.jpg")  no-repeat 0 0`
-                        }}
-                    >
-                        <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                            <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
-                                <h1>WELCOME TO</h1>
-                                <h2>Farmers Allaince For Business</h2>
-                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br />nostrud exercitation ullamco laboris nisi ut aliquipea commodand.</p>
-                                <div className="banner_btn">
-                                    <span className="left_line"></span>
-                                    <Link to='/contact' className="clv_btn">Contact us</Link>
-                                    <span className="right_line"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </Slide> */}
-
                     {
                         Banner
                     }

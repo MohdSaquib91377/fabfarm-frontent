@@ -7,13 +7,12 @@ import useBannerImages from '../hooks/useBannerImages';
 const About = () => {
     Tabtitle('FAB | About us')
     const banner = useBannerImages('about')
-    const { image_or_video } = banner
     return (
         <>
             {/* <!--Breadcrumb--> */}
             <div className="breadcrumb_wrapper" style={{
                 minHeight: '250px',
-                backgroundImage: `url(${image_or_video})`
+                backgroundImage: `url(${banner[0]?.image_or_video})`
             }}>
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">

@@ -35,7 +35,7 @@ const Counter = () => {
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="26" data-speed="3000">
-                                        <Countup start={0} end={26} timer={50} scrollStart={y - 200} />
+                                        <Countup start={0} end={26} timer={50} scrollStart={y} />
                                     </span><span>k+</span></h4>
                                     <h5>happy customers</h5>
                                 </div>
@@ -48,7 +48,7 @@ const Counter = () => {
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="700" data-speed="3000">
-                                        <Countup start={0} end={700} timer={50} scrollStart={y - 200} />
+                                        <Countup start={0} end={700} timer={50} scrollStart={y} />
                                     </span><span>+</span></h4>
                                     <h5>Seeds Types</h5>
                                 </div>
@@ -61,7 +61,7 @@ const Counter = () => {
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="200" data-speed="3000">
-                                        <Countup start={0} end={200} timer={50} scrollStart={y - 200} />
+                                        <Countup start={0} end={200} timer={50} scrollStart={y} />
                                     </span><span>+</span></h4>
                                     <h5>Soil Types</h5>
                                 </div>
@@ -74,7 +74,7 @@ const Counter = () => {
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="6" data-speed="3000">
-                                        <Countup start={0} end={6} timer={100} scrollStart={y - 200} />
+                                        <Countup start={0} end={6} timer={100} scrollStart={y} />
                                     </span><span>k+</span></h4>
                                     <h5>award winner</h5>
                                 </div>

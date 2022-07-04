@@ -9,11 +9,11 @@ import axios from '../components/API/axios';
 import Tabtitle from './Tabtitle';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core';
-
+import useBannerImages from '../hooks/useBannerImages';
 const useStyles = makeStyles({
     root: {
         width: '60%'
-    },
+    },  
     thumb: {
         color: 'green'
     },
@@ -38,6 +38,7 @@ const Shop = ({ addToCart }) => {
     const [priceValue, setPriceValue] = useState([100, 1000])
     const [selectedSortMethod, setSelectedSortMethod] = useState('popularity')
     Tabtitle('FAB | Shop')
+    const banner = useBannerImages('shop')
 
     const fetchproducts = async () => {
         try {
@@ -139,6 +140,7 @@ const Shop = ({ addToCart }) => {
             </li >
         );
     })
+    console.log(products)
     const productList = products.map((product, i) => {
         const { id, image: [{ image }], name, description, price } = product;
         return (
@@ -194,7 +196,12 @@ const Shop = ({ addToCart }) => {
     return (
         <>
             {/* <!--Breadcrumb--> */}
-            <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
+            <div className="breadcrumb_wrapper" 
+            style={{ 
+                minHeight: '250px',
+                backgroundImage: `url(${banner[0]?.image_or_video})`
+             }}
+            >
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">

@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Tabtitle from './Tabtitle'
-
+import useBannerImages from '../hooks/useBannerImages'
 const Contact = () => {
     Tabtitle('FAB | Contact us')
+    const banner = useBannerImages('contact')
+
     return (
         <>
-            <div className="breadcrumb_wrapper" style={{ minHeight: '300px' }}>
+            <div className="breadcrumb_wrapper"
+                style={{
+                    minHeight: '300px',
+                    backgroundImage: `url(${banner[0]?.image_or_video})`
+                }}>
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-12">
@@ -23,7 +29,7 @@ const Contact = () => {
                     </ul>
                 </div>
             </div>
-            
+
             <div className="contact_form_wrapper clv_section">
                 <div className="container">
                     <div className="row">

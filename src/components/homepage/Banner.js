@@ -10,6 +10,7 @@ const Banner = () => {
         return (
             <Slide
                 index={index}
+                key={index}
                 style={{
                     background: `url(${image_or_video}) no-repeat 0 0`
                 }}

@@ -43,7 +43,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                 )
                 .catch(error => {
 
-                    console.log(error)
+                    throw(error)
                 })
         }
         fetchCurrentItem();
@@ -58,13 +58,12 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                     product_id: decreaseID
                 }
             })
-                .then(response => {
+                .then(() => {
                     setloader(false)
-                    console.log(response)
                 })
-                .catch(response => {
+                .catch(error => {
                     setloader(false)
-                    console.log(response)
+                    throw(error)
                 })
         }
     }, [decrease, decreaseID])

@@ -16,10 +16,10 @@ const Cartitems = ({ user, isAuthorized, removeFromCart, incrementQuantity, decr
                 }
             })
                 .then(response => {
-                    console.log(response)
+
                 })
-                .catch(response => {
-                    console.log(response)
+                .catch(error => {
+                    throw (error)
                 })
         }
     }

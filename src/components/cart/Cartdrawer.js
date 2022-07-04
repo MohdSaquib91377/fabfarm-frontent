@@ -39,10 +39,9 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
             const postCartData = () => {
                 axiosPrivate.post('/api/v1/cart/add-to-cart/', cartProducts)
                     .then(response => {
-                        // console.log(response)
                     })
-                    .catch(response => {
-                        console.log(response)
+                    .catch(error => {
+                        throw(error)
                     })
             }
             postCartData()

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import useBannerImages from '../../hooks/useBannerImages';
 const Banner = () => {
     const bannerimages = useBannerImages('home');
-    console.log(bannerimages)
     const Banner = bannerimages.map((items, index) => {
         const { image_or_video, caption, description } = items;
         return (

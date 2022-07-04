@@ -19,10 +19,9 @@ const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, in
                 }
             })
                 .then(response => {
-                    console.log(response)
                 })
-                .catch(response => {
-                    console.log(response)
+                .catch(error => {
+                    throw(error)
                 })
         }
     }
@@ -42,11 +41,10 @@ const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, in
                     })
                         .then(response => {
                             setloader(false)
-                            console.log(response)
                         })
-                        .catch(response => {
+                        .catch(error => {
                             setloader(false)
-                            console.log(response)
+                            throw(error)
                         })
                 }
             }

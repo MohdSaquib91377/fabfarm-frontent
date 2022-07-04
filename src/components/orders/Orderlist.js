@@ -12,8 +12,7 @@ const Orderlist = ({ user }) => {
     const axiosPrivate = useAxiosPrivate();
     const cancelOrder = (order) => {
         axiosPrivate.put(`/api/v1/order/order-cancel/${order}/`)
-            .then(response => console.log(response))
-            .catch(response => console.log(response))
+            .catch(error => {throw(error)})
     }
     useEffect(() => {
         const fetchOrderList = () => {
@@ -21,8 +20,8 @@ const Orderlist = ({ user }) => {
                 .then(response => {
                     setItems(response.data)
                 })
-                .catch(response => {
-                    console.log(response)
+                .catch(error => {
+                    throw(error)
                 })
         }
         fetchOrderList()

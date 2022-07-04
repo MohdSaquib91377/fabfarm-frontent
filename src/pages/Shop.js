@@ -45,7 +45,7 @@ const Shop = ({ addToCart }) => {
             const res = await axios.get(`/api/v1/store/category-details/${categoryId}/`)
             setProducts(res.data)
         } catch (error) {
-            console.log(error);
+            throw(error);
         }
     }
     const handleFilter = (event) => {
@@ -140,7 +140,6 @@ const Shop = ({ addToCart }) => {
             </li >
         );
     })
-    console.log(products)
     const productList = products.map((product, i) => {
         const { id, image: [{ image }], name, description, price } = product;
         return (

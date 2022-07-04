@@ -15,14 +15,14 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
     const Logout = () => {
         let refresh = user.refresh;
         axiosPrivate.post('/api/v1/account/logout/', { refresh })
-            .then(response => {
+            .then(() => {
                 setIsAuthorized()
                 setUser([])
                 makeCartEmpty([])
                 Navigate("/")
             })
-            .catch(response => {
-                console.log(response)
+            .catch(error => {
+                throw(error)
             })
     }
     return (

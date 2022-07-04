@@ -18,8 +18,8 @@ const Carouselfeatured = ({ isAuthorized, catID, products, addToCart }) => {
   const addToWishList = (id) => {
     if (isAuthorized) {
       axiosPrivate.post('/api/v1/wishlist/wishlist/add-to-wishlist/', { product_id: id })
-        .then(response => console.log(response))
-        .catch(response => console.log(response))
+        .then(response =>{})
+        .catch(error => {throw(error)})
     }
   }
   useEffect(() => {

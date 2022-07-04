@@ -143,15 +143,14 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                 email_or_mobile: formValues.email,
                 password: formValues.password
             })
-                .then(response => {
-                    console.log(response)
+                .then(() => {
                     setLoader(false)
                     setRestPassScreen(true)
                     setOtpScreen(false)
                     setIsAuthorized()
                 })
-                .catch(response => {
-                    console.log(response)
+                .catch(error => {
+                    throw(error)
                 })
         }
     }, [formErrors]);

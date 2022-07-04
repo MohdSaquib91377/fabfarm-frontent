@@ -34,22 +34,22 @@ function Productdetails({ items }) {
                 <div className='left'>
 
 
-                        <div>
-                            <img style={{
-                                height: '150px',
-                                width: '150px'
-                            }} src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
-                        </div>
-                        <div>
-                            <h5>
-                                {name}
-                            </h5> 
-                            <p>
-                                {description}
-                            </p>
-                            <div>status:{status}</div>
-                        </div>
-                    
+                    <div>
+                        <img style={{
+                            height: '150px',
+                            width: '150px'
+                        }} src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+                    </div>
+                    <div>
+                        <h5>
+                            {name}
+                        </h5>
+                        <p>
+                            {description}
+                        </p>
+                        <div>status:{status}</div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -65,8 +65,8 @@ function OrderproductDetails({ user }) {
             .then(response => {
                 setItems(response.data[0])
             })
-            .catch(response => {
-                console.log(response)
+            .catch(error => {
+                throw (error)
             })
     }, [])
 

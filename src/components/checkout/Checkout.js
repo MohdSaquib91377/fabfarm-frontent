@@ -90,7 +90,6 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
             "handler": function (response) {
                 axiosPrivate.post('/api/v1/payment/payment-success/', response)
                     .then(res => {
-                        console.log(res)
                         Navigate('/orderlist')
                     })
                     .catch(error => {
@@ -138,7 +137,6 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
             setLoader(true)
             axiosPrivate.post('/api/v1/order/place-order/', formValues)
                 .then(response => {
-                    console.log(response)
                     if (response.status === 201) {
                         setLoader(false)
                         displayRazorpay(response.data);

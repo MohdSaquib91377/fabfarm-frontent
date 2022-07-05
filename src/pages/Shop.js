@@ -48,6 +48,7 @@ const Shop = ({ addToCart }) => {
             throw(error);
         }
     }
+    console.log(categoryId)
     const handleFilter = (event) => {
         setApplyFilter(true)
         const searchWord = event.target.value;

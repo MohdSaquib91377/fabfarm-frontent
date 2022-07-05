@@ -35,6 +35,7 @@ const Featuredproducts = ({ setProducts }) => {
             mounted = false;
         }
     }, [featuredproducts])
+    console.log(featuredproducts)
     return (
         <div className="garden_about_wrapper clv_section">
             <div className="container pageTitle">

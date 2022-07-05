@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Weare = () => {
     return (
@@ -18,7 +19,7 @@ const Weare = () => {
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temponcididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatiomco laboris nisi ut aliquip ex ea commodo consequat...</p>
 
                                 <div className="garden_contact_section">
-                                    <a href="#" className="clv_btn">more details</a>
+                                    <Link to='/aboutus' className="clv_btn">more details</Link>
                                 </div>
                             </div>
                         </div>

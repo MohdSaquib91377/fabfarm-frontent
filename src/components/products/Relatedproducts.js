@@ -12,7 +12,8 @@ import "swiper/css/navigation";
 const Relatedproducts = ({ products }) => {
     SwiperCore.use([Autoplay]);
     const Product = products.map((item, i) => {
-        const { id, name, image: [{ image }], price } = item
+        const { id, name, image, price } = item
+        console.log(image[0]?.image)
         return (
             <SwiperSlide key={i}>
                 <div className="product__box product__default--single text-center">
@@ -20,7 +21,7 @@ const Relatedproducts = ({ products }) => {
                     <div className="product__img-box  pos-relative">
                         <a href="product-single-default.html" className="product__img--link">
                             <img className="product__img img-fluid"
-                                src={process.env.REACT_APP_BASE_URL + image} alt={name} />
+                                src={process.env.REACT_APP_BASE_URL + image[0]?.image} alt={name} />
                         </a>
                         {/* Start Procuct Label */}
                         <span className="product__label product__label--sale-dis">-34%</span>

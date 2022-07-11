@@ -23,6 +23,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
     const [decrease, setDecrease] = useState(false);
     const [decreaseID, setDecreaseID] = useState("");
     const [loader, setloader] = useState(false);
+    const [relatedProducts, setRelatedProducts] = useState([])
     // const [productCount, setProductCount] = useState()
     let axiosPrivate = useAxiosPrivate();
     Tabtitle('FAB | Shop')
@@ -39,11 +40,12 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                 .then(response => {
                     setCurrentItem(response.data[0])
                     setProducts(response.data)
+                    setRelatedProducts(response?.data[1].recommend_products)
                 }
                 )
                 .catch(error => {
 
-                    throw(error)
+                    throw (error)
                 })
         }
         fetchCurrentItem();
@@ -63,7 +65,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                 })
                 .catch(error => {
                     setloader(false)
-                    throw(error)
+                    throw (error)
                 })
         }
     }, [decrease, decreaseID])
@@ -233,7 +235,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                             {/* End Product Details Tab */}
 
                             {/* ::::::  Start  Product Style - Default Section  ::::::  */}
-                            {/* <Relatedproducts /> */}
+                            <Relatedproducts products={relatedProducts} />
                             {/* ::::::  End  Product Style - Default Section  ::::::  */}
 
                             {/* ::::::  Start  Company Logo Section  ::::::  */}

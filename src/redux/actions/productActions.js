@@ -106,3 +106,10 @@ export const setCouponDetails = (coupon) => {
         payload: coupon,
     }
 }
+
+export const setMainCategory = (boolean) => {
+    return {
+        type: ActionTypes.SET_MAIN_CATEGORY,
+        payload: boolean
+    }
+}

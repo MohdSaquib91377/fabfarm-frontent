@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from 'swiper';
 import { Navigation } from "swiper";
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faShoppingCart, faSliders, faHeart, faEye } from '@fortawesome/free-solid-svg-icons';
@@ -11,9 +10,18 @@ import "swiper/css/navigation";
 
 const Relatedproducts = ({ products }) => {
     SwiperCore.use([Autoplay]);
+    const [loop, setLoop] = useState(false);
+
+    useEffect(() => {
+        if (products.length > 4) {
+            setLoop(true)
+        }
+    }, [products])
+    if (products.length === 0) {
+        return (<h1>no related products</h1>)
+    }
     const Product = products.map((item, i) => {
-        const { id, name, image, price } = item
-        console.log(image[0]?.image)
+        const { name, image, price } = item
         return (
             <SwiperSlide key={i}>
                 <div className="product__box product__default--single text-center">
@@ -74,8 +82,26 @@ const Relatedproducts = ({ products }) => {
                                     {/* Start Single Default Product */}
                                     <Swiper
                                         autoplay={true}
-                                        loop={true}
-                                        navigation={true} slidesPerView={4} spaceBetween={10} modules={[Navigation]} className="mySwiper">
+                                        loop={loop}
+                                        navigation={true}
+                                        slidesPerView={1}
+                                        spaceBetween={10}
+                                        modules={[Navigation]}
+                                        breakpoints={{
+                                            640: {
+                                                slidesPerView: 2,
+                                                spaceBetween: 20,
+                                            },
+                                            768: {
+                                                slidesPerView: 3,
+                                                spaceBetween: 20,
+                                            },
+                                            1024: {
+                                                slidesPerView: 4,
+                                                spaceBetween: 20,
+                                            },
+                                        }}
+                                        className="mySwiper">
                                         {Product}
                                     </Swiper>
                                     {/* End Single Default Product */}
@@ -91,9 +117,5 @@ const Relatedproducts = ({ products }) => {
         </>
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        products: state.shop.products,
-    }
-}
-export default connect(mapStateToProps)(Relatedproducts)
+
+export default Relatedproducts

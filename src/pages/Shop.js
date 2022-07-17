@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { addToCart, setProducts } from '../redux/actions/productActions';
+import { setMainCategory, setProducts } from '../redux/actions/productActions';
 import { connect } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faIndianRupee, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from '../components/API/axios';
 import Tabtitle from './Tabtitle';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core';
 import useBannerImages from '../hooks/useBannerImages';
+import Productcomponent from '../components/shop/Productcomponent';
+import Checkcatradio from '../components/shop/Checkcatradio';
+
 const useStyles = makeStyles({
     root: {
         width: '60%'
-    },  
+    },
     thumb: {
         color: 'green'
     },
@@ -26,10 +29,10 @@ const useStyles = makeStyles({
 });
 
 
-const Shop = ({ addToCart }) => {
+const Shop = ({ mainCategory, setMainCategory }) => {
     const classes = useStyles();
     let { categoryId } = useParams();
-    let Navigate = useNavigate();
+    let { subCategoryID } = useParams();
     const [productView, setProductView] = useState('');
     const [products, setProducts] = useState([])
     const [filterData, setFilterData] = useState([])
@@ -37,18 +40,9 @@ const Shop = ({ addToCart }) => {
     // const [page, setPage] = useState(2);
     const [priceValue, setPriceValue] = useState([100, 1000])
     const [selectedSortMethod, setSelectedSortMethod] = useState('popularity')
+
     Tabtitle('FAB | Shop')
     const banner = useBannerImages('shop')
-
-    const fetchproducts = async () => {
-        try {
-            const res = await axios.get(`/api/v1/store/category-details/${categoryId}/`)
-            setProducts(res.data)
-        } catch (error) {
-            throw(error);
-        }
-    }
-    console.log(categoryId)
     const handleFilter = (event) => {
         setApplyFilter(true)
         const searchWord = event.target.value;
@@ -66,18 +60,37 @@ const Shop = ({ addToCart }) => {
         })
         setFilterData(filterData)
     }
+    console.log(subCategoryID)
     const handleSelectChange = (event) => {
         setSelectedSortMethod(event.target.value)
         setApplyFilter(true)
     }
 
-    const buyButton = (id) => {
-        addToCart(id)
-        Navigate('/checkout');
-    }
     useEffect(() => {
-        fetchproducts();
-    }, []);
+        let isMounted = true
+
+        if (isMounted) {
+            const fetchproducts = async () => {
+                try {
+                    if (mainCategory) {
+                        const res = await axios.get(`/api/v1/store/parent-category-details/${categoryId}/`)
+                        setProducts(res.data[0]?.products)
+                    } else {
+                        const res = await axios.get(`/api/v1/store/category-details/${subCategoryID}/`)
+                        setProducts(res.data)
+                    }
+                } catch (error) {
+                    throw (error);
+                }
+            }
+            fetchproducts();
+        }
+
+        return () => {
+            isMounted = false
+        }
+    }, [mainCategory, categoryId, subCategoryID])
+
 
     useEffect(() => {
         if (selectedSortMethod === 'price') {
@@ -88,125 +101,32 @@ const Shop = ({ addToCart }) => {
         } else {
             setApplyFilter(false)
         }
-    }, [selectedSortMethod])
+    }, [selectedSortMethod, products])
     const productFilterList = filterData.map((product, i) => {
-        const { id, image: [{ image }], name, description, price } = product;
         return (
-            <li key={i}>
+            <Productcomponent product={product} i={i} categoryId={categoryId} />
 
-                <div className="product_item_block">
-                    <div className="org_product_block">
-                        <span className="product_label">30% off</span>
-                        <Link to={`/shop/${categoryId}/product/${id}`}>
-                            <div className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
-                        </Link>
-                        <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
-                        <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
-                        <button onClick={() => addToCart(id)}>add to cart</button>
-                        <button onClick={() => buyButton(id)}>Buy now</button>
-                    </div>
-                    <div className="content_block">
-                        <div className="product_price_box">
-                            <Link to={`/shop/${categoryId}/product/${id}`}>
-                                <h3>
-                                    {name}
-                                </h3>
-                            </Link>
-                            <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
-                        </div>
-                        <p>Farm & Garden</p>
-                        <div className="rating_section">
-                            <span>4.1</span>
-                            <ul>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                            </ul>
-                            <p>151 reviews</p>
-                        </div>
-                        <ul className="product_code">
-                            <li>
-                                <p>product code: 12948</p>
-                            </li>
-                            <li>
-                                <p>availability: <span>in stock</span></p>
-                            </li>
-                        </ul>
-                        <p>{description}</p>
-                    </div>
-                </div>
-
-            </li >
         );
     })
     const productList = products.map((product, i) => {
-        const { id, image: [{ image }], name, description, price } = product;
         return (
-            <li key={i}>
-
-                <div className="product_item_block">
-                    <div className="org_product_block">
-                        <span className="product_label">30% off</span>
-                        <Link to={`/shop/${categoryId}/product/${id}`}>
-                            <div className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
-                        </Link>
-                        <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
-                        <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
-                        <button onClick={() => addToCart(id)}>add to cart</button>
-                        <button onClick={() => buyButton(id)}>Buy now</button>
-                    </div>
-                    <div className="content_block">
-                        <div className="product_price_box">
-                            <Link to={`/shop/${categoryId}/product/${id}`}>
-                                <h3>
-                                    {name}
-                                </h3>
-                            </Link>
-                            <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
-                        </div>
-                        <p>Farm & Garden</p>
-                        <div className="rating_section">
-                            <span>4.1</span>
-                            <ul>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                            </ul>
-                            <p>151 reviews</p>
-                        </div>
-                        <ul className="product_code">
-                            <li>
-                                <p>product code: 12948</p>
-                            </li>
-                            <li>
-                                <p>availability: <span>in stock</span></p>
-                            </li>
-                        </ul>
-                        <p>{description}</p>
-                    </div>
-                </div>
-
-            </li >
+            <Productcomponent product={product} i={i} categoryId={categoryId} />
         );
     })
     return (
         <>
             {/* <!--Breadcrumb--> */}
-            <div className="breadcrumb_wrapper" 
-            style={{ 
-                minHeight: '250px',
-                backgroundImage: `url(${banner[0]?.image_or_video})`
-             }}
+            <div className="breadcrumb_wrapper"
+                style={{
+                    minHeight: '250px',
+                    backgroundImage: `url(${banner[0]?.image_or_video})`
+                }}
             >
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
-                                <h3>{products.length !== 0 ? products[0].category : undefined}</h3>
+                                <h3>{products.length !== 0 ? products[0]?.category?.name : undefined}</h3>
                             </div>
                         </div>
                     </div>
@@ -214,7 +134,15 @@ const Shop = ({ addToCart }) => {
                 <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
-                        <li> &nbsp; {products.length !== 0 ? products[0].category : undefined}</li>
+                        {
+                            mainCategory ?
+                                <li> &nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined}</li>
+                                :
+                                <>
+                                    <li> <Link onClick={() => { setMainCategory(true) }} to={`/shop/${products[0]?.category?.id}/`}> &nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined}</Link></li>
+                                    <li> &nbsp; {products.length !== 0 ? products[0]?.sub_category_name : undefined}</li>
+                                </>
+                        }
                     </ul>
                 </div>
             </div>
@@ -229,12 +157,6 @@ const Shop = ({ addToCart }) => {
                                         <h3>filter by price</h3>
                                     </div>
                                     <div className="ds_progress_rangeslider Range_slider">
-                                        {/* <div id="slider-range" className="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                            <div className="ui-slider-range ui-corner-all ui-widget-header"></div><span tabIndex="0" className="ui-slider-handle ui-corner-all ui-state-default"></span><span tabIndex="0" className="ui-slider-handle ui-corner-all ui-state-default"></span></div>
-
-                                        <div className="price_range"><p><span id="amount"></span></p></div> */}
-
-
                                         <div className={classes.root}
                                         >
                                             <Slider
@@ -250,8 +172,20 @@ const Shop = ({ addToCart }) => {
                                                 }}
                                             />
                                         </div>
+
                                     </div>
                                 </div>
+                                <div className="product_block">
+                                    <div className="sidebar_heading">
+                                        <h3>Select Category</h3>
+                                    </div>
+                                    <div className="ds_progress_rangeslider Range_slider">
+                                        <div>
+                                            <Checkcatradio products={products} />
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <div className="col-lg-9 col-md-9">
@@ -315,14 +249,14 @@ const Shop = ({ addToCart }) => {
                                         </p>
                                     }
                                 > */}
-                                    <div id='products_list' className={productView !== 'list' ? "product_items_section product_list_view" : "product_items_section"}>
-                                        <ul>
-                                            {applyFilter ?
-                                                filterData.length !== 0 ? productFilterList : "no data found" :
-                                                productList
-                                            }
-                                        </ul>
-                                    </div>
+                                <div id='products_list' className={productView !== 'list' ? "product_items_section product_list_view" : "product_items_section"}>
+                                    <ul>
+                                        {applyFilter ?
+                                            filterData.length !== 0 ? productFilterList : "no data found" :
+                                            productList
+                                        }
+                                    </ul>
+                                </div>
                                 {/* </InfiniteScroll> */}
                             </div>
 
@@ -336,12 +270,14 @@ const Shop = ({ addToCart }) => {
 const mapStateToProps = (state) => {
     return {
         products: state.shop.products,
+        mainCategory: state.shop.mainCategory,
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         setProducts: (product) => dispatch(setProducts(product)),
-        addToCart: (id) => dispatch(addToCart(id)),
+        setMainCategory: (boolean) => dispatch(setMainCategory(boolean))
+
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);

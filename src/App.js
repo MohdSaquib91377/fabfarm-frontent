@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import Orderlist from './components/orders/Orderlist';
 import OrderproductDetails from './components/orders/OrderproductDetails';
 import Wishlist from './components/wishlist/Wishlist';
-function App({ isAuthorized }) {
+function App({ isAuthorized, mainCategory }) {
   return (
     <>
       <Router>
@@ -22,7 +22,7 @@ function App({ isAuthorized }) {
         <ScrollToTop />
         <Routes>
           <Route exact path='/' element={<Home />} />
-          <Route exact path='/shop/:categoryId' element={<Shop />} />
+          <Route exact path={mainCategory ? '/shop/:categoryId' : '/shop/:categoryId/:subCategoryID'} element={<Shop />} />
           <Route exact path='/shop/:categoryId/product/:productID' element={<Product />} />
           <Route exact path='/aboutus' element={<About />} />
           <Route exact path='/contact' element={<Contact />} />
@@ -49,7 +49,8 @@ function App({ isAuthorized }) {
 }
 const mapStateToProps = (state) => {
   return {
-    isAuthorized: state.shop.isAuthorized
+    isAuthorized: state.shop.isAuthorized,
+    mainCategory: state.shop.mainCategory
   }
 }
 export default connect(mapStateToProps)(App);

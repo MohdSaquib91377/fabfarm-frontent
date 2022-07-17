@@ -11,6 +11,9 @@ const useBannerImages = (page) => {
                     setBannerDetails(response.data[0].baners)
                 })
                 .catch(error => {
+                    if (error.code === 'ERR_NETWORK') {
+                        alert(error.message)
+                    }
                     throw error
                 })
         }

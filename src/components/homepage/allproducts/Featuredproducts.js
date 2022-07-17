@@ -2,13 +2,20 @@ import axios from '../../API/axios';
 import React, { useEffect, useState } from 'react'
 import Carouselfeatured from './Carouselfeatured';
 import './product.css'
-import { Link } from 'react-router-dom';
-import { setProducts } from '../../../redux/actions/productActions';
+import { useNavigate } from 'react-router-dom';
+import { setMainCategory, setProducts } from '../../../redux/actions/productActions';
 import { connect } from 'react-redux';
-const Featuredproducts = ({ setProducts }) => {
-
+const Featuredproducts = ({ setProducts, setMainCategory }) => {
+    let Navigate = useNavigate();
     const [featuredproducts, setFeaturedProducts] = useState([]);
     const [allCatProducts, setAllCatProducts] = useState([]);
+
+    const viewMoreButton = (id, products) => {
+        setProducts(products)
+        setMainCategory(false)
+        Navigate(`/shop/${products[0]?.category?.id}/${id}`)
+    }
+
     useEffect(() => {
         const fecthFeaturedProducts = async () => {
             try {
@@ -35,7 +42,6 @@ const Featuredproducts = ({ setProducts }) => {
             mounted = false;
         }
     }, [featuredproducts])
-    console.log(featuredproducts)
     return (
         <div className="garden_about_wrapper clv_section">
             <div className="container pageTitle">
@@ -47,12 +53,14 @@ const Featuredproducts = ({ setProducts }) => {
                         }}>
                             <h3>{name}</h3>
                             <Carouselfeatured catID={id} products={products} />
-                            <Link style={{
-                                position: 'relative',
-                                float: 'right'
-                            }} to={`/shop/${id}`}>
-                                <button onClick={() => setProducts(products)}>View more</button>
-                            </Link>
+                            <button
+                                style={{
+                                    position: 'relative',
+                                    float: 'right'
+                                }}
+                                onClick={() => viewMoreButton(id, products)}>
+                                View more
+                            </button>
                         </div>
                     )
                 })}
@@ -62,7 +70,8 @@ const Featuredproducts = ({ setProducts }) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        setProducts: (products) => dispatch(setProducts(products))
+        setProducts: (products) => dispatch(setProducts(products)),
+        setMainCategory: (boolean) => dispatch(setMainCategory(boolean))
     }
 }
 

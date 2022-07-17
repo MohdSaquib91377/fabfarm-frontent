@@ -5,12 +5,19 @@ import { Navigation } from "swiper";
 
 const Productimages = ({ image }) => {
     const [prevImage, setPrevImage] = useState(0)
-
     const thumbImages = image.map((item, i) => {
         return (
             <SwiperSlide key={i} onClick={() => setPrevImage(i)} ><img src={process.env.REACT_APP_BASE_URL + item.image} alt={item.image_caption} /></SwiperSlide>
         )
     })
+
+    if (image.length === 0) {
+        debugger
+        return (
+            <h1>no images</h1>
+        )
+    }
+
     return (
         <div style={{
             display: 'flex'

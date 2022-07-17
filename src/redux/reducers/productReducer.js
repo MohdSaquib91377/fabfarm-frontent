@@ -9,7 +9,8 @@ const initialState = {
     signupOpen: false,
     isAuthorized: false,
     totalCartCount: 0,
-    couponDetails: []
+    couponDetails: [],
+    mainCategory : false,
 }
 export const shopReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -118,6 +119,11 @@ export const shopReducer = (state = initialState, action) => {
                 ...state,
                 couponDetails: action.payload
             }
+            case ActionTypes.SET_MAIN_CATEGORY:
+                return {
+                    ...state,
+                    mainCategory: action.payload
+                }
         default:
             return state;
     }

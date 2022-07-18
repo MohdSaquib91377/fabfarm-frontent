@@ -1,10 +1,10 @@
 import axios from '../../API/axios';
 import React, { useEffect, useState } from 'react'
-import Carouselfeatured from './Carouselfeatured';
 import './product.css'
 import { useNavigate } from 'react-router-dom';
 import { setMainCategory, setProducts } from '../../../redux/actions/productActions';
 import { connect } from 'react-redux';
+import Basiccarousel from '../../util/productstemplates/Basiccarousel';
 const Featuredproducts = ({ setProducts, setMainCategory }) => {
     let Navigate = useNavigate();
     const [featuredproducts, setFeaturedProducts] = useState([]);
@@ -41,12 +41,11 @@ const Featuredproducts = ({ setProducts, setMainCategory }) => {
             mounted = false;
         }
     }, [featuredproducts])
-    useEffect(()=>{
-        if(allCatProducts.length !== 0)
-        {
+    useEffect(() => {
+        if (allCatProducts.length !== 0) {
             setProducts(allCatProducts)
         }
-    },[allCatProducts])
+    }, [allCatProducts])
     return (
         <div className="garden_about_wrapper clv_section">
             <div className="container pageTitle">
@@ -57,7 +56,7 @@ const Featuredproducts = ({ setProducts, setMainCategory }) => {
                             marginTop: '30px'
                         }}>
                             <h3>{name}</h3>
-                            <Carouselfeatured catID={id} products={products} />
+                            <Basiccarousel products={products} />
                             <button
                                 style={{
                                     position: 'relative',

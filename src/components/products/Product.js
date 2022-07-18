@@ -38,6 +38,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
         const fetchCurrentItem = () => {
             axios.get(`/api/v1/store/product-details/${productID}/`)
                 .then(response => {
+                    console.log(response)
                     setCurrentItem(response.data[0])
                     setProducts(response.data)
                     setRelatedProducts(response?.data[1].recommend_products)

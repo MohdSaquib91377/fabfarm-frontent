@@ -1,65 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay } from 'swiper';
-import { Navigation } from "swiper";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { faShoppingCart, faSliders, faHeart, faEye } from '@fortawesome/free-solid-svg-icons';
-import "swiper/css";
-import "swiper/css/navigation";
+import React from 'react'
+import Basiccarousel from '../util/productstemplates/Basiccarousel';
 
 const Relatedproducts = ({ products }) => {
-    SwiperCore.use([Autoplay]);
-    const [loop, setLoop] = useState(false);
-
-    useEffect(() => {
-        if (products.length > 4) {
-            setLoop(true)
-        }
-    }, [products])
-    if (products.length === 0) {
-        return (<h1>no related products</h1>)
-    }
-    const Product = products.map((item, i) => {
-        const { name, image, price } = item
-        return (
-            <SwiperSlide key={i}>
-                <div className="product__box product__default--single text-center">
-                    {/* Start Product Image */}
-                    <div className="product__img-box  pos-relative">
-                        <a href="product-single-default.html" className="product__img--link">
-                            <img className="product__img img-fluid"
-                                src={process.env.REACT_APP_BASE_URL + image[0]?.image} alt={name} />
-                        </a>
-                        {/* Start Procuct Label */}
-                        <span className="product__label product__label--sale-dis">-34%</span>
-                        {/* End Procuct Label */}
-                        {/* Start Product Action Link*/}
-                        <ul className="product__action--link pos-absolute">
-                            <li><a href="#modalAddCart" data-bs-toggle="modal"><FontAwesomeIcon icon={faShoppingCart} /></a></li>
-                            <li><a href="compare.html"><FontAwesomeIcon icon={faSliders} /></a></li>
-                            <li><a href="wishlist.html"><FontAwesomeIcon icon={faHeart} /></a></li>
-                            <li><a href="#modalQuickView" data-bs-toggle="modal"><FontAwesomeIcon icon={faEye} /></a></li>
-                        </ul> {/* End Product Action Link */}
-                    </div> {/* End Product Image */}
-                    {/* Start Product Content */}
-                    <div className="product__content m-t-20">
-                        <ul className="product__review">
-                            <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
-                            <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
-                            <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
-                            <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
-                            <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
-                        </ul>
-                        <a href="product-single-default.html" className="product__link">{name}</a>
-                        <div className="product__price m-t-5">
-                            <span className="product__price">{price}</span>
-                        </div>
-                    </div> {/* End Product Content */}
-                </div>
-            </SwiperSlide>
-        )
-    })
     return (
         <>
             <div className="product m-t-100">
@@ -80,30 +22,7 @@ const Relatedproducts = ({ products }) => {
                                 <div className="product-default-slider-4grid-1rows gap__col--30 gap__row--40">
 
                                     {/* Start Single Default Product */}
-                                    <Swiper
-                                        autoplay={true}
-                                        loop={loop}
-                                        navigation={true}
-                                        slidesPerView={1}
-                                        spaceBetween={10}
-                                        modules={[Navigation]}
-                                        breakpoints={{
-                                            640: {
-                                                slidesPerView: 2,
-                                                spaceBetween: 20,
-                                            },
-                                            768: {
-                                                slidesPerView: 3,
-                                                spaceBetween: 20,
-                                            },
-                                            1024: {
-                                                slidesPerView: 4,
-                                                spaceBetween: 20,
-                                            },
-                                        }}
-                                        className="mySwiper">
-                                        {Product}
-                                    </Swiper>
+                                    <Basiccarousel products={products} />
                                     {/* End Single Default Product */}
 
                                     {/* Start Single Default Product */}

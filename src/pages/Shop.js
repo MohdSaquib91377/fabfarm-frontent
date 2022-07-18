@@ -74,7 +74,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                 try {
                     if (mainCategory) {
                         const res = await axios.get(`/api/v1/store/parent-category-details/${categoryId}/`)
-                        setProducts(res.data[0]?.products)
+                        setProducts(res.data)
                     } else {
                         const res = await axios.get(`/api/v1/store/category-details/${subCategoryID}/`)
                         setProducts(res.data)

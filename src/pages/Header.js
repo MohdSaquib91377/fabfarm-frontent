@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Cartdrawer from '../components/cart/Cartdrawer';
 import Signin from '../components/login/Signin';
 import { connect } from 'react-redux';
@@ -8,12 +8,14 @@ import { faShoppingCart, faSearch, faClose, faBars } from '@fortawesome/free-sol
 import Weather from '../components/weatherapi/Weather';
 import Desktopmenu from '../components/header/Desktopmenu';
 import Mobilemenu from '../components/header/Mobilemenu';
+import Searchbar from '../components/header/searchbar/Searchbar';
 const Header = ({ totalCartCount, isAuthorized, cart }) => {
-    const [cartCount, setCartCount] = React.useState(0);
-    const [cartState, setcartState] = React.useState(false)
-    const [navBar, setNavBar] = React.useState(false);
-    const [responsive, setResponsive] = React.useState(false);
-    const [menuOpen, setMenuOpen] = React.useState(false);
+    const [cartCount, setCartCount] = useState(0);
+    const [cartState, setcartState] = useState(false)
+    const [navBar, setNavBar] = useState(false);
+    const [responsive, setResponsive] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [searchBarVisible, setSearchBarVisible] = useState(false)
     const openCart = () => {
         setcartState(true)
     }
@@ -95,7 +97,12 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                                     <div className="cart_nav">
                                         <ul>
                                             <li>
-                                                <a className="search_toggle" href="#"><FontAwesomeIcon color='#ffffff' icon={faSearch} /></a>
+                                                <button
+                                                    className="search_toggle"
+                                                    onClick={() => setSearchBarVisible(!searchBarVisible)}
+                                                >
+                                                    <FontAwesomeIcon color='#ffffff' icon={faSearch} />
+                                                </button>
                                             </li>
                                             <li>
                                                 <button style={{ all: 'unset', cursor: 'pointer' }} onClick={openCart}>
@@ -130,13 +137,14 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                                                 </ul>
                                             </li>
                                             <li className="menu_toggle">
+
                                                 <button
                                                     onClick={() => setMenuOpen(!menuOpen)}
                                                 >
                                                     {menuOpen ? <FontAwesomeIcon icon={faClose} /> : <FontAwesomeIcon icon={faBars} />}
                                                 </button>
-                                            </li>
 
+                                            </li>
                                         </ul>
                                     </div>
 
@@ -147,6 +155,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                 </div>
             </header>
             <Cartdrawer opencart={cartState} closecart={closeCart} />
+            <Searchbar searchBarVisible={searchBarVisible} setSearchBarVisible={() => setSearchBarVisible(!searchBarVisible)} />
             {isAuthorized ? undefined :
                 <>
                     <Signin />

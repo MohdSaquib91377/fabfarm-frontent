@@ -60,7 +60,6 @@ const Shop = ({ mainCategory, setMainCategory }) => {
         })
         setFilterData(filterData)
     }
-    console.log(subCategoryID)
     const handleSelectChange = (event) => {
         setSelectedSortMethod(event.target.value)
         setApplyFilter(true)

@@ -38,7 +38,6 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
         return <></>
     }
 
-    console.log(searchList)
     return (
         <div className={searchBarVisible ? 'search_box search_box_open' : 'search_box'}>
             <div className="search_block">

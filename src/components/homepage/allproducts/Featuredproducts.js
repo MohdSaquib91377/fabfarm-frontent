@@ -32,16 +32,21 @@ const Featuredproducts = ({ setProducts, setMainCategory }) => {
         if (mounted) {
             featuredproducts.map((content) => {
                 const { products } = content;
-                products.map(items => {
-                    setAllCatProducts(allCatProducts => [...allCatProducts, items])
+                return products.map(items => {
+                    return setAllCatProducts(allCatProducts => [...allCatProducts, items])
                 })
             })
-            setProducts(allCatProducts)
         }
         return () => {
             mounted = false;
         }
     }, [featuredproducts])
+    useEffect(()=>{
+        if(allCatProducts.length !== 0)
+        {
+            setProducts(allCatProducts)
+        }
+    },[allCatProducts])
     return (
         <div className="garden_about_wrapper clv_section">
             <div className="container pageTitle">

@@ -7,7 +7,7 @@ import { addToCart } from '../../redux/actions/productActions';
 
 const Productcomponent = ({ product, i, categoryId, addToCart }) => {
     let Navigate = useNavigate();
-    const { id, image: [{ image }], name, description, price } = product;
+    const { id, image: [{ image }], name, description, price, maxQuantity } = product;
     const buyButton = (id) => {
         Navigate('/checkout');
     }
@@ -51,7 +51,7 @@ const Productcomponent = ({ product, i, categoryId, addToCart }) => {
                             <p>product code: 12948</p>
                         </li>
                         <li>
-                            <p>availability: <span>in stock</span></p>
+                            <p>availability: <span style={maxQuantity !== 0 ? { color: 'green' } : { color: 'red' }}>{maxQuantity !== 0 ? 'in stock' : 'out of stock'}</span></p>
                         </li>
                     </ul>
                     <p>{description}</p>

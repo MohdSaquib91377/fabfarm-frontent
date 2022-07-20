@@ -1,7 +1,6 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
-import { FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import Tabtitle from '../../pages/Tabtitle';
@@ -11,9 +10,7 @@ const Wishlist = () => {
     const axiosPrivate = useAxiosPrivate();
     const [wishlistItems, setWishlistItems] = useState([])
     const [onclickRemove, setOnlickRemove] = useState(false);
-    const [loader, setLoader] = useState(false);
     const removeItem = (id) => {
-        setLoader(true)
         axiosPrivate.delete(`/api/v1/wishlist/wishlist/add-to-wishlist/`, {
             data: {
                 product_id: id
@@ -21,12 +18,10 @@ const Wishlist = () => {
         })
             .then(
                 () => {
-                    setLoader(false);
                     setOnlickRemove(!onclickRemove);
                 }
             )
             .catch(error => {
-                setLoader(false);
                 throw error;
             })
     }
@@ -70,7 +65,7 @@ const Wishlist = () => {
                 <h6>₹{price}</h6>
                 <h6>quantity: {quantity}</h6>
 
-                <button onClick={() => removeItem(id)}>{loader ? <FaSpinner icon="spinner" className="spinner" /> : <FontAwesomeIcon color='red' icon={faTrash} />}</button>
+                <button onClick={() => removeItem(id)}><FontAwesomeIcon color='red' icon={faTrash} /></button>
             </div>
         )
     })

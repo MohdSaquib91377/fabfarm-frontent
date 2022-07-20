@@ -10,7 +10,8 @@ const initialState = {
     isAuthorized: false,
     totalCartCount: 0,
     couponDetails: [],
-    mainCategory : false,
+    mainCategory: false,
+    popup: false
 }
 export const shopReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -119,11 +120,16 @@ export const shopReducer = (state = initialState, action) => {
                 ...state,
                 couponDetails: action.payload
             }
-            case ActionTypes.SET_MAIN_CATEGORY:
-                return {
-                    ...state,
-                    mainCategory: action.payload
-                }
+        case ActionTypes.SET_MAIN_CATEGORY:
+            return {
+                ...state,
+                mainCategory: action.payload
+            }
+        case ActionTypes.SET_POPUP:
+            return {
+                ...state,
+                popup: action.payload
+            }
         default:
             return state;
     }

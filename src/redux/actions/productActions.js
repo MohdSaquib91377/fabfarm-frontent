@@ -113,3 +113,10 @@ export const setMainCategory = (boolean) => {
         payload: boolean
     }
 }
+
+export const setPopup = (boolean) => {
+    return {
+        type: ActionTypes.SET_POPUP,
+        payload: boolean
+    }
+}

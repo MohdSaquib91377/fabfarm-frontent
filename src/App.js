@@ -14,10 +14,12 @@ import { connect } from 'react-redux';
 import Orderlist from './components/orders/Orderlist';
 import OrderproductDetails from './components/orders/OrderproductDetails';
 import Wishlist from './components/wishlist/Wishlist';
+import Basicpopup from './components/util/productstemplates/Basicpopup';
 function App({ isAuthorized, mainCategory }) {
   return (
     <>
       <Router>
+        <Basicpopup />
         <Header />
         <ScrollToTop />
         <Routes>

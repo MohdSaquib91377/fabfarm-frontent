@@ -9,6 +9,7 @@ function Desktopmenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthoriz
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [loader, setLoader] = useState(false);
+    const [hoverBtn, setHoverBtn] = useState('#222222')
     const Logout = () => {
         let refresh = user.refresh;
         setLoader(true)
@@ -42,8 +43,12 @@ function Desktopmenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthoriz
                                 <li><Link to='/orderlist'> <FontAwesomeIcon icon={faList} /> Order List</Link></li>
                                 <li><Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /> Wish List</Link></li>
                                 <li><button style={{
-                                    marginLeft: "10px"
-                                }} onClick={() => Logout()}> <FontAwesomeIcon icon={faSignOut} />{loader ? " Loading..." : " Logout"} </button></li>
+                                    marginLeft: "10px",
+                                    color: `${hoverBtn}`
+                                }}
+                                    onMouseEnter={() => setHoverBtn('#2a7d2e')}
+                                    onMouseLeave={() => setHoverBtn('#222222')}
+                                    onClick={() => Logout()}> <FontAwesomeIcon icon={faSignOut} />{loader ? " Loading..." : " Logout"} </button></li>
                             </ul>
                         </li> :
                         <li

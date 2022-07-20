@@ -4558,7 +4558,7 @@ ul {
   color: #2a7d2e;
   background-color: #fff;
   border-radius: 50px;
-  border: 1px solid #fff;
+  border: 1px solid #2a7d2e;
 }
 .index_v4 .clv_btn::before {
   background-color: #2a7d2e;
@@ -9743,7 +9743,7 @@ ul {
   color: #2a7d2e;
 }
 .signin_wrapper > .signup_inner > .signup_details > .clv_btn:hover {
-  color: #ffffff;
+  color: #000;
 }
 .signin_wrapper > .signup_inner > .signup_details > .clv_btn::before {
   background-color: #ffffff;
@@ -12526,6 +12526,7 @@ button.unset {
 .order_list_top {
   border-bottom: 1px solid #bbb;
   align-items: center;
+  overflow:hidden;
 }
 .order_list_top a:nth-child(2) {
   width: 20%;
@@ -12625,4 +12626,8 @@ button.unset {
 #root::-webkit-scrollbar-thumb:hover {
   width: 10px;
   background: #555;
+}
+.parent-wishlist{
+
+  text-align:center !important;
 }

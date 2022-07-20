@@ -38,6 +38,8 @@ const Shop = ({ mainCategory, setMainCategory }) => {
     const [filterData, setFilterData] = useState([])
     const [applyFilter, setApplyFilter] = useState(false);
     // const [page, setPage] = useState(2);
+    const [minPrice,setMinPrice]=useState(0)
+    const [maxPrice, setMaxPrice] = useState(0)
     const [priceValue, setPriceValue] = useState([100, 1000])
     const [selectedSortMethod, setSelectedSortMethod] = useState('popularity')
 
@@ -56,7 +58,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
         setApplyFilter(true)
         setPriceValue(value);
         const filterData = products.filter((value) => {
-            return value.price > priceValue[0] && value.price < priceValue[1];
+            return value.price >= priceValue[0] && value.price <= priceValue[1];
         })
         setFilterData(filterData)
     }
@@ -64,7 +66,15 @@ const Shop = ({ mainCategory, setMainCategory }) => {
         setSelectedSortMethod(event.target.value)
         setApplyFilter(true)
     }
-
+    useEffect(() => {
+        const price = products.map((items) => {
+            const { price } = items;
+            return price
+        })
+        setMinPrice(Math.min.apply(null,price))
+        setMaxPrice(Math.max.apply(null, price))
+        setPriceValue([Math.min.apply(null,price), Math.max.apply(null, price)])
+    }, [products])
     useEffect(() => {
         let isMounted = true
 
@@ -160,8 +170,8 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                         >
                                             <Slider
                                                 value={priceValue}
-                                                min={100}
-                                                max={1000}
+                                                min={minPrice}
+                                                max={maxPrice}
                                                 valueLabelDisplay='auto'
                                                 onChange={handePriceFilterChange}
                                                 classes={{

@@ -7,6 +7,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 const Cartitems = ({ user, isAuthorized, removeFromCart, incrementQuantity, decrementQuantity, product }) => {
     const axiosPrivate = useAxiosPrivate();
     const { id, image: [{ image }], name, price, quantity } = product;
+    const total = quantity * price;
     const deleteCartItems = (id) => {
         removeFromCart(id);
         if (isAuthorized) {
@@ -45,7 +46,7 @@ const Cartitems = ({ user, isAuthorized, removeFromCart, incrementQuantity, decr
                 </div>
             </div>
             <div className="cart_block">
-                <h4 style={{ display: 'flex' }}><span><FontAwesomeIcon icon={faIndianRupee} /></span>{quantity * price}</h4>
+                <h4 style={{ display: 'flex' }}><span><FontAwesomeIcon icon={faIndianRupee} /></span>{total.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h4>
             </div>
             <button className='unset redbtn'
                 onClick={() => deleteCartItems(id)}

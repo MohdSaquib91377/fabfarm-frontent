@@ -41,7 +41,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
                     .then(response => {
                     })
                     .catch(error => {
-                        throw(error)
+                        throw (error)
                     })
             }
             postCartData()
@@ -127,14 +127,14 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
                                     ifloggedTotalPrice !== 0 ?
                                         <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
                                             <h3>Total</h3>
-                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{cartLoading ? "Loading..." : ifloggedTotalPrice}</h4>
+                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{cartLoading ? "Loading..." : `${ifloggedTotalPrice.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}`}</h4>
                                         </div> :
                                         undefined
                                     :
                                     cart.length !== 0 ?
                                         <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
                                             <h3>Total</h3>
-                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{totalPrice}</h4>
+                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{totalPrice.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h4>
                                         </div>
                                         :
                                         undefined

@@ -21,7 +21,7 @@ const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, in
                 .then(response => {
                 })
                 .catch(error => {
-                    throw(error)
+                    throw (error)
                 })
         }
     }
@@ -44,7 +44,7 @@ const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, in
                         })
                         .catch(error => {
                             setloader(false)
-                            throw(error)
+                            throw (error)
                         })
                 }
             }
@@ -52,8 +52,8 @@ const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, in
     }, [decrease])
     const cartItems = items.map((data, i) => {
         if (Object.keys(data).some(key => key === 'cartQuantity')) {
-            const { cartQuantity, product: { id, image: [{ image }], name, price, quantity } } = data;
-
+            const { cartQuantity, product: { id, image: [{ image }], name, price } } = data;
+            const total = cartQuantity * price;
             return (
                 <>
                     {
@@ -88,7 +88,7 @@ const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, in
                                     }
                                 </div>
                                 <div className="cart_block">
-                                    <h4 style={{ display: 'flex' }}><span><FontAwesomeIcon icon={faIndianRupee} /></span>{cartQuantity * price}</h4>
+                                    <h4 style={{ display: 'flex' }}><span><FontAwesomeIcon icon={faIndianRupee} /></span>{total.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h4>
                                 </div>
                                 <button className='unset redbtn'
                                     onClick={() => deleteCartItems(id)}

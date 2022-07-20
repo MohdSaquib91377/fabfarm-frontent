@@ -210,10 +210,11 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
     }
     const productList = cartItem.map((item, i) => {
         const { title, price, quantity } = item;
+        let total = quantity * price;
         return (
             <li key={i} className="d-flex justify-content-between">
                 <span className="your-order-middle-left font--semi-bold">{title}  {quantity} X {price}</span>
-                <span className="your-order-middle-right font--semi-bold"><FontAwesomeIcon icon={faIndianRupee} />{quantity * price}</span>
+                <span className="your-order-middle-right font--semi-bold"><FontAwesomeIcon icon={faIndianRupee} />{total.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</span>
             </li>
         )
     });
@@ -535,7 +536,7 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
                                                 </div>
                                                 <div className="your-order-total d-flex justify-content-between">
                                                     <h5 className="your-order-total-left font--bold">Total</h5>
-                                                    <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{totalPrice}</h5>
+                                                    <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{totalPrice.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h5>
                                                 </div>
                                                 <div className="your-order-bottom d-flex justify-content-between">
                                                     <Coupon />
@@ -544,13 +545,13 @@ const Checkout = ({ couponDetails, setSigninOpen, isAuthorized, cartItem }) => {
                                                     couponDetails.length !== 0 ?
                                                         <div className="your-order-total d-flex justify-content-between">
                                                             <h6 className="your-order-bottom-left font--bold">Disconted amount</h6>
-                                                            <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.couponDetails.discounted_price}</h5>
+                                                            <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.couponDetails.discounted_price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h5>
                                                         </div> :
                                                         undefined
                                                 }
                                                 <div className={couponDetails.length !== 0 ? "your-order-top d-flex justify-content-between" : "your-order-total d-flex justify-content-between"}>
                                                     <h5 className="your-order-total-left font--bold">Total payable</h5>
-                                                    <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.length !== 0 ? couponDetails.couponDetails.total_amount_payble : totalPrice}</h5>
+                                                    <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.length !== 0 ? couponDetails.couponDetails.total_amount_payble.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',') : totalPrice.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h5>
                                                 </div>
                                                 <br />
                                                 <div className="payment-method">

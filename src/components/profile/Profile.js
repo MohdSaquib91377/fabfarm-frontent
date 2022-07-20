@@ -209,7 +209,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                                                 </div>
                                                 <div className="col-md-12">
                                                     <div className="form-box__single-group">
-                                                        <input type="text" placeholder="Display Nam" />
+                                                        <input type="text" placeholder="Display Name" />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-12">

@@ -136,11 +136,11 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                     <Productimages image={image} />
                                 </div>
                                 <div className='button-buy-parent'>
-                                    <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20 button-buy">Add to cart</button>
+                                    <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20 button-buy">Add To Cart</button>
                                     <Link to='/checkout'>
                                         <button
                                             onClick={() => addToCart(id)}
-                                            className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase button-buy">Buy It Now</button>
+                                            className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase button-buy">Buy Now</button>
                                     </Link>
                                 </div>
                             </div>

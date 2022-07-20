@@ -44,7 +44,7 @@ const Basictemplate = ({ item, isAuthorized, addToCart }) => {
                     <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                     <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
                 </ul>
-                <Link to={`/product/${id}`} className="product__link">{name}</Link>
+                <Link to={`/shop/${category.id}/product/${id}`} className="product__link">{name}</Link>
                 <div className="product__price m-t-5">
                     <span className="product__price">{price}</span>
                 </div>

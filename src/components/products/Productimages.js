@@ -12,7 +12,6 @@ const Productimages = ({ image }) => {
     })
 
     if (image.length === 0) {
-        debugger
         return (
             <h1>no images</h1>
         )

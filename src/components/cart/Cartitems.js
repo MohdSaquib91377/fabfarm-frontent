@@ -3,27 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { removeFromCart, incrementQuantity, decrementQuantity } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-const Cartitems = ({ user, isAuthorized, removeFromCart, incrementQuantity, decrementQuantity, product }) => {
-    const axiosPrivate = useAxiosPrivate();
+const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, product }) => {
     const { id, image: [{ image }], name, price, quantity } = product;
     const total = quantity * price;
-    const deleteCartItems = (id) => {
-        removeFromCart(id);
-        if (isAuthorized) {
-            axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
-                data: {
-                    product_id: id
-                }
-            })
-                .then(response => {
 
-                })
-                .catch(error => {
-                    throw (error)
-                })
-        }
-    }
     return (
         <div
             style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', margin: "15px 0" }}>
@@ -49,14 +32,13 @@ const Cartitems = ({ user, isAuthorized, removeFromCart, incrementQuantity, decr
                 <h4 style={{ display: 'flex' }}><span><FontAwesomeIcon icon={faIndianRupee} /></span>{total.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h4>
             </div>
             <button className='unset redbtn'
-                onClick={() => deleteCartItems(id)}
+                onClick={() => removeFromCart(id)}
             ><FontAwesomeIcon icon={faTrash} /></button>
         </div >
     )
 }
 const mapStateToProps = (state) => {
     return {
-        isAuthorized: state.shop.isAuthorized,
         user: state.shop.user
     }
 }
@@ -64,7 +46,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         removeFromCart: (id) => dispatch(removeFromCart(id)),
         incrementQuantity: (id) => dispatch(incrementQuantity(id)),
-        decrementQuantity: (id) => dispatch(decrementQuantity(id))
+        decrementQuantity: (id) => dispatch(decrementQuantity(id)),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cartitems)

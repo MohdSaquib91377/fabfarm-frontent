@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { addToCart, incrementQuantity, decrementQuantity, setProducts } from '../../redux/actions/productActions';
+import { addToCart, incrementQuantity, decrementQuantity, setProducts, updateCart } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
@@ -16,7 +16,7 @@ import axios from '../API/axios';
 import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-const Product = ({ products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
+const Product = ({ updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
@@ -33,7 +33,27 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
         setDecreaseID(id)
         decrementQuantity(id)
     }
-
+    const funcAddToCart = (event) => {
+        const id = parseInt(event.currentTarget.id)
+        if (isAuthorized) {
+            axiosPrivate.post('/api/v1/cart/add-to-cart/',
+                [{
+                    product_id: id,
+                    quantity: 1
+                }
+                ]
+            )
+                .then(() => {
+                    updateCart()
+                })
+                .catch(error => {
+                    throw (error)
+                })
+        }
+        else {
+            addToCart(id)
+        }
+    }
     useEffect(() => {
         const fetchCurrentItem = () => {
             axios.get(`/api/v1/store/product-details/${productID}/`)
@@ -136,10 +156,11 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
                                     <Productimages image={image} />
                                 </div>
                                 <div className='button-buy-parent'>
-                                    <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20 button-buy">Add To Cart</button>
+                                    <button id={id} onClick={(event) => funcAddToCart(event)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20 button-buy">Add To Cart</button>
                                     <Link to='/checkout'>
                                         <button
-                                            onClick={() => addToCart(id)}
+                                            id={id}
+                                            onClick={(event) => funcAddToCart(event)}
                                             className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase button-buy">Buy Now</button>
                                     </Link>
                                 </div>
@@ -302,6 +323,7 @@ const Product = ({ products, setProducts, addToCart, incrementQuantity, decremen
 const mapStateToProps = (state) => {
     return {
         products: state.shop.products,
+        isAuthorized: state.shop.isAuthorized
     }
 }
 
@@ -310,7 +332,8 @@ const mapDispatchToProps = (dispatch) => {
         addToCart: (id) => dispatch(addToCart(id)),
         incrementQuantity: (id) => dispatch(incrementQuantity(id)),
         decrementQuantity: (id) => dispatch(decrementQuantity(id)),
-        setProducts: (id) => dispatch(setProducts(id))
+        setProducts: (id) => dispatch(setProducts(id)),
+        updateCart: () => dispatch(updateCart())
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Product)        

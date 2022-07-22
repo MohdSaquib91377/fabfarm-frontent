@@ -9,17 +9,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faShoppingCart, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import CartitemIflogged from './CartitemIflogged';
-import { setSigninOpen, setTotalCartCount } from '../../redux/actions/productActions';
+import { makeCartEmpty, setSigninOpen, setTotalCartCount, updateCart } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, isAuthorized, cart, opencart, closecart }) => {
+import { useState } from 'react';
+import { useEffect } from 'react';
+const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount, makeCartEmpty, user, isAuthorized, cart, opencart, closecart }) => {
     const axiosPrivate = useAxiosPrivate();
-    const [totalPrice, setTotalPrice] = React.useState(0);
-    const [cartProducts, setCartProducts] = React.useState([])
-    const [items, setItems] = React.useState([])
-    const [ifloggedTotalPrice, setIfloggedTotalPrice] = React.useState()
-    const [cartLoading, setCartLoading] = React.useState(false);
-    // const [cartDataifloggedin, setCartDataifLoggedin] = React.useState([])
-    React.useEffect(() => {
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [cartProducts, setCartProducts] = useState([])
+    const [items, setItems] = useState([])
+    const [ifloggedTotalPrice, setIfloggedTotalPrice] = useState()
+    const [cartLoading, setCartLoading] = useState(false);
+    // const [cartDataifloggedin, setCartDataifLoggedin] = useState([])
+
+
+    useEffect(() => {
+        if (isAuthorized && cart.length !== 0) {
+            const postCartData = () => {
+                axiosPrivate.post('/api/v1/cart/add-to-cart/', cartProducts)
+                    .then(() => {
+                        makeCartEmpty([])
+                        updateCart()
+                    })
+                    .catch(error => {
+                        throw (error)
+                    })
+            }
+            postCartData()
+        }
+    }, [isAuthorized, cart])
+
+
+    useEffect(() => {
         let price = 0;
         cart.forEach(item => {
             price += item.quantity * item.price;
@@ -35,24 +56,10 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
             )
         })
         setCartProducts(items)
-        if (isAuthorized && cart.length !== 0) {
-            const postCartData = () => {
-                axiosPrivate.post('/api/v1/cart/add-to-cart/', cartProducts)
-                    .then(response => {
-                    })
-                    .catch(error => {
-                        throw (error)
-                    })
-            }
-            postCartData()
-
-        }
-
-
 
     }, [cart, totalPrice, setTotalPrice, isAuthorized, user]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
         const getCartItems = async () => {
@@ -80,7 +87,7 @@ const Cartdrawer = ({ totalCartCount, setTotalCartCount, setSigninOpen, user, is
             isMounted = false;
             controller.abort();
         }
-    }, [cartProducts, totalPrice, isAuthorized])
+    }, [isAuthorized, updatedCart])
     const cartItems = cart.map((products, i) => {
         if (!isAuthorized) {
             return (
@@ -187,13 +194,16 @@ const mapStateToProps = (state) => {
         cart: state.shop.cart,
         isAuthorized: state.shop.isAuthorized,
         user: state.shop.user,
-        totalCartCount: state.shop.totalCartCount
+        totalCartCount: state.shop.totalCartCount,
+        updatedCart: state.shop.updatedCart
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         setTotalCartCount: (total) => dispatch(setTotalCartCount(total)),
         setSigninOpen: () => dispatch(setSigninOpen()),
+        makeCartEmpty: (empty) => dispatch(makeCartEmpty(empty)),
+        updateCart: () => dispatch(updateCart())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cartdrawer);

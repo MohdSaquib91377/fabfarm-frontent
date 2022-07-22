@@ -120,3 +120,9 @@ export const setPopup = (boolean) => {
         payload: boolean
     }
 }
+export const updateCart = () => {
+    return {
+        type: ActionTypes.UPDATE_CART,
+        payload: null,
+    }
+}

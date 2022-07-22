@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { removeFromCart, incrementQuantity, decrementQuantity } from '../../redux/actions/productActions';
+import { removeFromCart, incrementQuantity, decrementQuantity, updateCart } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, incrementQuantity, decrementQuantity }) => {
+const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, removeFromCart }) => {
     // const [items, setItems] = useState([])
     // const { id, image: [{ image }], name, price, quantity } = items;
-    const [decrease, setDecrease] = useState("")
+    // const [decrease, setDecrease] = useState("")
     const [loader, setloader] = useState(false);
     const axiosPrivate = useAxiosPrivate();
     const deleteCartItems = (id) => {
@@ -18,38 +18,58 @@ const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, in
                     product_id: id
                 }
             })
-                .then(response => {
+                .then(() => {
+                    updateCart()
                 })
                 .catch(error => {
                     throw (error)
                 })
         }
     }
-    const decreaseCount = (id) => {
-        setDecrease(id)
-        decrementQuantity(id)
-    }
-    useEffect(() => {
-        items.map((data) => {
-            if (Object.keys(data).some(key => key === 'cartQuantity')) {
-                if (data.product.id == decrease && data.cartQuantity === 1) {
-                    setloader(true)
-                    axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
-                        data: {
-                            product_id: decrease
-                        }
-                    })
-                        .then(response => {
-                            setloader(false)
-                        })
-                        .catch(error => {
-                            setloader(false)
-                            throw (error)
-                        })
-                }
+
+    const prductInCartQuantity = (id, boolean) => {
+        axiosPrivate.put('/api/v1/cart/add-to-cart/', {
+            data: {
+                product_id: id,
+                action: boolean
             }
         })
-    }, [decrease])
+            .then(() => {
+                updateCart()
+            })
+            .catch(error => {
+                throw (error)
+            })
+    }
+    const decreaseCount = (id) => {
+        let boolean = 'false'
+        prductInCartQuantity(id, boolean)
+    }
+    const increaseCount = (id) => {
+        let boolean = 'true'
+        prductInCartQuantity(id, boolean)
+    }
+    // useEffect(() => {
+    //     items.map((data) => {
+    //         if (Object.keys(data).some(key => key === 'cartQuantity')) {
+    //             if (data.product.id == decrease && data.cartQuantity === 1) {
+    //                 setloader(true)
+    //                 axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
+    //                     data: {
+    //                         product_id: decrease
+    //                     }
+    //                 })
+    //                     .then(response => {
+    //                         setloader(false)
+    //                     })
+    //                     .catch(error => {
+    //                         setloader(false)
+    //                         throw (error)
+    //                     })
+    //             }
+    //         }
+    //     })
+    // }, [decrease])
     const cartItems = items.map((data, i) => {
         if (Object.keys(data).some(key => key === 'cartQuantity')) {
             const { cartQuantity, product: { id, image: [{ image }], name, price } } = data;
@@ -83,7 +103,7 @@ const CartitemIflogged = ({ cartLoading, items, isAuthorized, removeFromCart, in
                                                     value={cartQuantity}
                                                     className="quantity"
                                                     disabled />
-                                                <button className="quantity_plus" onClick={() => incrementQuantity(id)} ><FontAwesomeIcon icon={faPlus} /></button>
+                                                <button className="quantity_plus" onClick={() => increaseCount(id)} ><FontAwesomeIcon icon={faPlus} /></button>
                                             </div>
                                     }
                                 </div>
@@ -118,7 +138,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         removeFromCart: (id) => dispatch(removeFromCart(id)),
         incrementQuantity: (id) => dispatch(incrementQuantity(id)),
-        decrementQuantity: (id) => dispatch(decrementQuantity(id))
+        decrementQuantity: (id) => dispatch(decrementQuantity(id)),
+        updateCart: () => dispatch(updateCart())
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CartitemIflogged)

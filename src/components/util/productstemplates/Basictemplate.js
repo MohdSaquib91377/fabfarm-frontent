@@ -4,11 +4,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addToCart, setPopup } from '../../../redux/actions/productActions'
+import { addToCart, setPopup, updateCart } from '../../../redux/actions/productActions'
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
 
-const Basictemplate = ({ item, isAuthorized, addToCart, setPopup }) => {
+const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, updateCart }) => {
     const axiosPrivate = useAxiosPrivate()
+    const funcAddToCart = (event) => {
+        if (isAuthorized) {
+            axiosPrivate.post('/api/v1/cart/add-to-cart/',
+                [{
+                    product_id: parseInt(event.currentTarget.id),
+                    quantity: 1
+                }
+                ]
+            )
+                .then(() => {
+                    updateCart()
+                })
+                .catch(error => {
+                    throw (error)
+                })
+        }
+        else {
+            addToCart(parseInt(event.currentTarget.id))
+        }
+    }
     const addToWishList = (id) => {
         if (isAuthorized) {
             axiosPrivate.post('/api/v1/wishlist/wishlist/add-to-wishlist/', { product_id: id })
@@ -33,8 +53,8 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup }) => {
                     </Link>
                     <span className="product__label product__label--sale-dis">-34%</span>
                     <ul className="product__action--link pos-absolute">
-                        <li><button onClick={() => addToCart(id)}><FontAwesomeIcon icon={faShoppingCart} /></button></li>
-                        <li><Link to='/checkout'><button onClick={() => addToCart(id)}>Buy</button></Link></li>
+                        <li><button id={id} onClick={(event) => funcAddToCart(event)}><FontAwesomeIcon icon={faShoppingCart} /></button></li>
+                        <li><Link to='/checkout'><button id={id} onClick={(event) => funcAddToCart(event)}>Buy</button></Link></li>
                         <li><button onClick={() => addToWishList(id)}><FontAwesomeIcon icon={faHeart} /></button></li>
                     </ul>
                 </div>
@@ -64,6 +84,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (id) => dispatch(addToCart(id)),
         setPopup: (boolean) => dispatch(setPopup(boolean)),
+        updateCart: () => dispatch(updateCart())
     }
 
 }

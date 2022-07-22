@@ -11,7 +11,8 @@ const initialState = {
     totalCartCount: 0,
     couponDetails: [],
     mainCategory: false,
-    popup: false
+    popup: false,
+    updatedCart: false
 }
 export const shopReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -130,6 +131,11 @@ export const shopReducer = (state = initialState, action) => {
                 ...state,
                 popup: action.payload
             }
+        case ActionTypes.UPDATE_CART:
+            return {
+                ...state,
+                updatedCart: !state.updatedCart
+            };
         default:
             return state;
     }

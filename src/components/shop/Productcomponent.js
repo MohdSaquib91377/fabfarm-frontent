@@ -3,12 +3,52 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { addToCart } from '../../redux/actions/productActions';
+import { addToCart, updateCart } from '../../redux/actions/productActions';
+import { axiosPrivate } from '../API/axios';
 
-const Productcomponent = ({ product, i, categoryId, addToCart }) => {
+const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, addToCart }) => {
     let Navigate = useNavigate();
     const { id, image: [{ image }], name, description, price, maxQuantity } = product;
+    const funcAddToCart = (event) => {
+        const id = parseInt(event.currentTarget.id)
+        if (isAuthorized) {
+            axiosPrivate.post('/api/v1/cart/add-to-cart/',
+                [{
+                    product_id: id,
+                    quantity: 1
+                }
+                ]
+            )
+                .then(() => {
+                    updateCart()
+                })
+                .catch(error => {
+                    throw (error)
+                })
+        }
+        else {
+            addToCart(id)
+        }
+    }
     const buyButton = (id) => {
+        if (isAuthorized) {
+            axiosPrivate.post('/api/v1/cart/add-to-cart/',
+                [{
+                    product_id: id,
+                    quantity: 1
+                }
+                ]
+            )
+                .then(() => {
+                    updateCart()
+                })
+                .catch(error => {
+                    throw (error)
+                })
+        }
+        else {
+            addToCart(id)
+        }
         Navigate('/checkout');
     }
     return (
@@ -22,7 +62,7 @@ const Productcomponent = ({ product, i, categoryId, addToCart }) => {
                     </Link>
                     <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
                     <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
-                    <button onClick={() => addToCart(id)}>add to cart</button>
+                    <button id={id} onClick={(event) => funcAddToCart(event)}>add to cart</button>
                     <button onClick={() => buyButton(id)}>Buy now</button>
                 </div>
                 <div className="content_block">
@@ -60,9 +100,15 @@ const Productcomponent = ({ product, i, categoryId, addToCart }) => {
         </li >
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        isAuthorized: state.shop.isAuthorized,
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (id) => dispatch(addToCart(id)),
+        updateCart: () => dispatch(updateCart())
     };
 };
-export default connect(null, mapDispatchToProps)(Productcomponent)
+export default connect(mapStateToProps, mapDispatchToProps)(Productcomponent)

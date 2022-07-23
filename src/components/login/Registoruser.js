@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { FaSpinner } from 'react-icons/fa';
-const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail,setResendCounter }) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setResendCounter }) => {
     const initialValues = { name: '', email: "", password: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
     const [loader, setLoader] = useState(false)
+    const [seePassword, setSeePassword] = useState(false)
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
@@ -46,9 +49,13 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail,setRes
     }, [formErrors]);
     const validateSignin = (values) => {
         const errors = {};
+        const regexName = /^[A-Za-z0-9 ]+$/;
         const regexemail = /\S+@\S+\.\S+/;
         if (!values.name) {
             errors.name = 'Name is required!'
+        }
+        else if (!regexName.test(values.name)) {
+            errors.name = 'Enter a valid name'
         }
         if (!values.email) {
             errors.email = 'Email is required!'
@@ -73,8 +80,18 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail,setRes
                     <input type="text" name='email' value={formValues.email} onChange={handleChange} className="form_field" placeholder="Email" autoComplete='off' />
                 </div>
                 <p>{formErrors.email}</p>
-                <div className="form_block">
-                    <input type="password" name='password' value={formValues.password} onChange={handleChange} className="form_field" placeholder="Password" autoComplete='off' />
+                <div className="form_block" style={{
+                    position: 'relative'
+                }}>
+                    <input type={seePassword ? 'text' : 'password'} name='password' value={formValues.password} onChange={handleChange} className="form_field" placeholder="Password" autoComplete='off' />
+                    <FontAwesomeIcon style={{
+                        position: 'absolute',
+                        right: '10px',
+                        top: '16px'
+                    }}
+                        onMouseDown={() => setSeePassword(true)}
+                        onMouseUp={() => setSeePassword(false)}
+                        icon={seePassword ? faEyeSlash : faEye} />
                 </div>
                 <p>{formErrors.password}</p>
                 <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'sign up'}</button>

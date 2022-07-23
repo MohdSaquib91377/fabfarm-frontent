@@ -9,11 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faShoppingCart, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import CartitemIflogged from './CartitemIflogged';
-import { makeCartEmpty, setSigninOpen, setTotalCartCount, updateCart } from '../../redux/actions/productActions';
+import { makeCartEmpty, setOnlineCart, setSigninOpen, setTotalCartCount, updateCart } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState } from 'react';
 import { useEffect } from 'react';
-const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount, makeCartEmpty, user, isAuthorized, cart, opencart, closecart }) => {
+const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount, makeCartEmpty, user, isAuthorized, cart, opencart, closecart, setOnlineCart }) => {
     const axiosPrivate = useAxiosPrivate();
     const [totalPrice, setTotalPrice] = useState(0);
     const [cartProducts, setCartProducts] = useState([])
@@ -68,6 +68,7 @@ const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount
                     setCartLoading(true)
                     const response = await axiosPrivate.get('/api/v1/cart/add-to-cart/')
                     setItems(response.data)
+                    setOnlineCart(response?.data)
                     setCartLoading(false)
                     response.data.map((data) => {
                         if (Object.keys(data).some(key => key === 'cart_item')) {
@@ -207,7 +208,8 @@ const mapDispatchToProps = (dispatch) => {
         setTotalCartCount: (total) => dispatch(setTotalCartCount(total)),
         setSigninOpen: () => dispatch(setSigninOpen()),
         makeCartEmpty: (empty) => dispatch(makeCartEmpty(empty)),
-        updateCart: () => dispatch(updateCart())
+        updateCart: () => dispatch(updateCart()),
+        setOnlineCart: (cartItems) => dispatch(setOnlineCart(cartItems))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cartdrawer);

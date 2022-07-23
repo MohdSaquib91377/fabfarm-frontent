@@ -12,7 +12,8 @@ const initialState = {
     couponDetails: [],
     mainCategory: false,
     popup: false,
-    updatedCart: false
+    updatedCart: false,
+    onlineCart: []
 }
 export const shopReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -136,6 +137,11 @@ export const shopReducer = (state = initialState, action) => {
                 ...state,
                 updatedCart: !state.updatedCart
             };
+        case ActionTypes.SET_ONLINE_CART:
+            return {
+                ...state,
+                onlineCart: action.payload
+            }
         default:
             return state;
     }

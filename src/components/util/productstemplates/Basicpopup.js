@@ -18,11 +18,12 @@ const style = {
     p: 4,
 };
 const Basicpopup = ({ popup, setPopup }) => {
-    useEffect(() => {
-        setInterval(() => {
+    setTimeout(() => {
+        if(popup){
             setPopup(false)
-        }, 3000)
-    }, [])
+        }
+    }, 3000)
+
     return (
         <div>
             <Modal

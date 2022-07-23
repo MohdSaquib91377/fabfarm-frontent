@@ -126,3 +126,10 @@ export const updateCart = () => {
         payload: null,
     }
 }
+
+export const setOnlineCart = (cartItems) => {
+    return {
+        type: ActionTypes.SET_ONLINE_CART,
+        payload: cartItems,
+    };
+};

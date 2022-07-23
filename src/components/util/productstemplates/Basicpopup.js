@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { setPopup } from '../../../redux/actions/productActions';
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
 const style = {
     position: 'absolute',
@@ -17,6 +18,11 @@ const style = {
     p: 4,
 };
 const Basicpopup = ({ popup, setPopup }) => {
+    useEffect(() => {
+        setInterval(() => {
+            setPopup(false)
+        }, 3000)
+    }, [])
     return (
         <div>
             <Modal

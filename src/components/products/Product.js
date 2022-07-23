@@ -195,7 +195,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
                                         <button
                                             id={id}
                                             onClick={(event) => funcAddToCart(event)}
-                                            className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase button-buy">Buy Now</button>
+                                            className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black btn-uppercase button-buy">Buy Now</button>
                                     </Link>
                                 </div>
                             </div>

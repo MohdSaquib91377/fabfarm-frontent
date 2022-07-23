@@ -16,23 +16,19 @@ import axios from '../API/axios';
 import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-const Product = ({ updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
+const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
-    const [decrease, setDecrease] = useState(false);
-    const [decreaseID, setDecreaseID] = useState("");
-    const [loader, setloader] = useState(false);
+    // const [decrease, setDecrease] = useState(false);
+    // const [decreaseID, setDecreaseID] = useState("");
+    // const [loader, setloader] = useState(false);
     const [relatedProducts, setRelatedProducts] = useState([])
     // const [productCount, setProductCount] = useState()
     let axiosPrivate = useAxiosPrivate();
     Tabtitle('FAB | Shop')
     const { id, image, name, description, price, maxQuantity, category, old_price, sub_category_name } = currentItem;
-    const decreaseCount = (id) => {
-        setDecrease(!decrease)
-        setDecreaseID(id)
-        decrementQuantity(id)
-    }
+
     const funcAddToCart = (event) => {
         const id = parseInt(event.currentTarget.id)
         if (isAuthorized) {
@@ -54,6 +50,37 @@ const Product = ({ updateCart, isAuthorized, products, setProducts, addToCart, i
             addToCart(id)
         }
     }
+    const prductInCartQuantity = (id, boolean) => {
+        axiosPrivate.put('/api/v1/cart/add-to-cart/', {
+            product_id: id,
+            action: boolean
+        })
+            .then(() => {
+                updateCart()
+            })
+            .catch(error => {
+                throw (error)
+            })
+    }
+    const decreaseCount = (id) => {
+        if (isAuthorized) {
+            let boolean = 'false'
+            prductInCartQuantity(id, boolean)
+        } else {
+            // setDecrease(!decrease)
+            // setDecreaseID(id)
+            decrementQuantity(id)
+        }
+
+    }
+    const increaseCount = (id) => {
+        if (isAuthorized) {
+            let boolean = 'true'
+            prductInCartQuantity(id, boolean)
+        } else {
+            incrementQuantity(id)
+        }
+    }
     useEffect(() => {
         const fetchCurrentItem = () => {
             axios.get(`/api/v1/store/product-details/${productID}/`)
@@ -73,23 +100,23 @@ const Product = ({ updateCart, isAuthorized, products, setProducts, addToCart, i
 
 
     }, [])
-    useEffect(() => {
-        if (products[0]?.quantity === 1 && typeof (decreaseID) === 'number') {
-            setloader(true)
-            axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
-                data: {
-                    product_id: decreaseID
-                }
-            })
-                .then(() => {
-                    setloader(false)
-                })
-                .catch(error => {
-                    setloader(false)
-                    throw (error)
-                })
-        }
-    }, [decrease, decreaseID])
+    // useEffect(() => {
+    //     if (products[0]?.quantity === 1 && typeof (decreaseID) === 'number') {
+    //         setloader(true)
+    //         axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
+    //             data: {
+    //                 product_id: decreaseID
+    //             }
+    //         })
+    //             .then(() => {
+    //                 setloader(false)
+    //             })
+    //             .catch(error => {
+    //                 setloader(false)
+    //                 throw (error)
+    //             })
+    //     }
+    // }, [decrease, decreaseID])
 
     if (currentItem.length === 0) {
         return (
@@ -202,7 +229,7 @@ const Product = ({ updateCart, isAuthorized, products, setProducts, addToCart, i
                                                     <FontAwesomeIcon icon={faMinus} />
                                                 </button>
                                                 <input className='input-items-number' type="text" readOnly id="number" value={products[0].quantity} />
-                                                <button className="value-button" onClick={() => incrementQuantity(id)
+                                                <button className="value-button" onClick={() => increaseCount(id)
                                                 }>
                                                     <FontAwesomeIcon icon={faPlus} />
                                                 </button>
@@ -323,7 +350,8 @@ const Product = ({ updateCart, isAuthorized, products, setProducts, addToCart, i
 const mapStateToProps = (state) => {
     return {
         products: state.shop.products,
-        isAuthorized: state.shop.isAuthorized
+        isAuthorized: state.shop.isAuthorized,
+        totalCartCount: state.shop.totalCartCount
     }
 }
 

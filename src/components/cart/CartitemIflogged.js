@@ -29,11 +29,9 @@ const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, remove
 
     const prductInCartQuantity = (id, boolean) => {
         axiosPrivate.put('/api/v1/cart/add-to-cart/', {
-            data: {
-                product_id: id,
-                action: boolean
-            }
-        })
+            product_id: id,
+            action: boolean
+          })
             .then(() => {
                 updateCart()
             })
@@ -49,27 +47,6 @@ const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, remove
         let boolean = 'true'
         prductInCartQuantity(id, boolean)
     }
-    // useEffect(() => {
-    //     items.map((data) => {
-    //         if (Object.keys(data).some(key => key === 'cartQuantity')) {
-    //             if (data.product.id == decrease && data.cartQuantity === 1) {
-    //                 setloader(true)
-    //                 axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
-    //                     data: {
-    //                         product_id: decrease
-    //                     }
-    //                 })
-    //                     .then(response => {
-    //                         setloader(false)
-    //                     })
-    //                     .catch(error => {
-    //                         setloader(false)
-    //                         throw (error)
-    //                     })
-    //             }
-    //         }
-    //     })
-    // }, [decrease])
     const cartItems = items.map((data, i) => {
         if (Object.keys(data).some(key => key === 'cartQuantity')) {
             const { cartQuantity, product: { id, image: [{ image }], name, price } } = data;

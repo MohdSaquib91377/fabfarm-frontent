@@ -16,6 +16,7 @@ import axios from '../API/axios';
 import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import useBannerImages from '../../hooks/useBannerImages';
 const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
@@ -27,6 +28,8 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
     // const [productCount, setProductCount] = useState()
     let axiosPrivate = useAxiosPrivate();
     Tabtitle('FAB | Shop')
+    const banner = useBannerImages('shop')
+
     const { id, image, name, description, price, maxQuantity, category, old_price, sub_category_name } = currentItem;
 
     const funcAddToCart = (event) => {
@@ -138,7 +141,11 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
     }
     return (
         <>
-            <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
+            <div className="breadcrumb_wrapper"
+                style={{
+                    minHeight: '250px',
+                    backgroundImage: `url(${banner[0]?.image_or_video})`
+                }}>
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">

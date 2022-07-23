@@ -123,18 +123,22 @@ const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount
                             </div>
                             <div className="overflow-cart">
                                 {
-                                    isAuthorized ?
-                                        totalCartCount !== 0 ? <CartitemIflogged cartLoading={cartLoading} items={items} /> : <p>your cart is empty</p>
+                                    cartLoading ?
+                                        <p>Loading...</p>
                                         :
-                                        cart.length !== 0 ? <> {cartItems}</> : <p>your cart is empty</p>
+                                        isAuthorized ?
+
+                                            totalCartCount !== 0 ? <CartitemIflogged cartLoading={cartLoading} items={items} /> : <p>your cart is empty</p>
+                                            :
+                                            cart.length !== 0 ? <> {cartItems}</> : <p>your cart is empty</p>
                                 }
                             </div>
                             {
                                 isAuthorized ?
-                                    ifloggedTotalPrice !== 0 ?
+                                    ifloggedTotalPrice !== undefined ?
                                         <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
                                             <h3>Total</h3>
-                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{ifloggedTotalPrice}</h4>
+                                            <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{ifloggedTotalPrice.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h4>
                                         </div> :
                                         undefined
                                     :

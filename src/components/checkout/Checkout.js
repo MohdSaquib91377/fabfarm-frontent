@@ -147,7 +147,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
 
     const validateCheckout = (values) => {
         const errors = {};
-        const regexFullName = /^[A-Za-z0-9 ]+$/;
+        const regexFullName = /^[A-Za-z ]+$/;
         const regexPincode = /^[1-9][0-9]{5}$/;
         const regexmobile = /^([+]\d{2})?\d{10}$/;
         if (!values.full_name) {

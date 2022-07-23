@@ -49,7 +49,7 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setRe
     }, [formErrors]);
     const validateSignin = (values) => {
         const errors = {};
-        const regexName = /^[A-Za-z0-9 ]+$/;
+        const regexName = /^[A-Za-z ]+$/;
         const regexemail = /\S+@\S+\.\S+/;
         if (!values.name) {
             errors.name = 'Name is required!'

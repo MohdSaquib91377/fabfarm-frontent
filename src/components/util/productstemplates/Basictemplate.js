@@ -1,5 +1,5 @@
 import { faHeart, faStar } from '@fortawesome/free-regular-svg-icons'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faIndianRupee, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { connect } from 'react-redux'
@@ -74,7 +74,7 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                     </ul>
                     <Link to={`/shop/${category.id}/product/${id}`} className="product__link">{name}</Link>
                     <div className="product__price m-t-5">
-                        <span className="product__price">{price}</span>
+                        <span className="product__price"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>
                     </div>
                 </div>
             </div>

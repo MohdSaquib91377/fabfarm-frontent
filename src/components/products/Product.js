@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { addToCart, incrementQuantity, decrementQuantity, setProducts, updateCart } from '../../redux/actions/productActions';
+import { addToCart, incrementQuantity, decrementQuantity, setProducts, updateCart, setMainCategory } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
@@ -17,7 +17,7 @@ import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useBannerImages from '../../hooks/useBannerImages';
-const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity }) => {
+const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
@@ -102,23 +102,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
 
 
     }, [])
-    // useEffect(() => {
-    //     if (products[0]?.quantity === 1 && typeof (decreaseID) === 'number') {
-    //         setloader(true)
-    //         axiosPrivate.delete('/api/v1/cart/add-to-cart/', {
-    //             data: {
-    //                 product_id: decreaseID
-    //             }
-    //         })
-    //             .then(() => {
-    //                 setloader(false)
-    //             })
-    //             .catch(error => {
-    //                 setloader(false)
-    //                 throw (error)
-    //             })
-    //     }
-    // }, [decrease, decreaseID])
+    
 
     if (currentItem.length === 0) {
         return (
@@ -138,6 +122,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
             </div>
         )
     }
+    console.log(currentItem)
     return (
         <>
             <div className="breadcrumb_wrapper"
@@ -172,9 +157,9 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
                         <p className='m-0'>
                             <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
                             <span className='breadcrum-width-dot'>&nbsp;>&nbsp;</span>
-                            <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}`}>&nbsp;{category?.name}</Link></span>
+                            <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}`} onClick={() => setMainCategory(true)}>&nbsp;{category?.name}</Link></span>
                             <span className='breadcrum-width-dot'> &nbsp; > &nbsp;</span>
-                            <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}`}>&nbsp;{sub_category_name}</Link></span>
+                            <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}`} onClick={() => setMainCategory(false)}>&nbsp;{sub_category_name}</Link></span>
                             <span className='breadcrum-width-dot'> &nbsp; > &nbsp;</span>
                             <span className='breadcrum-width-dot'>   {name}</span> </p>
                     </div>
@@ -367,7 +352,9 @@ const mapDispatchToProps = (dispatch) => {
         incrementQuantity: (id) => dispatch(incrementQuantity(id)),
         decrementQuantity: (id) => dispatch(decrementQuantity(id)),
         setProducts: (id) => dispatch(setProducts(id)),
-        updateCart: () => dispatch(updateCart())
+        updateCart: () => dispatch(updateCart()),
+        setMainCategory: (boolean) => dispatch(setMainCategory(boolean))
+
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Product)        

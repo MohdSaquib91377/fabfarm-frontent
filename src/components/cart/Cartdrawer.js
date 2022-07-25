@@ -129,9 +129,9 @@ const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount
                                         :
                                         isAuthorized ?
 
-                                            totalCartCount !== 0 ? <CartitemIflogged cartLoading={cartLoading} items={items} /> : <p>your cart is empty</p>
+                                            totalCartCount !== 0 ? <CartitemIflogged cartLoading={cartLoading} items={items} /> : <p>Your cart is empty</p>
                                             :
-                                            cart.length !== 0 ? <> {cartItems}</> : <p>your cart is empty</p>
+                                            cart.length !== 0 ? <> {cartItems}</> : <p>Your cart is empty</p>
                                 }
                             </div>
                             {
@@ -167,7 +167,7 @@ const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount
                                             color: '#fff'
                                         }}
                                         className="cart_action_btn">
-                                        check out</button>
+                                        Checkout</button>
                                 </Link> :
                                 undefined
                             :
@@ -183,7 +183,7 @@ const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount
                                             color: '#fff'
                                         }}
                                         className="cart_action_btn">
-                                        check out
+                                        Checkout
                                     </button>
                                 </Link>
                                 : undefined

@@ -149,7 +149,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                 :
                                 <>
                                     <li> <Link onClick={() => { setMainCategory(true) }} to={`/shop/${products[0]?.category?.id}/`}> &nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined}</Link></li>
-                                    <li> &nbsp; {products.length !== 0 ? products[0]?.sub_category_name : undefined}</li>
+                                    <li> &nbsp; {products.length !== 0 ? products[0]?.sub_category.name : undefined}</li>
                                 </>
                         }
                     </ul>

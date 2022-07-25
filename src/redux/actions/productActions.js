@@ -120,6 +120,14 @@ export const setPopup = (boolean) => {
         payload: boolean
     }
 }
+
+export const setPopupMessage = (string) => {
+    return {
+        type: ActionTypes.SET_POPUP_MESSAGE,
+        payload: string
+    }
+}
+
 export const updateCart = () => {
     return {
         type: ActionTypes.UPDATE_CART,

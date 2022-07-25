@@ -29,8 +29,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
     let axiosPrivate = useAxiosPrivate();
     Tabtitle('FAB | Shop')
     const banner = useBannerImages('shop')
-
-    const { id, image, name, description, price, maxQuantity, category, old_price, sub_category_name } = currentItem;
+    const { id, image, name, description, price, maxQuantity, category, old_price, sub_category } = currentItem;
 
     const funcAddToCart = (event) => {
         const id = parseInt(event.currentTarget.id)
@@ -102,7 +101,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
 
 
     }, [])
-    
+
 
     if (currentItem.length === 0) {
         return (
@@ -122,7 +121,6 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
             </div>
         )
     }
-    console.log(currentItem)
     return (
         <>
             <div className="breadcrumb_wrapper"
@@ -159,7 +157,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
                             <span className='breadcrum-width-dot'>&nbsp;>&nbsp;</span>
                             <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}`} onClick={() => setMainCategory(true)}>&nbsp;{category?.name}</Link></span>
                             <span className='breadcrum-width-dot'> &nbsp; > &nbsp;</span>
-                            <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}`} onClick={() => setMainCategory(false)}>&nbsp;{sub_category_name}</Link></span>
+                            <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}/${sub_category.id}`} onClick={() => setMainCategory(false)}>&nbsp;{sub_category.name}</Link></span>
                             <span className='breadcrum-width-dot'> &nbsp; > &nbsp;</span>
                             <span className='breadcrum-width-dot'>   {name}</span> </p>
                     </div>

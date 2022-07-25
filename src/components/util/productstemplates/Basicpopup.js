@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { setPopup } from '../../../redux/actions/productActions';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
 
 const style = {
     position: 'absolute',
@@ -17,13 +16,12 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-const Basicpopup = ({ popup, setPopup }) => {
+const Basicpopup = ({ popup, setPopup, popupMessage }) => {
     setTimeout(() => {
-        if(popup){
+        if (popup) {
             setPopup(false)
         }
     }, 3000)
-
     return (
         <div>
             <Modal
@@ -34,7 +32,7 @@ const Basicpopup = ({ popup, setPopup }) => {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Product Added to Wishlist
+                        {popupMessage}
                     </Typography>
                 </Box>
             </Modal>
@@ -43,7 +41,8 @@ const Basicpopup = ({ popup, setPopup }) => {
 }
 const mapStateToProps = (state) => {
     return {
-        popup: state.shop.popup
+        popup: state.shop.popup,
+        popupMessage: state.shop.popupMessage
     }
 }
 const mapDispatchToProps = (dispatch) => {

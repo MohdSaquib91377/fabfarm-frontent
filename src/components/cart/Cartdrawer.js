@@ -136,7 +136,7 @@ const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount
                             </div>
                             {
                                 isAuthorized ?
-                                    ifloggedTotalPrice !== undefined ?
+                                    ifloggedTotalPrice !== undefined && ifloggedTotalPrice !== 0 ?
                                         <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '10px', position: 'absolute', bottom: '50px', width: '360px' }}>
                                             <h3>Total</h3>
                                             <h4><span><FontAwesomeIcon icon={faIndianRupee} /></span>{ifloggedTotalPrice.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h4>

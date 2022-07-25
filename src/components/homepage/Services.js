@@ -41,7 +41,7 @@ const Services = ({ setMainCategory }) => {
                             <div className="col-lg-3 col-md-6">
                                 <div className="garden_service_block" onClick={() => navigate(category[0]?.id)}>
                                     <div className="service_image">
-                                        <span><img src={process.env.PUBLIC_URL + "images/garden_service1.png"} alt="" /></span>
+                                        <span><img src={process.env.PUBLIC_URL + "/images/garden_service1.png"} alt="" /></span>
                                     </div>
                                     <h3>{category[0]?.name}</h3>
                                     <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
@@ -50,7 +50,7 @@ const Services = ({ setMainCategory }) => {
                             <div className="col-lg-3 col-md-6">
                                 <div className="garden_service_block" onClick={() => navigate(category[1]?.id)}>
                                     <div className="service_image">
-                                        <span><img src={process.env.PUBLIC_URL + "images/garden_service1.png"} alt="" /></span>
+                                        <span><img src={process.env.PUBLIC_URL + "/images/garden_service1.png"} alt="" /></span>
                                     </div>
                                     <h3>{category[1]?.name}</h3>
                                     <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
@@ -59,7 +59,7 @@ const Services = ({ setMainCategory }) => {
                             <div className="col-lg-3 col-md-6">
                                 <div className="garden_service_block" onClick={() => navigate(category[2]?.id)}>
                                     <div className="service_image">
-                                        <span><img src={process.env.PUBLIC_URL + "images/garden_service2.png"} alt="" /></span>
+                                        <span><img src={process.env.PUBLIC_URL + "/images/garden_service2.png"} alt="" /></span>
                                     </div>
                                     <h3>{category[2]?.name}</h3>
                                     <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
@@ -68,7 +68,7 @@ const Services = ({ setMainCategory }) => {
                             <div className="col-lg-3 col-md-6">
                                 <div className="garden_service_block" onClick={() => navigate(category[3]?.id)}>
                                     <div className="service_image">
-                                        <span><img src={process.env.PUBLIC_URL + "images/garden_service3.png"} alt="" /></span>
+                                        <span><img src={process.env.PUBLIC_URL + "/images/garden_service3.png"} alt="" /></span>
                                     </div>
                                     <h3>{category[3]?.name}</h3>
                                     <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>

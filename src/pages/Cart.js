@@ -22,7 +22,7 @@ const Cart = () => {
         //                 <tbody>
         //                     <tr>
         //                         <td>
-        //                             <img src={process.env.PUBLIC_URL + "images/thumb/pumpkin-seeds.jpg"} />
+        //                             <img src={process.env.PUBLIC_URL + "/images/thumb/pumpkin-seeds.jpg"} />
         //                         </td>
         //                         <td>
         //                             <div className="qty">
@@ -42,7 +42,7 @@ const Cart = () => {
         //                     </tr>
         //                     <tr>
         //                         <td>
-        //                             <img src={process.env.PUBLIC_URL + "images/thumb/spinach-seeds.jpg"} />
+        //                             <img src={process.env.PUBLIC_URL + "/images/thumb/spinach-seeds.jpg"} />
         //                         </td>
         //                         <td>
         //                             <div className="qty">

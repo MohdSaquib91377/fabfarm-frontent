@@ -7,7 +7,7 @@ const Productdetails = () => {
                 <div className="inner">
                     <div className="surrounder">
                         <div className="fig">
-                            <img src={process.env.PUBLIC_URL + "images/product/pumpkin.png"} alt="" />
+                            <img src={process.env.PUBLIC_URL + "/images/product/pumpkin.png"} alt="" />
                         </div>
                         <div className="art">
                             <h2>Pumpkin seeds</h2>
@@ -53,7 +53,7 @@ const Productdetails = () => {
                     <div className="productGrid">
                         <div className="col">
                             <div className="prodView">
-                                <img src={process.env.PUBLIC_URL + "images/thumb/pumpkin-seeds.jpg"} />
+                                <img src={process.env.PUBLIC_URL + "/images/thumb/pumpkin-seeds.jpg"} />
                                 <h3>Pumpkin seeds</h3>
                                 <p>
                                     Flare Seeds Seeds Rare Spinsh Seeds For Home Gardening 20 Exotic Seeds Pack Seed
@@ -76,7 +76,7 @@ const Productdetails = () => {
                         </div>
                         <div className="col">
                             <div className="prodView">
-                                <img src={process.env.PUBLIC_URL + "images/thumb/spinach-seeds.jpg"} />
+                                <img src={process.env.PUBLIC_URL + "/images/thumb/spinach-seeds.jpg"} />
                                 <h3>Spinach Seeds / Palak Seeds</h3>
                                 <p>
                                     Flare Seeds Seeds Rare Pumpkin Seeds For Home Gardening 20 Exotic Seeds Pack Seed
@@ -99,7 +99,7 @@ const Productdetails = () => {
                         </div>
                         <div className="col">
                             <div className="prodView">
-                                <img src={process.env.PUBLIC_URL + "images/thumb/capsicum-green.jpg"} />
+                                <img src={process.env.PUBLIC_URL + "/images/thumb/capsicum-green.jpg"} />
                                 <h3>Capsicum Green Vegetable seeds</h3>
                                 <p>
                                     Floriculture Greens Seeds Plants Garden Capsicum Green Organic Vegetable F1 Hybrid Seeds Pack Seed

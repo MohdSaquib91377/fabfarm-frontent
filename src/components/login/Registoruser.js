@@ -70,7 +70,7 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setRe
     return (
         <div className={state ? 'disabled' : 'signup_form_section'}>
             <h4>create account</h4>
-            <img src={process.env.PUBLIC_URL + "images/clv_underline.png"} alt="image" />
+            <img src={process.env.PUBLIC_URL + "/images/clv_underline.png"} alt="image" />
             <form onSubmit={handleSubmit}>
                 <div className="form_block">
                     <input type="text" name='name' value={formValues.name} onChange={handleChange} className="form_field" placeholder="Name" autoComplete='off' />
@@ -99,11 +99,11 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setRe
 
             <div className="social_button_section">
                 <a href="#" className="fb_btn">
-                    <span><img src={process.env.PUBLIC_URL + "images/fb.png"} alt="image" /></span>
+                    <span><img src={process.env.PUBLIC_URL + "/images/fb.png"} alt="image" /></span>
                     <span>facebook</span>
                 </a>
                 <a href="#" className="google_btn">
-                    <span><img src={process.env.PUBLIC_URL + "images/google.png"} alt="image" /></span>
+                    <span><img src={process.env.PUBLIC_URL + "/images/google.png"} alt="image" /></span>
                     <span>google+</span>
                 </a>
             </div>

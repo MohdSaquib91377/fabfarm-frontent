@@ -9,7 +9,7 @@ const Weare = () => {
                     <div className="row">
                         <div className="col-lg-5 col-md-6">
                             <div className="garden_about_image">
-                                <img src={process.env.PUBLIC_URL + "images/hands-g0eecfe8b7_640.jpg"} alt="" />
+                                <img src={process.env.PUBLIC_URL + "/images/hands-g0eecfe8b7_640.jpg"} alt="" />
                             </div>
                         </div>
                         <div className="col-lg-7 col-md-6">

@@ -28,7 +28,7 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
             <div className="signup_inner">
                 <div className="signup_details">
                     <div className="site_logo">
-                        <a href="index.html"> <img src={process.env.PUBLIC_URL + "images/logo.png"} alt="image" /></a>
+                        <a href="index.html"> <img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="image" /></a>
                     </div>
                     <h3>welcome to cultivation!</h3>
                     <p>Consectetur adipisicing elit sed do eiusmod por incididunt uttelabore et dolore magna aliqu.</p>

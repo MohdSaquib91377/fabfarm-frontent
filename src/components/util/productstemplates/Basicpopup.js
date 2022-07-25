@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { setPopup } from '../../../redux/actions/productActions';
+import { setPopup, setPopupMessage } from '../../../redux/actions/productActions';
 import { connect } from 'react-redux';
 
 const style = {
@@ -16,10 +16,11 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-const Basicpopup = ({ popup, setPopup, popupMessage }) => {
+const Basicpopup = ({ popup, setPopup, popupMessage, setPopupMessage }) => {
     setTimeout(() => {
         if (popup) {
             setPopup(false)
+            setPopupMessage('')
         }
     }, 3000)
     return (
@@ -47,7 +48,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        setPopup: (boolean) => dispatch(setPopup(boolean))
+        setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string))
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Basicpopup)

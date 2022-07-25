@@ -1,10 +1,74 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Tabtitle from './Tabtitle'
 import useBannerImages from '../hooks/useBannerImages'
-const Contact = () => {
+import axios from '../components/API/axios'
+import { FaSpinner } from 'react-icons/fa'
+import { connect } from 'react-redux'
+import { setPopup, setPopupMessage } from '../redux/actions/productActions'
+const Contact = ({setPopup,setPopupMessage}) => {
     Tabtitle('FAB | Contact us')
     const banner = useBannerImages('contact')
+    const [formErrors, setFormErrors] = useState({})
+    const initialValues = {
+        full_name: "",
+        email: "",
+        message: ""
+    };
+    const [formValues, setFormValues] = useState(initialValues)
+    const [isSubmit, setIsSubmit] = useState(false)
+    const [loader, setLoader] = useState(false)
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setFormErrors(validateContact(formValues));
+        setIsSubmit(true);
+    }
+
+    useEffect(() => {
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            setLoader(true)
+            axios.post('/api/v1/store/contact-us/', formValues)
+                .then(() => {
+                    setPopup(true)
+                    setPopupMessage('Message sent successfully')
+                    setLoader(false)
+                })
+                .catch(error => {
+                    setLoader(false)
+                    throw error
+                })
+        }
+        return () => {
+            setIsSubmit(false)
+        }
+    }, [formErrors])
+
+    const validateContact = (values) => {
+        const errors = {};
+        const regexFullName = /^[A-Za-z ]+$/;
+        const regexemail = /\S+@\S+\.\S+/;
+
+        if (!values.full_name) {
+            errors.full_name = 'Full Name is required'
+        }
+        else if (!regexFullName.test(values.full_name)) {
+            errors.full_name = 'Enter a valid name'
+        }
+        if (!values.email) {
+            errors.email = 'Email is required!'
+        } else if (!regexemail.test(values.email)) {
+            errors.email = 'Enter a valid email!';
+        }
+        if (!values.message) {
+            errors.message = 'Message is required'
+        }
+        return errors;
+    }
 
     return (
         <>
@@ -39,27 +103,30 @@ const Contact = () => {
                                     <div className="col-md-12 col-lg-12">
                                         <h3> Send Us A Message.</h3>
                                     </div>
-                                    <form>
+                                    <form onSubmit={handleSubmit}>
                                         <div className="col-md-6 col-lg-6 my-3">
                                             <div className="form_block">
-                                                <input type="text" name="full_name" className="form_field require" placeholder="Full Name" />
+                                                <input type="text" name="full_name" value={formValues.full_name} onChange={handleChange} className="form_field require" placeholder="Full Name" />
+                                                <p>{formErrors.full_name}</p>
                                             </div>
                                         </div>
                                         <div className="col-md-6 col-lg-6 my-3">
                                             <div className="form_block">
-                                                <input type="text" name="email" className="form_field require" placeholder="Email" data-valid="email" data-error="Email should be valid." />
+                                                <input type="text" name="email" value={formValues.email} onChange={handleChange} className="form_field require" placeholder="Email" data-valid="email" data-error="Email should be valid." />
+                                                <p>{formErrors.email}</p>
                                             </div>
                                         </div>
                                         {/* add select option here */}
                                         <div className="col-md-12 col-lg-12 my-3">
                                             <div className="form_block">
-                                                <textarea placeholder="Message" name="message" className="form_field require" ></textarea>
+                                                <textarea placeholder="Message" value={formValues.message} onChange={handleChange} name="message" className="form_field require" ></textarea>
+                                                <p>{formErrors.message}</p>
                                                 <div className="response"></div>
                                             </div>
                                         </div>
                                         <div className="col-md-12 col-lg-12 my-3">
                                             <div className="form_block">
-                                                <button type="button" className="clv_btn submitForm" data-type="contact">send</button>
+                                                <button type="submit" className="clv_btn submitForm" data-type="contact">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'send'}</button>
                                             </div>
                                         </div>
                                     </form>
@@ -131,5 +198,11 @@ const Contact = () => {
         </>
     )
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string))
+    }
 
-export default Contact
+}
+export default connect(null,mapDispatchToProps)(Contact)

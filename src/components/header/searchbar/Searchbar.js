@@ -40,11 +40,12 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
 
     return (
         <div className={searchBarVisible ? 'search_box search_box_open' : 'search_box'}>
+            <div className='closeFreeclick' onClick={setSearchBarVisible}></div>
             <div className="search_block">
                 <h3>Explore more with us</h3>
                 <div className="search_field">
                     <input type="search" value={value} onChange={handleSearch} placeholder="Search Here" />
-                    <button>search</button>
+                    <button className='d-none'>search</button>
                 </div>
                 {
                     searchList.length !== 0 ?
@@ -52,7 +53,12 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'space-between',
-                            height: '150px',
+                            width: '100%',
+                            height: '250px',
+                            backgroundColor: '#fff',
+                            overflow: 'auto',
+                            borderRadius:'10px',
+                            marginTop: '20px',
                         }}>
                             {
                                 searchList.map((items, i) => {
@@ -60,27 +66,29 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
                                     return (
                                         <button
                                             style={{
-                                                color: 'white'
+                                                color: 'black'
                                             }}
                                             key={i}
                                             onClick={() => navigate(id, category)}
                                         >
                                             <div style={{
                                                 display: 'flex',
-                                                justifyContent: 'space-around',
+                                                paddingTop: '20px',
+                                                paddingLeft: '20px',
                                                 width: '100%'
                                             }}>
                                                 <img style={{
                                                     height: '50px',
-                                                    width: '50px'
+                                                    width: '50px',
+                                                    marginRight: '20px'
                                                 }} src={process.env.REACT_APP_BASE_URL + images[0]?.image} alt={name} />
                                                 <div>
-                                                    <h4>
+                                                    <h4 style={{fontSize: '16px'}}>
                                                         {name}
                                                     </h4>
-                                                    <h5>
+                                                    <h4 style={{fontSize: '14px',textAlign:'left'}}>
                                                         {category.name}
-                                                    </h5>
+                                                    </h4>
                                                 </div>
                                             </div>
                                         </button>
@@ -102,7 +110,7 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
                     viewBox="0 0 47.971 47.971"
                 >
                     <path
-                        fill="#2a7d2e"
+                        fill="#fff"
                         d="M28.228 23.986L47.092 5.122a2.998 2.998 0 000-4.242 2.998 2.998 0 00-4.242 0L23.986 19.744 5.121.88a2.998 2.998 0 00-4.242 0 2.998 2.998 0 000 4.242l18.865 18.864L.879 42.85a2.998 2.998 0 104.242 4.241l18.865-18.864L42.85 47.091c.586.586 1.354.879 2.121.879s1.535-.293 2.121-.879a2.998 2.998 0 000-4.242L28.228 23.986z"
                     ></path>
                 </svg>

@@ -467,7 +467,7 @@ ul {
 }
 .search_box .search_block {
   position: relative;
-  padding: 100px 50px;
+  padding: 0px 50px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -4381,7 +4381,7 @@ ul {
 19. Index4 start
 *******************************************************/
 .index_v4 .search_box .search_block h3 {
-  color: #2a7d2e;
+  color: #fff;
 }
 .index_v4 .search_box .search_block .search_field > a {
   background-color: #2a7d2e;
@@ -4686,7 +4686,7 @@ ul {
   background-color: rgba(255, 255, 255, 0.1);
 }
 .garden_service_wrapper .garden_service_block h3 {
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 600;
   text-transform: capitalize;
   color: #222222;
@@ -12441,6 +12441,8 @@ button.unset {
 }
 .cart_block h5 {
   font-size: 16px;
+  height: 40px;
+  overflow: hidden;
 }
 .cart_block img {
   border-radius: 5px;
@@ -12663,4 +12665,14 @@ button.unset {
   width: 100% !important;
   height: 50px !important;
   color: #000 !important;
+}
+.clv_logo{
+  padding: 10px;
+}
+.closeFreeclick{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }

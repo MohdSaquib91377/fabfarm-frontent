@@ -2209,6 +2209,9 @@ button.close {
   cursor: pointer;
   border: 1px solid rgba(84, 101, 131, 0.2) !important;
   transition: all 0.3s ease;
+  height: 60px;
+  width: 50px;
+  object-fit: cover;
 }
 .modal-product-image--thumb img:hover,
 .product-image--thumb img:hover {

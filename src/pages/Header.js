@@ -74,7 +74,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
         <>
             <header className={navBar ? 'header3_wrapper dark_header' : 'header3_wrapper'}>
                 {/* <Weather /> */}
-                <div className="clv_header3">
+                <div className="clv_header3 ">
                     <div className="row">
                         <div className="col-lg-2 col-md-2">
                             <div className="clv_left_header">

@@ -15,8 +15,8 @@ const Banner = () => {
                     background: `url(${image_or_video}) no-repeat 0 0`
                 }}
             >
-                <div style={{ position: 'absolute', height: '100%', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                    <div className="clv_slide_inner" style={{ marginTop: '450px' }}>
+                <div style={{ position: 'absolute', height: '100%', width: '100%',display: 'flex',alignItems: 'center',justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                    <div className="clv_slide_inner" style={{maxWidth:'800px'}}>
                         <h1>{caption}</h1>
                         <p>{description}</p>
                         <div className="banner_btn">

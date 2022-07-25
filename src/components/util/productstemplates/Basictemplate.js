@@ -1,13 +1,13 @@
 import { faHeart, faStar } from '@fortawesome/free-regular-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addToCart, setPopup, updateCart } from '../../../redux/actions/productActions'
+import { addToCart, setPopup, setPopupMessage, updateCart } from '../../../redux/actions/productActions'
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
 
-const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, updateCart }) => {
+const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessage, updateCart }) => {
     const axiosPrivate = useAxiosPrivate()
     const funcAddToCart = (event) => {
         if (isAuthorized) {
@@ -32,7 +32,13 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, updateCart }) 
     const addToWishList = (id) => {
         if (isAuthorized) {
             axiosPrivate.post('/api/v1/wishlist/wishlist/add-to-wishlist/', { product_id: id })
-                .then(() => {
+                .then((response) => {
+                    if (response.status === 200) {
+                        setPopupMessage(response.data.message)
+                    }
+                    else {
+                        setPopupMessage(response.data.message)
+                    }
                     setPopup(true)
                 })
                 .catch(error => { throw (error) })
@@ -84,6 +90,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (id) => dispatch(addToCart(id)),
         setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string)),
         updateCart: () => dispatch(updateCart())
     }
 

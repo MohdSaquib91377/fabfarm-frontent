@@ -12,6 +12,7 @@ const initialState = {
     couponDetails: [],
     mainCategory: false,
     popup: false,
+    popupMessage: '',
     updatedCart: false,
     onlineCart: []
 }
@@ -131,6 +132,11 @@ export const shopReducer = (state = initialState, action) => {
             return {
                 ...state,
                 popup: action.payload
+            }
+        case ActionTypes.SET_POPUP_MESSAGE:
+            return {
+                ...state,
+                popupMessage: action.payload
             }
         case ActionTypes.UPDATE_CART:
             return {

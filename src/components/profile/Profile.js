@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faCloudDownloadAlt, faMapMarkerAlt, faUser, faSignOutAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faCloudDownloadAlt, faMapMarkerAlt, faUser, faSignOutAlt, faTachometerAlt, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import './Profile.css'
 import Tabtitle from '../../pages/Tabtitle';
@@ -11,6 +11,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [profileState, setProfileState] = useState('Dashboard');
+    const [viewPassword, setViewPassword] = useState(false)
     Tabtitle('FAB | Profile')
     const Logout = () => {
         let refresh = user.refresh;
@@ -22,7 +23,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                 Navigate("/")
             })
             .catch(error => {
-                throw(error)
+                throw (error)
             })
     }
     return (
@@ -233,8 +234,20 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <div className="form-box__single-group">
-                                                        <input type="password" placeholder="Confirm Password" />
+                                                    <div className="form-box__single-group" style={{
+                                                        position:'relative'
+                                                    }}>
+                                                        <input type={viewPassword ? 'text' : 'password'} placeholder="Confirm Password" />
+                                                        <span
+                                                        style={{
+                                                            position:'absolute',
+                                                            top:'10px',
+                                                            right:'10px'
+                                                        }}><FontAwesomeIcon
+                                                            icon={viewPassword ? faEyeSlash : faEye}
+                                                            onMouseDown={() => setViewPassword(true)}
+                                                            onMouseUp={() => setViewPassword(false)}
+                                                        /></span>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">

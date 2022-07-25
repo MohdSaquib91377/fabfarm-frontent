@@ -4,7 +4,7 @@ import { addToCart, incrementQuantity, decrementQuantity, setProducts, updateCar
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
-import { faTruckLoading, faEnvelope, faHeart, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTruckLoading, faEnvelope, faHeart, faMinus, faPlus, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faPinterest, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
 import Details from './Details';
@@ -192,9 +192,9 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
                                         <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
                                     </ul>
                                     <h6>Special price</h6>
-                                    <div className="product__price m-t-5">Rs
-                                        <span className="product__price product__price--large">{price}</span>
-                                        <span> <s>Rs {old_price}</s></span>
+                                    <div className="product__price m-t-5">
+                                        <span className="product__price product__price--large"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>
+                                        <span> <s><FontAwesomeIcon icon={faIndianRupee} /> {old_price}</s></span>
                                         <span className="product__tag m-l-15 btn--tiny btn--green">-34%</span>
                                     </div>
 

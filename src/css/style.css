@@ -9510,6 +9510,8 @@ ul {
 }
 .signup_wrapper > .signup_inner > .signup_details > .clv_btn:hover {
   color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #fff;
 }
 .signup_wrapper > .signup_inner > .signup_details > .clv_btn::before {
   background-color: #ffffff;
@@ -9743,7 +9745,9 @@ ul {
   color: #2a7d2e;
 }
 .signin_wrapper > .signup_inner > .signup_details > .clv_btn:hover {
-  color: #000;
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #fff;
 }
 .signin_wrapper > .signup_inner > .signup_details > .clv_btn::before {
   background-color: #ffffff;

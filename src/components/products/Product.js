@@ -29,7 +29,6 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
     let axiosPrivate = useAxiosPrivate();
     Tabtitle('FAB | Shop')
     const banner = useBannerImages('shop')
-    console.log(currentItem)
     const { id, image, name, description, price, maxQuantity, category, old_price, sub_category } = currentItem;
 
     const funcAddToCart = (event) => {
@@ -122,7 +121,6 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
             </div>
         )
     }
-    console.log(currentItem)
     return (
         <>
             <div className="breadcrumb_wrapper"

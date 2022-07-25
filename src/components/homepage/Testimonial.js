@@ -8,7 +8,7 @@ const Testimonial = () => {
                     <div className="col-lg-6 col-md-6">
                         <div className="clv_heading white_heading">
                             <h3>customer feedback</h3>
-                            <div className="clv_underline"><img src="images/underline2.png" alt="image" /></div>
+                            <div className="clv_underline"><img src="/images/underline2.png" alt="image" /></div>
                             <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dole magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.</p>
                         </div>
                     </div>
@@ -21,17 +21,17 @@ const Testimonial = () => {
                                     <div className="swiper-wrapper">
                                         <div className="swiper-slide">
                                             <div className="thumb_slide">
-                                                <span><img src="images/home/per1.jpg" alt="image" /></span>
+                                                <span><img src="/images/home/per1.jpg" alt="image" /></span>
                                             </div>
                                         </div>
                                         <div className="swiper-slide">
                                             <div className="thumb_slide">
-                                                <span><img src="images/home/per1.jpg" alt="image" /></span>
+                                                <span><img src="/images/home/per1.jpg" alt="image" /></span>
                                             </div>
                                         </div>
                                         <div className="swiper-slide">
                                             <div className="thumb_slide">
-                                                <span><img src="images/home/per1.jpg" alt="image" /></span>
+                                                <span><img src="/images/home/per1.jpg" alt="image" /></span>
                                             </div>
                                         </div>
                                     </div>
@@ -125,24 +125,24 @@ const Testimonial = () => {
                                             <div className="message_slide">
                                                 <h3>Nosti D’coz</h3>
                                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.t</p>
-                                                <span className="msg_quote left_quote"><img src="images/test_left_quote.png" alt="image" /></span>
-                                                <span className="msg_quote right_quote"><img src="images/test_right_quote.png" alt="image" /></span>
+                                                <span className="msg_quote left_quote"><img src="/images/test_left_quote.png" alt="image" /></span>
+                                                <span className="msg_quote right_quote"><img src="/images/test_right_quote.png" alt="image" /></span>
                                             </div>
                                         </div>
                                         <div className="swiper-slide">
                                             <div className="message_slide">
                                                 <h3>Nosti D’coz</h3>
                                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.t</p>
-                                                <span className="msg_quote left_quote"><img src="images/test_left_quote.png" alt="image" /></span>
-                                                <span className="msg_quote right_quote"><img src="images/test_right_quote.png" alt="image" /></span>
+                                                <span className="msg_quote left_quote"><img src="/images/test_left_quote.png" alt="image" /></span>
+                                                <span className="msg_quote right_quote"><img src="/images/test_right_quote.png" alt="image" /></span>
                                             </div>
                                         </div>
                                         <div className="swiper-slide">
                                             <div className="message_slide">
                                                 <h3>Nosti D’coz</h3>
                                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.t</p>
-                                                <span className="msg_quote left_quote"><img src="images/test_left_quote.png" alt="image" /></span>
-                                                <span className="msg_quote right_quote"><img src="images/test_right_quote.png" alt="image" /></span>
+                                                <span className="msg_quote left_quote"><img src="/images/test_left_quote.png" alt="image" /></span>
+                                                <span className="msg_quote right_quote"><img src="/images/test_right_quote.png" alt="image" /></span>
                                             </div>
                                         </div>
                                     </div>

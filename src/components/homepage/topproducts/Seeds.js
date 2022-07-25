@@ -47,7 +47,7 @@ const Seeds = () => {
                     <div className="col-lg-6 col-md-6">
                         <div className="clv_heading">
                             <h3>Seeds</h3>
-                            <div className="clv_underline"><img src="images/garden_underline.png" alt="image" /></div>
+                            <div className="clv_underline"><img src="/images/garden_underline.png" alt="image" /></div>
                             <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dole magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.</p>
                         </div>
                     </div>

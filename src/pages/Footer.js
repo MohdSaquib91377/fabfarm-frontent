@@ -11,7 +11,7 @@ const Footer = () => {
 
                     <div className="col-md-3">
                         <div className="footer_block">
-                            <div className="footer_logo"><Link to='/'><img src={process.env.PUBLIC_URL + "images/logo.png"} alt="image" /></Link></div>
+                            <div className="footer_logo"><Link to='/'><img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="image" /></Link></div>
                             <p><span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +121,7 @@ const Footer = () => {
                         <div className="footer_block">
                             <div className="footer_heading">
                                 <h4>Quick Links</h4>
-                                <img src={process.env.PUBLIC_URL + "images/garden_underline3.png"} alt="image" />
+                                <img src={process.env.PUBLIC_URL + "/images/garden_underline3.png"} alt="image" />
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
@@ -152,7 +152,7 @@ const Footer = () => {
                         <div className="footer_block">
                             <div className="footer_heading">
                                 <h4>Your safety</h4>
-                                <img src={"images/garden_underline3.png"} alt="image" />
+                                <img src={"/images/garden_underline3.png"} alt="image" />
                             </div>
                             <ul className="time_table">
                                 <li>

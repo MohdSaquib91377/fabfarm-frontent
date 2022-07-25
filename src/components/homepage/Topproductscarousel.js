@@ -14,7 +14,7 @@ const Topproductscarousel = ({ seeds }) => {
             <SwiperSlide key={i}>
                 <div className="garden_shop_slide" style={{ height: '420px', width: '250px' }}>
                     <div className="item_image">
-                        <img src="images/home/pumpkin-seeds.jpg" alt="image" className="img-fluid" />
+                        <img src="/images/home/pumpkin-seeds.jpg" alt="image" className="img-fluid" />
                     </div>
                     <div className="item_details">
                         <div className="item_name">

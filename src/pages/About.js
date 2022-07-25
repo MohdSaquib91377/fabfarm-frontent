@@ -36,7 +36,7 @@ const About = () => {
                     <div className="row">
                         <div className="col-md-6">
                             <div className="about_img">
-                                <img src="images/hands-g0eecfe8b7_640.jpg" alt="image" />
+                                <img src="/images/hands-g0eecfe8b7_640.jpg" alt="image" />
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -44,7 +44,7 @@ const About = () => {
                                 <div className="about_heading">
                                     <h2>Welcome to Our <span>Poultry Farm</span></h2>
                                     <h6>Lorem Ipsum is simply dummy text of the printing</h6>
-                                    <div className="clv_underline"><img src="images/underline.png" alt="image" /></div>
+                                    <div className="clv_underline"><img src="/images/underline.png" alt="image" /></div>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatiomco laboris nisi ut aliquip ex ea commodo consequat. </p>
                                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fuiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offi deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error  eivoluptatem accusantium doloremque laudantium.</p>
@@ -66,7 +66,7 @@ const About = () => {
                         <div className="col-lg-6 col-md-6">
                             <div className="clv_heading white_heading">
                                 <h3>what people say about us</h3>
-                                <div className="clv_underline"><img src="images/underline2.png" alt="image" /></div>
+                                <div className="clv_underline"><img src="/images/underline2.png" alt="image" /></div>
                                 <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dole magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.</p>
                             </div>
                         </div>
@@ -78,8 +78,8 @@ const About = () => {
                                     <div className="swiper-wrapper">
                                         <div className="swiper-slide">
                                             <div className="testimonial_slide">
-                                                <span className="rounded_quote"><img src="images/quote.png" alt="image" /></span>
-                                                <span className="bg_quote"><img src="images/bg_quote.png" alt="image" /></span>
+                                                <span className="rounded_quote"><img src="/images/quote.png" alt="image" /></span>
+                                                <span className="bg_quote"><img src="/images/bg_quote.png" alt="image" /></span>
                                                 <div className="client_img">
                                                     <img src="https://via.placeholder.com/150x160" alt="image" />
                                                 </div>
@@ -91,8 +91,8 @@ const About = () => {
                                         </div>
                                         <div className="swiper-slide">
                                             <div className="testimonial_slide">
-                                                <span className="rounded_quote"><img src="images/quote.png" alt="image" /></span>
-                                                <span className="bg_quote"><img src="images/bg_quote.png" alt="image" /></span>
+                                                <span className="rounded_quote"><img src="/images/quote.png" alt="image" /></span>
+                                                <span className="bg_quote"><img src="/images/bg_quote.png" alt="image" /></span>
                                                 <div className="client_img">
                                                     <img src="https://via.placeholder.com/150x160" alt="image" />
                                                 </div>

@@ -92,7 +92,7 @@ const Contact = () => {
                         <div className="col-lg-4 col-md-4">
                             <div className="contact_block">
                                 <span></span>
-                                <div className="contact_icon"><img src="images/contact_icon1.png" alt="image" /></div>
+                                <div className="contact_icon"><img src="/images/contact_icon1.png" alt="image" /></div>
                                 <h4>contact us</h4>
                                 <p>
                                     09112293300
@@ -102,7 +102,7 @@ const Contact = () => {
                         <div className="col-lg-4 col-md-4">
                             <div className="contact_block">
                                 <span></span>
-                                <div className="contact_icon"><img src="images/contact_icon2.png" alt="image" /></div>
+                                <div className="contact_icon"><img src="/images/contact_icon2.png" alt="image" /></div>
                                 <h4>email</h4>
                                 <p>
                                     farmersallianceforbusiness@gmail.com
@@ -112,7 +112,7 @@ const Contact = () => {
                         <div className="col-lg-4 col-md-4">
                             <div className="contact_block">
                                 <span></span>
-                                <div className="contact_icon"><img src="images/contact_icon3.png" alt="image" /></div>
+                                <div className="contact_icon"><img src="/images/contact_icon3.png" alt="image" /></div>
                                 <h4>address</h4>
                                 <p>
                                     Baramati, Maharastra, India.

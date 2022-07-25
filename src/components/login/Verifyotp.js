@@ -74,7 +74,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
     return (
         <div className={state ? 'signup_form_section' : 'disabled'}>
             <h4>Verify OTP</h4>
-            <img src="images/clv_underline.png" alt="image" />
+            <img src="/images/clv_underline.png" alt="image" />
             <form onSubmit={handleOTPSubmit}>
                 <input type="text" name='id' id='otp-id' value={formValues.id} onChange={handleChange} disabled />
                 <div className="form_block">

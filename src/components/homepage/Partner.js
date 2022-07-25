@@ -13,7 +13,7 @@ const Partner = () => {
                                         <div className="partner_slide">
                                             <div className="partner_image">
                                                 <span>
-                                                    <img src="images/home/brand1.jpg" alt="image" />
+                                                    <img src="/images/home/brand1.jpg" alt="image" />
                                                 </span>
                                             </div>
                                         </div>
@@ -22,7 +22,7 @@ const Partner = () => {
                                         <div className="partner_slide">
                                             <div className="partner_image">
                                                 <span>
-                                                    <img src="images/home/brand1.jpg" alt="image" />
+                                                    <img src="/images/home/brand1.jpg" alt="image" />
                                                 </span>
                                             </div>
                                         </div>
@@ -31,7 +31,7 @@ const Partner = () => {
                                         <div className="partner_slide">
                                             <div className="partner_image" />
                                             <span>
-                                                <img src="images/ho/me/brand1.jpg" alt="image" />
+                                                <img src="/images/ho/me/brand1.jpg" alt="image" />
                                             </span>
                                         </div>
                                     </div>
@@ -40,7 +40,7 @@ const Partner = () => {
                                     <div className="partner_slide">
                                         <div className="partner_image">
                                             <span>
-                                                <img src="images/home/brand1.jpg" alt="image" />
+                                                <img src="/images/home/brand1.jpg" alt="image" />
                                             </span>
                                         </div>
                                     </div>
@@ -49,7 +49,7 @@ const Partner = () => {
                                     <div className="partner_slide">
                                         <div className="partner_image">
                                             <span>
-                                                <img src="images/home/brand1.jpg" alt="image" />
+                                                <img src="/images/home/brand1.jpg" alt="image" />
                                             </span>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@ const Partner = () => {
                                     <div className="partner_slide">
                                         <div className="partner_image">
                                             <span>
-                                                <img src="images/home/brand1.jpg" alt="image" />
+                                                <img src="/images/home/brand1.jpg" alt="image" />
                                             </span>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@ const Partner = () => {
                                     <div className="partner_slide">
                                         <div className="partner_image">
                                             <span>
-                                                <img src="images/home/brand1.jpg" alt="image" />
+                                                <img src="/images/home/brand1.jpg" alt="image" />
                                             </span>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@ const Partner = () => {
                                     <div className="partner_slide">
                                         <div className="partner_image">
                                             <span>
-                                                <img src="images/home/brand1.jpg" alt="image" />
+                                                <img src="/images/home/brand1.jpg" alt="image" />
                                             </span>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@ const Partner = () => {
                                     <div className="partner_slide">
                                         <div className="partner_image">
                                             <span>
-                                                <img src="images/home/brand1.jpg" alt="image" />
+                                                <img src="/images/home/brand1.jpg" alt="image" />
                                             </span>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@ const Partner = () => {
                                     <div className="partner_slide">
                                         <div className="partner_image">
                                             <span>
-                                                <img src="images/home/brand1.jpg" alt="image" />
+                                                <img src="/images/home/brand1.jpg" alt="image" />
                                             </span>
                                         </div>
                                     </div>

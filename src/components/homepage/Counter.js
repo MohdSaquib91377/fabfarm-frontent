@@ -22,7 +22,7 @@ const Counter = () => {
                     <div className="col-lg-8 col-md-8">
                         <div className="clv_heading white_heading">
                             <h3>We Are The Experts Of This Field.</h3>
-                            <div className="clv_underline"><img src="images/underline2.png" alt="image" /></div>
+                            <div className="clv_underline"><img src="/images/underline2.png" alt="image" /></div>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@ const Counter = () => {
                         <div className="col-lg-3 col-md-3">
                             <div className="counter_block">
                                 <div className="counter_img">
-                                    <span className="red_bg"><img src="images/counter_customer.png" alt="image" className="img-fluid" /></span>
+                                    <span className="red_bg"><img src="/images/counter_customer.png" alt="image" className="img-fluid" /></span>
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="26" data-speed="3000">
@@ -44,7 +44,7 @@ const Counter = () => {
                         <div className="col-lg-3 col-md-3">
                             <div className="counter_block">
                                 <div className="counter_img">
-                                    <span className="yellow_bg"><img src="images/counter_project.png" alt="image" className="img-fluid" /></span>
+                                    <span className="yellow_bg"><img src="/images/counter_project.png" alt="image" className="img-fluid" /></span>
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="700" data-speed="3000">
@@ -57,7 +57,7 @@ const Counter = () => {
                         <div className="col-lg-3 col-md-3">
                             <div className="counter_block">
                                 <div className="counter_img">
-                                    <span className="orange_bg"><img src="images/counter_branch.png" alt="image" className="img-fluid" /></span>
+                                    <span className="orange_bg"><img src="/images/counter_branch.png" alt="image" className="img-fluid" /></span>
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="200" data-speed="3000">
@@ -70,7 +70,7 @@ const Counter = () => {
                         <div className="col-lg-3 col-md-3">
                             <div className="counter_block">
                                 <div className="counter_img">
-                                    <span className="blue_bg"><img src="images/counter_winner.png" alt="image" className="img-fluid" /></span>
+                                    <span className="blue_bg"><img src="/images/counter_winner.png" alt="image" className="img-fluid" /></span>
                                 </div>
                                 <div className="counter_text">
                                     <h4><span className="count_no" data-to="6" data-speed="3000">

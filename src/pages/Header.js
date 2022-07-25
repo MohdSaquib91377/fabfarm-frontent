@@ -79,7 +79,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                         <div className="col-lg-2 col-md-2">
                             <div className="clv_left_header">
                                 <div className="clv_logo">
-                                    <a href="/"><img src="images/home/logo.png" alt="fab logo" /></a>
+                                    <a href="/"><img src={process.env.PUBLIC_URL + "/images/home/logo.png"} alt="fab logo" /></a>
                                 </div>
                             </div>
                         </div>

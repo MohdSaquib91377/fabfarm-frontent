@@ -663,10 +663,11 @@ ul {
 }
 .item_quantity {
   position: relative;
-  max-width: 80px;
+  max-width: 100px;
+  margin-top: 10px;
 }
 .item_quantity > input {
-  width: 100%;
+  width: 30px;
   border: none;
   font-size: 16px;
   color: #707070;
@@ -7470,10 +7471,14 @@ ul {
   text-align: center;
 }
 .breadcrumb_wrapper .breadcrumb_inner h3 {
+  height: 32px;
+  overflow: hidden;
   font-size: 32px;
   font-weight: 600;
   color: #ffffff;
+  white-space: pre;
   text-transform: capitalize;
+  text-overflow: ellipsis;
 }
 .breadcrumb_block {
   position: absolute;
@@ -12425,7 +12430,10 @@ input.check-nav {
 .quantity_plus,
 .quantity_minus {
   background-color: transparent;
-  border: 0;
+  border: 1px solid;
+  width: 30px;
+  height:30px;
+  border-radius: 100%;
 }
 button.unset {
   background-color: transparent;
@@ -12436,6 +12444,9 @@ button.unset {
 }
 .cart_block img {
   border-radius: 5px;
+  width: 80px;
+  object-fit: cover;
+  
 }
 .redbtn {
   color: red;
@@ -12527,6 +12538,8 @@ button.unset {
 }
 .product__img.img-fluid {
   height: 300px;
+  width: 100%;
+  object-fit: cover;
 }
 .order_list_top {
   border-bottom: 1px solid #bbb;

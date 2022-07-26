@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import ReactImageMagnify from 'react-image-magnify';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-
 const Productimages = ({ image }) => {
     const [prevImage, setPrevImage] = useState(0)
     const thumbImages = image.map((item, i) => {
@@ -22,11 +21,12 @@ const Productimages = ({ image }) => {
             display: 'flex'
         }}>
             <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative PRODUCT-RESPONSIVE">
-                <Swiper direction={"vertical"}
-                    // navigation={true}
-                    slidesPerView={4}
-                    spaceBetween={10}
-                    // modules={[Navigation]}
+                <Swiper
+                    direction={"vertical"}
+                    navigation={true}
+                    slidesPerView={5}
+                    spaceBetween={20}
+                    modules={[Navigation]}
                     className="swiper-container-vertical">
                     {thumbImages}
                 </Swiper>

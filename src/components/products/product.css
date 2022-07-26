@@ -6374,21 +6374,23 @@ table tbody > tr td a:hover {
 /* slider perv next buttons start here*/
 
 .swiper-container-vertical {
-  .swiper-button-next,
-  .swiper-button-prev {
-    left: 50% !important;
-    transform: rotate(90deg) !important;
-    transform-origin: left center !important;
-  }
+  height: 500px;
+  position: relative !important;
+}
 
-  .swiper-button-prev {
-    top: 10px !important;
-  }
+.swiper-container-vertical .swiper-button-prev {
+  left: 50% !important;
+  transform-origin: left center !important;
+  transform: rotate(90deg) !important;
+  top: 10px !important;
+}
 
-  .swiper-button-next {
-    top: auto !important;
-    bottom: 10px !important;
-  }
+.swiper-container-vertical .swiper-button-next {
+  left: 50% !important;
+  transform-origin: left center !important;
+  transform: rotate(90deg) !important;
+  top: auto !important;
+  bottom: 10px !important;
 }
 
 /* slider perv and next button end here */

@@ -7,11 +7,11 @@ import "swiper/css/navigation";
 import Basictemplate from '../../util/productstemplates/Basictemplate';
 const Basiccarousel = ({ products }) => {
     SwiperCore.use([Autoplay]);
-    const [loop, setLoop] = useState(false);
+    const [boolean, setBoolean] = useState(false);
 
     useEffect(() => {
         if (products.length > 4) {
-            setLoop(true)
+            setBoolean(true)
         }
     }, [products])
     const Product = products.map((item, i) => {
@@ -24,9 +24,11 @@ const Basiccarousel = ({ products }) => {
     return (
         <>
             <Swiper
-                autoplay={true}
-                loop={loop}
-                navigation={true}
+                autoplay={{
+                    disableOnInteraction: false
+                }}
+                loop={boolean}
+                navigation={boolean}
                 slidesPerView={1}
                 spaceBetween={10}
                 modules={[Navigation]}

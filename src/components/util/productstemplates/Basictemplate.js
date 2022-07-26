@@ -47,7 +47,7 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
             alert('Login to add wishlist')
         }
     }
-    const { id, name, category, image: [{ image }], price } = item
+    const { id, name, category, image: [{ image }], price, maxQuantity } = item
 
     return (
         <>
@@ -59,8 +59,15 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                     </Link>
                     <span className="product__label product__label--sale-dis"></span>
                     <ul className="product__action--link pos-absolute">
-                        <li><button id={id} onClick={(event) => funcAddToCart(event)}><FontAwesomeIcon icon={faShoppingCart} /></button></li>
-                        <li><Link to='/checkout'><button id={id} onClick={(event) => funcAddToCart(event)}>Buy</button></Link></li>
+                        {
+                            maxQuantity !== 0 ?
+                                <>
+                                    <li><button id={id} onClick={(event) => funcAddToCart(event)}><FontAwesomeIcon icon={faShoppingCart} /></button></li>
+                                    <li><Link to='/checkout'><button id={id} onClick={(event) => funcAddToCart(event)}>Buy</button></Link></li>
+                                </>
+                                :
+                                undefined
+                        }
                         <li><button onClick={() => addToWishList(id)}><FontAwesomeIcon icon={faHeart} /></button></li>
                     </ul>
                 </div>

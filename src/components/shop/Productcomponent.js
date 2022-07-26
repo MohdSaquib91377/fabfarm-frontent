@@ -62,8 +62,15 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                     </Link>
                     <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
                     <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
-                    <button id={id} onClick={(event) => funcAddToCart(event)}>add to cart</button>
-                    <button onClick={() => buyButton(id)}>Buy now</button>
+                    {
+                        maxQuantity !== 0 ?
+                            <>
+                                <button id={id} onClick={(event) => funcAddToCart(event)}>add to cart</button>
+                                <button onClick={() => buyButton(id)}>Buy now</button>
+                            </>
+                            :
+                            undefined
+                    }
                 </div>
                 <div className="content_block">
                     <div className="product_price_box">

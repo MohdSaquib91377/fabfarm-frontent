@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { addToCart, incrementQuantity, decrementQuantity, setProducts, updateCart, setMainCategory } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
+import { faCheckCircle, faStar, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { faTruckLoading, faEnvelope, faMinus, faPlus, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faPinterest, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
@@ -107,10 +107,12 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
             const onlineCurrentProduct = onlineCart.filter((items) => {
                 return items?.product?.id === parseInt(productID)
             })
-            setOnlineCartCount(onlineCurrentProduct[0]?.cartQuantity)
+            if(onlineCurrentProduct.length !==0){
+                setOnlineCartCount(onlineCurrentProduct[0]?.cartQuantity)
+            }
         }
     }, [isAuthorized, onlineCart])
-    
+    console.log(onlineCartCount)
     if (currentItem.length === 0) {
         return (
             <div style={{ height: '800px', width: 'auto' }}>
@@ -179,15 +181,21 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
                                 <div className='add-image-radius'>
                                     <Productimages image={image} />
                                 </div>
-                                <div className='button-buy-parent'>
-                                    <button id={id} onClick={(event) => funcAddToCart(event)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20 button-buy">Add To Cart</button>
-                                    <Link to='/checkout'>
-                                        <button
-                                            id={id}
-                                            onClick={(event) => funcAddToCart(event)}
-                                            className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black btn-uppercase button-buy">Buy Now</button>
-                                    </Link>
-                                </div>
+                                {
+                                    maxQuantity !== 0 ?
+                                        <div className='button-buy-parent'>
+                                            <button id={id} onClick={(event) => funcAddToCart(event)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20 button-buy">Add To Cart</button>
+                                            <Link to='/checkout'>
+                                                <button
+                                                    id={id}
+                                                    onClick={(event) => funcAddToCart(event)}
+                                                    className="btn  btn--long btn--radius-tiny btn--green btn--green-hover-black btn-uppercase button-buy">Buy Now</button>
+                                            </Link>
+                                        </div>
+                                        :
+                                        undefined
+                                }
+
                             </div>
                             <div className="col-md-7">
                                 <div className="product-details-box m-b-60">
@@ -211,7 +219,12 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
                                     </div>
                                     <div className="product-var p-tb-10">
                                         <div className="product__stock m-b-20">
-                                            <span className="product__stock--in"><FontAwesomeIcon color='green' icon={faCheckCircle} /> {maxQuantity} IN STOCK</span>
+                                            {
+                                                maxQuantity !== 0 ?
+                                                    <span className="product__stock--in"><FontAwesomeIcon color='green' icon={faCheckCircle} /> {maxQuantity} IN STOCK</span>
+                                                    :
+                                                    <span className="product__stock--in" style={{ color: 'red' }}><FontAwesomeIcon color='red' icon={faCircleXmark} /> Out of Stock</span>
+                                            }
                                         </div>
                                         <div className="product-quantity product-var__item">
                                             <ul className="product-modal-group">
@@ -219,19 +232,23 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
                                                 <li><a href="#modalProductAsk" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faEnvelope} /> &nbsp; Ask About This product</a></li>
                                             </ul>
                                         </div>
-                                        <div className="product-quantity product-var__item d-flex align-items-center">
-                                            <span className="product-var__text">Quantity: </span>
-                                            <div className="quantity-scale m-l-20">
-                                                <button className="value-button" onClick={() => decreaseCount(id)} >
-                                                    <FontAwesomeIcon icon={faMinus} />
-                                                </button>
-                                                <input className='input-items-number' type="text" readOnly id="number" value={isAuthorized ? onlineCartCount !== 0 ? onlineCartCount : 1 : products[0].quantity} />
-                                                <button className="value-button" onClick={() => increaseCount(id)
-                                                }>
-                                                    <FontAwesomeIcon icon={faPlus} />
-                                                </button>
-                                            </div>
-                                        </div>
+                                        {
+                                            maxQuantity !== 0 ?
+                                                <div className="product-quantity product-var__item d-flex align-items-center">
+                                                    <span className="product-var__text">Quantity: </span>
+                                                    <div className="quantity-scale m-l-20">
+                                                        <button className="value-button" onClick={() => decreaseCount(id)} >
+                                                            <FontAwesomeIcon icon={faMinus} />
+                                                        </button>
+                                                        <input className='input-items-number' type="text" readOnly id="number" value={isAuthorized ? onlineCartCount !== 0 ? onlineCartCount : 1 : products[0].quantity} />
+                                                        <button className="value-button" onClick={() => increaseCount(id)
+                                                        }>
+                                                            <FontAwesomeIcon icon={faPlus} />
+                                                        </button>
+                                                    </div>
+                                                </div> :
+                                                undefined
+                                        }
                                         {/* <div className="product-var__item">
                                                         <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</button>
                                                         <a href="wishlist.html" className="btn btn--round btn--round-size-small btn--green btn--green-hover-black">

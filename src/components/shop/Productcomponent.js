@@ -56,7 +56,7 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
 
             <div className="product_item_block">
                 <div className="org_product_block">
-                    <span className="product_label">30% off</span>
+                    <span className="product_label"></span>
                     <Link to={`/shop/${categoryId}/product/${id}`}>
                         <div className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
                     </Link>

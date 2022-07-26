@@ -100,7 +100,7 @@ const Billcard = ({ formErrors, formValues, setFormValues, handleChange, handleS
             <div className="text-center">
                 <button
                     onClick={handleSubmit}
-                    className="btn btn--small btn--radius btn--green btn--green-hover-black btn--uppercase font--bold" type="submit">{loader ? <FaSpinner icon="spinner" className="spinner" /> : "PLACE ORDER"}</button>
+                    className="btn btn--small btn--radius btn--green btn--green-hover-black btn--uppercase font--bold mb-4" type="submit">{loader ? <FaSpinner icon="spinner" className="spinner" /> : "PLACE ORDER"}</button>
             </div>
         </div>
     )

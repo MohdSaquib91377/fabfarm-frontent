@@ -7,12 +7,15 @@ import './Profile.css'
 import Tabtitle from '../../pages/Tabtitle';
 import { makeCartEmpty, setIsAuthorized, setUser } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import useBannerImages from '../../hooks/useBannerImages';
 const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [profileState, setProfileState] = useState('Dashboard');
     const [viewPassword, setViewPassword] = useState(false)
     Tabtitle('FAB | Profile')
+    const banner = useBannerImages('profile')
+
     const Logout = () => {
         let refresh = user.refresh;
         axiosPrivate.post('/api/v1/account/logout/', { refresh })
@@ -29,7 +32,12 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
     return (
         <>
             {/* <!--Breadcrumb--> */}
-            <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
+            <div className="breadcrumb_wrapper"
+                style={{
+                    minHeight: '250px',
+                    backgroundImage: `url(${banner[0]?.image_or_video})`
+                }}
+            >
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">
@@ -235,19 +243,19 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-box__single-group" style={{
-                                                        position:'relative'
+                                                        position: 'relative'
                                                     }}>
                                                         <input type={viewPassword ? 'text' : 'password'} placeholder="Confirm Password" />
                                                         <span
-                                                        style={{
-                                                            position:'absolute',
-                                                            top:'10px',
-                                                            right:'10px'
-                                                        }}><FontAwesomeIcon
-                                                            icon={viewPassword ? faEyeSlash : faEye}
-                                                            onMouseDown={() => setViewPassword(true)}
-                                                            onMouseUp={() => setViewPassword(false)}
-                                                        /></span>
+                                                            style={{
+                                                                position: 'absolute',
+                                                                top: '10px',
+                                                                right: '10px'
+                                                            }}><FontAwesomeIcon
+                                                                icon={viewPassword ? faEyeSlash : faEye}
+                                                                onMouseDown={() => setViewPassword(true)}
+                                                                onMouseUp={() => setViewPassword(false)}
+                                                            /></span>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6">

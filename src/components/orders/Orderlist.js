@@ -4,15 +4,18 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
+import useBannerImages from '../../hooks/useBannerImages'
 import Tabtitle from '../../pages/Tabtitle'
 
 const Orderlist = ({ user }) => {
     Tabtitle('FAB | Order List')
+    const banner = useBannerImages('orderlist')
+
     const [items, setItems] = useState([])
     const axiosPrivate = useAxiosPrivate();
     const cancelOrder = (order) => {
         axiosPrivate.put(`/api/v1/order/order-cancel/${order}/`)
-            .catch(error => {throw(error)})
+            .catch(error => { throw (error) })
     }
     useEffect(() => {
         const fetchOrderList = () => {
@@ -21,7 +24,7 @@ const Orderlist = ({ user }) => {
                     setItems(response.data)
                 })
                 .catch(error => {
-                    throw(error)
+                    throw (error)
                 })
         }
         fetchOrderList()
@@ -29,7 +32,7 @@ const Orderlist = ({ user }) => {
     const orderList = items.map((data, i) => {
         const { product: { id, name, image }, order, price, quantity, status } = data;
         return (
-            
+
             <div key={i} className="order_list_top" style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -53,12 +56,17 @@ const Orderlist = ({ user }) => {
                         <button onClick={() => cancelOrder(order)}><FontAwesomeIcon color='red' icon={faTrash} /></button> : <div></div>
                 }
             </div>
-            
+
         )
     })
     return (
         <>
-            <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
+            <div className="breadcrumb_wrapper"
+                style={{
+                    minHeight: '250px',
+                    backgroundImage: `url(${banner[0]?.image_or_video})`
+                }}
+            >
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">
@@ -78,15 +86,15 @@ const Orderlist = ({ user }) => {
 
             <div className='p-3'>
 
-            <div className='box-shadow-adding' style={{
-                position: 'relative',
-                top: '50px',
-                marginBottom: '280px',
-                width: 'auto'
-            }}>
-                {orderList}
+                <div className='box-shadow-adding' style={{
+                    position: 'relative',
+                    top: '50px',
+                    marginBottom: '280px',
+                    width: 'auto'
+                }}>
+                    {orderList}
+                </div>
             </div>
-        </div>
         </>
     )
 }

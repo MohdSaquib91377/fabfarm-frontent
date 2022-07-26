@@ -5090,6 +5090,7 @@ ul {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   border-radius: 10px;
+  cursor:pointer
 }
 .garden_service2_section .service2_block:before {
   content: "";

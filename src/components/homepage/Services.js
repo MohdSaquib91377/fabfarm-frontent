@@ -4,33 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { setMainCategory } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 
-const Services = ({ setMainCategory }) => {
+const Services = ({ category, setMainCategory }) => {
     let Navigate = useNavigate();
-    const [category, setCategory] = useState([])
-
+    
     const navigate = (id) => {
         setMainCategory(true)
         Navigate(`/shop/${id}/`)
     }
-
-    useEffect(() => {
-        let isMounted = true
-        if (isMounted) {
-            axios.get('/api/v1/store/category/')
-                .then(response => {
-                    setCategory(response.data)
-                })
-                .catch(error => {
-                    if (error.code === 'ERR_NETWORK') {
-                        alert(error.message)
-                    }
-                    throw error
-                })
-        }
-        return () => {
-            isMounted = false
-        }
-    }, [])
+   
 
     return (
         <>

@@ -8373,6 +8373,7 @@ ul {
   margin-bottom: 80px;
 }
 .product_item_block {
+  margin-top:20px;
   margin-bottom: 30px;
 }
 .product_items_section ul li .org_product_block {
@@ -8502,6 +8503,12 @@ ul {
 }
 .content_block > p {
   margin-bottom: 20px;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 .content_block > .rating_section {
   display: flex;

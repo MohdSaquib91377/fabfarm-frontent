@@ -55,16 +55,16 @@ const Featuredproducts = ({ setProducts, setMainCategory }) => {
                         <div key={i} style={{
                             marginTop: '30px'
                         }}>
-                            <h3>{name}</h3>
-                            <Basiccarousel products={products} />
                             <button
                                 style={{
                                     position: 'relative',
                                     float: 'right'
                                 }}
                                 onClick={() => viewMoreButton(id, products)}>
-                                View more
+                                View More
                             </button>
+                            <h3>{name}</h3>
+                            <Basiccarousel products={products} />
                         </div>
                     )
                 })}

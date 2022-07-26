@@ -507,7 +507,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
                     </main>
                     :
                     <div className='text-center'>
-                        <p className='para-text-sign-in'>You Are Not sign in </p>
+                        <p className='para-text-sign-in'>You are not sign in </p>
                         <button className='text-signin'
                             onClick={() => setSigninOpen()}
                         >click here to sign in </button>

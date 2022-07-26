@@ -28,8 +28,8 @@ const Billcard = ({ formErrors, formValues, setFormValues, handleChange, handleS
             const { cartCost, cartQuantity, product: { name, price } } = item;
             return (
                 <li key={i} className="d-flex justify-content-between">
-                    <span className="your-order-middle-left font--semi-bold">{name}  {cartQuantity} X {price}</span>
-                    <span className="your-order-middle-right font--semi-bold"><FontAwesomeIcon icon={faIndianRupee} />{cartCost.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</span>
+                    <span className="your-order-middle-left w-75 font--semi-bold"> <span className='addlimitedtext'>{name}</span> <span className='price'> ₹{price} X {cartQuantity}  </span></span>
+                    <span className="your-order-middle-right w-25 text-right  font--semi-bold"><FontAwesomeIcon icon={faIndianRupee} />{cartCost.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</span>
                 </li>
             )
         }

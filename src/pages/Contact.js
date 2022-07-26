@@ -144,10 +144,10 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className="tollfree_block">
+                                <a className="tollfree_block" href='tel:12025550101'>
                                     <h5>toll free number</h5>
                                     <h3>+1-202-555-0101</h3>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -161,9 +161,12 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 <span></span>
                                 <div className="contact_icon"><img src="/images/contact_icon1.png" alt="image" /></div>
                                 <h4>contact us</h4>
+                                <a href='tel:919112293300' className='normalLink'>
+
                                 <p>
                                     09112293300
                                 </p>
+                                </a>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4">
@@ -171,9 +174,12 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 <span></span>
                                 <div className="contact_icon"><img src="/images/contact_icon2.png" alt="image" /></div>
                                 <h4>email</h4>
-                                <p>
-                                    farmersallianceforbusiness@gmail.com
-                                </p>
+                                <a className='normalLink' href="mailto:farmersallianceforbusiness@gmail.com">
+
+                                    <p className='normalLink'>
+                                        farmersallianceforbusiness@gmail.com
+                                    </p>
+                                </a>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4">
@@ -181,9 +187,12 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 <span></span>
                                 <div className="contact_icon"><img src="/images/contact_icon3.png" alt="image" /></div>
                                 <h4>address</h4>
-                                <p>
+                                <a href='#' className='normalLink'>
+
+                                <p className='normalLink'>
                                     Baramati, Maharastra, India.
                                 </p>
+                                </a>
                             </div>
                         </div>
                     </div>

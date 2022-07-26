@@ -8002,7 +8002,7 @@ ul {
 *******************************************************/
 .contact_blocks_wrapper {
   background-color: #ffffff;
-  padding-top: 125px;
+  padding-top: 50px;
 }
 .contact_block {
   position: relative;
@@ -8107,6 +8107,7 @@ ul {
 }
 .contact_form_wrapper {
   background-color: #f9f9f9;
+  padding-bottom: 20px;
 }
 .contact_form_section {
   background-color: #ffffff;

@@ -4,7 +4,7 @@ import { addToCart, incrementQuantity, decrementQuantity, setProducts, updateCar
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar } from '@fortawesome/free-regular-svg-icons';
-import { faTruckLoading, faEnvelope, faHeart, faMinus, faPlus, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
+import { faTruckLoading, faEnvelope, faMinus, faPlus, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faPinterest, faPaypal } from '@fortawesome/free-brands-svg-icons';
 import Tabtitle from '../../pages/Tabtitle'
 import Details from './Details';
@@ -17,7 +17,7 @@ import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useBannerImages from '../../hooks/useBannerImages';
-const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory }) => {
+const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
@@ -27,6 +27,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
     const [relatedProducts, setRelatedProducts] = useState([])
     // const [productCount, setProductCount] = useState()
     let axiosPrivate = useAxiosPrivate();
+    const [onlineCartCount, setOnlineCartCount] = useState(0)
     Tabtitle('FAB | Shop')
     const banner = useBannerImages('shop')
     const { id, image, name, description, price, maxQuantity, category, old_price, sub_category } = currentItem;
@@ -101,8 +102,15 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
 
 
     }, [])
-
-
+    useEffect(() => {
+        if (isAuthorized) {
+            const onlineCurrentProduct = onlineCart.filter((items) => {
+                return items?.product?.id === parseInt(productID)
+            })
+            setOnlineCartCount(onlineCurrentProduct[0]?.cartQuantity)
+        }
+    }, [isAuthorized, onlineCart])
+    console.log(onlineCartCount)
     if (currentItem.length === 0) {
         return (
             <div style={{ height: '800px', width: 'auto' }}>
@@ -217,7 +225,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
                                                 <button className="value-button" onClick={() => decreaseCount(id)} >
                                                     <FontAwesomeIcon icon={faMinus} />
                                                 </button>
-                                                <input className='input-items-number' type="text" readOnly id="number" value={products[0].quantity} />
+                                                <input className='input-items-number' type="text" readOnly id="number" value={isAuthorized ? onlineCartCount !== 0 ? onlineCartCount : 1 : products[0].quantity} />
                                                 <button className="value-button" onClick={() => increaseCount(id)
                                                 }>
                                                     <FontAwesomeIcon icon={faPlus} />
@@ -340,7 +348,8 @@ const mapStateToProps = (state) => {
     return {
         products: state.shop.products,
         isAuthorized: state.shop.isAuthorized,
-        totalCartCount: state.shop.totalCartCount
+        totalCartCount: state.shop.totalCartCount,
+        onlineCart: state.shop.onlineCart
     }
 }
 

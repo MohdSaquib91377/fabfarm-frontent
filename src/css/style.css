@@ -647,6 +647,7 @@ ul {
   /* height: 350px; */
   max-height: 70vh;
   overflow: auto;
+  padding-right: 30px;
 }
 .clv_cart_box > .cart_section > ul > li > .cart_block > img {
   max-width: 100px;

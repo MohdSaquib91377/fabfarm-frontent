@@ -195,7 +195,7 @@ const Product = ({ totalCartCount, updateCart, isAuthorized, products, setProduc
                                     <div className="product__price m-t-5">
                                         <span className="product__price product__price--large"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>
                                         <span> <s><FontAwesomeIcon icon={faIndianRupee} /> {old_price}</s></span>
-                                        <span className="product__tag m-l-15 btn--tiny btn--green">-34%</span>
+                                        <span className="product__tag m-l-15 btn--tiny btn--green"></span>
                                     </div>
 
                                     <div className="product__desc m-t-25 m-b-10">

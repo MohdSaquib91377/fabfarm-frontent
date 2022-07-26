@@ -57,7 +57,7 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                         <img className="product__img img-fluid"
                             src={process.env.REACT_APP_BASE_URL + image} alt={name} />
                     </Link>
-                    <span className="product__label product__label--sale-dis">-34%</span>
+                    <span className="product__label product__label--sale-dis"></span>
                     <ul className="product__action--link pos-absolute">
                         <li><button id={id} onClick={(event) => funcAddToCart(event)}><FontAwesomeIcon icon={faShoppingCart} /></button></li>
                         <li><Link to='/checkout'><button id={id} onClick={(event) => funcAddToCart(event)}>Buy</button></Link></li>

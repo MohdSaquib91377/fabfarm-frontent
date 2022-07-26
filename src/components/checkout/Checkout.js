@@ -6,6 +6,7 @@ import Tabtitle from '../../pages/Tabtitle';
 import { setCouponDetails, setSigninOpen, updateCart } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Billcard from './Billcard';
+import useBannerImages from '../../hooks/useBannerImages';
 
 
 const loadRazorpay = (src) => {
@@ -23,7 +24,7 @@ const loadRazorpay = (src) => {
 }
 
 
-const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
+const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
     let Navigate = useNavigate()
     const axiosPrivate = useAxiosPrivate();
     const [formErrors, setFormErrors] = useState({})
@@ -45,6 +46,8 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
     const [isSubmit, setIsSubmit] = useState(false)
     const [loader, setLoader] = useState(false)
     Tabtitle('FAB | Checkout')
+    const banner = useBannerImages('checkout')
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -192,10 +195,14 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
         }
         return errors;
     }
-
     return (
         <>
-            <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
+            <div className="breadcrumb_wrapper"
+                style={{
+                    minHeight: '250px',
+                    backgroundImage: `url(${banner[0]?.image_or_video})`
+                }}
+            >
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">
@@ -214,30 +221,31 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
             </div>
             {
                 isAuthorized ?
-                    <main id="main-container" style={{
-                        marginTop: '100px'
-                    }} className="main-container">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-lg-7">
-                                    <div className="section-content">
-                                        <h5 className="section-content__title">Billing Details</h5>
-                                    </div>
-                                    <form action="#" method="post" className="form-box">
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-first-name">Full name*</label>
-                                                    <input
-                                                        name='full_name'
-                                                        value={formValues.full_name}
-                                                        onChange={handleChange}
-                                                        type="text"
-                                                        id="form-first-name" />
-                                                    <p>{formErrors.full_name}</p>
+                    onlineCart.length !== 1 ?
+                        <main id="main-container" style={{
+                            marginTop: '100px'
+                        }} className="main-container">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-lg-7">
+                                        <div className="section-content">
+                                            <h5 className="section-content__title">Billing Details</h5>
+                                        </div>
+                                        <form action="#" method="post" className="form-box">
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="form-box__single-group">
+                                                        <label htmlFor="form-first-name">Full name</label>
+                                                        <input
+                                                            name='full_name'
+                                                            value={formValues.full_name}
+                                                            onChange={handleChange}
+                                                            type="text"
+                                                            id="form-first-name" />
+                                                        <p>{formErrors.full_name}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {/* <div className="col-md-6">
+                                                {/* <div className="col-md-6">
                                                 <div className="form-box__single-group">
                                                     <label htmlFor="form-last-name">Last Name</label>
                                                     <input
@@ -248,125 +256,125 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
                                                         id="form-last-name" />
                                                 </div>
                                             </div> */}
-                                            {/* <div className="col-md-12">
+                                                {/* <div className="col-md-12">
                                             <div className="form-box__single-group">
                                                 <label htmlFor="form-company-name">Company Name</label>
                                                 <input type="text" id="form-company-name" />
                                             </div>
                                         </div> */}
-                                            <div className="col-md-12">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-country">Country*</label>
-                                                    <select
-                                                        name='country'
-                                                        onChange={handleChange}
-                                                        defaultValue={formValues.country || "select-country"}
-                                                        id="form-country">
-                                                        <option value="select-country" >Select a country</option>
-                                                        <option value="IND">India</option>
-                                                        {/* <option value="US">USA</option>
+                                                <div className="col-md-12">
+                                                    <div className="form-box__single-group">
+                                                        <label htmlFor="form-country">* Country</label>
+                                                        <select
+                                                            name='country'
+                                                            onChange={handleChange}
+                                                            defaultValue={formValues.country || "select-country"}
+                                                            id="form-country">
+                                                            <option value="select-country" >Select a country</option>
+                                                            <option value="IND">India</option>
+                                                            {/* <option value="US">USA</option>
                                                     <option value="UK">UK</option>
                                                     <option value="TR">Turkey</option>
                                                     <option value="CA">Canada</option> */}
-                                                    </select>
-                                                    <p>{formErrors.country}</p>
+                                                        </select>
+                                                        <p>{formErrors.country}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-address-1">Street Address*</label>
-                                                    <input
-                                                        name='address'
-                                                        value={formValues.address}
-                                                        onChange={handleChange}
-                                                        type="text"
-                                                        id="form-address-1"
-                                                        placeholder="Address" />
-                                                    <p>{formErrors.address}</p>
+                                                <div className="col-md-12">
+                                                    <div className="form-box__single-group">
+                                                        <label htmlFor="form-address-1">Street Address</label>
+                                                        <input
+                                                            name='address'
+                                                            value={formValues.address}
+                                                            onChange={handleChange}
+                                                            type="text"
+                                                            id="form-address-1"
+                                                            placeholder="Address" />
+                                                        <p>{formErrors.address}</p>
 
-                                                    <input
-                                                        name='locality'
-                                                        value={formValues.locality}
-                                                        onChange={handleChange}
-                                                        type="text" className="m-t-10"
-                                                        id="form-address-2"
-                                                        placeholder="Locality" />
-                                                    <p>{formErrors.locality}</p>
+                                                        <input
+                                                            name='locality'
+                                                            value={formValues.locality}
+                                                            onChange={handleChange}
+                                                            type="text" className="m-t-10"
+                                                            id="form-address-2"
+                                                            placeholder="Locality" />
+                                                        <p>{formErrors.locality}</p>
 
-                                                    <input
-                                                        name='landmark'
-                                                        value={formValues.landmark}
-                                                        onChange={handleChange}
-                                                        type="text" className="m-t-10"
-                                                        id="form-address-3"
-                                                        placeholder="Landmark" />
-                                                    <p>{formErrors.landmark}</p>
+                                                        <input
+                                                            name='landmark'
+                                                            value={formValues.landmark}
+                                                            onChange={handleChange}
+                                                            type="text" className="m-t-10"
+                                                            id="form-address-3"
+                                                            placeholder="Landmark" />
+                                                        <p>{formErrors.landmark}</p>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-state">Region / State*</label>
-                                                    <select
-                                                        name='state'
-                                                        onChange={handleChange}
-                                                        defaultValue={formValues.state || "select-state"}
-                                                        id="form-state">
-                                                        <option value="select-state" >Select a state</option>
-                                                        <option value="mh">Maharastra</option>
-                                                        <option value="goa">Goa</option>
-                                                        {/* <option value="Raj">Rajshahi</option>
+                                                <div className="col-md-6">
+                                                    <div className="form-box__single-group">
+                                                        <label htmlFor="form-state">* Region / State</label>
+                                                        <select
+                                                            name='state'
+                                                            onChange={handleChange}
+                                                            defaultValue={formValues.state || "select-state"}
+                                                            id="form-state">
+                                                            <option value="select-state" >Select a state</option>
+                                                            <option value="mh">Maharastra</option>
+                                                            <option value="goa">Goa</option>
+                                                            {/* <option value="Raj">Rajshahi</option>
                                                     <option value="Syl">Sylet</option>
                                                     <option value="Chi">Chittagong</option> */}
-                                                    </select>
-                                                    <p>{formErrors.state}</p>
+                                                        </select>
+                                                        <p>{formErrors.state}</p>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-city">Region / city*</label>
-                                                    <select
-                                                        name='city'
-                                                        onChange={handleChange}
-                                                        defaultValue={formValues.city || "select-city"}
-                                                        id="form-city">
-                                                        <option value="select-city" >Select a city</option>
-                                                        <option value="mumbai">mumbai</option>
-                                                        <option value="pune">pune</option>
-                                                        {/* <option value="Raj">Rajshahi</option>
+                                                <div className="col-md-6">
+                                                    <div className="form-box__single-group">
+                                                        <label htmlFor="form-city">* Region / city</label>
+                                                        <select
+                                                            name='city'
+                                                            onChange={handleChange}
+                                                            defaultValue={formValues.city || "select-city"}
+                                                            id="form-city">
+                                                            <option value="select-city" >Select a city</option>
+                                                            <option value="mumbai">mumbai</option>
+                                                            <option value="pune">pune</option>
+                                                            {/* <option value="Raj">Rajshahi</option>
                                                     <option value="Syl">Sylet</option>
                                                     <option value="Chi">Chittagong</option> */}
-                                                    </select>
-                                                    <p>{formErrors.city}</p>
+                                                        </select>
+                                                        <p>{formErrors.city}</p>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-zipcode">Zip/Postal Code*</label>
-                                                    <input
-                                                        name='pincode'
-                                                        value={formValues.pincode}
-                                                        onChange={handleChange}
-                                                        type="text" id="form-zipcode" />
-                                                    <p>{formErrors.pincode}</p>
+                                                <div className="col-md-6">
+                                                    <div className="form-box__single-group">
+                                                        <label htmlFor="form-zipcode">* Zip/Postal Code</label>
+                                                        <input
+                                                            name='pincode'
+                                                            value={formValues.pincode}
+                                                            onChange={handleChange}
+                                                            type="text" id="form-zipcode" />
+                                                        <p>{formErrors.pincode}</p>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-phone">Phone*</label>
-                                                    <input
-                                                        name='alternate_number'
-                                                        value={formValues.alternate_number}
-                                                        onChange={handleChange}
-                                                        type="text" id="form-phone" />
-                                                    <p>{formErrors.alternate_number}</p>
+                                                <div className="col-md-6">
+                                                    <div className="form-box__single-group">
+                                                        <label htmlFor="form-phone">Phone</label>
+                                                        <input
+                                                            name='alternate_number'
+                                                            value={formValues.alternate_number}
+                                                            onChange={handleChange}
+                                                            type="text" id="form-phone" />
+                                                        <p>{formErrors.alternate_number}</p>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {/* <div className="col-md-6">
+                                                {/* <div className="col-md-6">
                                                 <div className="form-box__single-group">
                                                     <label htmlFor="form-email">Email Address</label>
                                                     <input
@@ -375,7 +383,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
                                                     <p>{formErrors.email}</p>
                                                 </div>
                                             </div> */}
-                                            {/* <div className="col-md-12">
+                                                {/* <div className="col-md-12">
                                             <div className="m-tb-20">
                                                 <label htmlFor="check-account">
                                                     <input type="checkbox" name="check-account" className="creat-account" id="check-account" />
@@ -396,19 +404,19 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
                                                 </div>
                                             </div>
                                         </div> */}
-                                            <div className="col-md-12">
-                                                <div className="form-box__single-group">
-                                                    <h6>Additional information</h6>
-                                                    <label htmlFor="form-additional-info">Order notes</label>
-                                                    <textarea
-                                                        name='message'
-                                                        value={formValues.message}
-                                                        onChange={handleChange}
-                                                        id="form-additional-info" rows="5" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                                    <p>{formErrors.message}</p>
+                                                <div className="col-md-12">
+                                                    <div className="form-box__single-group">
+                                                        <h6>Additional information</h6>
+                                                        <label htmlFor="form-additional-info">Order notes</label>
+                                                        <textarea
+                                                            name='message'
+                                                            value={formValues.message}
+                                                            onChange={handleChange}
+                                                            id="form-additional-info" rows="5" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                        <p>{formErrors.message}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {/* <div className="col-md-12">
+                                                {/* <div className="col-md-12">
                                             <div className="m-tb-20">
                                                 <label htmlFor="shipping-account">
                                                     <input type="checkbox" name="check-account" className="shipping-account" id="shipping-account" />
@@ -488,23 +496,27 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart }) => {
                                                 </div>
                                             </div>
                                         </div> */}
-                                        </div>
-                                    </form>
-                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
 
-                                <div className="col-lg-5">
-                                    <Billcard
-                                        formValues={formValues}
-                                        setFormValues={setFormValues}
-                                        formErrors={formErrors}
-                                        handleChange={handleChange}
-                                        handleSubmit={handleSubmit}
-                                        loader={loader}
-                                    />
+                                    <div className="col-lg-5">
+                                        <Billcard
+                                            formValues={formValues}
+                                            setFormValues={setFormValues}
+                                            formErrors={formErrors}
+                                            handleChange={handleChange}
+                                            handleSubmit={handleSubmit}
+                                            loader={loader}
+                                        />
+                                    </div>
                                 </div>
                             </div>
+                        </main>
+                        :
+                        <div className='text-center'>
+                            <p className='para-text-sign-in'>You have no products in cart </p>
                         </div>
-                    </main>
                     :
                     <div className='text-center'>
                         <p className='para-text-sign-in'>You are not sign in </p>
@@ -521,7 +533,9 @@ const mapStateToProps = (state) => {
         cartItem: state.shop.cart,
         user: state.shop.user,
         isAuthorized: state.shop.isAuthorized,
-        couponDetails: state.shop.couponDetails
+        couponDetails: state.shop.couponDetails,
+        onlineCart: state.shop.onlineCart
+
     }
 }
 const mapDispatchToProps = (dispatch) => {

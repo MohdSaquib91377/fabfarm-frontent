@@ -37,6 +37,7 @@ const Contact = ({setPopup,setPopupMessage}) => {
                     setPopup(true)
                     setPopupMessage('Message sent successfully')
                     setLoader(false)
+                    setFormValues(initialValues)
                 })
                 .catch(error => {
                     setLoader(false)

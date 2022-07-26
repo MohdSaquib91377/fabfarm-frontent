@@ -14,7 +14,7 @@ const Soils = lazy(() => import('../components/homepage/topproducts/Soils'))
 const Home = () => {
     Tabtitle('FAB')
 
-     
+
     const [category, setCategory] = useState([])
     useEffect(() => {
         let isMounted = true
@@ -22,6 +22,7 @@ const Home = () => {
             axios.get('/api/v1/store/category/')
                 .then(response => {
                     setCategory(response.data)
+                    window.scrollTo(0, 0)
                 })
                 .catch(error => {
                     if (error.code === 'ERR_NETWORK') {

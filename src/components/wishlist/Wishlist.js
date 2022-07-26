@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
+import useBannerImages from '../../hooks/useBannerImages';
 import Tabtitle from '../../pages/Tabtitle';
 
 const Wishlist = () => {
     Tabtitle('FAB | Wish List')
+    const banner = useBannerImages('wishlist')
     const axiosPrivate = useAxiosPrivate();
     const [wishlistItems, setWishlistItems] = useState([])
     const [onclickRemove, setOnlickRemove] = useState(false);
@@ -71,7 +73,12 @@ const Wishlist = () => {
     })
     return (
         <>
-            <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
+            <div className="breadcrumb_wrapper"
+                style={{
+                    minHeight: '250px',
+                    backgroundImage: `url(${banner[0]?.image_or_video})`
+                }}
+            >
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">

@@ -1,11 +1,14 @@
 import { axiosPrivate } from "../components/API/axios";
 import { useEffect } from "react";
 import useRefreshtoken from "./useRefreshtoken";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsAuthorized, setPopup, setPopupMessage, setSigninOpen } from "../redux/actions/productActions";
 
 const useAxiosPrivate = () => {
     const refresh = useRefreshtoken();
-    const user = useSelector(state => state.shop.user)
+    const user = useSelector(state => state.shop.user);
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
 
@@ -29,7 +32,13 @@ const useAxiosPrivate = () => {
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
                     return axiosPrivate(prevRequest);
                 }
-
+                if (error?.response?.status === 403) {
+                    dispatch(setPopup(true));
+                    dispatch(setPopupMessage('your Session as be expired please login'))
+                    dispatch(setIsAuthorized(false))
+                    dispatch(setSigninOpen(true))
+                    return null
+                }
                 return Promise.reject(error);
             }
         );

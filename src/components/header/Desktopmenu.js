@@ -14,7 +14,7 @@ function Desktopmenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthoriz
         let refresh = user.refresh;
         setLoader(true)
         axiosPrivate.post('/api/v1/account/logout/', { refresh })
-            .then(response => {
+            .then(() => {
                 setLoader(false);
                 setIsAuthorized()
                 setUser([])

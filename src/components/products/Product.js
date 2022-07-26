@@ -112,7 +112,6 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
             }
         }
     }, [isAuthorized, onlineCart])
-    console.log(onlineCartCount)
     if (currentItem.length === 0) {
         return (
             <div style={{ height: '800px', width: 'auto' }}>

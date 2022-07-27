@@ -9,7 +9,7 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
 
-                    <div className="col-md-3">
+                    <div className="col-md-4">
                         <div className="footer_block">
                             <div className="footer_logo"><Link to='/'><img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="image" /></Link></div>
                             <p><span>
@@ -44,7 +44,7 @@ const Footer = () => {
                                     </g>
                                 </svg>
 
-                            </span> 512,Beand square, Califonia</p>
+                            </span> <a href='https://goo.gl/maps/zEq3HEeSXJ8cAWze9' className='footeratag'>Baramati, Maharastra, India.</a></p>
                             <p><span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ const Footer = () => {
                                         />
                                     </g>
                                 </svg>
-                            </span> ( +61 ) 1800-1234-1245</p>
+                            </span> <a href='tel:919112293300' className='footeratag'> +91 91122 93300</a> </p>
                             <p><span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ const Footer = () => {
                                         />
                                     </g>
                                 </svg>
-                            </span>info@example.com</p>
+                            </span><a className='footeratag' href='mailto:farmersallianceforbusiness@gmail.com'>farmersallianceforbusiness@gmail.com</a></p>
                             <ul className="agri_social_links">
                                 <li><FontAwesomeIcon icon={faFacebook} /></li>
                                 <li><FontAwesomeIcon icon={faInstagram} /></li>
@@ -117,7 +117,7 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                         <div className="footer_block">
                             <div className="footer_heading">
                                 <h4>Quick Links</h4>
@@ -132,23 +132,18 @@ const Footer = () => {
                                         <li>
                                             <Link to='/aboutus' > <p><span><FontAwesomeIcon icon={faAngleRight} /></span> About</p></Link>
                                         </li>                                       
-                                    </ul>   
-                                </div>
-                                <div className="col-md-6">
-                                    <ul className="time_table">                                        
                                         <li>
                                             <Link to='/contact' ><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Contact</p></Link>
                                         </li>
-                                        <li>
-                                            <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /></span> Shop</p></Link>
-                                        </li>
+
                                     </ul>   
                                 </div>
+                                
                             </div>
                             
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-4">
                         <div className="footer_block">
                             <div className="footer_heading">
                                 <h4>Your safety</h4>

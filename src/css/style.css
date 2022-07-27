@@ -12710,3 +12710,7 @@ button.unset {
   display: inline-block;
   word-break: break-word;
 }
+.footeratag{
+  text-decoration: none;
+  color: #fff;
+}

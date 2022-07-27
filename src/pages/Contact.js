@@ -201,7 +201,10 @@ const Contact = ({setPopup,setPopupMessage}) => {
             </div>
             {/* <!--Contact Map--> */}
             <div className="contact_map_wrapper">
-                <div id="map"> here map will be shown</div>
+                {/* map iframe  */}
+                <div id="map"> 
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60650.7600801978!2d74.5553722474847!3d18.17899432569775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc3a03bdb59287f%3A0x36e4fb47fb8d8a9d!2sBaramati%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1658899556967!5m2!1sen!2sin" width="600" height="450"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
             <br />
             <br />

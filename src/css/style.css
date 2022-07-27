@@ -4570,6 +4570,7 @@ ul {
 }
 .index_v4 .clv_slide_inner {
   text-align: center;
+  padding: 10px;
 }
 .index_v4 .clv_banner_slider .clv_slide .clv_slide_inner h2 {
   letter-spacing: 10px;
@@ -10496,6 +10497,13 @@ ul {
   .clv_heading h3 {
     font-size: 30px;
   }
+  .index_v4 .clv_slide_inner p{
+    font-size: 14px;
+  }
+  .clv_btn, .clv_btn:focus{
+    font-size: 14px;
+    min-width: 130px;
+  }
   .about_farm_wrapper .about_content {
     margin: 0;
   }
@@ -11042,6 +11050,51 @@ ul {
   }
 }
 @media (max-width: 768px) {
+  .testimonial_slide .client_message > p{
+    font-size: 14px !important;
+  }
+  .testimonial_slide .client_message > h3{
+    font-size: 16px !important;
+  }
+  .testimonial_slide .client_message > h3 > span{
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  .index_v4 .clv_heading.white_heading h3{
+    font-size: 16px;
+  }
+  .clv_heading.white_heading p{
+    font-size: 14px !important;
+  }
+  .clv_about_wrapper .about_content p{
+    font-size: 14px !important;
+  }
+  .clv_about_wrapper .about_content .about_heading h6{
+    font-size: 16px;
+  }
+  .clv_about_wrapper .about_content .about_heading h2{
+    font-size: 20px;
+  }
+  .clv_about_wrapper .about_content .video_block{
+    flex-direction: column;
+  }
+  .video_btn{
+    margin-bottom: 30px;
+  }
+  .index_v4 .footer_block a{
+    font-size: 14px;
+  }
+  .clv_footer_wrapper .footer_block .footer_heading > h4{
+    font-size: 16px;
+  }
+  .clv_footer_wrapper .footer_block p{
+    font-size: 14px !important;
+    margin-bottom: 15px;
+  }
+  .index_v4 .footer_block > p{
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
   .testimonial_slider .swiper-slide {
     padding: 40px 50px;
   }
@@ -11173,9 +11226,18 @@ ul {
 @media (max-width: 767px) {
   .clv_btn,
   .clv_btn:focus {
-    min-width: 150px;
-    height: 45px;
-    line-height: 45px;
+    min-width: 130px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .garden_about_content.pageTitle h1{
+    font-size: 20px !important;
+  }
+  .garden_about_content.pageTitle h6{
+    font-size: 16px !important;
+  }
+  .garden_about_content.pageTitle p{
+    font-size: 14px !important;
   }
   .clv_main_wrapper .clv_header .clv_left_header {
     padding: 5px 0px;
@@ -11608,14 +11670,15 @@ ul {
     padding: 0px 0px 30px;
   }
   .index_v4 .dark_header .clv_right_header > .clv_menu > .cart_nav > ul > li {
-    padding: 0px 0px 30px;
+    padding: 20px 0px ;
   }
   .index_v4 .clv_slide_inner .banner_btn > span:before {
     height: 1px;
+    
   }
   .index_v4 .garden_about_wrapper {
     margin-top: 0;
-    padding-top: 60px;
+    padding: 10px 20px;
   }
   .index_v4 .garden_service_wrapper {
     margin-bottom: 30px;
@@ -12521,9 +12584,9 @@ button.unset {
   .clv_logo img {
     max-width: 100px;
   }
-  .header3_wrapper.dark_header {
+  /* .header3_wrapper.dark_header {
     height: 147px;
-  }
+  } */
   .clv_right_header .clv_menu .clv_menu_nav.act-menu {
     top: 147px;
   }
@@ -12534,9 +12597,9 @@ button.unset {
   .clv_footer_wrapper .footer_block .footer_logo a img {
     max-width: 100px;
   }
-  .header3_wrapper.dark_header {
+  /* .header3_wrapper.dark_header {
     height: 200px;
-  }
+  } */
   .top-bar > * {
     font-size: 12px;
   }
@@ -12669,6 +12732,8 @@ button.unset {
 }
 .slideHorizontal___1NzNV{
   background-size: cover !important;
+  min-height: 100vh;
+  padding: 100px 20px;
 }
 .cart_action_btn{
   background-color: rgb(42, 125, 46);
@@ -12713,4 +12778,24 @@ button.unset {
 .footeratag{
   text-decoration: none;
   color: #fff;
+}
+.agri_social_links *{
+  color: #fff;
+  border-color: #fff;
+  text-decoration: none;
+}
+.agri_social_links a{
+  border-color: #fff !important;
+}
+@media (max-width:800px) {
+  .button-buy-parent{
+    margin: auto;
+  }
+  .container .product__desc p{
+    font-size: 14px !important;
+  }
+  
+  .customBoxImageProduct{
+    flex-wrap: wrap;
+  }
 }

@@ -76,14 +76,14 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                 {/* <Weather /> */}
                 <div className="clv_header3 ">
                     <div className="row">
-                        <div className="col-lg-2 col-md-2">
+                        <div className="col-lg-2 col-md-2 col-4">
                             <div className="clv_left_header">
                                 <div className="clv_logo">
                                     <a href="/"><img src={process.env.PUBLIC_URL + "/images/home/logo.png"} alt="fab logo" /></a>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-10 col-md-10">
+                        <div className="col-lg-10 col-md-10 col-8 d-flex align-items-center justify-content-end">
                             <div className="clv_right_header">
                                 <div className="clv_menu">
                                     {

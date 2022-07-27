@@ -108,12 +108,32 @@ const Footer = () => {
                                         />
                                     </g>
                                 </svg>
-                            </span><a className='footeratag' href='mailto:farmersallianceforbusiness@gmail.com'>farmersallianceforbusiness@gmail.com</a></p>
+                            </span><a className='footeratag' href='mailto:farmersallianceforbusiness@gmail.com'>farmersallianceforbusiness</a></p>
                             <ul className="agri_social_links">
-                                <li><FontAwesomeIcon icon={faFacebook} /></li>
-                                <li><FontAwesomeIcon icon={faInstagram} /></li>
-                                <li><FontAwesomeIcon icon={faYoutube} /></li>
-                                <li><FontAwesomeIcon icon={faTwitter} /></li>
+                                <li>
+                                    <a href='https://facebook.com'>
+                                        
+                                    <FontAwesomeIcon icon={faFacebook} />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='https://instagram.com'>
+
+                                    <FontAwesomeIcon icon={faInstagram} />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='https://youtube.com'>
+
+                                    <FontAwesomeIcon icon={faYoutube} />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='https://twitter.com'>
+
+                                    <FontAwesomeIcon icon={faTwitter} />
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

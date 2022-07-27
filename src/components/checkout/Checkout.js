@@ -235,7 +235,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-box__single-group">
-                                                        <label htmlFor="form-first-name">Full name</label>
+                                                        <label htmlFor="form-first-name">Full name*</label>
                                                         <input
                                                             name='full_name'
                                                             value={formValues.full_name}
@@ -264,7 +264,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                         </div> */}
                                                 <div className="col-md-12">
                                                     <div className="form-box__single-group">
-                                                        <label htmlFor="form-country">* Country</label>
+                                                        <label htmlFor="form-country">Country*</label>
                                                         <select
                                                             name='country'
                                                             onChange={handleChange}
@@ -282,7 +282,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                 </div>
                                                 <div className="col-md-12">
                                                     <div className="form-box__single-group">
-                                                        <label htmlFor="form-address-1">Street Address</label>
+                                                        <label htmlFor="form-address-1">Street Address*</label>
                                                         <input
                                                             name='address'
                                                             value={formValues.address}
@@ -314,7 +314,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-box__single-group">
-                                                        <label htmlFor="form-state">* Region / State</label>
+                                                        <label htmlFor="form-state">Region / State*</label>
                                                         <select
                                                             name='state'
                                                             onChange={handleChange}
@@ -333,7 +333,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-box__single-group">
-                                                        <label htmlFor="form-city">* Region / city</label>
+                                                        <label htmlFor="form-city">Region / city*</label>
                                                         <select
                                                             name='city'
                                                             onChange={handleChange}
@@ -352,7 +352,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-box__single-group">
-                                                        <label htmlFor="form-zipcode">* Zip/Postal Code</label>
+                                                        <label htmlFor="form-zipcode">Zip/Postal Code*</label>
                                                         <input
                                                             name='pincode'
                                                             value={formValues.pincode}
@@ -364,7 +364,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-box__single-group">
-                                                        <label htmlFor="form-phone">Phone</label>
+                                                        <label htmlFor="form-phone">Phone*</label>
                                                         <input
                                                             name='alternate_number'
                                                             value={formValues.alternate_number}
@@ -406,7 +406,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                         </div> */}
                                                 <div className="col-md-12">
                                                     <div className="form-box__single-group">
-                                                        <h6>Additional information</h6>
+                                                        <h6>Additional information*</h6>
                                                         <label htmlFor="form-additional-info">Order notes</label>
                                                         <textarea
                                                             name='message'

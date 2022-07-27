@@ -12799,3 +12799,13 @@ button.unset {
     flex-wrap: wrap;
   }
 }
+    @media (max-width:500px) {
+      .button-buy-parent .btn--long {
+        font-size: 10px;
+        width: 120px !important;
+      }
+      .button-buy-parent{
+        width: 280px !important;
+        margin-left: 0 !important;
+      }
+    }

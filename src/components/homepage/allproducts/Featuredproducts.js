@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { setMainCategory, setProducts } from '../../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import Basiccarousel from '../../util/productstemplates/Basiccarousel';
-const Featuredproducts = ({ setProducts, setMainCategory }) => {
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+const Featuredproducts = ({ setProducts, setMainCategory, isAuthorized }) => {
     let Navigate = useNavigate();
+    const axiosPrivate = useAxiosPrivate();
     const [featuredproducts, setFeaturedProducts] = useState([]);
     const [allCatProducts, setAllCatProducts] = useState([]);
-
     const viewMoreButton = (id, products) => {
         setProducts(products)
         setMainCategory(false)
@@ -19,14 +20,19 @@ const Featuredproducts = ({ setProducts, setMainCategory }) => {
     useEffect(() => {
         const fecthFeaturedProducts = async () => {
             try {
-                const res = await axios.get('/api/v1/store/category-product/')
-                setFeaturedProducts(res.data)
+                if (isAuthorized) {
+                    const res = await axiosPrivate.get('/api/v1/store/category-product/')
+                    setFeaturedProducts(res.data)
+                } else {
+                    const res = await axios.get('/api/v1/store/category-product/')
+                    setFeaturedProducts(res.data)
+                }
             } catch (error) {
                 console(error)
             }
         }
         fecthFeaturedProducts();
-    }, [])
+    }, [isAuthorized])
     useEffect(() => {
         let mounted = true;
         if (mounted) {
@@ -72,6 +78,11 @@ const Featuredproducts = ({ setProducts, setMainCategory }) => {
         </div>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        isAuthorized: state.shop.isAuthorized
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         setProducts: (products) => dispatch(setProducts(products)),
@@ -79,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Featuredproducts)
+export default connect(mapStateToProps, mapDispatchToProps)(Featuredproducts)

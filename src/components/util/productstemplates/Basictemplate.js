@@ -1,7 +1,7 @@
-import { faHeart, faStar } from '@fortawesome/free-regular-svg-icons'
-import { faIndianRupee, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-regular-svg-icons'
+import { faIndianRupee, faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addToCart, setPopup, setPopupMessage, updateCart } from '../../../redux/actions/productActions'
@@ -9,6 +9,7 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
 
 const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessage, updateCart }) => {
     const axiosPrivate = useAxiosPrivate()
+    const [addedToWhislist, setAddedToWhislist] = useState(false)
     const funcAddToCart = (event) => {
         if (isAuthorized) {
             axiosPrivate.post('/api/v1/cart/add-to-cart/',
@@ -47,7 +48,7 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
             alert('Login to add wishlist')
         }
     }
-    const { id, name, category, image: [{ image }], price, maxQuantity } = item
+    const { id, name, category, image: [{ image }], price, maxQuantity, is_product_in_wishlist_for_current_user } = item
 
     return (
         <>
@@ -68,7 +69,12 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                                 :
                                 undefined
                         }
-                        <li><button onClick={() => addToWishList(id)}><FontAwesomeIcon icon={faHeart} /></button></li>
+                        <li><button onClick={() => addToWishList(id)}>
+                            <FontAwesomeIcon
+                                onClick={() => setAddedToWhislist(!addedToWhislist)}
+                                color={is_product_in_wishlist_for_current_user || addedToWhislist ? 'red' : 'white'}
+                                icon={faHeart}
+                            /></button></li>
                     </ul>
                 </div>
                 <div className="product__content m-t-20">

@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { setMainCategory } from '../../redux/actions/productActions';
 import Basiccarousel from '../util/productstemplates/Basiccarousel';
 
-const Relatedproducts = ({ products, setMainCategory }) => {
+const Recentlyviewed = ({ products, setMainCategory }) => {
     return (
         <>
             <div className="product m-t-100 m-b-100">
@@ -12,15 +12,15 @@ const Relatedproducts = ({ products, setMainCategory }) => {
                     <div className="row">
                         <div className="col-12">
                             {/* Start Section Title */}
-                            <div className="section-content section-content--border m-b-35">
-                                <h5 className="section-content__title">Related Product
+                            <div className="section-content section-contRelatedent--border m-b-35">
+                                <h5 className="section-content__title">recently views
                                 </h5>
-                                <Link
+                                {/* <Link
                                     to={`/shop/${products[0]?.category?.id}/${products[0]?.sub_category?.id}`}
                                     onClick={() => setMainCategory(false)}
                                     className="btn btn--icon-left btn--small btn--radius btn--transparent btn--border-green btn--border-green-hover-green font--regular text-capitalize">
                                     More Products<i className="fal fa-angle-right"></i>
-                                </Link>
+                                </Link> */}
                             </div>  {/* End Section Title */}
                         </div>
                     </div>
@@ -49,4 +49,4 @@ const mapDispatchToProps = (dispatch) => {
         setMainCategory: (boolean) => dispatch(setMainCategory(boolean))
     }
 }
-export default connect(null, mapDispatchToProps)(Relatedproducts)
+export default connect(null, mapDispatchToProps)(Recentlyviewed)

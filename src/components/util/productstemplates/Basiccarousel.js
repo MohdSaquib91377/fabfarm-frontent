@@ -8,7 +8,6 @@ import Basictemplate from '../../util/productstemplates/Basictemplate';
 const Basiccarousel = ({ products }) => {
     SwiperCore.use([Autoplay]);
     const [boolean, setBoolean] = useState(false);
-
     useEffect(() => {
         if (products.length > 4) {
             setBoolean(true)
@@ -25,7 +24,9 @@ const Basiccarousel = ({ products }) => {
         <>
             <Swiper
                 autoplay={{
-                    disableOnInteraction: false
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
                 }}
                 loop={boolean}
                 navigation={boolean}

@@ -15,9 +15,10 @@ import Relatedproducts from './Relatedproducts';
 import axios from '../API/axios';
 import Productimages from './Productimages';
 import { FaSpinner } from 'react-icons/fa';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useBannerImages from '../../hooks/useBannerImages';
-const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory }) => {
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import Recentlyviewed from './Recentlyviewed';
+const Product = ({ onlineCart, updateCart, updatedCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
@@ -25,6 +26,7 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
     // const [decreaseID, setDecreaseID] = useState("");
     // const [loader, setloader] = useState(false);
     const [relatedProducts, setRelatedProducts] = useState([])
+    const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([])
     // const [productCount, setProductCount] = useState()
     let axiosPrivate = useAxiosPrivate();
     const [onlineCartCount, setOnlineCartCount] = useState(0)
@@ -86,32 +88,60 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
     }
     useEffect(() => {
         const fetchCurrentItem = () => {
-            axios.get(`/api/v1/store/product-details/${productID}/`)
-                .then(response => {
-                    setCurrentItem(response.data[0])
-                    setProducts(response.data)
-                    setRelatedProducts(response?.data[1].recommend_products)
-                }
-                )
-                .catch(error => {
+            if (isAuthorized) {
+                axiosPrivate.get(`/api/v1/store/product-details/${productID}/`)
+                    .then(response => {
+                        setCurrentItem(response.data[0])
+                        setProducts(response.data[1]?.recommend_products)
+                        setRelatedProducts(response?.data[1].recommend_products)
+                        const recentlyView = response?.data[2]?.recently_views.map((items) => {
+                            const { product } = items;
+                            return product;
+                        })
+                        setRecentlyViewedProducts(recentlyView)
+                    }
+                    )
+                    .catch(error => {
 
-                    throw (error)
-                })
+                        throw (error)
+                    })
+            }
+            else {
+                axios.get(`/api/v1/store/product-details/${productID}/`)
+                    .then(response => {
+                        setCurrentItem(response.data[0])
+                        setProducts(response.data[1]?.recommend_products)
+                        setRelatedProducts(response?.data[1].recommend_products)
+                    }
+                    )
+                    .catch(error => {
+
+                        throw (error)
+                    })
+            }
         }
         fetchCurrentItem();
 
 
-    }, [])
+    }, [isAuthorized, productID])
     useEffect(() => {
         if (isAuthorized) {
             const onlineCurrentProduct = onlineCart.filter((items) => {
                 return items?.product?.id === parseInt(productID)
             })
-            if(onlineCurrentProduct.length !==0){
+            if (onlineCurrentProduct.length !== 0) {
                 setOnlineCartCount(onlineCurrentProduct[0]?.cartQuantity)
             }
         }
-    }, [isAuthorized, onlineCart])
+        else {
+            const offlineCurrentProduct = products.filter((items) => {
+                return items?.id === parseInt(productID)
+            })
+            if (offlineCurrentProduct.length !== 0) {
+                setOnlineCartCount(offlineCurrentProduct[0]?.quantity)
+            }
+        }
+    }, [isAuthorized, onlineCart, products])
     if (currentItem.length === 0) {
         return (
             <div style={{ height: '800px', width: 'auto' }}>
@@ -163,11 +193,11 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
                     <div className='container mt-3'>
                         <p className='m-0'>
                             <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
-                            <span className='breadcrum-width-dot'>&nbsp;>&nbsp;</span>
+                            <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
                             <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}`} onClick={() => setMainCategory(true)}>&nbsp;{category?.name}</Link></span>
-                            <span className='breadcrum-width-dot'> &nbsp; > &nbsp;</span>
+                            <span className='breadcrum-width-dot'> &nbsp; {'>'} &nbsp;</span>
                             <span className='breadcrum-width-dot'> <Link to={`/shop/${categoryId}/${sub_category.id}`} onClick={() => setMainCategory(false)}>&nbsp;{sub_category.name}</Link></span>
-                            <span className='breadcrum-width-dot'> &nbsp; > &nbsp;</span>
+                            <span className='breadcrum-width-dot'> &nbsp; {'>'} &nbsp;</span>
                             <span className='breadcrum-width-dot'>   {name}</span> </p>
                     </div>
                     <div className="container pt-3">
@@ -210,7 +240,6 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
                                     <div className="product__price m-t-5">
                                         <span className="product__price product__price--large"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>
                                         <span> <s><FontAwesomeIcon icon={faIndianRupee} /> {old_price}</s></span>
-                                        <span className="product__tag m-l-15 btn--tiny btn--green"></span>
                                     </div>
 
                                     <div className="product__desc m-t-25 m-b-10">
@@ -239,7 +268,7 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
                                                         <button className="value-button" onClick={() => decreaseCount(id)} >
                                                             <FontAwesomeIcon icon={faMinus} />
                                                         </button>
-                                                        <input className='input-items-number' type="text" readOnly id="number" value={isAuthorized ? onlineCartCount !== 0 ? onlineCartCount : 1 : products[0].quantity} />
+                                                        <input className='input-items-number' type="text" readOnly id="number" value={onlineCartCount !== 0 ? onlineCartCount : 1} />
                                                         <button className="value-button" onClick={() => increaseCount(id)
                                                         }>
                                                             <FontAwesomeIcon icon={faPlus} />
@@ -282,9 +311,9 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
                                         <div className="product-var__item d-flex align-items-center">
                                             <span className="product-var__text">Share: </span>
                                             <ul className="product-social m-l-20">
-                                                <li><a href="#"><FontAwesomeIcon color='#4267B2' icon={faFacebook} /></a></li>
-                                                <li><a href="#"><FontAwesomeIcon color='#00acee' icon={faTwitter} /></a></li>
-                                                <li><a href="#"><FontAwesomeIcon color='#c8232c' icon={faPinterest} /></a></li>
+                                                <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon color='#4267B2' icon={faFacebook} /></a></li>
+                                                <li><a href="https://twitter.com/login" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon color='#00acee' icon={faTwitter} /></a></li>
+                                                <li><a href="https://in.pinterest.com/login/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon color='#c8232c' icon={faPinterest} /></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -300,61 +329,14 @@ const Product = ({ onlineCart, updateCart, isAuthorized, products, setProducts, 
 
                 {/* ::::::  Start  Product Style - Default Section  ::::::  */}
                 <Relatedproducts products={relatedProducts} />
-                {/* ::::::  End  Product Style - Default Section  ::::::  */}
 
-                {/* ::::::  Start  Company Logo Section  ::::::  */}
-                <div className="company-logo m-t-100">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="company-logo__area default-slider">
-                                    {/* Start Single Company Logo Item */}
-                                    <div className="company-logo__item">
-                                        <a href="#" className="company-logo__link">
-                                            <img src="assets/img/company-logo/company-logo-1.png" alt="" className="company-logo__img" />
-                                        </a>
-                                    </div> {/* End Single Company Logo Item */}
-                                    {/* Start Single Company Logo Item */}
-                                    <div className="company-logo__item">
-                                        <a href="#" className="company-logo__link">
-                                            <img src="assets/img/company-logo/company-logo-2.png" alt="" className="company-logo__img" />
-                                        </a>
-                                    </div> {/* End Single Company Logo Item */}
-                                    {/* Start Single Company Logo Item */}
-                                    <div className="company-logo__item">
-                                        <a href="#" className="company-logo__link">
-                                            <img src="assets/img/company-logo/company-logo-3.png" alt="" className="company-logo__img" />
-                                        </a>
-                                    </div> {/* End Single Company Logo Item */}
-                                    {/* Start Single Company Logo Item */}
-                                    <div className="company-logo__item">
-                                        <a href="#" className="company-logo__link">
-                                            <img src="assets/img/company-logo/company-logo-4.png" alt="" className="company-logo__img" />
-                                        </a>
-                                    </div> {/* End Single Company Logo Item */}
-                                    {/* Start Single Company Logo Item */}
-                                    <div className="company-logo__item">
-                                        <a href="#" className="company-logo__link">
-                                            <img src="assets/img/company-logo/company-logo-5.png" alt="" className="company-logo__img" />
-                                        </a>
-                                    </div> {/* End Single Company Logo Item */}
-                                    {/* Start Single Company Logo Item */}
-                                    <div className="company-logo__item">
-                                        <a href="#" className="company-logo__link">
-                                            <img src="assets/img/company-logo/company-logo-6.png" alt="" className="company-logo__img" />
-                                        </a>
-                                    </div> {/* End Single Company Logo Item */}
-                                    {/* Start Single Company Logo Item */}
-                                    <div className="company-logo__item">
-                                        <a href="#" className="company-logo__link">
-                                            <img src="assets/img/company-logo/company-logo-7.png" alt="" className="company-logo__img" />
-                                        </a>
-                                    </div> {/* End Single Company Logo Item */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> {/* ::::::  End  Company Logo Section  ::::::  */}
+                {/* ::::::  End  Product Style - Default Section  ::::::  */}
+                {
+                    isAuthorized ?
+                        <Recentlyviewed products={recentlyViewedProducts} />
+                        :
+                        undefined
+                }
 
             </div>
         </>
@@ -365,7 +347,8 @@ const mapStateToProps = (state) => {
         products: state.shop.products,
         isAuthorized: state.shop.isAuthorized,
         totalCartCount: state.shop.totalCartCount,
-        onlineCart: state.shop.onlineCart
+        onlineCart: state.shop.onlineCart,
+        updatedCart: state.shop.updatedCart
     }
 }
 

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faCloudDownloadAlt, faMapMarkerAlt, faUser, faSignOutAlt, faTachometerAlt, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faCloudDownloadAlt, faMapMarkerAlt, faUser, faSignOutAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import './Profile.css'
 import Tabtitle from '../../pages/Tabtitle';
 import { makeCartEmpty, setIsAuthorized, setUser } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useBannerImages from '../../hooks/useBannerImages';
+import Accountsetting from './accountsetting/Accountsetting';
 const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [profileState, setProfileState] = useState('Dashboard');
-    const [viewPassword, setViewPassword] = useState(false)
     Tabtitle('FAB | Profile')
     const banner = useBannerImages('profile')
 
@@ -87,7 +87,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                                         onClick={() => setProfileState('Account')}
                                     >
                                         <button className={profileState === 'Account' ? 'active' : undefined}>
-                                            <FontAwesomeIcon icon={faUser} /> Account Details</button>
+                                            <FontAwesomeIcon icon={faUser} /> ACCOUNT SETTINGS</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Logout')}
@@ -200,73 +200,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={profileState === 'Account' ? 'tab-pane fade show active' : 'tab-pane fade '}>
-                                    <div className="my-account-details account-wrapper">
-                                        <h4 className="account-title">Account Details</h4>
-
-                                        <div className="account-details">
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <div className="form-box__single-group">
-                                                        <input type="text" placeholder="First Name" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-box__single-group">
-                                                        <input type="text" placeholder="Last Name" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="form-box__single-group">
-                                                        <input type="text" placeholder="Display Name" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="form-box__single-group">
-                                                        <input type="text" placeholder="Email address" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="form-box__single-group">
-                                                        <h5 className="title">Password change</h5>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="form-box__single-group">
-                                                        <input type="password" placeholder="Current Password" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-box__single-group">
-                                                        <input type="password" placeholder="New Password" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-box__single-group" style={{
-                                                        position: 'relative'
-                                                    }}>
-                                                        <input type={viewPassword ? 'text' : 'password'} placeholder="Confirm Password" />
-                                                        <span
-                                                            style={{
-                                                                position: 'absolute',
-                                                                top: '10px',
-                                                                right: '10px'
-                                                            }}><FontAwesomeIcon
-                                                                icon={viewPassword ? faEyeSlash : faEye}
-                                                                onMouseDown={() => setViewPassword(true)}
-                                                                onMouseUp={() => setViewPassword(false)}
-                                                            /></span>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-box__single-group">
-                                                        <button className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Accountsetting profileState={profileState} />
                             </div>
                         </div>
                     </div>

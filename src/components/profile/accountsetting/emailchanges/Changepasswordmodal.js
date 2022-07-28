@@ -6,7 +6,7 @@ const Changepasswordmodal = ({ changeState, setChangeState }) => {
 
     return (
         <div className={changeState ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
-            <div className="signup_inner">
+            <div className="signup_inner forgotPass">
                 <div className="signup_details">
                     <div className="site_logo">
                         <a href="index.html"> <img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="change-passwordimage" /></a>
@@ -15,24 +15,24 @@ const Changepasswordmodal = ({ changeState, setChangeState }) => {
                     <p>Consectetur adipisicing elit sed do eiusmod por incididunt uttelabore et dolore magna aliqu.</p>
 
                 </div>
-                <div className="account-details">
-                    <div className="row">
-                        <div className="col-md-12">
+                <div className="account-details p-md-4 p-3">
+                    <div className="d-flex flex-wrap h-100 align-content-center text-center">
+                        <div className="col-md-12 my-3">
                             <div className="form-box__single-group">
                                 <h5 className="title">Password change</h5>
                             </div>
                         </div>
-                        <div className="col-md-12">
+                        <div className="col-md-12 my-3">
                             <div className="form-box__single-group">
                                 <input type="password" placeholder="Current Password" />
                             </div>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 my-3">
                             <div className="form-box__single-group">
                                 <input type="password" placeholder="New Password" />
                             </div>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 my-3">
                             <div className="form-box__single-group" style={{
                                 position: 'relative'
                             }}>
@@ -49,7 +49,7 @@ const Changepasswordmodal = ({ changeState, setChangeState }) => {
                                     /></span>
                             </div>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 my-3">
                             <div className="form-box__single-group">
                                 <button className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
                             </div>

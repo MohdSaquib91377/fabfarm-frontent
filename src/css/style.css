@@ -12867,4 +12867,52 @@ button.unset {
       .sidebar_heading h3{
         font-size: 16px;
       }
+      .breadcrum-width-dot ,
+      .breadcrum-width-dot a{
+        font-size: 12px;
+      }
+    }
+
+    .exitButtonProfile{
+      color: #245915;
+      margin-right: 20px;
+    }
+    .submitProfileBtn{
+      background-color: #1fa12e;
+      color: #fff;
+      padding: 10px 30px;
+      position: relative;
+      top: -80px;
+    }
+    .account-details .form-box__single-group input[type='radio']{
+      display: none;
+    }
+    .css-ahj2mt-MuiTypography-root{
+      padding-left: 0;
+    }
+    .submitProfileBtn2{
+      background-color: #1fa12e;
+      color: #fff;
+      padding: 10px 30px;
+      position: absolute;
+      top: -80px;
+      right: 0px;
+    }
+    .posrelProfile{
+      position: relative;
+    }
+    .account-details .form-box__single-group{
+      margin-top: 0px;
+    }
+    .account-details .form-box__single-group input:disabled{
+      background-color: #d6d6d6;
+    }
+    .account-details .form-box__single-group input{
+      border: 1px solid #d6d6d6;
+    
+    }
+    @media (min-width:800px) {
+      .signin_wrapper.open_signin > .forgotPass .signup_details{
+        width: 100% !important;
+      }
     }

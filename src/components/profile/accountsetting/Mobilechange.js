@@ -4,22 +4,26 @@ const Mobilechange = () => {
     const [editState, setEditState] = useState(false)
     return (
         <>
-            <h4 className="account-title">Mobile Number</h4>
+            <h4 className="account-title mt-3">Mobile/E-mail</h4>
             <button onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
-            <div className="account-details">
+            <div className="account-details posrelProfile">
                 <div className="row">
                     {
                         editState ?
-                            <div className="col-md-12">
+                            <div className="col-md-12 my-3">
                                 <div className="form-box__single-group">
-                                    <input type="text" placeholder="Mobile Number" value='' />
+                                    <input type="text" placeholder="Mobile/E-mail"  />
                                 </div>
-                                <button>Save</button>
+                                
+                                <button className='submitProfileBtn2'>Save</button>
                             </div>
+
+
                             :
-                            <div className="col-md-12">
+
+                            <div className="col-md-12 my-3">
                                 <div className="form-box__single-group">
-                                    <input type="text" placeholder="Mobile Number" disabled value='99999999' />
+                                    <input type="text" placeholder="Mobile/E-mail" disabled value='99999999' />
                                 </div>
                             </div>
                     }

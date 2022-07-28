@@ -89,12 +89,12 @@ const Personalinformation = () => {
     return (
         <>
             <h4 className="account-title">Personal Information</h4>
-            <button onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
+            <button className='exitButtonProfile' onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
             {
                 editState ?
                     <div className="account-details">
                         <form onSubmit={handleSubmit}>
-                            <div className="row">
+                            <div className="row mt-3">
                                 <div className="col-md-6">
                                     <div className="form-box__single-group">
                                         <input
@@ -106,10 +106,14 @@ const Personalinformation = () => {
                                         />
                                         <p>{formErrors.fullname}</p>
                                     </div>
-                                    <button type='submit'>{loader ? 'Saving...' : 'Save'}</button>
                                 </div>
-                                <div className="col-md-12">
-                                    <div className="form-box__single-group">
+                                <div className='col-md-6 text-right'>
+
+                                <button type='submit' className='submitProfileBtn'>{loader ? 'Saving...' : 'Save'}</button>
+                                </div>
+                               
+                                <div className="col-md-12 mt-3">
+                                    <div className="form-box__single-group ">
 
                                         <FormControl>
                                             <FormLabel id="gender-radio-button-group">Your Gender</FormLabel>
@@ -133,12 +137,12 @@ const Personalinformation = () => {
                     :
                     <div className="account-details">
                         <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-6 my-3">
                                 <div className="form-box__single-group">
                                     <input type="text" disabled placeholder="Full Name" value={user.fullname} />
                                 </div>
                             </div>
-                            <div className="col-md-12">
+                            <div className="col-md-12 my-3">
                                 <FormControl>
                                     <FormLabel id="gender-radio-button-group">Your Gender</FormLabel>
                                     <RadioGroup

@@ -7,12 +7,12 @@ const Weare = () => {
             <div className="container">
                 <div style={{ position: 'relative', top: '20px', marginBottom:'100px' }} className="garden_about_section">
                     <div className="row">
-                        <div className="col-lg-5 col-md-6">
+                        <div className="col-lg-5">
                             <div className="garden_about_image">
-                                <img src={process.env.PUBLIC_URL + "/images/hands-g0eecfe8b7_640.jpg"} alt="" />
+                                <img src={process.env.PUBLIC_URL + "/images/hands-g0eecfe8b7_640.jpg"} alt="" className='w-100'/>
                             </div>
                         </div>
-                        <div className="col-lg-7 col-md-6">
+                        <div className="col-lg-7">
                             <div className="garden_about_content pageTitle">
                                 <h1>We Are Nice People With A <br />Lot Of Experience.</h1>
                                 <h6>Farming is not just for growing crops, it is for the cultivation of human beings !!!</h6>

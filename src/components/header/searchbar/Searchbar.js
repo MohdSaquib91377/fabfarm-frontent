@@ -75,7 +75,8 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
                                                 display: 'flex',
                                                 paddingTop: '20px',
                                                 paddingLeft: '20px',
-                                                width: '100%'
+                                                width: '100%',
+                                                textAlign: 'left',
                                             }}>
                                                 <img style={{
                                                     height: '50px',

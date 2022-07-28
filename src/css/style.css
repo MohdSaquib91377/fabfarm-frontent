@@ -12787,6 +12787,9 @@ button.unset {
 .agri_social_links a{
   border-color: #fff !important;
 }
+.breadcrumb_block > ul{
+  display: flex;
+}
 @media (max-width:800px) {
   .button-buy-parent{
     margin: auto;
@@ -12798,6 +12801,39 @@ button.unset {
   .customBoxImageProduct{
     flex-wrap: wrap;
   }
+  .garden_service2_section .service2_block p,
+  .garden_service_wrapper .garden_service_block p{
+    font-size: 16px !important;
+  }
+  .index_v4 .search_box .search_block h3{
+    font-size: 16px;
+  }
+  .product_items_section.product_list_view ul li .org_product_block{
+    padding: 0px 0;
+    padding-bottom: 20px ;
+  }
+  .product_items_section.product_list_view .product_item_block .content_block{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .product_items_section.product_list_view .product_item_block .content_block{
+    padding-top: 80px;
+  }
+  .product_price_box {
+    flex-wrap: wrap;
+  }
+  .product_price_box h5{
+    width: 100%;
+  }
+  .product_price_box h3{
+    margin: 10px 0;
+    width: 100%;
+    font-size: 18px !important;
+  }
+  .container .content_block p{
+    font-size: 14px !important;
+  }
+
 }
     @media (max-width:500px) {
       .button-buy-parent .btn--long {
@@ -12807,5 +12843,28 @@ button.unset {
       .button-buy-parent{
         width: 280px !important;
         margin-left: 0 !important;
+      }
+      .list_view_toggle {
+        width: 100%;
+      }
+      .product_list_filter> ul{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .product_list_filter li:first-child{
+        width: 60%;
+      }
+      .product_list_filter li:nth-child(2){
+        width: 30%;
+      }
+      .list_view_toggle li:first-child{
+        display: none !important;
+        font-size: 12px;
+      }
+      .makeStyles-root-1{
+        width: 100% !important;
+      }
+      .sidebar_heading h3{
+        font-size: 16px;
       }
     }

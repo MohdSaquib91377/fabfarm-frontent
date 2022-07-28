@@ -121,21 +121,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
 
                                                 </button>
                                             </li>
-                                            <li>
-                                                <label htmlFor="block-nav">
-
-                                                    <a className="user_profile">
-                                                        <i className="fa fa-user-circle " aria-hidden="true">
-
-                                                        </i>
-                                                    </a>
-                                                </label>
-                                                <input type="checkbox" id="block-nav" className="check-nav" />
-                                                <ul className="user-profile-active">
-                                                    <li><a href="#">Profile</a></li>
-                                                    <li><a href="#">Logout</a></li>
-                                                </ul>
-                                            </li>
+                                         
                                             <li className="menu_toggle">
 
                                                 <button

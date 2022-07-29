@@ -110,7 +110,7 @@ const Personalinformation = () => {
                                         <p>{formErrors.fullname}</p>
                                     </div>
                                 </div>
-                                <div className='col-md-6 text-right'>
+                                <div className='col-md-6 '>
 
                                 <button type='submit' className='submitProfileBtn'>{loader ? 'Saving...' : 'Save'}</button>
                                 </div>

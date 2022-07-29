@@ -12112,7 +12112,7 @@ ul {
   }
   .signup_wrapper > .signup_inner,
   .signin_wrapper > .signup_inner {
-    max-width: 300px;
+    max-width: 90%;
   }
   .success_wrapper > .success_inner {
     max-width: 300px;
@@ -12792,14 +12792,23 @@ button.unset {
 }
 .HeadingsProfileEdit{
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin: 10px 0;
 }
 .HeadingsProfileEdit h4{
   margin-right: 10px;
   margin-top: 0 !important;
 }
-
+.changePasswordProfile{
+  padding: 10px 20px;
+  background-color: #1fa12e;
+  color: #fff;
+}
+.button-stylingresendotp{
+  position: relative;
+  top: -35px;
+  right: 10px;
+}
 @media (max-width:800px) {
   .button-buy-parent{
     margin: auto;
@@ -12891,8 +12900,6 @@ button.unset {
       background-color: #1fa12e;
       color: #fff;
       padding: 10px 30px;
-      position: relative;
-      top: -63px;
     }
     .account-details .form-box__single-group input[type='radio']{
       display: none;
@@ -12904,9 +12911,6 @@ button.unset {
       background-color: #1fa12e;
       color: #fff;
       padding: 10px 30px;
-      position: absolute;
-      top: -63px;
-      right: 0px;
     }
     .posrelProfile{
       position: relative;
@@ -12922,7 +12926,7 @@ button.unset {
     
     }
     @media (min-width:800px) {
-      .signin_wrapper.open_signin > .forgotPass .signup_details{
+      .signin_wrapper  .forgotPass .signup_details{
         width: 100% !important;
       }
     }

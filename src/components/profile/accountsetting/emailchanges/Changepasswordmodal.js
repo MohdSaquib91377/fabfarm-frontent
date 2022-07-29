@@ -16,48 +16,7 @@ const Changepasswordmodal = ({ changeState, setChangeState }) => {
 
                 </div>
                 <div className="account-details p-md-4 p-3">
-                    <div className="d-flex flex-wrap h-100 align-content-center text-center">
-                        <div className="col-md-12 my-3">
-                            <div className="form-box__single-group">
-                                <h5 className="title">Password change</h5>
-                            </div>
-                        </div>
-                        <div className="col-md-12 my-3">
-                            <div className="form-box__single-group">
-                                <input type="password" placeholder="Current Password" />
-                            </div>
-                        </div>
-                        <div className="col-md-6 my-3">
-                            <div className="form-box__single-group">
-                                <input type="password" placeholder="New Password" />
-                            </div>
-                        </div>
-                        <div className="col-md-6 my-3">
-                            <div className="form-box__single-group" style={{
-                                position: 'relative'
-                            }}>
-                                <input type={viewPassword ? 'text' : 'password'} placeholder="Confirm Password" />
-                                <span
-                                    style={{
-                                        position: 'absolute',
-                                        top: '10px',
-                                        right: '10px'
-                                    }}><FontAwesomeIcon
-                                        icon={viewPassword ? faEyeSlash : faEye}
-                                        onMouseDown={() => setViewPassword(true)}
-                                        onMouseUp={() => setViewPassword(false)}
-                                    /></span>
-                            </div>
-                        </div>
-                        <div className="col-md-6 my-3">
-                            <div className="form-box__single-group">
-                                <button className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <span className="close"
+                <span className="close"
                 onClick={() => setChangeState()}
             >
                 <svg
@@ -77,6 +36,54 @@ const Changepasswordmodal = ({ changeState, setChangeState }) => {
                     />
                 </svg>
             </span>
+                    <div className="d-flex flex-wrap h-100 align-content-center justify-content-center text-center">
+                        <div className="col-md-12 my-3">
+                            <div className="form-box__single-group">
+                                <h5 className="title">Change Password </h5>
+                            </div>
+                        </div>
+                        <div className="col-md-12 my-3">
+                            <div className="form-box__single-group">
+                                <input type="password" placeholder="Current Password" />
+                            </div>
+                        </div>
+                        <div className="col-md-12 my-3">
+                            <div className="form-box__single-group">
+                                <input type="password" placeholder="New Password" />
+                            </div>
+                        </div>
+                        <div className="col-md-12 my-3">
+                            <div className="form-box__single-group" style={{
+                                position: 'relative'
+                            }}>
+                                <input type={viewPassword ? 'text' : 'password'} placeholder="Confirm Password" />
+                                <span
+                                    style={{
+                                        position: 'absolute',
+                                        top: '10px',
+                                        right: '10px'
+                                    }}><FontAwesomeIcon
+                                        icon={viewPassword ? faEyeSlash : faEye}
+                                        onMouseDown={() => setViewPassword(true)}
+                                        onMouseUp={() => setViewPassword(false)}
+                                    /></span>
+                            </div>
+                        </div>
+                        <div className="col-md-12 my-3">
+                        <div className="form-box__single-group">
+                                <input type="text" placeholder="Enter OTP" />
+                                <p className='text-right button-stylingresendotp' ><button>Resend</button></p>
+                            </div>
+                        </div>
+                        <div className="col-md-6 my-3">
+                            <div className="form-box__single-group">
+                                <button className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
         </div>
     )
 }

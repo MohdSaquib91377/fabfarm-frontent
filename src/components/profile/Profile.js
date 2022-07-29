@@ -87,7 +87,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                                         onClick={() => setProfileState('Account')}
                                     >
                                         <button className={profileState === 'Account' ? 'active' : undefined}>
-                                            <FontAwesomeIcon icon={faUser} /> ACCOUNT SETTINGS</button>
+                                            <FontAwesomeIcon icon={faUser} /> Account Settings</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Logout')}

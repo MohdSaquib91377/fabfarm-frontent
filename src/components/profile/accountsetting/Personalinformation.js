@@ -88,8 +88,11 @@ const Personalinformation = () => {
     }
     return (
         <>
+            <div className='HeadingsProfileEdit'>
+
             <h4 className="account-title">Personal Information</h4>
             <button className='exitButtonProfile' onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
+            </div>
             {
                 editState ?
                     <div className="account-details">
@@ -112,19 +115,20 @@ const Personalinformation = () => {
                                 <button type='submit' className='submitProfileBtn'>{loader ? 'Saving...' : 'Save'}</button>
                                 </div>
                                
-                                <div className="col-md-12 mt-3">
-                                    <div className="form-box__single-group ">
+                                <div className="col-md-12 mt-3 w-100">
+                                    <div className="form-box__single-group w-100 ">
 
-                                        <FormControl>
+                                        <FormControl className='w-100'>
                                             <FormLabel id="gender-radio-button-group">Your Gender</FormLabel>
                                             <RadioGroup
+                                            className='flex-row'
                                                 aria-labelledby="gender-radio-button-group"
                                                 name="gender"
                                                 value={formValues.gender}
                                                 onChange={handleChange}
                                             >
-                                                <FormControlLabel value="female" control={<Radio />} label="Female" />
                                                 <FormControlLabel value="male" control={<Radio />} label="Male" />
+                                                <FormControlLabel value="female" control={<Radio />} label="Female" />
                                             </RadioGroup>
                                         </FormControl>
                                         <p>{formErrors.gender}</p>
@@ -142,16 +146,17 @@ const Personalinformation = () => {
                                     <input type="text" disabled placeholder="Full Name" value={user.fullname} />
                                 </div>
                             </div>
-                            <div className="col-md-12 my-3">
-                                <FormControl>
+                            <div className="col-md-12 my-3  w-100">
+                                <FormControl className='w-100'>
                                     <FormLabel id="gender-radio-button-group">Your Gender</FormLabel>
                                     <RadioGroup
+                                    className='w-100 flex-row'
                                         aria-labelledby="gender-radio-button-group"
                                         name="controlled-radio-buttons-group"
                                         value={`${user.gender}`}
                                     >
-                                        <FormControlLabel disabled value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel disabled value="male" control={<Radio />} label="Male" />
+                                        <FormControlLabel className='d-inline-block w-25' disabled value="male" control={<Radio />} label="Male" />
+                                        <FormControlLabel className='d-inline-block w-25' disabled value="female" control={<Radio />} label="Female" />
                                     </RadioGroup>
                                 </FormControl>
                             </div>

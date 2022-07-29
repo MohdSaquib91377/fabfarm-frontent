@@ -12790,6 +12790,16 @@ button.unset {
 .breadcrumb_block > ul{
   display: flex;
 }
+.HeadingsProfileEdit{
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.HeadingsProfileEdit h4{
+  margin-right: 10px;
+  margin-top: 0 !important;
+}
+
 @media (max-width:800px) {
   .button-buy-parent{
     margin: auto;
@@ -12882,7 +12892,7 @@ button.unset {
       color: #fff;
       padding: 10px 30px;
       position: relative;
-      top: -80px;
+      top: -63px;
     }
     .account-details .form-box__single-group input[type='radio']{
       display: none;
@@ -12895,7 +12905,7 @@ button.unset {
       color: #fff;
       padding: 10px 30px;
       position: absolute;
-      top: -80px;
+      top: -63px;
       right: 0px;
     }
     .posrelProfile{

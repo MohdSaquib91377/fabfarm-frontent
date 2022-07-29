@@ -4,8 +4,11 @@ const Mobilechange = () => {
     const [editState, setEditState] = useState(false)
     return (
         <>
+        <div className='HeadingsProfileEdit'>
+
             <h4 className="account-title mt-3">Mobile/E-mail</h4>
             <button onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
+        </div>
             <div className="account-details posrelProfile">
                 <div className="row">
                     {

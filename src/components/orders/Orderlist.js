@@ -1,5 +1,3 @@
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -10,11 +8,14 @@ import Tabtitle from '../../pages/Tabtitle'
 const Orderlist = ({ user }) => {
     Tabtitle('FAB | Order List')
     const banner = useBannerImages('orderlist')
-
+    const [getOrder, setGetOrder] = useState(false)
     const [items, setItems] = useState([])
     const axiosPrivate = useAxiosPrivate();
-    const cancelOrder = (order) => {
-        axiosPrivate.put(`/api/v1/order/order-cancel/${order}/`)
+    const cancelOrder = (id) => {
+        axiosPrivate.put(`/api/v1/order/order-cancel/${id}/`)
+            .then((response) => {
+                setGetOrder(!getOrder)
+            })
             .catch(error => { throw (error) })
     }
     useEffect(() => {
@@ -28,9 +29,10 @@ const Orderlist = ({ user }) => {
                 })
         }
         fetchOrderList()
-    }, [user])
+    }, [user, getOrder])
     const orderList = items.map((data, i) => {
-        const { product: { id, name, image }, order, price, quantity, status } = data;
+        console.log(data)
+        const { id, product: { name, image }, order, price, quantity, status } = data;
         return (
 
             <div key={i} className="order_list_top" style={{
@@ -53,7 +55,7 @@ const Orderlist = ({ user }) => {
                 <h6>status: {status}</h6>
                 {
                     status !== "Cancel" ?
-                        <button onClick={() => cancelOrder(order)}><FontAwesomeIcon color='red' icon={faTrash} /></button> : <div></div>
+                        <button onClick={() => cancelOrder(id)}>Cancel</button> : undefined
                 }
             </div>
 

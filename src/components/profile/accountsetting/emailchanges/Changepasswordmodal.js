@@ -191,14 +191,14 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                                         onChange={handleChange}
                                         value={formValues.otp}
                                     />
-                                    <p className='text-right button-stylingresendotp' ><button onClick={() => sendOTP()} >Resend</button></p>
+                                    <p className='text-right button-stylingresendotp' ><button type='button' onClick={() => sendOTP()} >Resend</button></p>
                                 </div>
                                 <p className='errorTextPasswordChange'>{formErrors.otp}</p>
 
                             </div>
                             <div className="col-md-6 my-3">
                                 <div className="form-box__single-group">
-                                    <button type='button' className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
+                                    <button type='submit' className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
                                 </div>
                             </div>
                         </div>

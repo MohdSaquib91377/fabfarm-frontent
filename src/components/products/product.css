@@ -6373,37 +6373,57 @@ table tbody > tr td a:hover {
 
 /* slider perv next buttons start here*/
 
+.prduct-images-cantainer{
+  width: 350px 
+}
+.prduct-images-swiper-cantainer {
+  width: 100% !important;
+}
+.prduct-images-swiper-cantainer .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.prduct-images-swiper-cantainer .swiper-slide {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
 .swiper-container-vertical {
   height: 500px;
   position: relative !important;
 }
 
-.swiper-container-vertical .swiper-button-prev {
-  left: 50% !important;
-  transform-origin: left center !important;
-  transform: rotate(90deg) !important;
-  top: 10px !important;
-}
-
-.swiper-container-vertical .swiper-button-next {
-  left: 50% !important;
-  transform-origin: left center !important;
-  transform: rotate(90deg) !important;
-  top: auto !important;
-  bottom: 10px !important;
-}
-
 /* slider perv and next button end here */
-.productNameProductPage{
+.productNameProductPage {
   display: flex;
 }
-@media (max-width:500px) {
-  .productNameProductPage{
+@media (max-width: 500px) {
+  .productNameProductPage {
     flex-direction: column-reverse;
   }
-  .swiper-container-vertical{
+  .swiper-container-vertical {
     height: auto;
+    width: 400px;
     margin-top: 20px;
     margin-bottom: 20px;
-  } 
+  }
+}
+
+
+@media (min-width: 500px) {
+  .swiper-container-vertical .swiper-button-prev {
+    left: 50% !important;
+    transform-origin: left center !important;
+    transform: rotate(90deg) !important;
+    top: 10px !important;
+  }
+
+  .swiper-container-vertical .swiper-button-next {
+    left: 50% !important;
+    transform-origin: left center !important;
+    transform: rotate(90deg) !important;
+    top: auto !important;
+    bottom: 10px !important;
+  }
 }

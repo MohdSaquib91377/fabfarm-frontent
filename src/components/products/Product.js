@@ -205,9 +205,7 @@ const Product = ({ onlineCart, updateCart, updatedCart, isAuthorized, products, 
                             display: 'flex',
                             // flexWrap: 'wrap',
                         }}>
-                            <div style={{
-                                width: '800px'   
-                            }} className>
+                            <div>
                                 <div className='add-image-radius'>
                                     <Productimages image={image} />
                                 </div>
@@ -299,7 +297,7 @@ const Product = ({ onlineCart, updateCart, updatedCart, isAuthorized, products, 
                                         <div className="product-var__item">
                                             <span className="product-var__text">Guaranteed safe checkout </span>
                                             <ul className="payment-icon m-t-5">
-                                                <li><img src='https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Razorpay_logo.svg/1024px-Razorpay_logo.svg.png' width={100}/></li>
+                                                <li><img src='https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Razorpay_logo.svg/1024px-Razorpay_logo.svg.png' width={100} /></li>
                                             </ul>
                                         </div>
                                         <div className="product-var__item">

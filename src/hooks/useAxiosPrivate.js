@@ -37,7 +37,7 @@ const useAxiosPrivate = () => {
                     dispatch(setPopupMessage('your Session as be expired please login'))
                     dispatch(setIsAuthorized(false))
                     dispatch(setSigninOpen(true))
-                    return null
+                    return Promise.reject(error)
                 }
                 return Promise.reject(error);
             }

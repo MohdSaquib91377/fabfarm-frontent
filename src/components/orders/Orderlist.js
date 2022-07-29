@@ -55,7 +55,7 @@ const Orderlist = ({ user }) => {
                 <h6>status: {status}</h6>
                 {
                     status !== "Cancel" ?
-                        <button onClick={() => cancelOrder(id)}>Cancel</button> : undefined
+                        <button onClick={() => cancelOrder(id)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button> : undefined
                 }
             </div>
 

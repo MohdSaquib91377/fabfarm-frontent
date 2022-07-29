@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faLinkedin, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
-import { setSignupOpen, setSigninOpen, setUser, setIsAuthorized } from '../../redux/actions/productActions';
+import { setSignupOpen, setSigninOpen, setUser, setIsAuthorized, setUserInfo } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import './login.css'
-const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, setUser, handleClose }) => {
+const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, setUser, setUserInfo, handleClose }) => {
     const initialValues = { email: "", password: "", otp: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -89,6 +89,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                     setIsAuthorized()
                     setSigninOpen()
                     setUser(response.data.data)
+                    setUserInfo(response.data.user_info)
                 })
                 .catch((error) => {
                     setLoader(false)
@@ -129,6 +130,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
             })
                 .then(response => {
                     setUser(response.data.data)
+                    setUserInfo(response.data.user_info)
                     setLoader(false)
                     setRestPassScreen(true)
                 })
@@ -150,7 +152,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                     setIsAuthorized()
                 })
                 .catch(error => {
-                    throw(error)
+                    throw (error)
                 })
         }
     }, [formErrors]);
@@ -258,7 +260,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                     className="form_field"
                                     placeholder="Password"
                                     onChange={handleChange} />
-                                <button  onClick={handleForgotPass} className='signin-forgot-pass'>Forgot ?</button>
+                                <button onClick={handleForgotPass} className='signin-forgot-pass'>Forgot ?</button>
                             </div>
                             <p>{formErrors.password}</p>
                             <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'sign in'}</button>
@@ -367,6 +369,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setUser: (user) => dispatch(setUser(user)),
+        setUserInfo: (user) => dispatch(setUserInfo(user)),
         setSigninOpen: () => dispatch(setSigninOpen()),
         setSignupOpen: () => dispatch(setSignupOpen()),
         setIsAuthorized: () => dispatch(setIsAuthorized())

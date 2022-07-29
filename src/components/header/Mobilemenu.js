@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,10 +6,11 @@ import { faHeart, faList, faSignOut, faUser } from '@fortawesome/free-solid-svg-
 import { setSigninOpen, setIsAuthorized, setUser, makeCartEmpty } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import './mobilemenu.css'
-function Mobilemenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthorized, setSigninOpen, menuOpen }) {
+function Mobilemenu({ user, userInfo, makeCartEmpty, setIsAuthorized, setUser, isAuthorized, setSigninOpen, menuOpen }) {
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [loader, setLoader] = useState(false);
+    const [userName, setUserName] = useState('')
     const Logout = () => {
         let refresh = user.refresh;
         setLoader(true)
@@ -26,6 +27,10 @@ function Mobilemenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthorize
                 throw error
             })
     }
+    useEffect(() => {
+        setUserName(userInfo.fullname);
+    }, [userInfo])
+
     return (
         <div className={menuOpen ? 'display-menu' : 'display-none'}>
             <ul>
@@ -38,7 +43,7 @@ function Mobilemenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthorize
                 {
                     isAuthorized ?
                         <li>
-                            <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /> user name</Link>
+                            <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /> {userName}</Link>
                             <ul>
                                 <li><Link to='/orderlist'> <FontAwesomeIcon icon={faList} /> Order List</Link></li>
                                 <li><Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /> Wish List</Link></li>
@@ -63,6 +68,7 @@ function Mobilemenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthorize
 const mapStateToProps = (state) => {
     return {
         user: state.shop.user,
+        userInfo: state.shop.userInfo,
         cart: state.shop.cart,
         isAuthorized: state.shop.isAuthorized,
         totalCartCount: state.shop.totalCartCount

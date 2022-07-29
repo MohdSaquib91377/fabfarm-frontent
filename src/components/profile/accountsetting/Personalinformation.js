@@ -6,12 +6,14 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useEffect } from 'react';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import { setUserInfo } from '../../../redux/actions/productActions';
+import { connect } from 'react-redux';
 
-const Personalinformation = () => {
+const Personalinformation = ({ setUserInfo }) => {
     const axiosPrivate = useAxiosPrivate();
     const [editState, setEditState] = useState(false)
-    const [user, setUser] = useState([])
-    const initialValues = { fullname: '', gender: "" };
+    const initialValues = { fullname: '', gender: "", email_or_mobile: '' };
+    const [user, setUser] = useState(initialValues)
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
@@ -34,6 +36,8 @@ const Personalinformation = () => {
             try {
                 const response = await axiosPrivate.get('/api/v1/account/list-update-profile/')
                 setUser(response?.data)
+                setFormValues(response?.data)
+                setUserInfo(response?.data)
             } catch (error) {
                 throw error
             }
@@ -46,7 +50,6 @@ const Personalinformation = () => {
             controller.abort();
         }
     }, [editState])
-
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
@@ -55,7 +58,6 @@ const Personalinformation = () => {
             try {
                 await axiosPrivate.patch('/api/v1/account/list-update-profile/', formValues)
                 setLoader(false)
-                setFormValues(initialValues)
                 setIsSubmit(false)
                 setEditState(false)
             } catch (error) {
@@ -90,8 +92,8 @@ const Personalinformation = () => {
         <>
             <div className='HeadingsProfileEdit'>
 
-            <h4 className="account-title">Personal Information</h4>
-            <button className='exitButtonProfile' onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
+                <h4 className="account-title">Personal Information</h4>
+                <button className='exitButtonProfile' onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
             </div>
             {
                 editState ?
@@ -112,16 +114,16 @@ const Personalinformation = () => {
                                 </div>
                                 <div className='col-md-6 '>
 
-                                <button type='submit' className='submitProfileBtn'>{loader ? 'Saving...' : 'Save'}</button>
+                                    <button type='submit' className='submitProfileBtn'>{loader ? 'Saving...' : 'Save'}</button>
                                 </div>
-                               
+
                                 <div className="col-md-12 mt-3 w-100">
                                     <div className="form-box__single-group w-100 ">
 
                                         <FormControl className='w-100'>
                                             <FormLabel id="gender-radio-button-group">Your Gender</FormLabel>
                                             <RadioGroup
-                                            className='flex-row'
+                                                className='flex-row'
                                                 aria-labelledby="gender-radio-button-group"
                                                 name="gender"
                                                 value={formValues.gender}
@@ -150,7 +152,7 @@ const Personalinformation = () => {
                                 <FormControl className='w-100'>
                                     <FormLabel id="gender-radio-button-group">Your Gender</FormLabel>
                                     <RadioGroup
-                                    className='w-100 flex-row'
+                                        className='w-100 flex-row'
                                         aria-labelledby="gender-radio-button-group"
                                         name="controlled-radio-buttons-group"
                                         value={`${user.gender}`}
@@ -166,5 +168,9 @@ const Personalinformation = () => {
         </>
     )
 }
-
-export default Personalinformation
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUserInfo: (user) => dispatch(setUserInfo(user))
+    }
+}
+export default connect(null, mapDispatchToProps)(Personalinformation)

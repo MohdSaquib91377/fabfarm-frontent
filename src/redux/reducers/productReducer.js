@@ -5,6 +5,7 @@ const initialState = {
     cart: [],
     // currentItem: null,
     user: [],
+    userInfo: [],
     signinOpen: true,
     signupOpen: false,
     isAuthorized: false,
@@ -92,6 +93,11 @@ export const shopReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload,
+            };
+        case ActionTypes.SET_USER_INFO:
+            return {
+                ...state,
+                userInfo: action.payload,
             };
         case ActionTypes.SET_SIGNIN_MODAL:
             return {

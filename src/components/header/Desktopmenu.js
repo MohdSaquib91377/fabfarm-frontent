@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faList, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
 import { setSigninOpen, setIsAuthorized, setUser, makeCartEmpty } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-function Desktopmenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthorized, setSigninOpen }) {
+function Desktopmenu({ user, userInfo, makeCartEmpty, setIsAuthorized, setUser, isAuthorized, setSigninOpen }) {
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [loader, setLoader] = useState(false);
+    const [userName, setUserName] = useState('')
     const [hoverBtn, setHoverBtn] = useState('#222222')
     const Logout = () => {
         let refresh = user.refresh;
@@ -26,6 +27,11 @@ function Desktopmenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthoriz
                 throw error
             })
     }
+
+    useEffect(() => {
+        setUserName(userInfo.fullname);
+    }, [userInfo])
+
     return (
         <div className="clv_menu_nav">
             <ul>
@@ -38,7 +44,7 @@ function Desktopmenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthoriz
                 {
                     isAuthorized ?
                         <li>
-                            <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /> user name</Link>
+                            <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /> {userName}</Link>
                             <ul>
                                 <li><Link to='/orderlist'> <FontAwesomeIcon icon={faList} /> Order List</Link></li>
                                 <li><Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /> Wish List</Link></li>
@@ -64,6 +70,7 @@ function Desktopmenu({ user, makeCartEmpty, setIsAuthorized, setUser, isAuthoriz
 const mapStateToProps = (state) => {
     return {
         user: state.shop.user,
+        userInfo: state.shop.userInfo,
         cart: state.shop.cart,
         isAuthorized: state.shop.isAuthorized,
         totalCartCount: state.shop.totalCartCount

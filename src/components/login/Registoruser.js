@@ -91,6 +91,8 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setRe
                     }}
                         onMouseDown={() => setSeePassword(true)}
                         onMouseUp={() => setSeePassword(false)}
+                        onTouchStart={() => setSeePassword(true)}
+                        onTouchEnd={() => setSeePassword(false)}
                         icon={seePassword ? faEyeSlash : faEye} />
                 </div>
                 <p>{formErrors.password}</p>

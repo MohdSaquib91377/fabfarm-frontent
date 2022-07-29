@@ -58,7 +58,12 @@ export const setUser = (user) => {
         payload: user,
     }
 }
-
+export const setUserInfo = (user) => {
+    return {
+        type: ActionTypes.SET_USER_INFO,
+        payload: user,
+    }
+}
 export const setSigninOpen = () => {
     return {
         type: ActionTypes.SET_SIGNIN_MODAL,

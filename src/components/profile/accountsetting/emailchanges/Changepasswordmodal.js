@@ -141,7 +141,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                                         value={formValues.current_password}
                                     />
                                 </div>
-                                <p>{formErrors.current_password}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.current_password}</p>
                             </div>
                             <div className="col-md-12 my-3">
                                 <div className="form-box__single-group">
@@ -153,7 +153,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                                         value={formValues.new_password}
                                     />
                                 </div>
-                                <p>{formErrors.new_password}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.new_password}</p>
                             </div>
                             <div className="col-md-12 my-3">
                                 <div className="form-box__single-group" style={{
@@ -179,7 +179,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                                             onTouchEnd={() => setViewPassword(false)}
                                         /></span>
                                 </div>
-                                <p>{formErrors.confirm_password}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.confirm_password}</p>
 
                             </div>
                             <div className="col-md-12 my-3">
@@ -193,12 +193,12 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                                     />
                                     <p className='text-right button-stylingresendotp' ><button onClick={() => sendOTP()} >Resend</button></p>
                                 </div>
-                                <p>{formErrors.otp}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.otp}</p>
 
                             </div>
                             <div className="col-md-6 my-3">
                                 <div className="form-box__single-group">
-                                    <button type='submit' className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
+                                    <button type='button' className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
                                 </div>
                             </div>
                         </div>

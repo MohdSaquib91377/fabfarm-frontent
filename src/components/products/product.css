@@ -6394,3 +6394,16 @@ table tbody > tr td a:hover {
 }
 
 /* slider perv and next button end here */
+.productNameProductPage{
+  display: flex;
+}
+@media (max-width:500px) {
+  .productNameProductPage{
+    flex-direction: column-reverse;
+  }
+  .swiper-container-vertical{
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  } 
+}

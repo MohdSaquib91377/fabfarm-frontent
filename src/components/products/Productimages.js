@@ -17,12 +17,10 @@ const Productimages = ({ image }) => {
     }
 
     return (
-        <div style={{
-            display: 'flex'
-        }}>
+        <div className='productNameProductPage'>
             <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative PRODUCT-RESPONSIVE">
                 <Swiper
-                    direction={"vertical"}
+                    direction={"horizontal"}
                     navigation={true}
                     slidesPerView={5}
                     spaceBetween={20}

@@ -301,7 +301,7 @@ const Product = ({ onlineCart, updateCart, updatedCart, isAuthorized, products, 
                                             </ul>
                                         </div>
                                         <div className="product-var__item">
-                                            <span className="product-var__text">services</span>
+                                            <span className="product-var__text">Services</span>
                                             <ul>
                                                 <li>7 days return policy</li>
                                                 <li>Cash on Delivery available</li>

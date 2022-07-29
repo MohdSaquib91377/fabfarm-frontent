@@ -59,17 +59,20 @@ const Featuredproducts = ({ setProducts, setMainCategory, isAuthorized }) => {
                     const { id, name, products } = allproducts;
                     return (
                         <div key={i} style={{
-                            marginTop: '30px'
+                            marginTop: '30px',
                         }}>
-                            <button
-                                style={{
-                                    position: 'relative',
-                                    float: 'right'
-                                }}
-                                onClick={() => viewMoreButton(id, products)}>
-                                View More
-                            </button>
-                            <h3>{name}</h3>
+                            <div className="my-3 d-flex justify-content-between row-reverse align-items-center">
+
+                                <h3>{name}</h3>
+                                <button
+                                    className='buttonViewMore'
+                                    style={{
+                                        position: 'relative',
+                                    }}
+                                    onClick={() => viewMoreButton(id, products)}>
+                                    View More
+                                </button>
+                            </div>
                             <Basiccarousel products={products} />
                         </div>
                     )

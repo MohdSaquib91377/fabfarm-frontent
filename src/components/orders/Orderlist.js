@@ -37,6 +37,7 @@ const Orderlist = ({ user }) => {
 
             <div key={i} className="order_list_top" style={{
                 display: 'flex',
+                overflow: 'auto',
                 justifyContent: 'space-between',
                 alignContent: 'center'
             }}>
@@ -49,10 +50,10 @@ const Orderlist = ({ user }) => {
                     </Link>
                 </div>
                 <Link to={`/orderproductdetails/${order}`}><h6>{name}</h6></Link>
-                <h6>order id : {order}</h6>
-                <h6>price: {price}</h6>
-                <h6>quantity: {quantity}</h6>
-                <h6>status: {status}</h6>
+                <h6>Order Id : {order}</h6>
+                <h6>Price: {price}</h6>
+                <h6>Quantity: {quantity}</h6>
+                <h6>Status: {status}</h6>
                 {
                     status !== "Cancel" ?
                         <button onClick={() => cancelOrder(id)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button> : undefined
@@ -92,7 +93,8 @@ const Orderlist = ({ user }) => {
                     position: 'relative',
                     top: '50px',
                     marginBottom: '280px',
-                    width: 'auto'
+                    width: 'auto',
+                    overflow: 'auto',
                 }}>
                     {orderList}
                 </div>

@@ -145,7 +145,7 @@ const Personalinformation = ({ setUserInfo }) => {
                         <div className="row">
                             <div className="col-md-6 my-3">
                                 <div className="form-box__single-group">
-                                    <input type="text" disabled placeholder="Full Name" value={user.fullname} />
+                                    <input type="text" disabled placeholder="Full Name" value={user.fullname} maxLength="30"/>
                                 </div>
                             </div>
                             <div className="col-md-12 my-3  w-100">

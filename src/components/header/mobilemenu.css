@@ -2,14 +2,13 @@
   position: fixed;
   
   top:102px;
-  left: 0;
+  right: 0;
   color: white;
   display: block;
   /* border: red 1px solid; */
   background-color: #fff;
-  height: 100%;
+  height: auto;
   width: 100%;
-  max-width: 200px;
   padding: 10px;
   transition: .3s;
 }
@@ -23,7 +22,7 @@
 }
 .display-none {
   position: fixed;
-  top:200px;
+  top:00px;
   left: -500px;
   color: white;
   display: block;

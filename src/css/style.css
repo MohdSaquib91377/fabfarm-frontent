@@ -671,7 +671,7 @@ ul {
   width: 30px;
   border: none;
   font-size: 16px;
-  color: #707070;
+  color: #000;
   background-color: transparent;
   outline: none;
   text-align: center;
@@ -7474,7 +7474,7 @@ ul {
   text-align: center;
 }
 .breadcrumb_wrapper .breadcrumb_inner h3 {
-  height: 32px;
+  height: 40px;
   overflow: hidden;
   font-size: 32px;
   font-weight: 600;
@@ -11671,6 +11671,7 @@ ul {
   }
   .index_v4 .dark_header .clv_right_header > .clv_menu > .cart_nav > ul > li {
     padding: 20px 0px ;
+    margin-left: 30px;
   }
   .index_v4 .clv_slide_inner .banner_btn > span:before {
     height: 1px;
@@ -12626,6 +12627,7 @@ button.unset {
   border-bottom: 1px solid #bbb;
   align-items: center;
   overflow:hidden;
+  min-width: 800px;
 }
 .order_list_top a:nth-child(2) {
   width: 20%;
@@ -12682,6 +12684,9 @@ button.unset {
 }
 .product-page .left div {
   margin-right: 10px;
+}
+.product-page .left div:last-child{
+  width: 50%;
 }
 .product-page .left div:first-child {
   width: 30%;
@@ -12789,6 +12794,7 @@ button.unset {
 }
 .breadcrumb_block > ul{
   display: flex;
+  justify-content: center;
 }
 .HeadingsProfileEdit{
   display: flex;
@@ -12865,7 +12871,7 @@ button.unset {
       }
       .button-buy-parent{
         width: 280px !important;
-        margin-left: 0 !important;
+        /* margin-left: 0 !important; */
       }
       .list_view_toggle {
         width: 100%;
@@ -12879,7 +12885,9 @@ button.unset {
       }
       .product_list_filter li:nth-child(2){
         width: 30%;
+        margin-top: 2px;
       }
+      
       .list_view_toggle li:first-child{
         display: none !important;
         font-size: 12px;
@@ -12933,4 +12941,22 @@ button.unset {
       .signin_wrapper  .forgotPass .signup_details{
         width: 100% !important;
       }
+    }
+    .buttonViewMore{
+      padding: 5px 10px;
+      font-size: 16px;
+      border-radius: 100px;
+      background-color: #1fa12e;
+      color: #fff;
+      border: 1px solid #1fa12e;
+      transition: .3s;
+    }
+    .buttonViewMore:hover{
+      background-color: #fff;
+      color: #1fa12e;
+
+    }
+ 
+    .cart_block h4{
+      color: #000;
     }

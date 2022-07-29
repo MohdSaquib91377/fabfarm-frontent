@@ -1,5 +1,6 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from '../../../API/axios';
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
@@ -43,7 +44,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
 
     const sendOTP = async () => {
         try {
-            const response = await axiosPrivate.post('/api/v1/account/send-otp/', {
+            const response = await axios.post('/api/v1/account/send-otp/', {
                 email_or_mobile: userInfo.email_or_mobile
             })
             setFormValues(
@@ -198,7 +199,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                             </div>
                             <div className="col-md-6 my-3">
                                 <div className="form-box__single-group">
-                                    <button type='submit' className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">Save Change</button>
+                                    <button type='submit' className="btn btn--box btn--radius btn--small btn--black btn--black-hover-green btn--uppercase font--bold">{loader ? 'Saving Changes...' : 'Save Change'}</button>
                                 </div>
                             </div>
                         </div>

@@ -299,7 +299,7 @@ const Product = ({ onlineCart, updateCart, updatedCart, isAuthorized, products, 
                                         <div className="product-var__item">
                                             <span className="product-var__text">Guaranteed safe checkout </span>
                                             <ul className="payment-icon m-t-5">
-                                                <li><FontAwesomeIcon icon={faPaypal} color="" /></li>
+                                                <li><img src='https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Razorpay_logo.svg/1024px-Razorpay_logo.svg.png' width={100}/></li>
                                             </ul>
                                         </div>
                                         <div className="product-var__item">

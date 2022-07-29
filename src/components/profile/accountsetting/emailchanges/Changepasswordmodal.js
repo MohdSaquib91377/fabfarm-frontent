@@ -70,9 +70,9 @@ const Changepasswordmodal = ({ changeState, setChangeState }) => {
                             </div>
                         </div>
                         <div className="col-md-12 my-3">
-                        <div className="form-box__single-group">
+                        <div className="form-box__single-group position-relative">
                                 <input type="text" placeholder="Enter OTP" />
-                                <p className='text-right button-stylingresendotp' ><button>Resend</button></p>
+                                <button className='button-stylingresendotp'>Resend</button>
                             </div>
                         </div>
                         <div className="col-md-6 my-3">

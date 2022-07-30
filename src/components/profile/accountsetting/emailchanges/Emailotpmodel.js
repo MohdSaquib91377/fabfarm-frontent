@@ -146,7 +146,7 @@ const Emailotpmodel = (
                                 <div className="form-box__single-group">
                                     <input
                                         type="text"
-                                        name='exits_email_otp'
+                                        name='exists_email_otp'
                                         placeholder={placeHolders.exists_email_otp}
                                         onChange={handleChange}
                                         value={formValues.exists_email_otp}

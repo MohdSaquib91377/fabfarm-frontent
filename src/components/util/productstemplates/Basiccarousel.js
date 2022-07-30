@@ -8,11 +8,22 @@ import Basictemplate from '../../util/productstemplates/Basictemplate';
 const Basiccarousel = ({ products }) => {
     SwiperCore.use([Autoplay]);
     const [boolean, setBoolean] = useState(false);
+
+    const [matches, setMatches] = useState(
+        window.matchMedia("(max-width: 500px)").matches
+    )
+
     useEffect(() => {
-        if (products.length > 4) {
+        window
+            .matchMedia("(max-width: 500px)")
+            .addEventListener('change', e => setMatches(e.matches));
+    }, [])
+
+    useEffect(() => {
+        if (matches ? products.length > 0 : products.length > 4) {
             setBoolean(true)
         }
-    }, [products])
+    }, [products, matches])
     const Product = products.map((item, i) => {
         return (
             <SwiperSlide key={i}>

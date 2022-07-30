@@ -260,7 +260,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                     className="form_field"
                                     placeholder="Password"
                                     onChange={handleChange} />
-                                <button onClick={handleForgotPass} className='signin-forgot-pass'>Forgot ?</button>
+                                <button type='button' onClick={handleForgotPass} className='signin-forgot-pass'>Forgot ?</button>
                             </div>
                             <p>{formErrors.password}</p>
                             <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'sign in'}</button>
@@ -300,7 +300,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                         counter !== 0 ?
                                             <span>Resend OTP in {counter} </span>
                                             :
-                                            <button onClick={(e) => resendOtp(e)}>{resendOtpLoader ? <FaSpinner icon="spinner" className="spinner" /> : 'Resend OTP'}</button>
+                                            <button type='button' onClick={(e) => resendOtp(e)}>{resendOtpLoader ? <FaSpinner icon="spinner" className="spinner" /> : 'Resend OTP'}</button>
                                     }
                                 </div>
                                 <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'Verify'}</button>

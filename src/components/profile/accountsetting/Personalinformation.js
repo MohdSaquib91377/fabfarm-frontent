@@ -9,7 +9,7 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { setUserInfo } from '../../../redux/actions/productActions';
 import { connect } from 'react-redux';
 
-const Personalinformation = ({ setUserInfo }) => {
+const Personalinformation = ({ setUserInfo, userInfo }) => {
     const axiosPrivate = useAxiosPrivate();
     const [editState, setEditState] = useState(false)
     const initialValues = { fullname: '', gender: "", email_or_mobile: '' };
@@ -145,7 +145,7 @@ const Personalinformation = ({ setUserInfo }) => {
                         <div className="row">
                             <div className="col-md-6 my-3">
                                 <div className="form-box__single-group">
-                                    <input type="text" disabled placeholder="Full Name" value={user.fullname} maxLength="30"/>
+                                    <input type="text" disabled placeholder="Full Name" value={user.fullname} maxLength="30" />
                                 </div>
                             </div>
                             <div className="col-md-12 my-3  w-100">
@@ -168,9 +168,14 @@ const Personalinformation = ({ setUserInfo }) => {
         </>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        userInfo: state.shop.userInfo
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         setUserInfo: (user) => dispatch(setUserInfo(user))
     }
 }
-export default connect(null, mapDispatchToProps)(Personalinformation)
+export default connect(mapStateToProps, mapDispatchToProps)(Personalinformation)

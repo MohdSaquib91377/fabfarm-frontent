@@ -31,7 +31,6 @@ const Orderlist = ({ user }) => {
         fetchOrderList()
     }, [user, getOrder])
     const orderList = items.map((data, i) => {
-        console.log(data)
         const { id, product: { name, image }, order, price, quantity, status } = data;
         return (
 

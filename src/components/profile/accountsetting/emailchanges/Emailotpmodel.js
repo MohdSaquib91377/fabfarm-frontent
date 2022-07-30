@@ -1,108 +1,92 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import axios from '../../../API/axios';
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
-const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
+import { setUserInfo } from '../../../../redux/actions/productActions';
+const Emailotpmodel = (
+    {
+        openEmailOtpModel, setOpenEmailOtpModel,
+        setEditState, email_or_mobile, userInfo, setUserInfo,
+        resendCounter, sendOtpIsSubmit, sendOtpLoader, placeHolders
+    }) => {
+
+
     const axiosPrivate = useAxiosPrivate();
     const [viewPassword, setViewPassword] = useState(false)
-    const initialValues = { current_password: '', new_password: '', confirm_password: '', otp: '', txn_id: '' }
+    const initialValues = { new_email_otp: '', exists_email_otp: '', password: '' }
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
     const [loader, setLoader] = useState(false)
 
-    const handleChange = (event) => {
-        const { name, value } = event.target
+    const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        setFormErrors(validateUserDetails(formValues));
+        e.preventDefault();
+        setFormErrors(validateEmailOTP(formValues))
         setIsSubmit(true)
     }
 
-    const handleClose = (e) => {
-        e.preventDefault()
+    const handleClose = () => {
+        setOpenEmailOtpModel(false)
         setFormValues(initialValues)
         setFormErrors(initialValues)
-        setChangeState()
     }
-
-    const validateUserDetails = (values) => {
+    const validateEmailOTP = (values) => {
         const errors = {};
-        if (!values.current_password) {
-            errors.current_password = 'Current password is required!'
+        const regexOtpcode = /^[1-9][0-9]{5}$/;
+
+        if (!values.new_email_otp) {
+            errors.new_email_otp = `New email OTP is required!`
+        } else if (!regexOtpcode.test(values.new_email_otp)) {
+            errors.new_email_otp = `Enter a valid OTP!`
         }
-        if (!values.new_password) {
-            errors.new_password = 'New password is required!'
+        if (!values.exists_email_otp) {
+            errors.exists_email_otp = `Exists email OTP is required!`
+        } else if (!regexOtpcode.test(values.exists_email_otp)) {
+            errors.exists_email_otp = `Enter a valid OTP!`
         }
-        if (!values.confirm_password) {
-            errors.confirm_password = 'Confirm password is required!'
-        } else if (values.confirm_password !== values.new_password) {
-            errors.confirm_password = 'new password and confirm password is not matching'
+        if (!values.password) {
+            errors.password = `Password is required! `
         }
-        if (!values.otp) {
-            errors.otp = 'otp is required!'
-        }
-        return errors;
-    }
-    const sendOTP = async () => {
-        try {
-            const response = await axios.post('/api/v1/account/send-otp/', {
-                email_or_mobile: userInfo.email_or_mobile
-            })
-            setFormValues(
-                { ...formValues, txn_id: response.data.id }
-            )
-        } catch (error) {
-            throw error
-        }
+
+        return errors
     }
 
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
-
-        if (isMounted && changeState) {
-            sendOTP();
-        }
-        return () => {
-            isMounted = false;
-            controller.abort();
-        }
-    }, [changeState])
-    useEffect(() => {
-        let isMounted = true;
-        const controller = new AbortController();
-        const changePassword = async () => {
+        const patchEmail = async () => {
             setLoader(true)
+            setIsSubmit(false)
             try {
-                await axiosPrivate.put('/api/v1/account/change-password/', formValues)
+                await axiosPrivate.patch('/api/v1/account/update-email/', formValues)
                 setLoader(false)
-                setIsSubmit(false)
-                setChangeState(false)
-                setFormValues(initialValues)
+                setUserInfo({ ...userInfo, email_or_mobile: email_or_mobile })
+                setEditState(false)
+                setOpenEmailOtpModel(false)
+
             } catch (error) {
-                setLoader(false)
-                setIsSubmit(false)
                 setFormErrors(error?.response?.data?.message)
+                setLoader(false)
                 throw error
             }
         }
-        if (Object.keys(formErrors).length === 0 && isSubmit && isMounted) {
-            changePassword();
+        if (Object.keys(formErrors).length === 0 && isMounted && isSubmit) {
+            patchEmail();
         }
-
         return () => {
             isMounted = false;
             controller.abort();
         }
     })
+
     return (
-        <div className={changeState ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
+        <div className={openEmailOtpModel ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
             <div className="signup_inner forgotPass">
                 <div className="signup_details">
                     <div className="site_logo">
@@ -137,32 +121,38 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                         <div className="d-flex flex-wrap h-100 align-content-center justify-content-center text-center">
                             <div className="col-md-12 my-3">
                                 <div className="form-box__single-group">
-                                    <h5 className="title">Change Password </h5>
+                                    <h5 className="title">Verify OTP </h5>
+                                    <button
+                                        onClick={() => sendOtpIsSubmit(true)}
+                                        disabled={resendCounter !== 0 || sendOtpLoader ? true : false}
+                                        type='button'>
+                                        {resendCounter !== 0 ? `Resend OTP in ${resendCounter}` : sendOtpLoader ? 'Resending...' : 'Resend OTP'}
+                                    </button>
                                 </div>
                             </div>
                             <div className="col-md-12 my-3">
                                 <div className="form-box__single-group">
                                     <input
-                                        type="password"
-                                        name='current_password'
-                                        placeholder="Current Password"
+                                        type="text"
+                                        name='new_email_otp'
+                                        placeholder={placeHolders.new_email_otp}
                                         onChange={handleChange}
-                                        value={formValues.current_password}
+                                        value={formValues.new_email_otp}
                                     />
                                 </div>
-                                <p className='errorTextPasswordChange'>{formErrors.current_password}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.new_email_otp}</p>
                             </div>
                             <div className="col-md-12 my-3">
                                 <div className="form-box__single-group">
                                     <input
-                                        type="password"
-                                        name='new_password'
-                                        placeholder="New Password"
+                                        type="text"
+                                        name='exits_email_otp'
+                                        placeholder={placeHolders.exists_email_otp}
                                         onChange={handleChange}
-                                        value={formValues.new_password}
+                                        value={formValues.exists_email_otp}
                                     />
                                 </div>
-                                <p className='errorTextPasswordChange'>{formErrors.new_password}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.exists_email_otp}</p>
                             </div>
                             <div className="col-md-12 my-3">
                                 <div className="form-box__single-group" style={{
@@ -170,10 +160,10 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                                 }}>
                                     <input
                                         type={viewPassword ? 'text' : 'password'}
-                                        name='confirm_password'
-                                        placeholder="Confirm Password"
+                                        name='password'
+                                        placeholder="Password"
                                         onChange={handleChange}
-                                        value={formValues.confirm_password}
+                                        value={formValues.password}
                                     />
                                     <span
                                         style={{
@@ -188,21 +178,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                                             onTouchEnd={() => setViewPassword(false)}
                                         /></span>
                                 </div>
-                                <p className='errorTextPasswordChange'>{formErrors.confirm_password}</p>
-
-                            </div>
-                            <div className="col-md-12 my-3">
-                                <div className="form-box__single-group">
-                                    <input
-                                        type="text"
-                                        name='otp'
-                                        placeholder="Enter OTP"
-                                        onChange={handleChange}
-                                        value={formValues.otp}
-                                    />
-                                    <p className='text-right button-stylingresendotp' ><button type='button' onClick={() => sendOTP()} >Resend</button></p>
-                                </div>
-                                <p className='errorTextPasswordChange'>{formErrors.otp}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.password}</p>
 
                             </div>
                             <div className="col-md-6 my-3">
@@ -213,9 +189,9 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                         </div>
                     </form>
                 </div>
-            </div>
+            </div >
 
-        </div>
+        </div >
     )
 }
 const mapStateToProps = (state) => {
@@ -223,4 +199,9 @@ const mapStateToProps = (state) => {
         userInfo: state.shop.userInfo
     }
 }
-export default connect(mapStateToProps)(Changepasswordmodal)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUserInfo: (user) => dispatch(setUserInfo(user))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Emailotpmodel)

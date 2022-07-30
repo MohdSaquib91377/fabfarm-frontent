@@ -101,7 +101,7 @@ const Wishlist = () => {
                     position: 'unset',
                     margin: '50px auto',
                     top: '200px',
-                    minHeight: '100vh',
+                    overflow: 'auto',
                     width: 'auto'
                 }}>
                     {

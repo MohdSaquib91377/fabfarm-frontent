@@ -103,10 +103,13 @@ const Personalinformation = ({ setUserInfo, userInfo }) => {
                                 <div className="col-md-6">
                                     <div className="form-box__single-group">
                                         <input
+                                        
                                             type="text"
                                             name='fullname'
                                             placeholder="Full Name"
                                             value={formValues.fullname}
+                                            minLength="3"
+                                            maxLength='20'
                                             onChange={handleChange}
                                         />
                                         <p>{formErrors.fullname}</p>

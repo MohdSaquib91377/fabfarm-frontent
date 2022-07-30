@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faList, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faList, faSignOut, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { setSigninOpen, setIsAuthorized, setUser, makeCartEmpty } from '../../redux/actions/productActions';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import './mobilemenu.css'
@@ -35,15 +35,15 @@ function Mobilemenu({ user, userInfo, makeCartEmpty, setIsAuthorized, setUser, i
         <div className={menuOpen ? 'display-menu' : 'display-none'}>
             <ul>
                 <li>
-                    <Link to="/" >home</Link>
+                    <Link to="/" >Home</Link>
                 </li>
-                <li><Link to="/aboutus">about us</Link></li>
+                <li><Link to="/aboutus">About Us</Link></li>
 
-                <li><Link to="/contact">Contact us</Link></li>
+                <li><Link to="/contact">Contact Us</Link></li>
                 {
                     isAuthorized ?
                         <li>
-                            <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /> {userName}</Link>
+                            <Link to='/profile'><FontAwesomeIcon color='#000' icon={faUserCircle} /> {userName}</Link>
                             <ul>
                                 <li><Link to='/orderlist'> <FontAwesomeIcon icon={faList} /> Order List</Link></li>
                                 <li><Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /> Wish List</Link></li>
@@ -57,7 +57,7 @@ function Mobilemenu({ user, userInfo, makeCartEmpty, setIsAuthorized, setUser, i
                         <li
                             style={{ color: 'white', cursor: 'pointer' }}
                             onClick={() => setSigninOpen()} >
-                            Signin
+                            Sign In
                         </li>
 
                 }

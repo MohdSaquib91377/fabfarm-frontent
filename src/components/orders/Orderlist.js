@@ -36,7 +36,6 @@ const Orderlist = ({ user }) => {
 
             <div key={i} className="order_list_top" style={{
                 display: 'flex',
-                overflow: 'auto',
                 justifyContent: 'space-between',
                 alignContent: 'center'
             }}>
@@ -55,7 +54,7 @@ const Orderlist = ({ user }) => {
                 <h6>Status: {status}</h6>
                 {
                     status !== "Cancel" ?
-                        <button onClick={() => cancelOrder(id)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button> : undefined
+                        <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button> : <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                 }
             </div>
 
@@ -93,7 +92,7 @@ const Orderlist = ({ user }) => {
                     top: '50px',
                     marginBottom: '280px',
                     width: 'auto',
-                    overflow: 'auto',
+                    overflowX: 'auto',
                 }}>
                     {orderList}
                 </div>

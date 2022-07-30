@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
-import { setUser, setIsAuthorized } from '../../redux/actions/productActions';
+import { setUser, setIsAuthorized, setUserInfo } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
-const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state, id }) => {
+const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state, id, setUserInfo }) => {
     const initialValues = { otp: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -19,7 +19,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
     const handleOTPSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validateOTP(formValues));
-        setIsSubmit(true)   
+        setIsSubmit(true)
     }
     const resendOtp = (e) => {
         e.preventDefault();
@@ -31,9 +31,9 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
                 setResendOptLoader(false)
             })
     }
-    useEffect(()=>{
+    useEffect(() => {
         setOtp_Id(id)
-    },[id])
+    }, [id])
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setLoader(true)
@@ -44,6 +44,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
                 .then(response => {
                     setLoader(false)
                     setUser(response.data.data)
+                    setUserInfo(response.data.user_info)
                     setIsAuthorized()
                 })
                 .catch(error => {
@@ -101,6 +102,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
 const mapDispatchToProps = (dispatch) => {
     return {
         setUser: (user) => dispatch(setUser(user)),
+        setUserInfo: (user) => dispatch(setUserInfo(user)),
         setIsAuthorized: () => dispatch(setIsAuthorized())
     }
 }

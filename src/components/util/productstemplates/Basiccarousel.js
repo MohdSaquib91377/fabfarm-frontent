@@ -20,7 +20,7 @@ const Basiccarousel = ({ products }) => {
     }, [])
 
     useEffect(() => {
-        if (matches ? products.length > 0 : products.length > 4) {
+        if (matches ? products.length > 1 : products.length > 4) {
             setBoolean(true)
         }
     }, [products, matches])

@@ -69,7 +69,7 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                                 <button onClick={() => buyButton(id)}>Buy now</button>
                             </>
                             :
-                            undefined
+                            <p className='outofstocktext'>Out Of Stock</p>
                     }
                 </div>
                 <div className="content_block">

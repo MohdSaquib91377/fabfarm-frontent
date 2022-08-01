@@ -87,17 +87,28 @@ const Contact = ({setPopup,setPopupMessage}) => {
                         </div>
                     </div>
                 </div>
-                <div className="breadcrumb_block">
+                {/* <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
                         <li>contact us</li>
                     </ul>
-                </div>
+                </div> */}
             </div>
-
-            <div className="contact_form_wrapper clv_section">
+                <div className="container ">
+                    <div className="row">
+                        <div className="col-12 px-5 my-3">
+                            <p className='m-0'>
+                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                <span className='breadcrum-width-dot'><Link to='/'>Contact </Link>  </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <div className="contact_form_wrapper clv_section pt-2">
                 <div className="container">
                     <div className="row">
+                        
                         <div className="col-lg-8 col-md-8">
                             <div className="contact_form_section">
                                 <div className="row">

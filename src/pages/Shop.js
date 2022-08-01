@@ -140,7 +140,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                         </div>
                     </div>
                 </div>
-                <div className="breadcrumb_block">
+                {/* <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
                         {
@@ -153,13 +153,39 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                 </>
                         }
                     </ul>
-                </div>
+                </div> */}
             </div>
+            <div className="container ">
+                    <div className="row">
+                        <div className="col-12  my-3">
+                            <p className='m-0'>
+                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                               
+                                {
+                                    mainCategory ?
+                                    <>
+                                    <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                    <span className='breadcrum-width-dot maibn'>&nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined} </span>
+                                    </>
+                                :
+                                <>
+
+                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                    <span className='breadcrum-width-dot'> <Link onClick={() => { setMainCategory(true) }} to={`/shop/${products[0]?.category?.id}/`}> &nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined}</Link></span>
+                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                    <span className='breadcrum-width-dot subbb'> &nbsp; {products.length !== 0 ? products[0]?.sub_category.name : undefined}</span>
+                                </>
+                                }
+                              
+                            </p>
+                        </div>
+                    </div>
+                </div>
             {/* <!--Produst List--> */}
-            <div className="products_wrapper clv_section">
+            <div className="products_wrapper clv_section pt-3">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-3 col-md-3">
+                        <div className="col-lg-3 col-md-3 position-relative">
                             <div className="product_sidebar">
                                 <div className="product_block">
                                     <div className="sidebar_heading">
@@ -205,9 +231,9 @@ const Shop = ({ mainCategory, setMainCategory }) => {
 
                                         <li>
                                             <select onChange={handleSelectChange}>
-                                                <option value="popularity">sort by popularity</option>
-                                                <option value="price">sort by price </option>
-                                                {/* <option value="sort by category">sort by category</option> */}
+                                                <option value="popularity">Sort By Popularity</option>
+                                                <option value="price">Sort By Price </option>
+                                                {/* <option value="sort by category">Sort by Category</option> */}
                                             </select>
                                         </li>
                                         <li>

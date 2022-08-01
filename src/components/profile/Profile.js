@@ -47,13 +47,24 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                         </div>
                     </div>
                 </div>
-                <div className="breadcrumb_block">
+                {/* <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
                         <li>&nbsp;Profile</li>
                     </ul>
-                </div>
+                </div> */}
             </div>
+            <div className="container ">
+                    <div className="row">
+                        <div className="col-12  my-3">
+                            <p className='m-0'>
+                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                <span className='breadcrum-width-dot'>Profile   </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             <main className="container">
                 <div className="my-account-area">
                     <div className="row">

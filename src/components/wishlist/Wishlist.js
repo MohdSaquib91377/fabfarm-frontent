@@ -84,13 +84,24 @@ const Wishlist = () => {
                         </div>
                     </div>
                 </div>
-                <div className="breadcrumb_block">
+                {/* <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
                         <li> &nbsp;Wish list</li>
                     </ul>
-                </div>
+                </div> */}
             </div>
+            <div className="container ">
+                    <div className="row">
+                        <div className="col-12  my-3">
+                            <p className='m-0'>
+                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                <span className='breadcrum-width-dot'>Wish List  </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             <div className='p-3'>
 
                 <div className='parent-wishlist' style={{

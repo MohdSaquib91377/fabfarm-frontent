@@ -23,15 +23,26 @@ const About = () => {
                         </div>
                     </div>
                 </div>
-                <div className="breadcrumb_block">
+                {/* <div className="breadcrumb_block">
                     <ul>
                         <li><Link to='/'>home</Link></li>
                         <li>about us</li>
                     </ul>
-                </div>
+                </div> */}
             </div>
             {/* <!--About Section--> */}
-            <div className="clv_about_wrapper clv_section">
+            <div className="container ">
+                    <div className="row">
+                        <div className="col-12  my-3">
+                            <p className='m-0'>
+                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                <span className='breadcrum-width-dot'>About   </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <div className="clv_about_wrapper clv_section pt-1">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6">

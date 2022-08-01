@@ -110,7 +110,7 @@ const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount
                     role="presentation"
                 >
                     <div className="clv_cart_box cart_box_open">
-                        <div className="cart_section" style={{ padding: '20px' }}>
+                        <div className="cart_section" style={{ padding: '20px 0px 20px 20px ' }}>
                             <div className="cart-header" >
                                 <div className="cart">
                                     <h5><FontAwesomeIcon icon={faShoppingCart} />Cart</h5>

@@ -3408,11 +3408,11 @@ ul {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
 }
-.agri_social_links > li > a:hover {
+/* .agri_social_links > li > a:hover {
   border-color: #ffffff;
   background-color: #ffffff;
   color: #2a7d2e;
-}
+} */
 /*Agriculture Footer End*/
 /********************************************************
 17. Index2 end
@@ -5719,9 +5719,9 @@ ul {
 .index_v4 .footer_block > p > span {
   margin-right: 10px;
 }
-.index_v4 .agri_social_links > li > a:hover {
+/* .index_v4 .agri_social_links > li > a:hover {
   color: #2a7d2e;
-}
+} */
 .index_v4 .clv_footer_wrapper .footer_block .time_table > li {
   display: flex;
   align-items: center;
@@ -6498,11 +6498,11 @@ ul {
   color: #27ae93;
   border-color: #b1b1b14d;
 }
-.index_v5 .agri_social_links > li > a:hover {
+/* .index_v5 .agri_social_links > li > a:hover {
   background-color: #27ae93;
   border-color: #27ae93;
   color: #ffffff;
-}
+} */
 .index_v5 .clv_footer_wrapper .footer_block .useful_links > li > a {
   color: #222222;
 }
@@ -7381,11 +7381,11 @@ ul {
   color: #222222;
   border-color: #b1b1b14d;
 }
-.index_v6 .agri_social_links > li > a:hover {
+/* .index_v6 .agri_social_links > li > a:hover {
   background-color: #ffc539;
   border-color: #ffc539;
   color: #ffffff;
-}
+} */
 .index_v6 .useful_links {
   display: inline-block;
   vertical-align: top;
@@ -8376,7 +8376,7 @@ ul {
   margin-bottom: 80px;
 }
 .product_item_block {
-  margin-top:20px;
+  margin-top:0px;
   margin-bottom: 30px;
 }
 .product_items_section ul li .org_product_block {
@@ -12703,7 +12703,30 @@ button.unset {
   margin: 20px 0;
   font-size: 14px;
 }
-
+@media (max-width:700px) {
+  .product-page .left{
+    width: 100%;
+    flex-direction: column;
+  }
+  .product-page .left div:first-child{
+    width: 100%;
+  }
+  .product-page .left div:last-child{
+    width: 100%;
+    padding: 10px;
+  }
+  .product-page .left div:first-child img{
+    width: 100% !important;
+    object-fit: cover;
+    height: 300px !important;
+  }
+  .product-page-wrap{
+    padding: 0;
+  }
+  .product-page{
+    padding: 0;
+  }
+}
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -13023,6 +13046,7 @@ button.unset {
       font-size: 20px;
       color: #f44026;
       font-weight: 600;
+      line-height: 44px;
 }
 .product_sidebar{
   position: -webkit-sticky; /* Safari */

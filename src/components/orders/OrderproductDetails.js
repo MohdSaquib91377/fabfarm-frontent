@@ -47,7 +47,7 @@ function Productdetails({ items }) {
                         <p>
                             {description}
                         </p>
-                        <div>status:{status}</div>
+                        <div>Status:{status}</div>
                     </div>
 
                 </div>

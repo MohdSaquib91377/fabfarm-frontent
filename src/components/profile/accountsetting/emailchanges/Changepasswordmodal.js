@@ -45,7 +45,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
             errors.confirm_password = 'new password and confirm password is not matching'
         }
         if (!values.otp) {
-            errors.otp = 'otp is required!'
+            errors.otp = 'OTP is required!'
         }
         return errors;
     }

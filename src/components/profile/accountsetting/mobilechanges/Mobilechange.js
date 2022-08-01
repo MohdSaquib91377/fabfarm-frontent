@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import useAxiosPrivate from '../../../../hooks/useAxiosPrivate'
-import Changepasswordmodal from './Changepasswordmodal'
-import Emailotpmodel from './Emailotpmodel'
-const Emailchanges = ({ userInfo }) => {
+import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
+import Mobileotpmodal from './Mobileotpmodal';
+
+const Mobilechange = ({ userInfo }) => {
+
     const axiosPrivate = useAxiosPrivate();
     const [editState, setEditState] = useState(false)
-    const [openEmailOtpModel, setOpenEmailOtpModel] = useState(false)
-    const [changeState, setChangeState] = useState(false)
-    const initialValues = { email_or_mobile: '' }
+    const [openMobileOtpModel, setOpenMobileOtpModel] = useState(false)
+    const initialValues = { mobile: '' }
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
     const [resendCounter, setResendCounter] = useState(0)
     const [loader, setLoader] = useState(false)
-    const [placeHolders, setPlaceHolders] = useState({ new_email_otp: '', exists_email_otp: '' })
+    const [placeHolders, setPlaceHolders] = useState({ new_mobile_otp: '', exists_email_or_mobile_otp: '' })
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value })
@@ -22,28 +22,29 @@ const Emailchanges = ({ userInfo }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setFormErrors(validateEmailChanges(formValues))
+        setFormErrors(validateMobileChanges(formValues))
         setIsSubmit(true)
     }
 
-    const validateEmailChanges = (value) => {
+    const validateMobileChanges = (value) => {
         const errors = {};
-        const regexemail = /\S+@\S+\.\S+/;
+        const regexmobile = /^([+]\d{2})?\d{10}$/;
 
-        if (!value.email_or_mobile) {
-            errors.email_or_mobile = `Email is required!`
-        } else if (!regexemail.test(value.email_or_mobile)) {
-            errors.email_or_mobile = 'Enter a valid email!';
+        if (!value.mobile) {
+            errors.mobile = `Mobile number is required!`
+        } else if (!regexmobile.test(value.mobile)) {
+            errors.mobile = 'Enter a valid mobile number!';
         }
 
         return errors
     }
+
     useEffect(() => {
         if (!editState) {
             setFormErrors(initialValues)
         }
-        const { email_or_mobile } = userInfo
-        setFormValues({ email_or_mobile: email_or_mobile })
+        const { mobile } = userInfo
+        setFormValues({ mobile: mobile })
     }, [userInfo, editState])
 
     useEffect(() => {
@@ -53,17 +54,23 @@ const Emailchanges = ({ userInfo }) => {
             setLoader(true)
             setIsSubmit(false)
             try {
-                const response = await axiosPrivate.post('/api/v1/account/update-email/', {
-                    email_or_mobile: formValues.email_or_mobile
+                const response = await axiosPrivate.post('/api/v1/account/update-mobile/', {
+                    mobile: formValues.mobile
                 })
                 setPlaceHolders(response.data.message)
                 setLoader(false)
-                setOpenEmailOtpModel(true)
+                setOpenMobileOtpModel(true)
                 setResendCounter(60)
             } catch (error) {
-                setLoader(false)
-                setFormErrors(error?.response?.data?.message)
-                setOpenEmailOtpModel(false)
+                if (error.response.status !== 500) {
+                    setLoader(false)
+                    setFormErrors(error?.response?.data?.message)
+                    setOpenMobileOtpModel(false)
+                }
+                else {
+                    setLoader(false)
+                    alert('Add your number to Twilio Acc')
+                }
                 throw error
             }
         }
@@ -75,21 +82,21 @@ const Emailchanges = ({ userInfo }) => {
             controller.abort();
         }
     })
+
     useEffect(() => {
         const timer = resendCounter > 0 && setInterval(() => setResendCounter(resendCounter - 1), 1000);
         return () => clearInterval(timer);
     }, [resendCounter])
+
     return (
         <>
-            <button className='changePasswordProfile' onClick={() => setChangeState(true)}>Change Password</button>
             <div className='HeadingsProfileEdit'>
 
-                <h4 className="account-title mt-3">Email Address</h4>
-                <button type='button' className='exitButtonProfile' onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
+                <h4 className="account-title mt-3">Mobile Number</h4>
+                <button type='button' onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
             </div>
-
-            <div className="account-details">
-                <div className="row ">
+            <div className="account-details posrelProfile">
+                <div className="row">
                     {
                         editState ?
                             <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex' }}>
@@ -97,40 +104,43 @@ const Emailchanges = ({ userInfo }) => {
                                     <div className="form-box__single-group">
                                         <input
                                             type="text"
-                                            placeholder="Email address"
-                                            name='email_or_mobile'
+                                            name='mobile'
+                                            placeholder="Mobile Number"
                                             onChange={handleChange}
-                                            value={formValues.email_or_mobile}
+                                            value={formValues.mobile}
                                         />
-                                        <p>{formErrors.email_or_mobile}</p>
+                                        <p>{formErrors.mobile}</p>
                                     </div>
+
                                 </div>
                                 <div className='col-md-6 my-3'>
-                                    <button type='submit' className='submitProfileBtn2'>{loader ? 'Saving..' : 'Save'}</button>
+                                    <button type='submit' className='submitProfileBtn2'>{loader ? 'Saving...' : 'Save'}</button>
                                 </div>
                             </form>
                             :
+
                             <div className="col-md-6 my-3">
                                 <div className="form-box__single-group">
-                                    <input type="text" disabled placeholder="Email address" value={formValues.email_or_mobile} />
+                                    <input
+                                        type="text"
+                                        placeholder="Mobile Number"
+                                        disabled
+                                        value={formValues.mobile}
+                                    />
                                 </div>
                             </div>
                     }
                 </div>
             </div>
-            <Changepasswordmodal
-                changeState={changeState}
-                setChangeState={() => setChangeState(false)}
-            />
-            <Emailotpmodel
-                placeHolders={placeHolders}
-                sendOtpLoader={loader}
-                resendCounter={resendCounter}
-                sendOtpIsSubmit={() => setIsSubmit(true)}
-                email_or_mobile={formValues.email_or_mobile}
+            <Mobileotpmodal
+                openMobileOtpModel={openMobileOtpModel}
+                setOpenMobileOtpModel={() => setOpenMobileOtpModel(false)}
+                mobile={formValues.mobile}
                 setEditState={setEditState}
-                openEmailOtpModel={openEmailOtpModel}
-                setOpenEmailOtpModel={() => setOpenEmailOtpModel(false)}
+                sendOtpIsSubmit={() => setIsSubmit(true)}
+                sendOtpLoader={loader}
+                placeHolders={placeHolders}
+                resendCounter={resendCounter}
             />
         </>
     )
@@ -140,4 +150,4 @@ const mapStateToProps = (state) => {
         userInfo: state.shop.userInfo
     }
 }
-export default connect(mapStateToProps)(Emailchanges)
+export default connect(mapStateToProps)(Mobilechange)

@@ -1,5 +1,5 @@
 import Emailchanges from './emailchanges/Emailchanges'
-import Mobilechange from './Mobilechange'
+import Mobilechange from './mobilechanges/Mobilechange'
 import Personalinformation from './Personalinformation'
 
 const Accountsetting = ({ profileState }) => {

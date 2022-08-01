@@ -4,17 +4,22 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
 import { setUserInfo } from '../../../../redux/actions/productActions';
-const Emailotpmodel = (
-    {
-        openEmailOtpModel, setOpenEmailOtpModel,
-        setEditState, email_or_mobile, userInfo, setUserInfo,
-        resendCounter, sendOtpIsSubmit, sendOtpLoader, placeHolders
-    }) => {
-
-
+const Mobileotpmodal = (
+    { openMobileOtpModel,
+        setOpenMobileOtpModel,
+        placeHolders,
+        resendCounter,
+        userInfo,
+        setUserInfo,
+        mobile,
+        setEditState,
+        sendOtpIsSubmit,
+        sendOtpLoader
+    }
+) => {
     const axiosPrivate = useAxiosPrivate();
     const [viewPassword, setViewPassword] = useState(false)
-    const initialValues = { new_email_otp: '', exists_email_otp: '', password: '' }
+    const initialValues = { new_mobile_otp: '', exists_email_or_mobile_otp: '', password: '' }
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
@@ -27,28 +32,28 @@ const Emailotpmodel = (
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setFormErrors(validateEmailOTP(formValues))
+        setFormErrors(validateMobileOTP(formValues))
         setIsSubmit(true)
     }
 
     const handleClose = () => {
-        setOpenEmailOtpModel(false)
+        setOpenMobileOtpModel(false)
         setFormValues(initialValues)
         setFormErrors(initialValues)
     }
-    const validateEmailOTP = (values) => {
+    const validateMobileOTP = (values) => {
         const errors = {};
         const regexOtpcode = /^[0-9][0-9]{5}$/;
 
-        if (!values.new_email_otp) {
-            errors.new_email_otp = `New email OTP is required!`
-        } else if (!regexOtpcode.test(values.new_email_otp)) {
-            errors.new_email_otp = `Enter a valid OTP!`
+        if (!values.new_mobile_otp) {
+            errors.new_mobile_otp = `New mobile OTP is required!`
+        } else if (!regexOtpcode.test(values.new_mobile_otp)) {
+            errors.new_mobile_otp = `Enter a valid OTP!`
         }
-        if (!values.exists_email_otp) {
-            errors.exists_email_otp = `Exists email OTP is required!`
-        } else if (!regexOtpcode.test(values.exists_email_otp)) {
-            errors.exists_email_otp = `Enter a valid OTP!`
+        if (!values.exists_email_or_mobile_otp) {
+            errors.exists_email_or_mobile_otp = `Exists email or mobile OTP is required!`
+        } else if (!regexOtpcode.test(values.exists_email_or_mobile_otp)) {
+            errors.exists_email_or_mobile_otp = `Enter a valid OTP!`
         }
         if (!values.password) {
             errors.password = `Password is required! `
@@ -64,11 +69,11 @@ const Emailotpmodel = (
             setLoader(true)
             setIsSubmit(false)
             try {
-                await axiosPrivate.patch('/api/v1/account/update-email/', formValues)
+                await axiosPrivate.patch('/api/v1/account/update-mobile/', formValues)
                 setLoader(false)
-                setUserInfo({ ...userInfo, email_or_mobile: email_or_mobile })
+                setUserInfo({ ...userInfo, mobile: mobile })
                 setEditState(false)
-                setOpenEmailOtpModel(false)
+                setOpenMobileOtpModel(false)
 
             } catch (error) {
                 setFormErrors(error?.response?.data?.message)
@@ -86,7 +91,7 @@ const Emailotpmodel = (
     })
 
     return (
-        <div className={openEmailOtpModel ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
+        <div className={openMobileOtpModel ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
             <div className="signup_inner forgotPass">
                 <div className="signup_details">
                     <div className="site_logo">
@@ -134,25 +139,25 @@ const Emailotpmodel = (
                                 <div className="form-box__single-group">
                                     <input
                                         type="text"
-                                        name='new_email_otp'
-                                        placeholder={placeHolders.new_email_otp}
+                                        name='new_mobile_otp'
+                                        placeholder={placeHolders.new_mobile_otp}
                                         onChange={handleChange}
-                                        value={formValues.new_email_otp}
+                                        value={formValues.new_mobile_otp}
                                     />
                                 </div>
-                                <p className='errorTextPasswordChange'>{formErrors.new_email_otp}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.new_mobile_otp}</p>
                             </div>
                             <div className="col-md-12 my-3">
                                 <div className="form-box__single-group">
                                     <input
                                         type="text"
-                                        name='exists_email_otp'
-                                        placeholder={placeHolders.exists_email_otp}
+                                        name='exists_email_or_mobile_otp'
+                                        placeholder={placeHolders.exists_email_or_mobile_otp}
                                         onChange={handleChange}
-                                        value={formValues.exists_email_otp}
+                                        value={formValues.exists_email_or_mobile_otp}
                                     />
                                 </div>
-                                <p className='errorTextPasswordChange'>{formErrors.exists_email_otp}</p>
+                                <p className='errorTextPasswordChange'>{formErrors.exists_email_or_mobile_otp}</p>
                             </div>
                             <div className="col-md-12 my-3">
                                 <div className="form-box__single-group" style={{
@@ -204,4 +209,6 @@ const mapDispatchToProps = (dispatch) => {
         setUserInfo: (user) => dispatch(setUserInfo(user))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Emailotpmodel)
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Mobileotpmodal)

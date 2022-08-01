@@ -672,7 +672,7 @@ ul {
   width: 30px;
   border: none;
   font-size: 16px;
-  color: #000;
+  color: #000 !important;
   background-color: transparent;
   outline: none;
   text-align: center;
@@ -12975,4 +12975,40 @@ button.unset {
     }
     .delete-button:hover{
       color: #dc3545;
+    }
+
+    /* wishlist  */
+    .wishlistListTop{
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      min-width: auto;
+    }
+    @media (max-width:600px) {
+      .wishlistListTop{
+        display: block;
+        
+        margin: 40px 0px !important;
+        padding: 0 !important;
+        border: 1px solid #000 !important;
+        border-radius: 10px;
+      }
+      .parent-wishlist .wishlistListTop h6{
+        margin: 10px;
+      }
+      .parent-wishlist .wishlistListTop h6:nth-child(4),
+      .parent-wishlist .wishlistListTop h6:nth-child(3){
+        display: inline-block;
+        margin-right: 20px;
+      }
+      .parent-wishlist .wishlistListTop h6:nth-child(2){
+        width: auto !important;
+      }
+      .wishlistListTop div img{
+        width: 100% !important;
+      }
+      .wishlistListTop div{
+        width: 100% !important;
+        height: unset !important;
+      }
     }

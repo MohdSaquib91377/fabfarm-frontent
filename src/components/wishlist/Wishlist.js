@@ -49,11 +49,7 @@ const Wishlist = () => {
     const wishlist = wishlistItems.map((data, i) => {
         const { product: { id, name, image, price, quantity, } } = data;
         return (
-            <div key={i} className="order_list_top" style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignContent: 'center'
-            }}>
+            <div key={i} className="order_list_top wishlistListTop" >
                 <div style={{
                     height: '100px',
                     width: '100px'

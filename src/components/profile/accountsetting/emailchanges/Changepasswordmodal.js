@@ -4,7 +4,8 @@ import axios from '../../../API/axios';
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
-const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
+import { setPopup, setPopupMessage } from '../../../../redux/actions/productActions';
+const Changepasswordmodal = ({ changeState, setChangeState, userInfo, setPopup, setPopupMessage }) => {
     const axiosPrivate = useAxiosPrivate();
     const [viewPassword, setViewPassword] = useState(false)
     const initialValues = { current_password: '', new_password: '', confirm_password: '', otp: '', txn_id: '' }
@@ -85,6 +86,8 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo }) => {
                 setIsSubmit(false)
                 setChangeState(false)
                 setFormValues(initialValues)
+                setPopup(true)
+                setPopupMessage('Your password has been changed successfully')
             } catch (error) {
                 setLoader(false)
                 setIsSubmit(false)
@@ -223,4 +226,10 @@ const mapStateToProps = (state) => {
         userInfo: state.shop.userInfo
     }
 }
-export default connect(mapStateToProps)(Changepasswordmodal)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Changepasswordmodal)

@@ -47,7 +47,7 @@ const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, remove
         let boolean = 'true'
         if (maxQuantity === cartQuantity) {
             setPopup(true)
-            setPopupMessage('You have reach maximum quantity')
+            setPopupMessage('Maximum quantity has reached')
         }
         else (
             prductInCartQuantity(id, boolean)

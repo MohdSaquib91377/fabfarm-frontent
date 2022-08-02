@@ -10,7 +10,7 @@ const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, produ
     const funcIncreseQuantity = (id, quantity, maxQuantity) => {
         if (maxQuantity === quantity) {
             setPopup(true)
-            setPopupMessage('You have reach maximum quantity')
+            setPopupMessage('Maximum quantity has reached')
         }
         else {
             incrementQuantity(id)

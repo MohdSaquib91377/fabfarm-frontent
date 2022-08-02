@@ -1,11 +1,21 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { removeFromCart, incrementQuantity, decrementQuantity } from '../../redux/actions/productActions';
+import { removeFromCart, incrementQuantity, decrementQuantity, setPopupMessage, setPopup } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
-const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, product }) => {
-    const { id, image: [{ image }], name, price, quantity } = product;
+const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, product, setPopup, setPopupMessage }) => {
+    const { id, image: [{ image }], name, price, quantity, maxQuantity } = product;
     const total = quantity * price;
+
+    const funcIncreseQuantity = (id, quantity, maxQuantity) => {
+        if (maxQuantity === quantity) {
+            setPopup(true)
+            setPopupMessage('You have reach maximum quantity')
+        }
+        else {
+            incrementQuantity(id)
+        }
+    }
 
     return (
         <div
@@ -25,7 +35,7 @@ const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, produ
                         value={quantity}
                         className="quantity"
                         disabled />
-                    <button className="quantity_plus" onClick={() => incrementQuantity(id)} ><FontAwesomeIcon icon={faPlus} /></button>
+                    <button className="quantity_plus" onClick={() => funcIncreseQuantity(id, quantity, maxQuantity)} ><FontAwesomeIcon icon={faPlus} /></button>
                 </div>
             </div>
             <div className="cart_block">
@@ -47,6 +57,8 @@ const mapDispatchToProps = (dispatch) => {
         removeFromCart: (id) => dispatch(removeFromCart(id)),
         incrementQuantity: (id) => dispatch(incrementQuantity(id)),
         decrementQuantity: (id) => dispatch(decrementQuantity(id)),
+        setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string))
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cartitems)

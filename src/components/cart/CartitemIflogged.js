@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { removeFromCart, incrementQuantity, decrementQuantity, updateCart } from '../../redux/actions/productActions';
+import { removeFromCart, incrementQuantity, decrementQuantity, updateCart, setPopupMessage, setPopup } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, removeFromCart }) => {
+const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, removeFromCart, setPopup, setPopupMessage }) => {
     // const [items, setItems] = useState([])
     // const { id, image: [{ image }], name, price, quantity } = items;
     // const [decrease, setDecrease] = useState("")
@@ -31,7 +31,7 @@ const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, remove
         axiosPrivate.put('/api/v1/cart/add-to-cart/', {
             product_id: id,
             action: boolean
-          })
+        })
             .then(() => {
                 updateCart()
             })
@@ -43,13 +43,19 @@ const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, remove
         let boolean = 'false'
         prductInCartQuantity(id, boolean)
     }
-    const increaseCount = (id) => {
+    const increaseCount = (id, cartQuantity, maxQuantity) => {
         let boolean = 'true'
-        prductInCartQuantity(id, boolean)
+        if (maxQuantity === cartQuantity) {
+            setPopup(true)
+            setPopupMessage('You have reach maximum quantity')
+        }
+        else (
+            prductInCartQuantity(id, boolean)
+        )
     }
     const cartItems = items.map((data, i) => {
         if (Object.keys(data).some(key => key === 'cartQuantity')) {
-            const { cartQuantity, product: { id, image: [{ image }], name, price } } = data;
+            const { cartQuantity, product: { id, image: [{ image }], name, price, maxQuantity } } = data;
             const total = cartQuantity * price;
             return (
                 <>
@@ -80,7 +86,7 @@ const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, remove
                                                     value={cartQuantity}
                                                     className="quantity"
                                                     disabled />
-                                                <button className="quantity_plus" onClick={() => increaseCount(id)} ><FontAwesomeIcon icon={faPlus} /></button>
+                                                <button className="quantity_plus" onClick={() => increaseCount(id, cartQuantity, maxQuantity)} ><FontAwesomeIcon icon={faPlus} /></button>
                                             </div>
                                     }
                                 </div>
@@ -116,7 +122,9 @@ const mapDispatchToProps = (dispatch) => {
         removeFromCart: (id) => dispatch(removeFromCart(id)),
         incrementQuantity: (id) => dispatch(incrementQuantity(id)),
         decrementQuantity: (id) => dispatch(decrementQuantity(id)),
-        updateCart: () => dispatch(updateCart())
+        updateCart: () => dispatch(updateCart()),
+        setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string))
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CartitemIflogged)

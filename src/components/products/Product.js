@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { addToCart, incrementQuantity, decrementQuantity, setProducts, updateCart, setMainCategory } from '../../redux/actions/productActions';
+import { addToCart, incrementQuantity, decrementQuantity, setProducts, updateCart, setMainCategory, setPopupMessage, setPopup } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faStar, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
@@ -18,7 +18,7 @@ import { FaSpinner } from 'react-icons/fa';
 import useBannerImages from '../../hooks/useBannerImages';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Recentlyviewed from './Recentlyviewed';
-const Product = ({ onlineCart, updateCart, updatedCart, isAuthorized, products, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory }) => {
+const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory, setPopup, setPopupMessage }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
     const [currentItem, setCurrentItem] = useState([]);
@@ -79,7 +79,11 @@ const Product = ({ onlineCart, updateCart, updatedCart, isAuthorized, products, 
 
     }
     const increaseCount = (id) => {
-        if (isAuthorized) {
+        if (maxQuantity === onlineCartCount) {
+            setPopup(true)
+            setPopupMessage('You have reach maximum quantity')
+        }
+        else if (isAuthorized) {
             let boolean = 'true'
             prductInCartQuantity(id, boolean)
         } else {
@@ -132,16 +136,22 @@ const Product = ({ onlineCart, updateCart, updatedCart, isAuthorized, products, 
             if (onlineCurrentProduct.length !== 0) {
                 setOnlineCartCount(onlineCurrentProduct[0]?.cartQuantity)
             }
+            else (
+                setOnlineCartCount(1)
+            )
         }
         else {
-            const offlineCurrentProduct = products.filter((items) => {
+            const offlineCurrentProduct = cart.filter((items) => {
                 return items?.id === parseInt(productID)
             })
             if (offlineCurrentProduct.length !== 0) {
                 setOnlineCartCount(offlineCurrentProduct[0]?.quantity)
             }
+            else (
+                setOnlineCartCount(1)
+            )
         }
-    }, [isAuthorized, onlineCart, products])
+    }, [isAuthorized, onlineCart, cart])
     if (currentItem.length === 0) {
         return (
             <div style={{ height: '800px', width: 'auto' }}>
@@ -347,6 +357,7 @@ const mapStateToProps = (state) => {
         isAuthorized: state.shop.isAuthorized,
         totalCartCount: state.shop.totalCartCount,
         onlineCart: state.shop.onlineCart,
+        cart: state.shop.cart,
         updatedCart: state.shop.updatedCart
     }
 }
@@ -358,8 +369,9 @@ const mapDispatchToProps = (dispatch) => {
         decrementQuantity: (id) => dispatch(decrementQuantity(id)),
         setProducts: (id) => dispatch(setProducts(id)),
         updateCart: () => dispatch(updateCart()),
-        setMainCategory: (boolean) => dispatch(setMainCategory(boolean))
-
+        setMainCategory: (boolean) => dispatch(setMainCategory(boolean)),
+        setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string))
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Product)        

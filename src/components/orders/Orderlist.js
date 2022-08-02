@@ -53,8 +53,11 @@ const Orderlist = ({ user }) => {
                 <h6>Quantity: {quantity}</h6>
                 <h6>Status: {status}</h6>
                 {
-                    status !== "Cancel" ?
-                        <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button> : <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    status !== "Cancel" || 'Refund' ?
+
+                        <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
+                        :
+                        <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                 }
             </div>
 

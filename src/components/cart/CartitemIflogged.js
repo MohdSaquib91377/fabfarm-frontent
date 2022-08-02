@@ -64,7 +64,7 @@ const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, remove
                             <div>Loading...</div> :
                             <div
                                 key={i}
-                                style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', margin: "15px 0" }}>
+                                style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center', margin: "15px 0" }}>
 
                                 <div className="cart_block">
                                     <img

@@ -85,7 +85,7 @@ const Billcard = ({ formErrors, formValues, setFormValues, handleChange, handleS
                                             onChange={handleChange}
                                         >
                                             <FormControlLabel value="razor_pay" control={<Radio />} label="Razor Pay" />
-                                            <FormControlLabel value="cod" control={<Radio />} label="Cash On Delevery" />
+                                            <FormControlLabel value="cod" control={<Radio />} label="Cash On Delivery" />
                                         </RadioGroup>
                                         <p style={{
                                             color: 'red'

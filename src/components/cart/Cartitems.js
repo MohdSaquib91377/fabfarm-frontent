@@ -19,7 +19,7 @@ const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, produ
 
     return (
         <div
-            style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', margin: "15px 0" }}>
+            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: "15px 0" }}>
             <div className="cart_block">
                 <img
                     style={{ maxHeight: '100px', maxWidth: '100px' }}

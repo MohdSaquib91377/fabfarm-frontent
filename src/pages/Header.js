@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Signup from '../components/login/Signup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faSearch, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
-import Weather from '../components/weatherapi/Weather';
+// import Weather from '../components/weatherapi/Weather';
 import Desktopmenu from '../components/header/Desktopmenu';
 import Mobilemenu from '../components/header/Mobilemenu';
 import Searchbar from '../components/header/searchbar/Searchbar';
@@ -13,9 +13,18 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
     const [cartCount, setCartCount] = useState(0);
     const [cartState, setcartState] = useState(false)
     const [navBar, setNavBar] = useState(false);
-    const [responsive, setResponsive] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchBarVisible, setSearchBarVisible] = useState(false)
+    const [matches, setMatches] = useState(
+        window.matchMedia("(max-width: 988px)").matches
+    )
+
+    useEffect(() => {
+        window
+            .matchMedia("(max-width: 988px)")
+            .addEventListener('change', e => setMatches(e.matches));
+    }, [])
+
     const openCart = () => {
         setcartState(true)
     }
@@ -40,18 +49,6 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
         setCartCount(count)
     }, [cart, cartCount]);
 
-    const handleResize = () => {
-        if (window.innerWidth < 988) {
-            setResponsive(true)
-        }
-        else {
-            setResponsive(false)
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener('resize', handleResize)
-    }, [])
     const countStyleDisplay = {
         display: 'inline-block',
         backgroundColor: 'white',
@@ -87,8 +84,8 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                             <div className="clv_right_header">
                                 <div className="clv_menu">
                                     {
-                                        responsive ?
-                                            <Mobilemenu menuOpen={menuOpen} />
+                                        matches ?
+                                            <Mobilemenu menuOpen={menuOpen} closeMenuOpen={() => setMenuOpen(false)} />
                                             :
                                             <Desktopmenu />
                                     }
@@ -121,7 +118,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
 
                                                 </button>
                                             </li>
-                                         
+
                                             <li className="menu_toggle">
 
                                                 <button

@@ -28,7 +28,7 @@ const Featuredproducts = ({ setProducts, setMainCategory, isAuthorized }) => {
                     setFeaturedProducts(res.data)
                 }
             } catch (error) {
-                console(error)
+                throw error
             }
         }
         fecthFeaturedProducts();

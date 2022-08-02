@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import useBannerImages from '../../hooks/useBannerImages'
 import Tabtitle from '../../pages/Tabtitle'
+import Confirmationmodal from './Confirmationmodal'
 
 const Orderlist = ({ user }) => {
     Tabtitle('FAB | Order List')
@@ -11,13 +12,34 @@ const Orderlist = ({ user }) => {
     const [getOrder, setGetOrder] = useState(false)
     const [items, setItems] = useState([])
     const axiosPrivate = useAxiosPrivate();
+    const cancelOrderID = useRef();
+    const [openConfirmModal, setOpenConfirmModal] = useState(false)
+    const [confirm, setConfirm] = useState('')
+    const [isSubmit, setIsSubmit] = useState(false)
+
     const cancelOrder = (id) => {
-        axiosPrivate.put(`/api/v1/order/order-cancel/${id}/`)
-            .then((response) => {
-                setGetOrder(!getOrder)
-            })
-            .catch(error => { throw (error) })
+        setOpenConfirmModal(true)
+        cancelOrderID.current = id;
+        setIsSubmit(true)
     }
+
+    useEffect(() => {
+        if (confirm === 'yes' && isSubmit) {
+            const funcCancelorder = () => {
+                setIsSubmit(false)
+                setOpenConfirmModal(false)
+                setConfirm('')
+                axiosPrivate.put(`/api/v1/order/order-cancel/${cancelOrderID.current}/`)
+                    .then(() => {
+                        setGetOrder(!getOrder)
+                    })
+                    .catch(error => { throw (error) })
+            }
+            funcCancelorder()
+        }
+    })
+
+
     useEffect(() => {
         const fetchOrderList = () => {
             axiosPrivate.get('/api/v1/order/place-order/')
@@ -53,7 +75,7 @@ const Orderlist = ({ user }) => {
                 <h6>Quantity: {quantity}</h6>
                 <h6>Status: {status}</h6>
                 {
-                    status !== "Cancel" || 'Refund' ?
+                    status !== 'Cancel' && status !== 'Refund' ?
 
                         <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
                         :
@@ -116,6 +138,11 @@ const Orderlist = ({ user }) => {
                     }
                 </div>
             </div>
+            <Confirmationmodal
+                openConfirmModal={openConfirmModal}
+                setOpenConfirmModal={setOpenConfirmModal}
+                setConfirm={setConfirm}
+            />
         </>
     )
 }

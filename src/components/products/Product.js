@@ -36,7 +36,11 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
 
     const funcAddToCart = (event) => {
         const id = parseInt(event.currentTarget.id)
-        if (isAuthorized) {
+        if (maxQuantity === onlineCartCount) {
+            setPopup(true)
+            setPopupMessage('You have reach maximum quantity')
+        }
+        else if (isAuthorized) {
             axiosPrivate.post('/api/v1/cart/add-to-cart/',
                 [{
                     product_id: id,

@@ -13096,3 +13096,48 @@ button.unset {
   top: 0;
 
 }
+.orderListTopMain{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width:600px) {
+  
+  .orderListTopMain{
+display: block;
+    min-width: auto !important;
+  }
+  .orderListTopMain  >div{
+    width: 100% !important;
+    height: 300px !important;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .orderListTopMain  a:nth-child(2){
+    width: 100%;
+  }
+  .orderListTopMain  a:nth-child(2) h6{
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .orderListTopMain  h6:nth-child(3){
+    display: inline-block;
+    width: 40%;
+  } 
+  .orderListTopMain  h6:nth-child(4){
+    display: inline-block;
+    width: 40%;
+  } 
+  .orderListTopMain  h6:nth-child(5){
+    display: inline-block;
+    width: 40%;
+    margin-bottom: 10px;
+  } 
+  .orderListTopMain  h6:nth-child(6){
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 50%;
+  } 
+ 
+}

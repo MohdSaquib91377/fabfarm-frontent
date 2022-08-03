@@ -68,11 +68,7 @@ const Orderlist = ({ user }) => {
         const { id, product: { name, image }, order, price, quantity, status, payment_mode } = data;
         return (
 
-            <div key={i} className="order_list_top" style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignContent: 'center'
-            }}>
+            <div key={i} className="order_list_top orderListTopMain">
                 <div style={{
                     height: '100px',
                     width: '100px'

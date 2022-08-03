@@ -199,7 +199,7 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 <span></span>
                                 <div className="contact_icon"><img src="/images/contact_icon3.png" alt="image" /></div>
                                 <h4>address</h4>
-                                <a href='#' className='normalLink'>
+                                <a href='https://goo.gl/maps/WDEtXJeW2ha5tXFa7' target="_blank" className='normalLink'>
 
                                 <p className='normalLink'>
                                     Baramati, Maharastra, India.

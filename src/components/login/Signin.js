@@ -247,7 +247,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                     name='email'
                                     value={formValues.email}
                                     className="form_field"
-                                    placeholder="Email"
+                                    placeholder="Email/Mobile"
                                     onChange={handleChange}
                                 />
                             </div>

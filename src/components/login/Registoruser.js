@@ -77,7 +77,7 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setRe
                 </div>
                 <p>{formErrors.name}</p>
                 <div className="form_block">
-                    <input type="text" name='email' value={formValues.email} onChange={handleChange} className="form_field" placeholder="Email" autoComplete='off' />
+                    <input type="text" name='email' value={formValues.email} onChange={handleChange} className="form_field" placeholder="Email/Mobile" autoComplete='off' />
                 </div>
                 <p>{formErrors.email}</p>
                 <div className="form_block" style={{

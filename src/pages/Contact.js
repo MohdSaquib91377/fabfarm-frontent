@@ -52,7 +52,7 @@ const Contact = ({setPopup,setPopupMessage}) => {
     const validateContact = (values) => {
         const errors = {};
         const regexFullName = /^[A-Za-z ]+$/;
-        const regexemail = /\S+@\S+\.\S+/;
+        const regexemail = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
 
         if (!values.full_name) {
             errors.full_name = 'Full Name is required'

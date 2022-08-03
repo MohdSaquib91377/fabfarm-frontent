@@ -12907,7 +12907,9 @@ button.unset {
     padding-right: 0;
   }
   .product_items_section.product_list_view .product_item_block .content_block{
+    padding: 10px;
     padding-top: 80px;
+    
   }
   .product_price_box {
     flex-wrap: wrap;
@@ -12942,10 +12944,12 @@ button.unset {
         margin-top: 2px;
       }
       
-     
+      .product_list_filter select{
+        width: 100%;
+      }
       .list_view_toggle {
         width: 100%;
-        margin-top:15px;
+        margin-top:11px;
         display: flex;
         justify-content: flex-end;
         align-items: center;

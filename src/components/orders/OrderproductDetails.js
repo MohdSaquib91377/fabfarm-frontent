@@ -20,7 +20,7 @@ export function Orderdetails({ items }) {
                     {address},{alternate_number}, {city}, {country}, {full_name}, {landmark}, {locality}, {message}, {payment_mode}, {pincode}
                     {state}
                 </p>
-                <h6><b> Mobile:</b> <span>9049877048</span> </h6>
+                <h6><b> Mobile:</b> <span>{alternate_number}</span> </h6>
             </div>
         </div>
     )

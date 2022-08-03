@@ -9,31 +9,43 @@ import Confirmationmodal from './Confirmationmodal'
 const Orderlist = ({ user }) => {
     Tabtitle('FAB | Order List')
     const banner = useBannerImages('orderlist')
+    const cancelOrderID = useRef();
+    const orderPaymentMode = useRef();
     const [getOrder, setGetOrder] = useState(false)
     const [items, setItems] = useState([])
     const axiosPrivate = useAxiosPrivate();
-    const cancelOrderID = useRef();
     const [openConfirmModal, setOpenConfirmModal] = useState(false)
     const [confirm, setConfirm] = useState('')
     const [isSubmit, setIsSubmit] = useState(false)
 
-    const cancelOrder = (id) => {
+    const cancelOrder = (id, payment_mode) => {
         setOpenConfirmModal(true)
         cancelOrderID.current = id;
+        orderPaymentMode.current = payment_mode
         setIsSubmit(true)
     }
-
+    console.log(orderPaymentMode.current)
     useEffect(() => {
         if (confirm === 'yes' && isSubmit) {
             const funcCancelorder = () => {
                 setIsSubmit(false)
                 setOpenConfirmModal(false)
                 setConfirm('')
-                axiosPrivate.put(`/api/v1/order/order-cancel/${cancelOrderID.current}/`)
-                    .then(() => {
-                        setGetOrder(!getOrder)
+                if (orderPaymentMode.current === 'razor_pay') {
+                    axiosPrivate.post(`/api/v1/payment/payment-refund/${cancelOrderID.current}/`, {
+                        reason: 'return'
                     })
-                    .catch(error => { throw (error) })
+                        .then(() => {
+                            setGetOrder(!getOrder)
+                        })
+                        .catch(error => { throw (error) })
+                } else {
+                    axiosPrivate.put(`/api/v1/order/order-cancel/${cancelOrderID.current}/`)
+                        .then(() => {
+                            setGetOrder(!getOrder)
+                        })
+                        .catch(error => { throw (error) })
+                }
             }
             funcCancelorder()
         }
@@ -53,7 +65,7 @@ const Orderlist = ({ user }) => {
         fetchOrderList()
     }, [user, getOrder])
     const orderList = items.map((data, i) => {
-        const { id, product: { name, image }, order, price, quantity, status } = data;
+        const { id, product: { name, image }, order, price, quantity, status, payment_mode } = data;
         return (
 
             <div key={i} className="order_list_top" style={{
@@ -77,7 +89,7 @@ const Orderlist = ({ user }) => {
                 {
                     status !== 'Cancel' && status !== 'Refund' ?
 
-                        <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
+                        <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
                         :
                         <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                 }

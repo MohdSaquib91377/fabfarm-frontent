@@ -166,7 +166,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
 
     const validateSignin = (values) => {
         const errors = {};
-        const regexemail = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+        const regexemail = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/;
         const regexmobile = /^([+]\d{2})?\d{10}$/;
         if (!values.email) {
             errors.email = 'Email is required!'
@@ -180,7 +180,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
     }
     const validateForgotEmail = (values) => {
         const errors = {};
-        const regexemail = /\S+@\S+\.\S+/;
+        const regexemail = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/;
         const regexmobile = /^\d{10}$/;
         if (!values.email) {
             errors.email = 'Email is required!'

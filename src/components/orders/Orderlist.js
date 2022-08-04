@@ -85,7 +85,12 @@ const Orderlist = ({ user }) => {
                 <h6>Quantity: {quantity}</h6>
                 <h6>Status: {status}</h6>
                 {
-                    status !== 'Cancel' && status !== 'Refund' ?
+                    status !== 'Cancelled' 
+                    && status !== 'Refunded' 
+                    && status !== 'Refund In Progress'
+                    && status !== 'Refund Failed'
+                    && status !== 'Completed'
+                    ?
 
                         <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
                         :

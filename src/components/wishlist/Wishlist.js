@@ -1,81 +1,94 @@
-import { faIndianRupee, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate'
-import useBannerImages from '../../hooks/useBannerImages';
-import Tabtitle from '../../pages/Tabtitle';
+import { faIndianRupee, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useBannerImages from "../../hooks/useBannerImages";
+import Tabtitle from "../../pages/Tabtitle";
 
 const Wishlist = () => {
-    Tabtitle('FAB | Wish List')
-    const banner = useBannerImages('wishlist')
+    Tabtitle("FAB | Wish List");
+    const banner = useBannerImages("wishlist");
     const axiosPrivate = useAxiosPrivate();
-    const [wishlistItems, setWishlistItems] = useState([])
+    const [wishlistItems, setWishlistItems] = useState([]);
     const [onclickRemove, setOnlickRemove] = useState(false);
     const removeItem = (id) => {
-        axiosPrivate.delete(`/api/v1/wishlist/wishlist/add-to-wishlist/`, {
-            data: {
-                product_id: id
-            }
-        })
-            .then(
-                () => {
-                    setOnlickRemove(!onclickRemove);
-                }
-            )
-            .catch(error => {
-                throw error;
+        axiosPrivate
+            .delete(`/api/v1/wishlist/wishlist/add-to-wishlist/`, {
+                data: {
+                    product_id: id,
+                },
             })
-    }
+            .then(() => {
+                setOnlickRemove(!onclickRemove);
+            })
+            .catch((error) => {
+                throw error;
+            });
+    };
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
 
         const getWishList = async () => {
             try {
-                const response = await axiosPrivate.get('/api/v1/wishlist/wishlist/add-to-wishlist/')
-                isMounted && setWishlistItems(response.data)
+                const response = await axiosPrivate.get(
+                    "/api/v1/wishlist/wishlist/add-to-wishlist/"
+                );
+                isMounted && setWishlistItems(response.data);
             } catch (error) {
-                throw error
+                throw error;
             }
-        }
+        };
         getWishList();
 
         return () => {
             isMounted = false;
             controller.abort();
-        }
-    }, [onclickRemove])
+        };
+    }, [onclickRemove]);
     const wishlist = wishlistItems.map((data, i) => {
-        const { product: { id, name, image, price, category } } = data;
+        const {
+            product: { id, name, image, price, category },
+        } = data;
         return (
-            <div key={i} className="order_list_top wishlistListTop" >
-                <div style={{
-                    height: '100px',
-                    width: '100px'
-                }}>
+            <div key={i} className="order_list_top wishlistListTop">
+                <div
+                    style={{
+                        height: "100px",
+                        width: "100px",
+                    }}
+                >
                     <Link to={`/shop/${category.id}/product/${id}`}>
-                        <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+                        <img
+                            src={process.env.REACT_APP_BASE_URL + image[0].image}
+                            alt={name}
+                        />
                     </Link>
                 </div>
                 <Link to={`/shop/${category.id}/product/${id}`}>
                     <h6>{name}</h6>
                 </Link>
                 {/* <h6>price: {price}</h6> */}
-                <h6><FontAwesomeIcon icon={faIndianRupee} /> {price}</h6>
-                <button onClick={() => removeItem(id)}><FontAwesomeIcon color='red' icon={faTrash} /></button>
+                <h6>
+                    <FontAwesomeIcon icon={faIndianRupee} /> {price}
+                </h6>
+                <button onClick={() => removeItem(id)}>
+                    <FontAwesomeIcon color="red" icon={faTrash} />
+                </button>
             </div>
-        )
-    })
+        );
+    });
     return (
         <>
-            <div className="breadcrumb_wrapper"
+            <div
+                className="breadcrumb_wrapper"
                 style={{
-                    minHeight: '250px',
-                    backgroundImage: `url(${banner[0]?.image_or_video})`
+                    minHeight: "250px",
+                    backgroundImage: `url(${banner[0]?.image_or_video})`,
                 }}
             >
-                <div className="container" style={{ marginTop: '130px' }}>
+                <div className="container" style={{ marginTop: "130px" }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
@@ -94,33 +107,34 @@ const Wishlist = () => {
             <div className="container ">
                 <div className="row">
                     <div className="col-12  my-3">
-                        <p className='m-0'>
-                            <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
-                            <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                            <span className='breadcrum-width-dot'>Wish List  </span>
+                        <p className="m-0">
+                            <span className="breadcrum-width-dot">
+                                <Link to="/">Home </Link>{" "}
+                            </span>
+                            <span className="breadcrum-width-dot">&nbsp;{">"}&nbsp;</span>
+                            <span className="breadcrum-width-dot">Wish List </span>
                         </p>
                     </div>
                 </div>
             </div>
-            <div className='p-3'>
-
-                <div className='parent-wishlist' style={{
-                    position: 'unset',
-                    margin: '50px auto',
-                    top: '200px',
-                    overflow: 'auto',
-                    width: 'auto'
-                }}>
-                    {
-                        wishlistItems.length !== 0 ?
-                            wishlist
-                            :
-                            "No items"
-                    }
+            <div className="container">
+                <div className="p-3">
+                    <div
+                        className="parent-wishlist"
+                        style={{
+                            position: "unset",
+                            margin: "50px auto",
+                            top: "200px",
+                            overflow: "auto",
+                            width: "auto",
+                        }}
+                    >
+                        {wishlistItems.length !== 0 ? wishlist : "No items"}
+                    </div>
                 </div>
-            </div>            
+            </div>
         </>
-    )
-}
+    );
+};
 
-export default Wishlist
+export default Wishlist;

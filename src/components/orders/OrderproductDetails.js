@@ -3,11 +3,10 @@ import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Tabtitle from '../../pages/Tabtitle';
+import useBannerImages from '../../hooks/useBannerImages';
 
 
 export function Orderdetails({ items }) {
-    Tabtitle('FAB | Orders Details')
-
     const { order } = items;
     const { address, alternate_number, city, country, full_name, landmark, locality, message, payment_mode, pincode, state } = order;
     return (
@@ -27,12 +26,12 @@ export function Orderdetails({ items }) {
                 </p>
                 <p>
                     <b>Message: </b>
-                {message}
+                    {message}
                 </p>
                 <p>
                     <b>Payment Mode: </b>
                     {payment_mode}
-                    
+
                 </p>
                 <h6><b> Mobile:</b> <span>{alternate_number}</span> </h6>
             </div>
@@ -70,6 +69,8 @@ function Productdetails({ items }) {
 
 function OrderproductDetails({ user }) {
     let { prodID } = useParams();
+    Tabtitle('FAB | Orders Details')
+    const banner = useBannerImages('order_details_page')
     const axiosPrivate = useAxiosPrivate();
     const [items, setItems] = useState([]);
     useEffect(() => {
@@ -87,7 +88,12 @@ function OrderproductDetails({ user }) {
 
     return (
         <>
-            <div className="breadcrumb_wrapper" style={{ minHeight: '250px' }}>
+            <div className="breadcrumb_wrapper"
+                style={{
+                    minHeight: "250px",
+                    backgroundImage: `url(${banner[0]?.image_or_video})`,
+                }}
+            >
                 <div className="container" style={{ marginTop: '130px' }}>
                     <div className="row justify-content-center">
                         <div className="col-md-4">
@@ -105,16 +111,16 @@ function OrderproductDetails({ user }) {
                 </div> */}
             </div>
             <div className="container ">
-                    <div className="row">
-                        <div className="col-12  my-3">
-                            <p className='m-0'>
-                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
-                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                                <span className='breadcrum-width-dot'>Ordered Product </span>
-                            </p>
-                        </div>
+                <div className="row">
+                    <div className="col-12  my-3">
+                        <p className='m-0'>
+                            <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                            <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                            <span className='breadcrum-width-dot'>Ordered Product </span>
+                        </p>
                     </div>
                 </div>
+            </div>
             <div>
                 <div>
                     {items.length !== 0 ?

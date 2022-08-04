@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Cartdrawer from '../components/cart/Cartdrawer';
-import Signin from '../components/login/Signin';
+import Signin from '../components/authorization/signin/Signin';
 import { connect } from 'react-redux';
-import Signup from '../components/login/Signup';
+import Signup from '../components/authorization/Signup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faSearch, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
 // import Weather from '../components/weatherapi/Weather';

@@ -4,13 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addToCart, setPopup, setPopupMessage, updateCart } from '../../../redux/actions/productActions'
+import { addToCart, setPopup, setPopupMessage, setSigninOpen, updateCart } from '../../../redux/actions/productActions'
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
+import { FaSpinner } from 'react-icons/fa'
 
-const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessage, updateCart, onlineCart, cart }) => {
+const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessage, updateCart, onlineCart, cart, setSigninOpen }) => {
     const axiosPrivate = useAxiosPrivate()
     const [addedToWhislist, setAddedToWhislist] = useState(false)
     const [onlineCartCount, setOnlineCartCount] = useState(0)
+    const [loader, setLoader] = useState(false)
     const { id, name, category, image: [{ image }], price, maxQuantity, is_product_in_wishlist_for_current_user } = item
 
     const funcAddToCart = (event) => {
@@ -39,23 +41,33 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
     }
     const addToWishList = (id) => {
         if (isAuthorized) {
+            setLoader(true)
             axiosPrivate.post('/api/v1/wishlist/wishlist/add-to-wishlist/', { product_id: id })
                 .then((response) => {
                     if (response.status === 200) {
+                        setLoader(false)
+                        setPopup(true)
                         setPopupMessage(response.data.message)
                     }
                     else {
+                        setLoader(false)
+                        setPopup(true)
                         setPopupMessage(response.data.message)
                     }
-                    setPopup(true)
                 })
                 .catch(error => { throw (error) })
         }
         else {
-            alert('Login to add wishlist')
+            setSigninOpen()
         }
     }
 
+    const handleWishlist = (id) => {
+        addToWishList(id)
+        if (isAuthorized) {
+            setAddedToWhislist(!addedToWhislist)
+        }
+    }
 
     useEffect(() => {
         if (isAuthorized) {
@@ -103,12 +115,17 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                                 :
                                 undefined
                         }
-                        <li><button onClick={() => addToWishList(id)}>
-                            <FontAwesomeIcon
-                                onClick={() => setAddedToWhislist(!addedToWhislist)}
-                                color={is_product_in_wishlist_for_current_user || addedToWhislist ? 'red' : 'white'}
-                                icon={faHeart}
-                            /></button></li>
+                        <li><button onClick={() => handleWishlist(id)}>
+                            {
+                                loader ?
+                                    <FaSpinner icon="spinner" className="spinner" />
+                                    :
+                                    <FontAwesomeIcon
+                                        color={is_product_in_wishlist_for_current_user || addedToWhislist ? 'red' : 'white'}
+                                        icon={faHeart}
+                                    />
+                            }
+                        </button></li>
                     </ul>
                 </div>
                 <div className="product__content m-t-20">
@@ -140,7 +157,8 @@ const mapDispatchToProps = (dispatch) => {
         addToCart: (id) => dispatch(addToCart(id)),
         setPopup: (boolean) => dispatch(setPopup(boolean)),
         setPopupMessage: (string) => dispatch(setPopupMessage(string)),
-        updateCart: () => dispatch(updateCart())
+        updateCart: () => dispatch(updateCart()),
+        setSigninOpen: () => dispatch(setSigninOpen()),
     }
 
 }

@@ -120,7 +120,7 @@ const Orderlist = ({ user }) => {
                 </div> */}
             </div>
             <div className="container ">
-                <div className="row">
+                <div className="row pl-md-5">
                     <div className="col-12  my-3">
                         <p className='m-0'>
                             <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
@@ -130,6 +130,7 @@ const Orderlist = ({ user }) => {
                     </div>
                 </div>
             </div>
+            <div className="container">
 
             <div className='p-3'>
 
@@ -147,6 +148,7 @@ const Orderlist = ({ user }) => {
                             'No Items'
                     }
                 </div>
+            </div>
             </div>
             <Confirmationmodal
                 openConfirmModal={openConfirmModal}

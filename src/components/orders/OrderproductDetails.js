@@ -12,13 +12,27 @@ export function Orderdetails({ items }) {
     const { address, alternate_number, city, country, full_name, landmark, locality, message, payment_mode, pincode, state } = order;
     return (
         //add stytle here for address section 
-        <div className='address-place'>
+        <div className='address-place container'>
             <div className='addresss-bg'>
 
                 <h4> <b> Delivery Address</b></h4>
+                <br />
                 <p>
-                    {address},{alternate_number}, {city}, {country}, {full_name}, {landmark}, {locality}, {message}, {payment_mode}, {pincode}
-                    {state}
+                    <b>Name: </b>
+                    {full_name}
+                </p>
+                <p>
+                    <b>Address: </b>
+                    {address}, {city},{state}, {country},  {landmark}, {locality} - {pincode}
+                </p>
+                <p>
+                    <b>Message: </b>
+                {message}
+                </p>
+                <p>
+                    <b>Payment Mode: </b>
+                    {payment_mode}
+                    
                 </p>
                 <h6><b> Mobile:</b> <span>{alternate_number}</span> </h6>
             </div>
@@ -29,11 +43,9 @@ function Productdetails({ items }) {
     const { status, product: { name, description, image } } = items;
     return (
         //add stytle here for product section 
-        <div className='product-page-wrap'>
+        <div className='product-page-wrap container'>
             <div className='product-page'>
                 <div className='left'>
-
-
                     <div>
                         <img style={{
                             height: '150px',

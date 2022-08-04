@@ -92,7 +92,7 @@ const Wishlist = () => {
                 </div> */}
             </div>
             <div className="container ">
-                    <div className="row">
+                    <div className="row pl-md-5">
                         <div className="col-12  my-3">
                             <p className='m-0'>
                                 <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
@@ -102,6 +102,8 @@ const Wishlist = () => {
                         </div>
                     </div>
                 </div>
+                <div className="container">
+
             <div className='p-3'>
 
                 <div className='parent-wishlist' style={{
@@ -119,6 +121,8 @@ const Wishlist = () => {
                     }
                 </div>
             </div>
+            </div>
+            
         </>
     )
 }

@@ -1,17 +1,24 @@
 import { faStar } from '@fortawesome/free-regular-svg-icons'
 import { faIndianRupee, faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addToCart, setPopup, setPopupMessage, updateCart } from '../../../redux/actions/productActions'
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
 
-const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessage, updateCart }) => {
+const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessage, updateCart, onlineCart, cart }) => {
     const axiosPrivate = useAxiosPrivate()
     const [addedToWhislist, setAddedToWhislist] = useState(false)
+    const [onlineCartCount, setOnlineCartCount] = useState(0)
+    const { id, name, category, image: [{ image }], price, maxQuantity, is_product_in_wishlist_for_current_user } = item
+
     const funcAddToCart = (event) => {
-        if (isAuthorized) {
+        if (maxQuantity === onlineCartCount) {
+            setPopup(true)
+            setPopupMessage('Maximum quantity has reached')
+        }
+        else if (isAuthorized) {
             axiosPrivate.post('/api/v1/cart/add-to-cart/',
                 [{
                     product_id: parseInt(event.currentTarget.id),
@@ -48,7 +55,34 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
             alert('Login to add wishlist')
         }
     }
-    const { id, name, category, image: [{ image }], price, maxQuantity, is_product_in_wishlist_for_current_user } = item
+
+
+    useEffect(() => {
+        if (isAuthorized) {
+            const onlineCurrentProduct = onlineCart.filter((items) => {
+                return items?.product?.id === parseInt(id)
+            })
+            if (onlineCurrentProduct.length !== 0) {
+                setOnlineCartCount(onlineCurrentProduct[0]?.cartQuantity)
+            }
+            else (
+                setOnlineCartCount(1)
+            )
+        }
+        else {
+            const offlineCurrentProduct = cart.filter((items) => {
+                return items?.id === parseInt(id)
+            })
+            if (offlineCurrentProduct.length !== 0) {
+                setOnlineCartCount(offlineCurrentProduct[0]?.quantity)
+            }
+            else (
+                setOnlineCartCount(1)
+            )
+        }
+    }, [isAuthorized, onlineCart, cart])
+
+
 
     return (
         <>
@@ -96,7 +130,9 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
 }
 const mapStateToProps = (state) => {
     return {
-        isAuthorized: state.shop.isAuthorized
+        isAuthorized: state.shop.isAuthorized,
+        onlineCart: state.shop.onlineCart,
+        cart: state.shop.cart
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -1,17 +1,22 @@
 import { faIndianRupee } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { addToCart, updateCart } from '../../redux/actions/productActions';
+import { addToCart, setPopup, setPopupMessage, updateCart } from '../../redux/actions/productActions';
 import { axiosPrivate } from '../API/axios';
 
-const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, addToCart }) => {
+const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, addToCart, setPopupMessage, setPopup, onlineCart, cart }) => {
     let Navigate = useNavigate();
+    const [onlineCartCount, setOnlineCartCount] = useState(0)
     const { id, image: [{ image }], name, description, price, maxQuantity } = product;
     const funcAddToCart = (event) => {
         const id = parseInt(event.currentTarget.id)
-        if (isAuthorized) {
+        if (maxQuantity === onlineCartCount) {
+            setPopup(true)
+            setPopupMessage('Maximum quantity has reached')
+        }
+        else if (isAuthorized) {
             axiosPrivate.post('/api/v1/cart/add-to-cart/',
                 [{
                     product_id: id,
@@ -51,6 +56,34 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
         }
         Navigate('/checkout');
     }
+
+    useEffect(() => {
+        if (isAuthorized) {
+            const onlineCurrentProduct = onlineCart.filter((items) => {
+                return items?.product?.id === parseInt(id)
+            })
+            if (onlineCurrentProduct.length !== 0) {
+                setOnlineCartCount(onlineCurrentProduct[0]?.cartQuantity)
+            }
+            else (
+                setOnlineCartCount(1)
+            )
+        }
+        else {
+            const offlineCurrentProduct = cart.filter((items) => {
+                return items?.id === parseInt(id)
+            })
+            if (offlineCurrentProduct.length !== 0) {
+                setOnlineCartCount(offlineCurrentProduct[0]?.quantity)
+            }
+            else (
+                setOnlineCartCount(1)
+            )
+        }
+    }, [isAuthorized, onlineCart, cart])
+
+
+
     return (
         <li key={i}>
 
@@ -110,12 +143,16 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
 const mapStateToProps = (state) => {
     return {
         isAuthorized: state.shop.isAuthorized,
+        onlineCart: state.shop.onlineCart,
+        cart: state.shop.cart
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (id) => dispatch(addToCart(id)),
-        updateCart: () => dispatch(updateCart())
+        updateCart: () => dispatch(updateCart()),
+        setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string)),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Productcomponent)

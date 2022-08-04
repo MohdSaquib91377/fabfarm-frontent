@@ -22,7 +22,7 @@ export function Orderdetails({ items }) {
                 </p>
                 <p>
                     <b>Address: </b>
-                    {address}, {city},{state}, {country},  {landmark}, {locality} - {pincode}
+                    {address},{landmark}, {locality}, {city},{state}, {country} - {pincode}
                 </p>
                 <p>
                     <b>Message: </b>
@@ -55,9 +55,7 @@ function Productdetails({ items }) {
                         <h5>
                             {name}
                         </h5>
-                        <p>
-                            {description}
-                        </p>
+                        
                         <div>Status:{status}</div>
                     </div>
 

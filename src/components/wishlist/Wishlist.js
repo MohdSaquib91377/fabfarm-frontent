@@ -47,22 +47,22 @@ const Wishlist = () => {
         }
     }, [onclickRemove])
     const wishlist = wishlistItems.map((data, i) => {
-        const { product: { id, name, image, price, quantity, } } = data;
+        const { product: { id, name, image, price, category } } = data;
         return (
             <div key={i} className="order_list_top wishlistListTop" >
                 <div style={{
                     height: '100px',
                     width: '100px'
                 }}>
-
-                    <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
-
+                    <Link to={`/shop/${category.id}/product/${id}`}>
+                        <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+                    </Link>
                 </div>
-                <h6>{name}</h6>
+                <Link to={`/shop/${category.id}/product/${id}`}>
+                    <h6>{name}</h6>
+                </Link>
                 {/* <h6>price: {price}</h6> */}
                 <h6><FontAwesomeIcon icon={faIndianRupee} /> {price}</h6>
-                <h6>quantity: {quantity}</h6>
-
                 <button onClick={() => removeItem(id)}><FontAwesomeIcon color='red' icon={faTrash} /></button>
             </div>
         )
@@ -92,18 +92,16 @@ const Wishlist = () => {
                 </div> */}
             </div>
             <div className="container ">
-                    <div className="row pl-md-5">
-                        <div className="col-12  my-3">
-                            <p className='m-0'>
-                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
-                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                                <span className='breadcrum-width-dot'>Wish List  </span>
-                            </p>
-                        </div>
+                <div className="row">
+                    <div className="col-12  my-3">
+                        <p className='m-0'>
+                            <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                            <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                            <span className='breadcrum-width-dot'>Wish List  </span>
+                        </p>
                     </div>
                 </div>
-                <div className="container">
-
+            </div>
             <div className='p-3'>
 
                 <div className='parent-wishlist' style={{
@@ -120,9 +118,7 @@ const Wishlist = () => {
                             "No items"
                     }
                 </div>
-            </div>
-            </div>
-            
+            </div>            
         </>
     )
 }

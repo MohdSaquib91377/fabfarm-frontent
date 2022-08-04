@@ -1,4 +1,4 @@
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faIndianRupee, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
@@ -60,7 +60,7 @@ const Wishlist = () => {
                 </div>
                 <h6>{name}</h6>
                 {/* <h6>price: {price}</h6> */}
-                <h6>₹{price}</h6>
+                <h6><FontAwesomeIcon icon={faIndianRupee} /> {price}</h6>
                 <h6>quantity: {quantity}</h6>
 
                 <button onClick={() => removeItem(id)}><FontAwesomeIcon color='red' icon={faTrash} /></button>

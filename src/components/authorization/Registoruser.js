@@ -51,6 +51,7 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setRe
         const errors = {};
         const regexName = /^[A-Za-z ]+$/;
         const regexemail = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/;
+        const regexmobile = /^([+]\d{2})?\d{10}$/;
         if (!values.name) {
             errors.name = 'Name is required!'
         }
@@ -58,9 +59,9 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setRe
             errors.name = 'Enter a valid name'
         }
         if (!values.email) {
-            errors.email = 'Email is required!'
-        } else if (!regexemail.test(values.email)) {
-            errors.email = 'Enter a valid email!';
+            errors.email = 'Email/Mobile is required!'
+        } else if (!regexemail.test(values.email) && !regexmobile.test(values.email)) {
+            errors.email = 'Enter a valid email or mobile!';
         }
         if (!values.password) {
             errors.password = 'Password is required!'

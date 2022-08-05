@@ -38,7 +38,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
     const [filterData, setFilterData] = useState([])
     const [applyFilter, setApplyFilter] = useState(false);
     // const [page, setPage] = useState(2);
-    const [minPrice,setMinPrice]=useState(0)
+    const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(0)
     const [priceValue, setPriceValue] = useState([100, 1000])
     const [selectedSortMethod, setSelectedSortMethod] = useState('popularity')
@@ -71,9 +71,9 @@ const Shop = ({ mainCategory, setMainCategory }) => {
             const { price } = items;
             return price
         })
-        setMinPrice(Math.min.apply(null,price))
+        setMinPrice(Math.min.apply(null, price))
         setMaxPrice(Math.max.apply(null, price))
-        setPriceValue([Math.min.apply(null,price), Math.max.apply(null, price)])
+        setPriceValue([Math.min.apply(null, price), Math.max.apply(null, price)])
     }, [products])
     useEffect(() => {
         let isMounted = true
@@ -156,31 +156,31 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                 </div> */}
             </div>
             <div className="container ">
-                    <div className="row">
-                        <div className="col-12  my-3">
-                            <p className='m-0'>
-                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
-                               
-                                {
-                                    mainCategory ?
-                                    <>
-                                    <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                                    <span className='breadcrum-width-dot maibn'>&nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined} </span>
-                                    </>
-                                :
-                                <>
+                <div className="row">
+                    <div className="col-12  my-3">
+                        <p className='m-0'>
+                            <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
 
-                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                                    <span className='breadcrum-width-dot'> <Link onClick={() => { setMainCategory(true) }} to={`/shop/${products[0]?.category?.id}/`}> &nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined}</Link></span>
-                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                                    <span className='breadcrum-width-dot subbb'> &nbsp; {products.length !== 0 ? products[0]?.sub_category.name : undefined}</span>
-                                </>
-                                }
-                              
-                            </p>
-                        </div>
+                            {
+                                mainCategory ?
+                                    <>
+                                        <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                        <span className='breadcrum-width-dot maibn'>&nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined} </span>
+                                    </>
+                                    :
+                                    <>
+
+                                        <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                        <span className='breadcrum-width-dot'> <Link onClick={() => { setMainCategory(true) }} to={`/shop/${products[0]?.category?.id}/`}> &nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined}</Link></span>
+                                        <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                                        <span className='breadcrum-width-dot subbb'> &nbsp; {products.length !== 0 ? products[0]?.sub_category.name : undefined}</span>
+                                    </>
+                            }
+
+                        </p>
                     </div>
                 </div>
+            </div>
             {/* <!--Produst List--> */}
             <div className="products_wrapper clv_section pt-3">
                 <div className="container">
@@ -188,6 +188,13 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                         <div className="col-lg-3 col-md-3 position-relative">
                             <div className="product_sidebar">
                                 <div className="product_block">
+                                    <div className="sidebar_heading">
+                                        <select onChange={handleSelectChange}>
+                                            <option value="popularity">Sort By Popularity</option>
+                                            <option value="price">Sort By Price </option>
+                                            {/* <option value="sort by category">Sort by Category</option> */}
+                                        </select>
+                                    </div>
                                     <div className="sidebar_heading">
                                         <h3>filter by price</h3>
                                     </div>
@@ -228,13 +235,8 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                             <div className="product_list_section">
                                 <div className="product_list_filter">
                                     <ul>
-
                                         <li>
-                                            <select onChange={handleSelectChange}>
-                                                <option value="popularity">Sort By Popularity</option>
-                                                <option value="price">Sort By Price </option>
-                                                {/* <option value="sort by category">Sort by Category</option> */}
-                                            </select>
+                                            
                                         </li>
                                         <li>
                                             <ul className="list_view_toggle">

@@ -124,20 +124,20 @@ function OrderproductDetails({ user }) {
                     </div>
                 </div>
             </div>
-            <div>
-                <div>
-                    {items.length !== 0 ?
-                        <Orderdetails items={items} /> :
-                        <p>Loading...</p>
-                    }
-                </div>
-                <div>
-                    {items.length !== 0 ?
-                        < Productdetails items={items} />
-                        :
-                        <p>Loading...</p>
-                    }
-                </div>
+            <div>{
+                items.length !== 0 ?
+                    <>
+                        <div>
+                            <Orderdetails items={items} />
+
+                        </div>
+                        <div>
+                            < Productdetails items={items} />
+                        </div>
+                    </>
+                    :
+                    <p>Loading...</p>
+            }
             </div>
 
         </>

@@ -19,7 +19,7 @@ const Orderlist = ({ user }) => {
     const [openConfirmModal, setOpenConfirmModal] = useState(false)
     const [confirm, setConfirm] = useState('')
     const [isSubmit, setIsSubmit] = useState(false)
-
+    const [loader, setLoader] = useState(false)
     const cancelOrder = (id, payment_mode) => {
         setOpenConfirmModal(true)
         cancelOrderID.current = id;
@@ -56,11 +56,14 @@ const Orderlist = ({ user }) => {
 
     useEffect(() => {
         const fetchOrderList = () => {
+            setLoader(true)
             axiosPrivate.get('/api/v1/order/place-order/')
                 .then(response => {
                     setItems(response.data)
+                    setLoader(false)
                 })
                 .catch(error => {
+                    setLoader(false)
                     throw (error)
                 })
         }
@@ -85,12 +88,12 @@ const Orderlist = ({ user }) => {
                 <h6>Quantity: {quantity}</h6>
                 <h6>Status: {status}</h6>
                 {
-                    status !== 'Cancelled' 
-                    && status !== 'Refunded' 
-                    && status !== 'Refund In Progress'
-                    && status !== 'Refund Failed'
-                    && status !== 'Completed'
-                    ?
+                    status !== 'Cancelled'
+                        && status !== 'Refunded'
+                        && status !== 'Refund In Progress'
+                        && status !== 'Refund Failed'
+                        && status !== 'Completed'
+                        ?
 
                         <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
                         :
@@ -100,6 +103,7 @@ const Orderlist = ({ user }) => {
 
         )
     })
+
     return (
         <>
             <div className="breadcrumb_wrapper"
@@ -137,23 +141,28 @@ const Orderlist = ({ user }) => {
             </div>
             <div className="container">
 
-            <div className='p-3'>
+                <div className='p-3'>
 
-                <div className='box-shadow-adding' style={{
-                    position: 'relative',
-                    top: '50px',
-                    marginBottom: '280px',
-                    width: 'auto',
-                    overflowX: 'auto',
-                }}>
-                    {
-                        items.length !== 0 ?
-                            orderList
-                            :
-                            'No Items'
-                    }
+                    <div className='box-shadow-adding' style={{
+                        position: 'relative',
+                        top: '50px',
+                        marginBottom: '280px',
+                        width: 'auto',
+                        overflowX: 'auto',
+                    }}>
+                        {
+                            loader ?
+                                <div>
+                                    Loading...
+                                </div>
+                                :
+                                items.length !== 0 ?
+                                    orderList
+                                    :
+                                    'No Items'
+                        }
+                    </div>
                 </div>
-            </div>
             </div>
             <Confirmationmodal
                 openConfirmModal={openConfirmModal}

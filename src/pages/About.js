@@ -4,6 +4,7 @@ import Tabtitle from './Tabtitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import useBannerImages from '../hooks/useBannerImages';
+import Abouttestimonial from '../components/about/Abouttestimonial';
 const About = () => {
     Tabtitle('FAB | About us')
     const banner = useBannerImages('about')
@@ -32,16 +33,16 @@ const About = () => {
             </div>
             {/* <!--About Section--> */}
             <div className="container ">
-                    <div className="row">
-                        <div className="col-12  my-3">
-                            <p className='m-0'>
-                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
-                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                                <span className='breadcrum-width-dot'>About   </span>
-                            </p>
-                        </div>
+                <div className="row">
+                    <div className="col-12  my-3">
+                        <p className='m-0'>
+                            <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                            <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                            <span className='breadcrum-width-dot'>About   </span>
+                        </p>
                     </div>
                 </div>
+            </div>
             <div className="clv_about_wrapper clv_section pt-1">
                 <div className="container">
                     <div className="row">
@@ -63,7 +64,6 @@ const About = () => {
                                     <div className="video_btn">
                                         <a href="https://www.youtube.com/watch?v=tqwRLdBsFw8" className="play_video"><span className="pulse"><FontAwesomeIcon icon={faPlay} /></span> watch video</a>
                                     </div>
-                                    <a href="#" className="clv_btn">read more</a>
                                 </div>
                             </div>
                         </div>
@@ -71,6 +71,9 @@ const About = () => {
                 </div>
             </div>
             {/* <!--Testimonial--> */}
+
+
+
             <div className="clv_testimonial_wrapper clv_section">
                 <div className="container">
                     <div className="row justify-content-center">
@@ -87,32 +90,7 @@ const About = () => {
                             <div className="testimonial_slider">
                                 <div className="swiper-container">
                                     <div className="swiper-wrapper">
-                                        <div className="swiper-slide">
-                                            <div className="testimonial_slide">
-                                                <span className="rounded_quote"><img src="/images/quote.png" alt="image" /></span>
-                                                <span className="bg_quote"><img src="/images/bg_quote.png" alt="image" /></span>
-                                                <div className="client_img">
-                                                    <img src="https://via.placeholder.com/150x160" alt="image" />
-                                                </div>
-                                                <div className="client_message">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ilabore et dadhjiolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi liquip ex ea commodoersio consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugt nulla pariatuaerniri Excepteur sint occaecat cupidatat non proident.</p>
-                                                    <h3>Halil Alex <span> Agriculture Expert</span></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="swiper-slide">
-                                            <div className="testimonial_slide">
-                                                <span className="rounded_quote"><img src="/images/quote.png" alt="image" /></span>
-                                                <span className="bg_quote"><img src="/images/bg_quote.png" alt="image" /></span>
-                                                <div className="client_img">
-                                                    <img src="https://via.placeholder.com/150x160" alt="image" />
-                                                </div>
-                                                <div className="client_message">
-                                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi liquip ex ea commodoersio consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugt nulla pariatuaerniri Excepteur sint occaecat cupidatat non proident. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ilabore et dadhjiolore magna aliqua.</p>
-                                                    <h3>john paradox <span> Agriculture Expert</span></h3>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <Abouttestimonial />
                                     </div>
                                     {/* <!-- Add Arrows --> */}
                                     <span className="slider_arrow testimonial_left left_arrow"><i className="fa fa-long-arrow-left" aria-hidden="true"></i></span>

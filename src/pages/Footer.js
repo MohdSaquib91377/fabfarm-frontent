@@ -171,13 +171,13 @@ const Footer = () => {
                             </div>
                             <ul className="time_table">
                                 <li>
-                                <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>Privacy Policy</p></Link>
+                                <Link to='/privacyandpolicy'><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>Privacy Policy</p></Link>
                                 </li>
                                 <li>
-                                <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>Terms and Condition</p></Link>
+                                <Link to='/termandcondition'><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>Terms and Condition</p></Link>
                                 </li>
                                 <li>
-                                <Link to=''><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>FAQs</p></Link>
+                                <Link to='/faqs'><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>FAQs</p></Link>
                                 </li>
 
                             </ul>

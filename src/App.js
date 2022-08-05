@@ -15,6 +15,9 @@ import Orderlist from './components/orders/Orderlist';
 import OrderproductDetails from './components/orders/OrderproductDetails';
 import Wishlist from './components/wishlist/Wishlist';
 import Basicpopup from './components/util/productstemplates/Basicpopup';
+import Privacyandpolicy from './components/footer/Privacyandpolicy';
+import Termsandcondition from './components/footer/ Termsandcondition';
+import Faqspage from './components/footer/Faqspage';
 function App({ isAuthorized, mainCategory }) {
   return (
     <>
@@ -28,6 +31,9 @@ function App({ isAuthorized, mainCategory }) {
           <Route exact path='/shop/:categoryId/product/:productID' element={<Product />} />
           <Route exact path='/aboutus' element={<About />} />
           <Route exact path='/contact' element={<Contact />} />
+          <Route exact path='/privacyandpolicy' element={<Privacyandpolicy />} />
+          <Route exact path='/termandcondition' element={<Termsandcondition />} />
+          <Route exact path='/faqs' element={<Faqspage />} />
           {isAuthorized ?
             <Route exact path='/profile' element={<Profile />} />
             :

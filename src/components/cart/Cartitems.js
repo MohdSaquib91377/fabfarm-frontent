@@ -34,7 +34,7 @@ const Cartitems = ({ removeFromCart, incrementQuantity, decrementQuantity, produ
                         type="text"
                         value={quantity}
                         className="quantity"
-                        disabled />
+                        readOnly />
                     <button className="quantity_plus" onClick={() => funcIncreseQuantity(id, quantity, maxQuantity)} ><FontAwesomeIcon icon={faPlus} /></button>
                 </div>
             </div>

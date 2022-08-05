@@ -85,7 +85,8 @@ const CartitemIflogged = ({ updateCart, cartLoading, items, isAuthorized, remove
                                                     type="text"
                                                     value={cartQuantity}
                                                     className="quantity"
-                                                    disabled />
+                                                    readOnly
+                                                     />
                                                 <button className="quantity_plus" onClick={() => increaseCount(id, cartQuantity, maxQuantity)} ><FontAwesomeIcon icon={faPlus} /></button>
                                             </div>
                                     }

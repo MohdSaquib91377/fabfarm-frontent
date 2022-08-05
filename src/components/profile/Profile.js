@@ -9,7 +9,7 @@ import { makeCartEmpty, setIsAuthorized, setUser } from '../../redux/actions/pro
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useBannerImages from '../../hooks/useBannerImages';
 import Accountsetting from './accountsetting/Accountsetting';
-const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
+const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser,userInfo }) => {
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [profileState, setProfileState] = useState('Dashboard');
@@ -55,16 +55,16 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                 </div> */}
             </div>
             <div className="container ">
-                    <div className="row">
-                        <div className="col-12  my-3">
-                            <p className='m-0'>
-                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
-                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                                <span className='breadcrum-width-dot'>Profile   </span>
-                            </p>
-                        </div>
+                <div className="row">
+                    <div className="col-12  my-3">
+                        <p className='m-0'>
+                            <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                            <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                            <span className='breadcrum-width-dot'>Profile   </span>
+                        </p>
                     </div>
                 </div>
+            </div>
             <main className="container">
                 <div className="my-account-area">
                     <div className="row">
@@ -115,8 +115,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
                                     <div className="my-account-dashboard account-wrapper">
                                         <h4 className="account-title">Dashboard</h4>
                                         <div className="welcome-dashboard m-t-30">
-                                            <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong> <a
-                                                href="#">Logout</a> )</p>
+                                            <p>Hello, <strong>{userInfo?.fullname}</strong> </p>
                                         </div>
                                         <p className="m-t-25">From your account dashboard. you can easily check &amp; view your
                                             recent orders, manage your shipping and billing addresses and edit your password and
@@ -224,6 +223,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser }) => {
 const mapStateToProps = (state) => {
     return {
         user: state.shop.user,
+        userInfo: state.shop.userInfo
     }
 }
 const mapDispatchToProps = (dispatch) => {

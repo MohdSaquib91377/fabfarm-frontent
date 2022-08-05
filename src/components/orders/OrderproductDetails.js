@@ -39,24 +39,29 @@ export function Orderdetails({ items }) {
     )
 }
 function Productdetails({ items }) {
-    const { status, product: { name, description, image } } = items;
+    const { status, product: { id, category, name, image, price } } = items;
     return (
         //add stytle here for product section 
         <div className='product-page-wrap container'>
             <div className='product-page'>
                 <div className='left'>
                     <div>
-                        <img style={{
-                            height: '150px',
-                            width: '150px'
-                        }} src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+                        <Link to={`/shop/${category.id}/product/${id}`}>
+                            <img style={{
+                                height: '150px',
+                                width: '150px'
+                            }} src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
+                        </Link>
                     </div>
                     <div>
-                        <h5>
-                            {name}
-                        </h5>
-                        
+                        <Link to={`/shop/${category.id}/product/${id}`}>
+
+                            <h5>
+                                {name}
+                            </h5>
+                        </Link>
                         <div>Status:{status}</div>
+                        <div>Price:{price}</div>
                     </div>
 
                 </div>

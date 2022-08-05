@@ -9,7 +9,7 @@ import '../login.css'
 import Signinform from './Signinform';
 import Forgotpassform from './Forgotpassform';
 const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, setUser, setUserInfo, handleClose }) => {
-    const initialValues = { email: "", password: "", otp: "" };
+    const initialValues = { email: "", password: "", otp: "", set_password:'' };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
@@ -110,6 +110,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         }
         if (Object.keys(formErrors).length === 0 && isForgotSubmit) {
             setLoader(true)
+            setIsForgotSubmit(false)
             axios.post(`/api/v1/account/send-otp/`, {
                 email_or_mobile: formValues.email
             })
@@ -126,15 +127,18 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         }
         if (Object.keys(formErrors).length === 0 && isVerified) {
             setLoader(true)
-            axios.post(`/api/v1/account/verify-otp/`, {
-                id: id,
-                otp: formValues.otp
+            setIsVerified(false)
+            axios.patch(`/api/v1/account/login/`, {
+                txn_id: id,
+                otp: formValues.otp,
+                set_password: formValues.set_password
             })
                 .then(response => {
-                    setUser(response.data.data)
-                    setUserInfo(response.data.user_info)
+                    // setUser(response.data.data)
+                    // setUserInfo(response.data.user_info)
                     setLoader(false)
-                    setRestPassScreen(true)
+                    setOtpScreen(false)
+                    // setRestPassScreen(true)
                 })
                 .catch((error) => {
                     setLoader(false)
@@ -184,8 +188,8 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         const regexmobile = /^\d{10}$/;
         if (!values.email) {
             errors.email = 'Email/Mobile is required!'
-        } else if (!regexemail.test(values.email)) {
-            errors.email = 'Enter a valid email!';
+        } else if (!regexemail.test(values.email) && !regexmobile.test(values.email)) {
+            errors.email = 'Enter a valid email or mobile!';
         }
 
         return errors;
@@ -199,8 +203,12 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         else if (!regexotp.test(values.otp)) {
             errors.otp = 'Enter a valid OTP!';
         }
-        else if (values.otp.length < 6) {
+        else if(values.otp.length < 6) {
             errors.otp = 'Enter a valid OTP!';
+        }
+        if(!values.set_password){
+            errors.set_password = 'Password is required!'
+
         }
         return errors;
     }
@@ -260,6 +268,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                         resendOtpLoader={resendOtpLoader}
                         loader={loader}
                         handleResetSubmit={handleResetSubmit}
+                        handleForgotPass={handleForgotPass}
                     />
                     <span className="close"
                         onClick={() => handleCloseButton()}

@@ -267,12 +267,12 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                                                     <span className="product__stock--in" style={{ color: 'red' }}><FontAwesomeIcon color='red' icon={faCircleXmark} /> Out of Stock</span>
                                             }
                                         </div>
-                                        <div className="product-quantity product-var__item">
+                                        {/* <div className="product-quantity product-var__item">
                                             <ul className="product-modal-group">
                                                 <li><a href="#modalShippinginfo" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faTruckLoading} /> &nbsp; Shipping</a></li>
                                                 <li><a href="#modalProductAsk" data-bs-toggle="modal" className="link--gray link--icon-left"><FontAwesomeIcon icon={faEnvelope} /> &nbsp; Ask About This product</a></li>
                                             </ul>
-                                        </div>
+                                        </div> */}
                                         {
                                             maxQuantity !== 0 ?
                                                 <div className="product-quantity product-var__item d-flex align-items-center">

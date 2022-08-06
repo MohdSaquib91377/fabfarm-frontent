@@ -3,7 +3,7 @@ import { FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
 import { setUser, setIsAuthorized, setUserInfo } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
-const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state, id, setUserInfo }) => {
+const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state, verifyDetails, setUserInfo }) => {
     const initialValues = { otp: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -11,7 +11,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
     const [loader, setLoader] = useState(false)
     const [resendOtpLoader, setResendOptLoader] = useState(false)
     const [counter, setCounter] = useState(0)
-    const [otp_id, setOtp_Id] = useState()
+    const [otpDetails, setOtpDetails] = useState([])
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
@@ -26,19 +26,20 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
         setResendOptLoader(true)
         axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/account/send-otp/`, resendEmail)
             .then(response => {
-                setOtp_Id(response.data.id)
+                setOtpDetails({ ...otpDetails, id: response.data.id })
                 setCounter(60)
                 setResendOptLoader(false)
             })
     }
     useEffect(() => {
-        setOtp_Id(id)
-    }, [id])
+        setOtpDetails(verifyDetails)
+    }, [verifyDetails])
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setLoader(true)
             axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/account/verify-otp/`, {
-                id: otp_id,
+                email_or_mobile: otpDetails.email_or_mobile,
+                id: otpDetails.id,
                 otp: formValues.otp
             })
                 .then(response => {

@@ -10,7 +10,10 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
 
     const [otpScreen, setOtpScreen] = useState(false)
     const [close, setClose] = useState(false);
-    const [id, setId] = useState('')
+    const [verifyDetails, setVerifyDetails] = useState({
+        id:'',
+        email_or_mobile:''
+    })
     const [resendEmail, setResendEmail] = useState([])
     const [resendCounter, setResendCounter] = useState(0)
     const triggersignin = () => {
@@ -44,13 +47,13 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
                     state={otpScreen}
                     close={close}
                     setOtpScreen={setOtpScreen}
-                    setId={setId}
+                    setVerifyDetails={setVerifyDetails}
                     setResendEmail={setResendEmail}
                     setResendCounter={setResendCounter}
                 />
                 <Verifyotp
                     state={otpScreen}
-                    id={id}
+                    verifyDetails={verifyDetails}
                     resendEmail={resendEmail}
                     resendCounter={resendCounter}
                 />

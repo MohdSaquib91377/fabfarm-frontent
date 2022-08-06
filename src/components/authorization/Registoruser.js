@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FaSpinner } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setResendCounter }) => {
+const Registoruser = ({ close, state, setOtpScreen, setVerifyDetails, setResendEmail, setResendCounter }) => {
     const initialValues = { name: '', email: "", password: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -35,7 +35,10 @@ const Registoruser = ({ close, state, setOtpScreen, setId, setResendEmail, setRe
                 .then(response => {
                     setOtpScreen(true)
                     setLoader(false)
-                    setId(response.data.id)
+                    setVerifyDetails({
+                        id: response.data.id,
+                        email_or_mobile: formValues.email
+                    })
                     setResendEmail({
                         email_or_mobile: formValues.email,
                     })

@@ -18,6 +18,7 @@ import { FaSpinner } from 'react-icons/fa';
 import useBannerImages from '../../hooks/useBannerImages';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Recentlyviewed from './Recentlyviewed';
+import Shareonsocial from './Shareonsocial';
 const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory, setPopup, setPopupMessage }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
@@ -323,11 +324,7 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                                         </div>
                                         <div className="product-var__item d-flex align-items-center">
                                             <span className="product-var__text">Share: </span>
-                                            <ul className="product-social m-l-20">
-                                                <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon color='#4267B2' icon={faFacebook} /></a></li>
-                                                <li><a href="https://twitter.com/login" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon color='#00acee' icon={faTwitter} /></a></li>
-                                                <li><a href="https://in.pinterest.com/login/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon color='#c8232c' icon={faPinterest} /></a></li>
-                                            </ul>
+                                            <Shareonsocial url={process.env.PUBLIC_URL + `/shop/${category.id}/product/${productID}`} />
                                         </div>
                                     </div>
                                 </div>

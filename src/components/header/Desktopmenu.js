@@ -41,23 +41,27 @@ function Desktopmenu({ user, userInfo, makeCartEmpty, setIsAuthorized, setUser, 
                 <li><Link to="/aboutus">about us</Link></li>
 
                 <li><Link to="/contact">Contact us</Link></li>
-                <li><Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /> Wish List</Link></li>
 
                 {
                     isAuthorized ?
-                        <li>
-                            <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /> {userName}</Link>
-                            <ul>
-                                <li><Link to='/orderlist'> <FontAwesomeIcon icon={faList} /> Order List</Link></li>
-                                <li><button style={{
-                                    marginLeft: "10px",
-                                    color: `${hoverBtn}`
-                                }}
-                                    onMouseEnter={() => setHoverBtn('#2a7d2e')}
-                                    onMouseLeave={() => setHoverBtn('#222222')}
-                                    onClick={() => Logout()}> <FontAwesomeIcon icon={faSignOut} />{loader ? " Loading..." : " Logout"} </button></li>
-                            </ul>
-                        </li> :
+                        <>
+                            <li><Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /> Wish List</Link></li>
+                            <li>
+                                <Link to='/profile'><FontAwesomeIcon color='#ffffff' icon={faUser} /> {userName}</Link>
+                                <ul>
+                                    <li><Link to='/orderlist'> <FontAwesomeIcon icon={faList} /> Order List</Link></li>
+                                    <li><button style={{
+                                        marginLeft: "10px",
+                                        color: `${hoverBtn}`
+                                    }}
+                                        onMouseEnter={() => setHoverBtn('#2a7d2e')}
+                                        onMouseLeave={() => setHoverBtn('#222222')}
+                                        onClick={() => Logout()}> <FontAwesomeIcon icon={faSignOut} />{loader ? " Loading..." : " Logout"} </button></li>
+                                </ul>
+                            </li>
+                        </>
+
+                        :
                         <li
                             style={{ color: 'white', cursor: 'pointer' }}
                             onClick={() => setSigninOpen()} >

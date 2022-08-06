@@ -27,7 +27,9 @@ const Forgotpassform = (
                 <form onSubmit={handleVerifySubmit}>
                     {
                         change ?
-                            <div className="form_block">
+                            <div className="form_block" style={{
+                                position: 'relative'
+                            }}>
                                 <input
                                     type="text"
                                     name='email'
@@ -40,10 +42,17 @@ const Forgotpassform = (
                                 <button
                                     type='button'
                                     onClick={handleForgotPass}
+                                    style={{
+                                        position: 'absolute',
+                                        right: '5px',
+                                        top: '13px'
+                                    }}
                                 >confirm</button>
                             </div>
                             :
-                            <div className="form_block">
+                            <div className="form_block" style={{
+                                position: 'relative'
+                            }}>
                                 <input
                                     type="text"
                                     name='email'
@@ -55,6 +64,11 @@ const Forgotpassform = (
                                 <button
                                     type='button'
                                     onClick={() => setChange(true)}
+                                    style={{
+                                        position: 'absolute',
+                                        right: '5px',
+                                        top: '13px'
+                                    }}
                                 >change ?</button>
                             </div>
                     }

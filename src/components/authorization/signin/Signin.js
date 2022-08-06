@@ -175,9 +175,9 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         const regexemail = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/;
         const regexmobile = /^([+]\d{2})?\d{10}$/;
         if (!values.email) {
-            errors.email = 'Email/Mobile is required!'
+            errors.email = 'Email/Mobile Number is required!'
         } else if (!regexemail.test(values.email) && !regexmobile.test(values.email)) {
-            errors.email = 'Enter a valid email or mobile!';
+            errors.email = 'Enter a valid email or mobile number!';
         }
         if (!values.password) {
             errors.password = 'Password is required!'
@@ -189,9 +189,9 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         const regexemail = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/;
         const regexmobile = /^\d{10}$/;
         if (!values.email) {
-            errors.email = 'Email/Mobile is required!'
+            errors.email = 'Email/Mobile Number is required!'
         } else if (!regexemail.test(values.email) && !regexmobile.test(values.email)) {
-            errors.email = 'Enter a valid email or mobile!';
+            errors.email = 'Enter a valid email or mobile number!';
         }
 
         return errors;

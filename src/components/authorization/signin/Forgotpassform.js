@@ -35,7 +35,7 @@ const Forgotpassform = (
                                     name='email'
                                     value={formValues.email}
                                     className="form_field"
-                                    placeholder="Email/Mobile"
+                                    placeholder="Email/Mobile Number"
                                     onChange={handleChange}
                                 />
                                 <p>{formErrors.email}</p>
@@ -58,7 +58,7 @@ const Forgotpassform = (
                                     name='email'
                                     value={formValues.email}
                                     className="form_field"
-                                    placeholder="Email/Mobile"
+                                    placeholder="Email/Mobile Number"
                                     disabled='true'
                                 />
                                 <button

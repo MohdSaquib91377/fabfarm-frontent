@@ -52,6 +52,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
     const trigger = (e) => {
         e.preventDefault();
         setFormValues(initialValues)
+        setOtpScreen(false)
         setFormErrors({});
         setIsSubmit(false)
         setSigninOpen();
@@ -59,6 +60,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
     }
     const handleCloseButton = () => {
         setIsForgotSubmit(false);
+        setOtpScreen(false)
         setIsVerified(false);
         setFormValues(initialValues)
         setSigninOpen();

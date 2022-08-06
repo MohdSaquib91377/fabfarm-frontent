@@ -47,7 +47,7 @@ const Forgotpassform = (
                                         right: '5px',
                                         top: '13px'
                                     }}
-                                >confirm</button>
+                                >Confirm</button>
                             </div>
                             :
                             <div className="form_block" style={{
@@ -69,7 +69,7 @@ const Forgotpassform = (
                                         right: '5px',
                                         top: '13px'
                                     }}
-                                >change ?</button>
+                                >Change ?</button>
                             </div>
                     }
 

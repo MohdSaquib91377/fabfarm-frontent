@@ -324,7 +324,10 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                                         </div>
                                         <div className="product-var__item d-flex align-items-center">
                                             <span className="product-var__text">Share: </span>
-                                            <Shareonsocial url={process.env.PUBLIC_URL + `/shop/${category.id}/product/${productID}`} />
+                                            <Shareonsocial
+                                                url={process.env.PUBLIC_URL + `/shop/${category.id}/product/${productID}`}
+                                                title={name}
+                                            />
                                         </div>
                                     </div>
                                 </div>

@@ -43,8 +43,14 @@ const Mobilechange = ({ userInfo }) => {
         if (!editState) {
             setFormErrors(initialValues)
         }
-        const { mobile } = userInfo
-        setFormValues({ mobile: mobile })
+        if(userInfo.mobile !== null)
+        {
+            const { mobile } = userInfo
+            setFormValues({ mobile: mobile })
+        }
+        else{
+            setFormValues(initialValues)
+        }
     }, [userInfo, editState])
 
     useEffect(() => {

@@ -14,7 +14,7 @@ export function Orderdetails({ items }) {
         <div className='address-place container'>
             <div className='addresss-bg'>
 
-                <h4> <b> Delivery Address</b></h4>
+                <h4> <b> Delivery Details</b></h4>
                 <br />
                 <p>
                     <b>Name: </b>

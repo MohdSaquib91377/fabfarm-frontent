@@ -125,10 +125,7 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                         </ul>
                         <p>151 reviews</p>
                     </div>
-                    <ul className="product_code">
-                        <li>
-                            <p>product code: 12948</p>
-                        </li>
+                    <ul>
                         <li>
                             <p>availability: <span style={maxQuantity !== 0 ? { color: 'green' } : { color: 'red' }}>{maxQuantity !== 0 ? 'in stock' : 'out of stock'}</span></p>
                         </li>

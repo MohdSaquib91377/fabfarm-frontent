@@ -101,7 +101,7 @@ function OrderproductDetails({ user }) {
                     <div className="row justify-content-center">
                         <div className="col-md-4">
                             <div className="breadcrumb_inner">
-                                <h3>order list</h3>
+                                <h3>Order Details</h3>
                             </div>
                         </div>
                     </div>

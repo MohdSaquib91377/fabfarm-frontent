@@ -51,13 +51,14 @@ function Mobilemenu({ user, userInfo, makeCartEmpty, setIsAuthorized, setUser, i
                         <li><Link to="/aboutus">About Us</Link></li>
 
                         <li><Link to="/contact">Contact Us</Link></li>
+                        <li><Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /> Wish List</Link></li>
+
                         {
                             isAuthorized ?
                                 <li>
                                     <Link to='/profile'><FontAwesomeIcon color='#000' icon={faUserCircle} /> {userName}</Link>
                                     <ul>
                                         <li><Link to='/orderlist'> <FontAwesomeIcon icon={faList} /> Order List</Link></li>
-                                        <li><Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /> Wish List</Link></li>
                                         <li><button style={{
                                             marginLeft: "10px"
                                         }} onClick={() => Logout()}> <FontAwesomeIcon icon={faSignOut} />{loader ? " Loading..." : " Logout"} </button></li>

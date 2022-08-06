@@ -138,8 +138,17 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                     </ul>
                     <Link to={`/shop/${category.id}/product/${id}`} className="product__link">{name}</Link>
                     <div className="product__price m-t-5">
-                        <span className="product__price"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>
+                        {
+                            maxQuantity !== 0?
+
+                            <span className="product__price"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>
+                            :
+                            <span style={{
+                                color:'red'
+                            }}>Out Of Stock</span>
+                        }
                     </div>
+                    
                 </div>
             </div>
         </>

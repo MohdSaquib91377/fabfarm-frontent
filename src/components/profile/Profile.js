@@ -115,7 +115,9 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser,userInfo }) => 
                                     <div className="my-account-dashboard account-wrapper">
                                         <h4 className="account-title">Dashboard</h4>
                                         <div className="welcome-dashboard m-t-30">
-                                            <p>Hello, <strong>{userInfo?.fullname}</strong> </p>
+                                            <p>Hello, <strong style={{
+                                                textTransform: 'capitalize'
+                                            }}>{userInfo?.fullname}</strong> </p>
                                         </div>
                                         <p className="m-t-25">From your account dashboard. you can easily check &amp; view your
                                             recent orders, manage your shipping and billing addresses and edit your password and

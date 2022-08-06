@@ -10,12 +10,12 @@ const Basiccarousel = ({ products }) => {
     const [boolean, setBoolean] = useState(false);
 
     const [matches, setMatches] = useState(
-        window.matchMedia("(max-width: 500px)").matches
+        window.matchMedia("(max-width: 810px)").matches
     )
 
     useEffect(() => {
         window
-            .matchMedia("(max-width: 500px)")
+            .matchMedia("(max-width: 810px)")
             .addEventListener('change', e => setMatches(e.matches));
     }, [])
 

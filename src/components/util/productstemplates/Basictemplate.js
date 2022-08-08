@@ -129,13 +129,13 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                     </ul>
                 </div>
                 <div className="product__content m-t-20">
-                    <ul className="product__review">
+                    {/* <ul className="product__review">
                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                         <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
-                    </ul>
+                    </ul> */}
                     <Link to={`/shop/${category.id}/product/${id}`} className="product__link">{name}</Link>
                     <div className="product__price m-t-5">
                         {

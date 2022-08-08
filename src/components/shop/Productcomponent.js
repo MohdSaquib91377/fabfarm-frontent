@@ -114,7 +114,7 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                         <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
                     </div>
                     <p>Farm & Garden</p>
-                    <div className="rating_section">
+                    {/* <div className="rating_section">
                         <span>4.1</span>
                         <ul>
                             <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
@@ -124,10 +124,10 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                             <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
                         </ul>
                         <p>151 reviews</p>
-                    </div>
+                    </div> */}
                     <ul>
                         <li>
-                            <p>availability: <span style={maxQuantity !== 0 ? { color: 'green' } : { color: 'red' }}>{maxQuantity !== 0 ? 'in stock' : 'out of stock'}</span></p>
+                            <p>Availability: <span style={maxQuantity !== 0 ? { color: 'green' } : { color: 'red' }}>{maxQuantity !== 0 ? 'In Stock' : 'Out Of Stock'}</span></p>
                         </li>
                     </ul>
                     <p>{description}</p>

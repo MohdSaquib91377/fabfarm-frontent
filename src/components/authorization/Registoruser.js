@@ -103,7 +103,7 @@ const Registoruser = ({ close, state, setOtpScreen, setVerifyDetails, setResendE
                 <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'sign up'}</button>
             </form>
 
-            <div className="social_button_section">
+            {/* <div className="social_button_section">
                 <a href="#" className="fb_btn">
                     <span><img src={process.env.PUBLIC_URL + "/images/fb.png"} alt="image" /></span>
                     <span>facebook</span>
@@ -112,7 +112,7 @@ const Registoruser = ({ close, state, setOtpScreen, setVerifyDetails, setResendE
                     <span><img src={process.env.PUBLIC_URL + "/images/google.png"} alt="image" /></span>
                     <span>google+</span>
                 </a>
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -41,7 +41,7 @@ const Signinform = (
                 <p>{formErrors.password}</p>
                 <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'sign in'}</button>
             </form>
-            <div className="social_button_section">
+            {/* <div className="social_button_section">
                 <a href="#" className="fb_btn">
                     <span><img src={process.env.PUBLIC_URL + "/images/fb.png"} alt="signinimage" /></span>
                     <span>facebook</span>
@@ -50,7 +50,7 @@ const Signinform = (
                     <span><img src={process.env.PUBLIC_URL + "/images/google.png"} alt="signinimage" /></span>
                     <span>google+</span>
                 </a>
-            </div>
+            </div> */}
         </div>
     )
 }

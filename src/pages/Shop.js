@@ -190,7 +190,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                 <div className="product_block">
                                     <div className="sidebar_heading">
                                         <select onChange={handleSelectChange}>
-                                            <option value="popularity">Sort By Popularity</option>
+                                            <option selected disabled>Sort By</option>
                                             <option value="price">Sort By Price </option>
                                             {/* <option value="sort by category">Sort by Category</option> */}
                                         </select>

@@ -13228,3 +13228,26 @@ display: block;
 .formAddPadding{
   padding-right: 80px !important;
 }
+.product-var__item button{
+  margin-left: 10px;
+}
+.swiper-button-next:after, .swiper-button-prev:after{
+  font-size: 22px !important;
+  width: 28px !important; 
+  height: 27px !important;
+  background-color: #fff;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+.product__price{
+  margin-right: 10px;
+}
+@media (max-width:340px) {
+  
+  .prduct-images-cantainer .swiper-slide {
+    width: 300px !important;
+  }
+}

@@ -265,7 +265,7 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                                                 maxQuantity !== 0 ?
                                                     <span className="product__stock--in"><FontAwesomeIcon color='green' icon={faCheckCircle} /> {maxQuantity} IN STOCK</span>
                                                     :
-                                                    <span className="product__stock--in" style={{ color: 'red' }}><FontAwesomeIcon color='red' icon={faCircleXmark} /> Out of Stock</span>
+                                                    <span className="product__stock--in" style={{ color: 'red' }}><FontAwesomeIcon color='red' icon={faCircleXmark} /> Out Of Stock</span>
                                             }
                                         </div>
                                         {/* <div className="product-quantity product-var__item">

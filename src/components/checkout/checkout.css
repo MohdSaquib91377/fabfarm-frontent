@@ -470,7 +470,7 @@ ul {
 }
 @media (min-width: 768px) {
   .section-content__title {
-    font-size: 36px;
+    font-size: 20px;
     line-height: 36px;
   }
 }
@@ -6385,3 +6385,4 @@ table tbody > tr td a:hover {
 .para-text-sign-in {
   margin: 50px 0 0 auto;
 }
+

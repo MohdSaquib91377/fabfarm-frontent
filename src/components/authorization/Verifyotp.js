@@ -12,7 +12,7 @@ const Verifyotp = (
         loader,
         handleResendOtp,
         resendOtpLoader,
-        handleChange
+        handleChange,
     }) => {
 
     return (

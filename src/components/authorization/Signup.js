@@ -7,7 +7,7 @@ import Verifyotp from './Verifyotp';
 import { setIsAuthorized, setSigninOpen, setSignupOpen, setUser, setUserInfo } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
 import axios from '../API/axios';
-const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
+const Signup = ({ setSigninOpen, setSignupOpen, signupOpen, setUser, setUserInfo, setIsAuthorized }) => {
     const initialValues = { name: '', email: "", password: "", id: '', otp: '' };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -181,6 +181,7 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
                     state={otpScreen}
                     resendCounter={resendCounter}
                     resendOtpLoader={resendOtpLoader}
+                    loader={loader}
                     formValues={formValues}
                     formErrors={formErrors}
                     handleResendOtp={handleResendOtp}

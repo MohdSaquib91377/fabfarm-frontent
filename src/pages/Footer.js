@@ -86,7 +86,7 @@ const Footer = () => {
                                 <Link to='/privacyandpolicy'><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>Privacy Policy</p></Link>
                                 </li>
                                 <li>
-                                <Link to='/termandcondition'><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>Terms and Conditions</p></Link>
+                                <Link to='/termandcondition'><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>Terms &  Conditions</p></Link>
                                 </li>
                                 <li>
                                 <Link to='/faqs'><p><span><FontAwesomeIcon icon={faAngleRight} /> </span>FAQs</p></Link>

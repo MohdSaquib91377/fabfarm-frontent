@@ -18,6 +18,8 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
     const [resendCounter, setResendCounter] = useState(0)
     const triggersignin = () => {
         setClose(!close)
+        setOtpScreen(false)
+        setResendCounter(0)
         setSigninOpen();
         setSignupOpen();
     }
@@ -56,6 +58,8 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen }) => {
                     verifyDetails={verifyDetails}
                     resendEmail={resendEmail}
                     resendCounter={resendCounter}
+                    setOtpScreen={setOtpScreen}
+                    setResendCounter={setResendCounter}
                 />
                 <span className="close"
                     onClick={() => handleCloseButton()}>

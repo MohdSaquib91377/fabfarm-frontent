@@ -6,8 +6,6 @@ import { FaSpinner } from 'react-icons/fa'
 const Forgotpassform = (
     {
         otpScreen,
-        resetPassScreen,
-        handleVerifySubmit,
         formValues,
         formErrors,
         handleChange,
@@ -15,6 +13,7 @@ const Forgotpassform = (
         resendOtp,
         resendOtpLoader,
         loader,
+        handleVerifyLoginWithOtp,
         handleBackButton
     }) => {
     
@@ -31,9 +30,9 @@ const Forgotpassform = (
                 onClick={handleBackButton}
             ><FontAwesomeIcon icon={faCircleArrowLeft} /> Back</button>
             <div>
-                <h4>Reset Password</h4>
+                <h4>Verify OTP</h4>
                 <img src={process.env.PUBLIC_URL + "/images/clv_underline.png"} alt="signinimage" />
-                <form onSubmit={handleVerifySubmit}>
+                <form onSubmit={handleVerifyLoginWithOtp}>
                     <div className="form_block" style={{
                         position: 'relative'
                     }}>
@@ -47,7 +46,7 @@ const Forgotpassform = (
                         />
                         <button
                             type='button'
-                            onClick={() => handleBackButton(true)}
+                            onClick={handleBackButton}
                             style={{
                                 position: 'absolute',
                                 right: '5px',
@@ -79,17 +78,6 @@ const Forgotpassform = (
                         }
                     </div>
 
-                    <div className="form_block">
-                        <input
-                            type="password"
-                            name='set_password'
-                            value={formValues.set_password}
-                            className="form_field"
-                            placeholder="Set Password"
-                            onChange={handleChange}
-                        />
-                        <p>{formErrors.set_password}</p>
-                    </div>
                     <button type='submit' className="clv_btn">{loader ? <FaSpinner icon="spinner" className="spinner" /> : 'Verify'}</button>
                 </form>
             </div>

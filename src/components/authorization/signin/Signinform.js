@@ -9,7 +9,9 @@ const Signinform = (
         formErrors,
         handleChange,
         handleForgotPass,
-        loader
+        loader,
+        loginWithOtpLoader,
+        handleLoginWithOtp
     }) => {
 
     return (
@@ -51,6 +53,14 @@ const Signinform = (
                     <span>google+</span>
                 </a>
             </div> */}
+            <button
+                type='button'
+                className="clv_btn"
+                onClick={() => handleLoginWithOtp()}
+            >
+                {loginWithOtpLoader ? <FaSpinner icon="spinner" className="spinner" /> : 'Login with OTP'}
+            </button>
+
         </div>
     )
 }

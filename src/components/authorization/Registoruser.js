@@ -54,7 +54,7 @@ const Registoruser = ({ close, state, setOtpScreen, setVerifyDetails, setResendE
         const errors = {};
         const regexName = /^[A-Za-z ]+$/;
         const regexemail = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/;
-        const regexmobile = /^([+]\d{2})?\d{10}$/;
+        // const regexmobile = /^([+]\d{2})?\d{10}$/;
         if (!values.name) {
             errors.name = 'Name is required!'
         }
@@ -62,9 +62,9 @@ const Registoruser = ({ close, state, setOtpScreen, setVerifyDetails, setResendE
             errors.name = 'Enter a valid name'
         }
         if (!values.email) {
-            errors.email = 'Email/Mobile Number is required!'
-        } else if (!regexemail.test(values.email) && !regexmobile.test(values.email)) {
-            errors.email = 'Enter a valid email or mobile number!';
+            errors.email = 'Email is required!'
+        } else if (!regexemail.test(values.email)) {
+            errors.email = 'Enter a valid email!';
         }
         if (!values.password) {
             errors.password = 'Password is required!'
@@ -81,7 +81,7 @@ const Registoruser = ({ close, state, setOtpScreen, setVerifyDetails, setResendE
                 </div>
                 <p>{formErrors.name}</p>
                 <div className="form_block">
-                    <input type="text" name='email' value={formValues.email} onChange={handleChange} className="form_field" placeholder="Email/Mobile Number" autoComplete='off' />
+                    <input type="text" name='email' value={formValues.email} onChange={handleChange} className="form_field" placeholder="Email" autoComplete='off' />
                 </div>
                 <p>{formErrors.email}</p>
                 <div className="form_block" style={{

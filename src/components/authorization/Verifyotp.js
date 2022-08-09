@@ -3,7 +3,9 @@ import { FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
 import { setUser, setIsAuthorized, setUserInfo } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
-const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state, verifyDetails, setUserInfo }) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
+const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state, verifyDetails, setUserInfo, setOtpScreen,setResendCounter }) => {
     const initialValues = { otp: "" };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
@@ -21,6 +23,15 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
         setFormErrors(validateOTP(formValues));
         setIsSubmit(true)
     }
+
+    const handleBackButton = () => {
+        setIsSubmit(false)
+        setOtpScreen(false)
+        setFormErrors({})
+        setFormValues(initialValues)
+        setResendCounter(0)
+    }
+
     const resendOtp = (e) => {
         e.preventDefault();
         setResendOptLoader(true)
@@ -37,6 +48,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setLoader(true)
+            setIsSubmit(false)
             axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/account/verify-otp/`, {
                 email_or_mobile: otpDetails.email_or_mobile,
                 id: otpDetails.id,
@@ -75,6 +87,15 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
     }
     return (
         <div className={state ? 'signup_form_section' : 'disabled'}>
+            <button
+            style={{
+                position:'absolute',
+                top:'30px',
+                left:'40px',
+            }}
+                type='button'
+                onClick={() => handleBackButton()}
+            ><FontAwesomeIcon icon={faCircleArrowLeft} /> Back</button>
             <h4>Verify OTP</h4>
             <img src="/images/clv_underline.png" alt="image" />
             <form onSubmit={handleOTPSubmit}>
@@ -89,7 +110,7 @@ const Verifyotp = ({ resendCounter, resendEmail, setIsAuthorized, setUser, state
                     <p>{formErrors.otp}</p>
                     {
                         counter !== 0 ?
-                            <span>Resend OTP in {counter} </span>
+                            <span>Resend OTP in {counter} sec</span>
                             :
                             <button onClick={(e) => resendOtp(e)}>{resendOtpLoader ? <FaSpinner icon="spinner" className="spinner" /> : 'Resend OTP'}</button>
                     }

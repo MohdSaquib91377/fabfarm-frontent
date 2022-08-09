@@ -8,8 +8,9 @@ import { connect } from 'react-redux';
 import '../login.css'
 import Signinform from './Signinform';
 import Forgotpassform from './Forgotpassform';
+import Verifyloginwithotp from './Verifyloginwithotp';
 const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, setUser, setUserInfo, handleClose }) => {
-    const initialValues = { email: "", password: "", otp: "", set_password:'' };
+    const initialValues = { email: "", password: "", otp: "", set_password: '' };
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
@@ -21,6 +22,10 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
     const [isRestSubmit, setIsRestSubmit] = useState(false)
     const [counter, setCounter] = useState(0)
     const [resendOtpLoader, setResendOptLoader] = useState(false)
+    const [loginWithOtpScreen, setLoginWithOtpScreen] = useState(false)
+    const [isLoginWithOtp, setIsLoginWithOtp] = useState(false)
+    const [loginWithOtpLoader, setLoginWithOtpLoader] = useState(false)
+    const [LoginWithOtpVerified, setLoginWithOtpVerified] = useState(false)
     const [id, setID] = useState('')
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,6 +41,8 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         setFormErrors(validateForgotEmail(formValues))
         setIsForgotSubmit(true);
         setIsSubmit(false);
+        setIsLoginWithOtp(false)
+        setLoginWithOtpScreen(false)
     }
     const handleVerifySubmit = (e) => {
         e.preventDefault();
@@ -43,6 +50,7 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         setIsForgotSubmit(false);
         setIsVerified(true)
     }
+
     const handleResetSubmit = e => {
         e.preventDefault();
         setFormErrors(validateSignin(formValues))
@@ -66,7 +74,25 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         setSigninOpen();
         setFormErrors({});
     }
+    const handleLoginWithOtp = () => {
+        setFormErrors(validateForgotEmail(formValues))
+        setIsLoginWithOtp(true)
+        setIsForgotSubmit(false);
+        setIsSubmit(false)
+    }
 
+    const handleVerifyLoginWithOtp = (e) => {
+        e.preventDefault();
+        setFormErrors(validateLoginWithOtp(formValues))
+        setLoginWithOtpVerified(true)
+    }
+
+    const handleBackButton = (e) => {
+        e.preventDefault()
+        setOtpScreen(false)
+        setFormValues({ ...formValues, otp: '' })
+        setFormErrors({})
+    }
     const resendOtp = (e) => {
         e.preventDefault();
         setResendOptLoader(true)
@@ -127,6 +153,24 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                     setFormErrors({ email: error.response.data.message })
                 })
         }
+        if (Object.keys(formErrors).length === 0 && isLoginWithOtp) {
+            setLoginWithOtpLoader(true)
+            setIsLoginWithOtp(false)
+            axios.post(`/api/v1/account/send-otp/`, {
+                email_or_mobile: formValues.email
+            })
+                .then(response => {
+                    setLoginWithOtpLoader(false)
+                    setCounter(60)
+                    setID(response.data.id)
+                    setLoginWithOtpScreen(true)
+                    setOtpScreen(true)
+                })
+                .catch(error => {
+                    setLoginWithOtpLoader(false)
+                    setFormErrors({ email: error.response.data.message })
+                })
+        }
         if (Object.keys(formErrors).length === 0 && isVerified) {
             setLoader(true)
             setIsVerified(false)
@@ -147,20 +191,24 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                     setFormErrors({ otp: error.response.data.message })
                 })
         }
-        if (Object.keys(formErrors).length === 0 && isRestSubmit) {
+        if (Object.keys(formErrors).length === 0 && LoginWithOtpVerified) {
             setLoader(true)
-            axios.put(`/api/v1/account/login/`, {
-                email_or_mobile: formValues.email,
-                password: formValues.password
+            setLoginWithOtpVerified(false)
+            axios.post(`/api/v1/account/verify-otp/`, {
+                id: id,
+                otp: formValues.otp,
+                email_or_mobile: formValues.email
             })
-                .then(() => {
-                    setLoader(false)
-                    setRestPassScreen(true)
+                .then(response => {
                     setOtpScreen(false)
+                    setLoader(false)
+                    setUser(response.data.data)
+                    setUserInfo(response.data.user_info)
                     setIsAuthorized()
                 })
-                .catch(error => {
-                    throw (error)
+                .catch((error) => {
+                    setLoader(false)
+                    setFormErrors({ otp: error.response.data.message })
                 })
         }
     }, [formErrors]);
@@ -205,15 +253,30 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         else if (!regexotp.test(values.otp)) {
             errors.otp = 'Enter a valid OTP!';
         }
-        else if(values.otp.length < 6) {
+        else if (values.otp.length < 6) {
             errors.otp = 'Enter a valid OTP!';
         }
-        if(!values.set_password){
+        if (!values.set_password) {
             errors.set_password = 'Password is required!'
 
         }
         return errors;
     }
+    const validateLoginWithOtp = (values) => {
+        const errors = {};
+        const regexotp = /^[0-9]{1,6}$/;
+        if (!values.otp) {
+            errors.otp = 'Please enter your OTP'
+        }
+        else if (!regexotp.test(values.otp)) {
+            errors.otp = 'Enter a valid OTP!';
+        }
+        else if (values.otp.length < 6) {
+            errors.otp = 'Enter a valid OTP!';
+        }
+        return errors;
+    }
+    
     return (
         <>
             <div className={signinOpen ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
@@ -257,21 +320,43 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                         handleChange={handleChange}
                         handleForgotPass={handleForgotPass}
                         loader={loader}
+                        loginWithOtpLoader={loginWithOtpLoader}
+                        handleLoginWithOtp={handleLoginWithOtp}
                     />
-                    <Forgotpassform
-                        otpScreen={otpScreen}
-                        resetPassScreen={resetPassScreen}
-                        handleVerifySubmit={handleVerifySubmit}
-                        formValues={formValues}
-                        formErrors={formErrors}
-                        handleChange={handleChange}
-                        counter={counter}
-                        resendOtp={resendOtp}
-                        resendOtpLoader={resendOtpLoader}
-                        loader={loader}
-                        handleResetSubmit={handleResetSubmit}
-                        handleForgotPass={handleForgotPass}
-                    />
+                    {
+                        loginWithOtpScreen ?
+                            <Verifyloginwithotp
+                                otpScreen={otpScreen}
+                                resetPassScreen={resetPassScreen}
+                                handleVerifyLoginWithOtp={handleVerifyLoginWithOtp}
+                                formValues={formValues}
+                                formErrors={formErrors}
+                                handleChange={handleChange}
+                                counter={counter}
+                                resendOtp={resendOtp}
+                                resendOtpLoader={resendOtpLoader}
+                                loader={loader}
+                                handleForgotPass={handleForgotPass}
+                                setOtpScreen={setOtpScreen}
+                                handleBackButton={handleBackButton}
+                            /> :
+                            <Forgotpassform
+                                otpScreen={otpScreen}
+                                resetPassScreen={resetPassScreen}
+                                handleVerifySubmit={handleVerifySubmit}
+                                formValues={formValues}
+                                formErrors={formErrors}
+                                handleChange={handleChange}
+                                counter={counter}
+                                resendOtp={resendOtp}
+                                resendOtpLoader={resendOtpLoader}
+                                loader={loader}
+                                handleResetSubmit={handleResetSubmit}
+                                handleForgotPass={handleForgotPass}
+                                setOtpScreen={setOtpScreen}
+                                handleBackButton={handleBackButton}
+                            />
+                    }
                     <span className="close"
                         onClick={() => handleCloseButton()}
                     >

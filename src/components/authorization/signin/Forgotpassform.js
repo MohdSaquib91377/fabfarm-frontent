@@ -34,7 +34,7 @@ const Forgotpassform = (
                                     type="text"
                                     name='email'
                                     value={formValues.email}
-                                    className="form_field"
+                                    className="form_field formAddPadding"
                                     placeholder="Email/Mobile Number"
                                     onChange={handleChange}
                                 />
@@ -57,7 +57,7 @@ const Forgotpassform = (
                                     type="text"
                                     name='email'
                                     value={formValues.email}
-                                    className="form_field"
+                                    className="form_field formAddPadding"
                                     placeholder="Email/Mobile Number"
                                     disabled='true'
                                 />

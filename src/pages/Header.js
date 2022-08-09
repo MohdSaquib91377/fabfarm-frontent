@@ -61,7 +61,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
         width: '25px',
         height: '25px',
         lineHeight:'25px',
-        top:"40px",
+        top:"10px",
         left:"11px",
         margin:'auto',
         textAlign: 'center',
@@ -106,7 +106,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                                                 </button>
                                             </li>
                                             <li>
-                                                <button style={{ all: 'unset', cursor: 'pointer' }} onClick={openCart}>
+                                                <button style={{ all: 'unset', cursor: 'pointer', position:'relative' }} onClick={openCart}>
                                                     <FontAwesomeIcon color='#ffffff' icon={faShoppingCart} />
                                                     {
                                                         isAuthorized ?

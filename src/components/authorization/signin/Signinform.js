@@ -22,7 +22,7 @@ const Signinform = (
                         type="text"
                         name='email'
                         value={formValues.email}
-                        className="form_field"
+                        className="form_field "
                         placeholder="Email/Mobile Number"
                         onChange={handleChange}
                     />
@@ -33,7 +33,7 @@ const Signinform = (
                         type="password"
                         name='password'
                         value={formValues.password}
-                        className="form_field"
+                        className="form_field formAddPadding"
                         placeholder="Password"
                         onChange={handleChange} />
                     <button type='button' onClick={handleForgotPass} className='signin-forgot-pass'>Forgot ?</button>

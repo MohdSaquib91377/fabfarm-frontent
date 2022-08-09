@@ -3,7 +3,13 @@
 }
 
 @media(max-width:999px){
-    .container p{ font-size: calc(1.5vw + 1rem) !important; line-height: 2 !important;}
+    .jss2{
+        width: unset !important;
+    }
+    .form_block p{font-size: 14px !important;}
+      .breadcrum-width-dot{font-size: 14px;}
+      .contact_form_section h3{font-size: 18px;}
+    .container p{ font-size: 16px!important; line-height: 2 !important;}
     .button a{font-size: calc(2vw + 1.5rem);  padding:5vw; }
     /*********Reset*******/
     .hideMax999{ display: none;}

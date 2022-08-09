@@ -18,8 +18,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
     const [isVerified, setIsVerified] = useState(false)
     const [loader, setLoader] = useState(false)
     const [otpScreen, setOtpScreen] = useState(false)
-    const [resetPassScreen, setRestPassScreen] = useState(false)
-    const [isRestSubmit, setIsRestSubmit] = useState(false)
     const [counter, setCounter] = useState(0)
     const [resendOtpLoader, setResendOptLoader] = useState(false)
     const [loginWithOtpScreen, setLoginWithOtpScreen] = useState(false)
@@ -49,13 +47,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
         setFormErrors(validateOtp(formValues))
         setIsForgotSubmit(false);
         setIsVerified(true)
-    }
-
-    const handleResetSubmit = e => {
-        e.preventDefault();
-        setFormErrors(validateSignin(formValues))
-        setIsVerified(false)
-        setIsRestSubmit(true)
     }
     const trigger = (e) => {
         e.preventDefault();
@@ -327,7 +318,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                         loginWithOtpScreen ?
                             <Verifyloginwithotp
                                 otpScreen={otpScreen}
-                                resetPassScreen={resetPassScreen}
                                 handleVerifyLoginWithOtp={handleVerifyLoginWithOtp}
                                 formValues={formValues}
                                 formErrors={formErrors}
@@ -342,7 +332,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                             /> :
                             <Forgotpassform
                                 otpScreen={otpScreen}
-                                resetPassScreen={resetPassScreen}
                                 handleVerifySubmit={handleVerifySubmit}
                                 formValues={formValues}
                                 formErrors={formErrors}
@@ -351,7 +340,6 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                                 resendOtp={resendOtp}
                                 resendOtpLoader={resendOtpLoader}
                                 loader={loader}
-                                handleResetSubmit={handleResetSubmit}
                                 handleForgotPass={handleForgotPass}
                                 setOtpScreen={setOtpScreen}
                                 handleBackButton={handleBackButton}

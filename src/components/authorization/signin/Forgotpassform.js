@@ -6,7 +6,6 @@ import { FaSpinner } from 'react-icons/fa'
 const Forgotpassform = (
     {
         otpScreen,
-        resetPassScreen,
         handleVerifySubmit,
         formValues,
         formErrors,
@@ -47,7 +46,7 @@ const Forgotpassform = (
                         />
                         <button
                             type='button'
-                            onClick={() => handleBackButton(true)}
+                            onClick={handleBackButton}
                             style={{
                                 position: 'absolute',
                                 right: '5px',

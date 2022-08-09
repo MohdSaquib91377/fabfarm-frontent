@@ -33,7 +33,7 @@ const Orderlist = ({ user }) => {
                 setIsSubmit(false)
                 setOpenConfirmModal(false)
                 setConfirm('')
-                if (orderPaymentMode.current === 'razor_pay') {
+                if (orderPaymentMode.current === 'Razorpay') {
                     axiosPrivate.post(`/api/v1/payment/payment-refund/${cancelOrderID.current}/`, {
                         reason: 'return'
                     })

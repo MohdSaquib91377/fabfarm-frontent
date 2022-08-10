@@ -9,7 +9,8 @@ import { makeCartEmpty, setIsAuthorized, setUser } from '../../redux/actions/pro
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useBannerImages from '../../hooks/useBannerImages';
 import Accountsetting from './accountsetting/Accountsetting';
-const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser,userInfo }) => {
+import Addresssetting from './addresssetting/Addresssetting';
+const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser, userInfo }) => {
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
     const [profileState, setProfileState] = useState('Dashboard');
@@ -92,7 +93,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser,userInfo }) => 
                                         onClick={() => setProfileState('Address')}
                                     >
                                         <button className={profileState === 'Address' ? 'active' : undefined}>
-                                            <FontAwesomeIcon icon={faMapMarkerAlt} /> Address</button>
+                                            <FontAwesomeIcon icon={faMapMarkerAlt} /> Manage Addresses</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Account')}
@@ -200,18 +201,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser,userInfo }) => 
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className={profileState === 'Address' ? 'tab-pane fade show active' : 'tab-pane fade '}>
-                                    <div className="my-account-address account-wrapper">
-                                        <h4 className="account-title">Address</h4>
-                                        <div className="account-address m-t-30">
-                                            <h6 className="name">Alex Tuntuni</h6>
-                                            <p>1355 Market St, Suite 900 <br /> San Francisco, CA 94103</p>
-                                            <p>Mobile: (123) 456-7890</p>
-                                            <a className="box-btn m-t-25 " href="#"><i className="far fa-edit"></i> Edit Address</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Addresssetting profileState={profileState} />
                                 <Accountsetting profileState={profileState} />
                             </div>
                         </div>

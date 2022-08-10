@@ -105,7 +105,7 @@ const Cartdrawer = ({ updateCart, updatedCart, totalCartCount, setTotalCartCount
                 variant="temporary"
             >
                 <Box
-                    sx={{ width: 400 }}
+                    sx={{ width: 'unset' }}
                     // className="header--navBar--menuBox"
                     role="presentation"
                 >

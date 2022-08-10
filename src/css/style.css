@@ -10496,7 +10496,7 @@ ul {
     padding: 0;
   }
   .clv_section {
-    padding: 60px 0px;
+    padding: 30px 0px;
   }
   .about_farm_wrapper .about_content .about_heading h2 {
     font-size: 32px;
@@ -10925,7 +10925,7 @@ ul {
     padding: 32px 20px 35px;
   }
   .timetable_block {
-    padding: 40px 10px 20px;
+    padding: 10px 10px 0px;
   }
   .timetable_block > ul > li > p {
     width: 55%;

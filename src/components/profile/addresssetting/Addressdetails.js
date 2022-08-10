@@ -116,7 +116,9 @@ const Addressdetails = ({ details, setFetchAddress }) => {
                 })
         }
     })
-
+    useEffect(() => {
+        setAddressFormValues(details)
+    }, [details])
 
     return (
         <div

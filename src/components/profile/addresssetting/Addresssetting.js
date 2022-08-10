@@ -7,15 +7,18 @@ const Addresssetting = ({ profileState }) => {
     const axiosPrivate = useAxiosPrivate();
     const [userAddresses, setUserAddresses] = useState([])
     const [fetchAddress, setFetchAddress] = useState(false)
-
+    const [loader, setLoader] = useState(false)
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
         const getAddress = async () => {
+            setLoader(true)
             try {
                 const response = await axiosPrivate.get('/api/v1/account/user-address/')
                 setUserAddresses(response.data)
+                setLoader(false)
             } catch (error) {
+                setLoader(false)
                 throw error
             }
         }
@@ -52,16 +55,21 @@ const Addresssetting = ({ profileState }) => {
                     </div>
 
                     {
-                        userAddresses.length !== 0 &&
-                        userAddresses.map((details, index) => {
-                            return (
-                                <Addressdetails
-                                    key={index}
-                                    details={details}
-                                    setFetchAddress={() => setFetchAddress(!fetchAddress)}
-                                />
-                            )
-                        })
+                        loader ?
+                            <>
+                                Loding...
+                            </>
+                            :
+                            userAddresses.length !== 0 &&
+                            userAddresses.map((details, index) => {
+                                return (
+                                    <Addressdetails
+                                        key={index}
+                                        details={details}
+                                        setFetchAddress={() => setFetchAddress(!fetchAddress)}
+                                    />
+                                )
+                            })
                     }
                 </div>
             </div>

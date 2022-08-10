@@ -11065,10 +11065,13 @@ ul {
     font-size: 22px;
   }
 }
-@media (max-width:900px) {
+@media (max-width:1100px) {
   .product_items_section > ul > li{
     width: 50%;
   }
+}
+@media (max-width:900px) {
+  
   .product_items_section.product_list_view .product_item_block .org_product_block{
     width: 45%;
   }
@@ -12611,7 +12614,7 @@ button.unset {
 @media (max-width:500px) {
   
   .cart_block h5{
-    font-size: 12px;
+    font-size: 14px;
   }
   .quantity_plus, .quantity_minus{
     width: 20px;
@@ -13163,6 +13166,9 @@ button.unset {
 }
 
 @media (max-width:600px) {
+  .org_product_block .org_product_image{
+    margin-bottom: 10px;
+  }
   .product_price_box h3{
     font-size: 16px !important;
     

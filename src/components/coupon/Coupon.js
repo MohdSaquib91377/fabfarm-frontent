@@ -32,7 +32,7 @@ const Coupon = ({ setCouponDetails }) => {
                 value={coupon.couponcode}
                 onChange={handleChange}
                 type="text" />
-            <button onClick={() => applyCoupon()}>Apply</button>
+            <button  onClick={() => applyCoupon()} className="buttonViewMore">Apply</button>
         </>
     )
 }

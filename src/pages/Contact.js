@@ -176,7 +176,7 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 <a href='tel:919112293300' className='normalLink'>
 
                                 <p>
-                                    09112293300
+                                    +91 91122 93300
                                 </p>
                                 </a>
                             </div>

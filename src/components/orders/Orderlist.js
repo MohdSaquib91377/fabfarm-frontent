@@ -26,7 +26,6 @@ const Orderlist = ({ user }) => {
         orderPaymentMode.current = payment_mode
         setIsSubmit(true)
     }
-    console.log(orderPaymentMode.current)
     useEffect(() => {
         if (confirm === 'yes' && isSubmit) {
             const funcCancelorder = () => {

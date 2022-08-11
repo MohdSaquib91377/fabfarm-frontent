@@ -25,8 +25,6 @@ const Addresssetting = ({ profileState }) => {
         if (isMounted) {
             getAddress();
         }
-        if (isMounted && fetchAddress) {
-        }
         return () => {
             isMounted = false;
             controller.abort();

@@ -7,6 +7,7 @@ import { setCouponDetails, setSigninOpen, updateCart } from '../../redux/actions
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Billcard from './Billcard';
 import useBannerImages from '../../hooks/useBannerImages';
+import Deliveryaddress from './deliveryaddress/Deliveryaddress';
 
 
 const loadRazorpay = (src) => {
@@ -212,12 +213,6 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="breadcrumb_block">
-                    <ul>
-                        <li><Link to='/'>home</Link></li>
-                        <li> &nbsp;checkout</li>
-                    </ul>
-                </div> */}
             </div>
             <div className="container ">
                     <div className="row">
@@ -239,10 +234,8 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-lg-7">
-                                        <div className="section-content">
-                                            <h5 className="section-content__title">Billing Details</h5>
-                                        </div>
-                                        <form action="#" method="post" className="form-box">
+                                        <Deliveryaddress/>
+                                        {/* <form action="#" method="post" className="form-box">
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-box__single-group">
@@ -256,23 +249,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                         <p>{formErrors.full_name}</p>
                                                     </div>
                                                 </div>
-                                                {/* <div className="col-md-6">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-last-name">Last Name</label>
-                                                    <input
-                                                        name='lastName'
-                                                        value={formValues.lastName}
-                                                        onChange={handleChange}
-                                                        type="text"
-                                                        id="form-last-name" />
-                                                </div>
-                                            </div> */}
-                                                {/* <div className="col-md-12">
-                                            <div className="form-box__single-group">
-                                                <label htmlFor="form-company-name">Company Name</label>
-                                                <input type="text" id="form-company-name" />
-                                            </div>
-                                        </div> */}
+                                                
                                                 <div className="col-md-12">
                                                     <div className="form-box__single-group">
                                                         <label htmlFor="form-country">Country*</label>
@@ -283,10 +260,6 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                             id="form-country">
                                                             <option value="select-country" >Select a country</option>
                                                             <option value="IND">India</option>
-                                                            {/* <option value="US">USA</option>
-                                                    <option value="UK">UK</option>
-                                                    <option value="TR">Turkey</option>
-                                                    <option value="CA">Canada</option> */}
                                                         </select>
                                                         <p>{formErrors.country}</p>
                                                     </div>
@@ -334,9 +307,6 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                             <option value="select-state" >Select a state</option>
                                                             <option value="mh">Maharastra</option>
                                                             <option value="goa">Goa</option>
-                                                            {/* <option value="Raj">Rajshahi</option>
-                                                    <option value="Syl">Sylet</option>
-                                                    <option value="Chi">Chittagong</option> */}
                                                         </select>
                                                         <p>{formErrors.state}</p>
 
@@ -353,9 +323,6 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                             <option value="select-city" >Select a city</option>
                                                             <option value="mumbai">mumbai</option>
                                                             <option value="pune">pune</option>
-                                                            {/* <option value="Raj">Rajshahi</option>
-                                                    <option value="Syl">Sylet</option>
-                                                    <option value="Chi">Chittagong</option> */}
                                                         </select>
                                                         <p>{formErrors.city}</p>
 
@@ -385,36 +352,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
 
                                                     </div>
                                                 </div>
-                                                {/* <div className="col-md-6">
-                                                <div className="form-box__single-group">
-                                                    <label htmlFor="form-email">Email Address</label>
-                                                    <input
-                                                        name='email'
-                                                        type="email" id="form-email" />
-                                                    <p>{formErrors.email}</p>
-                                                </div>
-                                            </div> */}
-                                                {/* <div className="col-md-12">
-                                            <div className="m-tb-20">
-                                                <label htmlFor="check-account">
-                                                    <input type="checkbox" name="check-account" className="creat-account" id="check-account" />
-                                                    <span>Create an account?</span>
-                                                </label>
-                                                <div className="toogle-form open-create-account">
-                                                    <div className="form-box__single-group">
-                                                        <label htmlFor="form-email-new-account">Email Address</label>
-                                                        <input type="email" id="form-email-new-account" />
-                                                    </div>
-                                                    <div className="form-box__single-group">
-                                                        <label htmlFor="form-password-new-account">Password</label>
-                                                        <input type="password" id="form-password-new-account" />
-                                                    </div>
-                                                    <div className="from-box__buttons m-t-25">
-                                                        <button className="btn btn--box btn--small btn--radius btn--green btn--green-hover-black btn--uppercase btn--weight" type="submit">REGISTER</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
+                                                
                                                 <div className="col-md-12">
                                                     <div className="form-box__single-group">
                                                         <h6>Additional information*</h6>
@@ -427,88 +365,9 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                                         <p>{formErrors.message}</p>
                                                     </div>
                                                 </div>
-                                                {/* <div className="col-md-12">
-                                            <div className="m-tb-20">
-                                                <label htmlFor="shipping-account">
-                                                    <input type="checkbox" name="check-account" className="shipping-account" id="shipping-account" />
-                                                    <span>Ship to a different address?</span>
-                                                </label>
-                                                <div className="toogle-form open-shipping-account">
-                                                    <div className="row">
-                                                        <div className="col-md-6">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-first-name">First Name</label>
-                                                                <input type="text" id="shipping-form-first-name" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-6">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-last-name">Last Name</label>
-                                                                <input type="text" id="shipping-form-last-name" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-12">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-company-name">Company Name</label>
-                                                                <input type="text" id="shipping-form-company-name" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-12">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-country">* Country</label>
-                                                                <select id="shipping-form-country">
-                                                                    <option value="select-country" selected>Select a country</option>
-                                                                    <option value="BD">Bangladesh</option>
-                                                                    <option value="US">USA</option>
-                                                                    <option value="UK">UK</option>
-                                                                    <option value="TR">Turkey</option>
-                                                                    <option value="CA">Canada</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-12">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-address-1">Street Address</label>
-                                                                <input type="text" id="shipping-form-address-1" placeholder="House number and street name" />
-                                                                <input type="text" className="m-t-10" id="shipping-form-address-2" placeholder="Apartment, suite, unit etc." />
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-6">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-state">* Region / State</label>
-                                                                <select id="shipping-form-state">
-                                                                    <option value="Dha" selected>Dhaka</option>
-                                                                    <option value="Kha">Khulna</option>
-                                                                    <option value="Raj">Rajshahi</option>
-                                                                    <option value="Syl">Sylet</option>
-                                                                    <option value="Chi">Chittagong</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-6">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-zipcode">* Zip/Postal Code</label>
-                                                                <input type="text" id="shipping-form-zipcode" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-6">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-phone">Phone</label>
-                                                                <input type="text" id="shipping-form-phone" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-6">
-                                                            <div className="form-box__single-group">
-                                                                <label htmlFor="shipping-form-email">Email Address</label>
-                                                                <input type="email" id="shipping-form-email" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
-                                        </div> */}
-                                            </div>
-                                        </form>
+                                        </form> */}
                                     </div>
 
                                     <div className="col-lg-5">

@@ -77,11 +77,11 @@ const Orderlist = ({ user }) => {
                     height: '100px',
                     width: '100px'
                 }}>
-                    <Link to={`/orderproductdetails/${order}`}>
+                    <Link to={`/orderproductdetails/${id}`}>
                         <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
                     </Link>
                 </div>
-                <Link to={`/orderproductdetails/${order}`}><h6>{name}</h6></Link>
+                <Link to={`/orderproductdetails/${id}`}><h6>{name}</h6></Link>
                 <h6>Order Id : {order}</h6>
                 <h6>Price: <FontAwesomeIcon icon={faIndianRupee} /> {price}</h6>
                 <h6>Quantity: {quantity}</h6>

@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import axios from '../API/axios'
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay } from 'swiper';
+import { Navigation } from "swiper";
 import { useNavigate } from 'react-router-dom'
 import { setMainCategory } from '../../redux/actions/productActions';
 import { connect } from 'react-redux';
-
 const Services = ({ category, setMainCategory }) => {
     let Navigate = useNavigate();
-    
+    SwiperCore.use([Autoplay]);
+    const [boolean, setBoolean] = useState(false);
+
+    const [matches, setMatches] = useState(
+        window.matchMedia("(max-width: 810px)").matches
+    )
+
+    useEffect(() => {
+        window
+            .matchMedia("(max-width: 810px)")
+            .addEventListener('change', e => setMatches(e.matches));
+    }, [])
+
+    useEffect(() => {
+        if (matches ? category.length > 1 : category.length > 4) {
+            setBoolean(true)
+        }
+    }, [category, matches])
     const navigate = (id) => {
         setMainCategory(true)
         Navigate(`/shop/${id}/`)
     }
-   
 
     return (
         <>
@@ -19,42 +36,51 @@ const Services = ({ category, setMainCategory }) => {
                 <div className="container">
                     <div className="garden_service_wrapper">
                         <div className="row">
-                            <div className="col-lg-3 col-md-6">
-                                <div className="garden_service_block" onClick={() => navigate(category[0]?.id)}>
-                                    <div className="service_image">
-                                        <span><img src={process.env.PUBLIC_URL + "/images/garden_service1.png"} alt="" /></span>
-                                    </div>
-                                    <h3>{category[0]?.name}</h3>
-                                    <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6">
-                                <div className="garden_service_block" onClick={() => navigate(category[1]?.id)}>
-                                    <div className="service_image">
-                                        <span><img src={process.env.PUBLIC_URL + "/images/garden_service1.png"} alt="" /></span>
-                                    </div>
-                                    <h3>{category[1]?.name}</h3>
-                                    <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6">
-                                <div className="garden_service_block" onClick={() => navigate(category[2]?.id)}>
-                                    <div className="service_image">
-                                        <span><img src={process.env.PUBLIC_URL + "/images/garden_service2.png"} alt="" /></span>
-                                    </div>
-                                    <h3>{category[2]?.name}</h3>
-                                    <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6">
-                                <div className="garden_service_block" onClick={() => navigate(category[3]?.id)}>
-                                    <div className="service_image">
-                                        <span><img src={process.env.PUBLIC_URL + "/images/garden_service3.png"} alt="" /></span>
-                                    </div>
-                                    <h3>{category[3]?.name}</h3>
-                                    <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
-                                </div>
-                            </div>
+                            <Swiper
+                                autoplay={{
+                                    delay: 5000,
+                                    disableOnInteraction: false,
+                                    pauseOnMouseEnter: true
+                                }}
+                                loop={boolean}
+                                navigation={boolean}
+                                slidesPerView={1}
+                                spaceBetween={10}
+                                modules={[Navigation]}
+                                breakpoints={{
+                                    640: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 20,
+                                    },
+                                    768: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 20,
+                                    },
+                                    1024: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 20,
+                                    },
+                                }}
+                                className="mySwiper">
+                                {
+                                    category.map((category, index) => {
+                                        const { id, name } = category;
+                                        return (
+                                            <div className="col-lg-3 col-md-6">
+                                                <SwiperSlide key={index}>
+                                                    <div className="garden_service_block" onClick={() => navigate(id)}>
+                                                        <div className="service_image">
+                                                            <span><img src={process.env.PUBLIC_URL + "/images/garden_service1.png"} alt="" /></span>
+                                                        </div>
+                                                        <h3>{name}</h3>
+                                                    </div>
+                                                </SwiperSlide>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </Swiper>
+
                         </div>
                     </div>
                 </div>

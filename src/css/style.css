@@ -13083,7 +13083,9 @@ button.unset {
         width: 100% !important;
       }
     }
-    .buttonViewMore{
+    .buttonViewMore,
+    .exitButtonProfile
+    {
       padding: 5px 10px;
       line-height: 1;
       height: auto !important;
@@ -13094,7 +13096,8 @@ button.unset {
       border: 1px solid #1fa12e;
       transition: .3s;
     }
-    .buttonViewMore:hover{
+    .buttonViewMore:hover,
+    .exitButtonProfile:hover{
       background-color: #fff;
       color: #1fa12e;
 
@@ -13256,4 +13259,14 @@ display: block;
   .prduct-images-cantainer .swiper-slide {
     width: 300px !important;
   }
+}
+.exitButtonProfile svg{
+  margin-right: 10px;
+}
+.addressData h6 {
+  font-weight: 600;
+}
+.addressData .alternateNumber {
+  font-weight: 500;
+  
 }

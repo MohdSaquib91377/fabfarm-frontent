@@ -107,109 +107,143 @@ const Addnewaddress = ({ setFetchAddress }) => {
             {
                 addNewAddressButton ?
                     <>
-                        <h6>ADD A NEW ADDRESS</h6>
-                        <form onSubmit={handleSubmitAddNewAddress}>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='full_name'
-                                    placeholder='Full Name*'
-                                    value={addressFormValues.full_name}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.full_name}</p>
+                        <h6>Add a new address</h6>
+                        <form onSubmit={handleSubmitAddNewAddress} className="d-flex flex-wrap">
+                            <div className="col-md-6 col-12">
+
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='full_name'
+                                        placeholder='Full Name*'
+                                        value={addressFormValues.full_name}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.full_name}</p>
+                                </div>
                             </div>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='city'
-                                    placeholder='City*'
-                                    value={addressFormValues.city}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.city}</p>
+                            <div className="col-md-6 col-12">
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='address'
+                                        placeholder='Address*'
+                                        value={addressFormValues.address}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.address}</p>
+                                </div>
                             </div>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='state'
-                                    placeholder='State*'
-                                    value={addressFormValues.state}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.state}</p>
+                            <div className="col-md-6 col-12">
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='landmark'
+                                        placeholder='Landmark*'
+                                        value={addressFormValues.landmark}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.landmark}</p>
+                                </div>
                             </div>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='country'
-                                    placeholder='Country*'
-                                    value={addressFormValues.country}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.country}</p>
+                            <div className="col-md-6 col-12">
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='locality'
+                                        placeholder='Locality*'
+                                        value={addressFormValues.locality}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.locality}</p>
+                                </div>
                             </div>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='pincode'
-                                    placeholder='Pincode*'
-                                    value={addressFormValues.pincode}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.pincode}</p>
+
+                            <div className="col-md-6 col-12">
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='city'
+                                        placeholder='City*'
+                                        value={addressFormValues.city}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.city}</p>
+                                </div>
                             </div>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='locality'
-                                    placeholder='Locality*'
-                                    value={addressFormValues.locality}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.locality}</p>
+                            <div className="col-md-6 col-12">
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='state'
+                                        placeholder='State*'
+                                        value={addressFormValues.state}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.state}</p>
+                                </div>
                             </div>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='landmark'
-                                    placeholder='Landmark*'
-                                    value={addressFormValues.landmark}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.landmark}</p>
+                            <div className="col-md-6 col-12">
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='country'
+                                        placeholder='Country*'
+                                        value={addressFormValues.country}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.country}</p>
+                                </div>
                             </div>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='address'
-                                    placeholder='Address*'
-                                    value={addressFormValues.address}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.address}</p>
+                            <div className="col-md-6 col-12">
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='pincode'
+                                        placeholder='Pincode*'
+                                        value={addressFormValues.pincode}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.pincode}</p>
+                                </div>
                             </div>
-                            <div className="form-box__single-group">
-                                <input
-                                    type='text'
-                                    name='alternate_number'
-                                    placeholder='Alternate Number*'
-                                    value={addressFormValues.alternate_number}
-                                    onChange={handleChange}
-                                />
-                                <p>{addressFormErrors.alternate_number}</p>
+
+
+                            <div className="col-md-6 col-12">
+
+                                <div className="form-box__single-group">
+                                    <input
+                                        type='text'
+                                        name='alternate_number'
+                                        placeholder='Alternate Number*'
+                                        value={addressFormValues.alternate_number}
+                                        onChange={handleChange}
+                                    />
+                                    <p>{addressFormErrors.alternate_number}</p>
+                                </div>
                             </div>
-                            <button
-                                type='submit'
-                                className='exitButtonProfile'
-                            >
-                                {loaderAddNewAddress ? 'SAVING...' : 'SAVE'}
-                            </button>
-                            <button
-                                type='button'
-                                className='exitButtonProfile'
-                                onClick={handleCancleAddNewAddress}
-                            >CANCEL</button>
+                            <div className=" col-12">
+
+                                <button
+                                    type='submit'
+                                    className='exitButtonProfile'
+                                >
+                                    {loaderAddNewAddress ? 'SAVING...' : 'SAVE'}
+                                </button>
+                                <button
+                                    type='button'
+                                    className='exitButtonProfile'
+                                    onClick={handleCancleAddNewAddress}
+                                >CANCEL</button>
+                            </div>
                         </form>
                     </>
                     :

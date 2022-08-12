@@ -141,7 +141,7 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                         {
                             maxQuantity !== 0?
 
-                            <span className="product__price"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>
+                            <span className="product__price"><FontAwesomeIcon icon={faIndianRupee} /> {price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</span>
                             :
                             <span style={{
                                 color:'red'

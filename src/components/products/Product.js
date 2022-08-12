@@ -243,13 +243,13 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                             <div className="col-lg-7">
                                 <div className="product-details-box m-b-60">
                                     <h4 className="font--regular m-b-20">{name}</h4>
-                                    <ul className="product__review">
+                                    {/* <ul className="product__review">
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                         <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
-                                    </ul>
+                                    </ul> */}
                                     <h6>Special price</h6>
                                     <div className="product__price m-t-5">
                                         <span className="product__price product__price--large"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>

@@ -64,6 +64,12 @@ const Featuredproducts = ({ setProducts, setMainCategory, isAuthorized }) => {
                             <div className="my-3 d-flex justify-content-between row-reverse align-items-center">
 
                                 <h3>{name}</h3>
+
+                            </div>
+                            <Basiccarousel products={products} />
+                            <div className="w-100 my-3 text-right">
+
+
                                 <button
                                     className='buttonViewMore'
                                     style={{
@@ -73,7 +79,6 @@ const Featuredproducts = ({ setProducts, setMainCategory, isAuthorized }) => {
                                     View More
                                 </button>
                             </div>
-                            <Basiccarousel products={products} />
                         </div>
                     )
                 })}

@@ -2,7 +2,7 @@ import { axiosPrivate } from "../components/API/axios";
 import { useEffect } from "react";
 import useRefreshtoken from "./useRefreshtoken";
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsAuthorized, setPopup, setPopupMessage, setSigninOpen } from "../redux/actions/productActions";
+import { setIsAuthorized, setPopup, setPopupMessage, setSigninOpen, setUser } from "../redux/actions/productActions";
 
 const useAxiosPrivate = () => {
     const refresh = useRefreshtoken();
@@ -35,6 +35,7 @@ const useAxiosPrivate = () => {
                 if (error?.response?.status === 403) {
                     dispatch(setPopup(true));
                     dispatch(setPopupMessage('your Session as be expired please login'))
+                    dispatch(setUser([]))
                     dispatch(setIsAuthorized(false))
                     dispatch(setSigninOpen(true))
                     return Promise.reject(error)

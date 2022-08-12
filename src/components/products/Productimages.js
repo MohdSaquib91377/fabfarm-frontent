@@ -37,7 +37,7 @@ const Productimages = ({ image }) => {
                         "--swiper-pagination-color": "blue",
                     }}
                     zoom={true}
-                    navigation={true}
+                    navigation={false}
                     pagination={{
                         clickable: true,
                     }}

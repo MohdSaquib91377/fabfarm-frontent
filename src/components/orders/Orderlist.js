@@ -91,6 +91,7 @@ const Orderlist = ({ user }) => {
                         && status !== 'Refunded'
                         && status !== 'Refund In Progress'
                         && status !== 'Refund Failed'
+                        && status !== 'Request Refund'
                         && status !== 'Completed'
                         ?
 

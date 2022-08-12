@@ -28,8 +28,8 @@ const Emailchanges = ({ userInfo }) => {
 
     const validateEmailChanges = (value) => {
         const errors = {};
-        const regexemail = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/;
-
+        const regexemail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]{2,3}/;
+        
         if (!value.email_or_mobile) {
             errors.email_or_mobile = `Email is required!`
         } else if (!regexemail.test(value.email_or_mobile)) {

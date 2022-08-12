@@ -69,7 +69,7 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen, setUser, setUserInfo
     const validateSignin = (values) => {
         const errors = {};
         const regexName = /^[A-Za-z ]+$/;
-        const regexemail = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}/;
+        const regexemail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]{2,3}/;
         // const regexmobile = /^([+]\d{2})?\d{10}$/;
         if (!values.name) {
             errors.name = 'Name is required!'

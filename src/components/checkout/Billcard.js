@@ -37,10 +37,8 @@ const Billcard = ({ formErrors, formValues, setFormValues, handleChange, handleS
     });
     return (
         <div className="your-order-section">
-            <div className="section-content">
-                <h5 className="section-content__title">Your order</h5>
-            </div>
-            <div className="your-order-box gray-bg m-t-40 m-b-30">
+            
+            <div className="your-order-box gray-bg  m-b-30">
                 <div className="your-order-product-info">
                     <div className="your-order-top d-flex justify-content-between">
                         <h6 className="your-order-top-left font--bold">Product</h6>

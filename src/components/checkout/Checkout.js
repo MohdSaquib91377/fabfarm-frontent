@@ -182,7 +182,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                 isAuthorized ?
                     onlineCart.length !== 1 ?
                         <main id="main-container" style={{
-                            marginTop: '100px'
+                            marginTop: '10px'
                         }} className="main-container">
                             <div className="container">
                                 <div className="row">

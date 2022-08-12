@@ -13270,3 +13270,29 @@ display: block;
   font-weight: 500;
   
 }
+.breadcrumb_inner h3{
+  font-size: 15px !important;
+}
+.breadcrumb_inner{
+
+  position: relative;
+  top: 190%;
+    font-size: 14px;
+    max-width: 130px;
+    margin: auto;
+    padding: 10px;
+    background: #317b31;
+    border-radius: 30px;
+    min-height: 0;
+    height: 40px;
+  }
+@media (min-width:767px) {
+  
+  
+    .testimonial_slider .swiper-button-prev,.testimonial_slider .swiper-rtl .swiper-button-next{
+      left: 150px !important;
+    }
+    .testimonial_slider  .swiper-button-next,.testimonial_slider  .swiper-rtl .swiper-button-prev{
+      right: 150px !important;
+    }
+}

@@ -8,7 +8,7 @@ const Selectaddress = ({ details, setFetchAddress }) => {
     const [editState, setEditState] = useState(false)
     const [isEditAddressSubmit, setIsEditAddressSubmit] = useState(false)
     const [loaderEditAddress, setLoaderEditAddress] = useState(false)
-   
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -92,16 +92,7 @@ const Selectaddress = ({ details, setFetchAddress }) => {
     }, [details])
 
     return (
-        <div
-            style={{
-                border: '1px solid #ebebeb',
-                borderRadius: '3px',
-                padding: '10px 20px',
-                width: '100%',
-                outline: 'none',
-                fontSize: '14px',
-            }}
-        >
+        <div>
             {
                 editState ?
                     <div>
@@ -223,7 +214,7 @@ const Selectaddress = ({ details, setFetchAddress }) => {
                         </div>
                         <div>
                             <button
-                                onClick={()=>setEditState(true)}
+                                onClick={() => setEditState(true)}
                             >
                                 Edit
                             </button>

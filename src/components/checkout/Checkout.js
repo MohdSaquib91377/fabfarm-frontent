@@ -30,17 +30,8 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
     const axiosPrivate = useAxiosPrivate();
     const [formErrors, setFormErrors] = useState({})
     const initialValues = {
-        full_name: "",
-        city: "",
-        state: "",
-        country: "",
-        pincode: "",
-        locality: "",
-        landmark: "",
-        address: "",
-        alternate_number: "",
         payment_mode: "",
-        message: "",
+        user_address: 0,
         couponCode: ""
     };
     const [formValues, setFormValues] = useState(initialValues)
@@ -48,7 +39,6 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
     const [loader, setLoader] = useState(false)
     Tabtitle('FAB | Checkout')
     const banner = useBannerImages('checkout')
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -151,48 +141,11 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
 
     const validateCheckout = (values) => {
         const errors = {};
-        const regexFullName = /^[A-Za-z ]+$/;
-        const regexPincode = /^[1-9][0-9]{5}$/;
-        const regexmobile = /^([+]\d{2})?\d{10}$/;
-        if (!values.full_name) {
-            errors.full_name = 'Full Name is required'
-        }
-        else if (!regexFullName.test(values.full_name)) {
-            errors.full_name = 'Enter a valid name'
-        }
-        if (!values.country) {
-            errors.country = 'Select country'
-        }
-        if (!values.address) {
-            errors.address = 'Address is required'
-        }
-        if (!values.locality) {
-            errors.locality = 'Locality is required'
-        }
-        if (!values.landmark) {
-            errors.landmark = 'Landmark is required'
-        }
-        if (!values.state) {
-            errors.state = 'Select state'
-        }
-        if (!values.city) {
-            errors.city = 'Select city'
-        }
-        if (!values.pincode) {
-            errors.pincode = 'Pincode is required'
-        } else if (!regexPincode.test(values.pincode)) {
-            errors.pincode = 'Enter a valid pincode!';
-        }
-        if (!values.alternate_number) {
-            errors.alternate_number = 'Mobile number is required!'
-        } else if (!regexmobile.test(values.alternate_number)) {
-            errors.alternate_number = 'Enter a valid mobile number!';
-        }
-        if (!values.message) {
-            errors.message = 'Message is required'
-        }
         if (!values.payment_mode) {
             errors.payment_mode = 'Select payment mode'
+        }
+        if (!values.user_address) {
+            errors.user_address = 'Select delivery address'
         }
         return errors;
     }
@@ -215,16 +168,16 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                 </div>
             </div>
             <div className="container ">
-                    <div className="row">
-                        <div className="col-12  my-3">
-                            <p className='m-0'>
-                                <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
-                                <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
-                                <span className='breadcrum-width-dot'>Checkout  </span>
-                            </p>
-                        </div>
+                <div className="row">
+                    <div className="col-12  my-3">
+                        <p className='m-0'>
+                            <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
+                            <span className='breadcrum-width-dot'>&nbsp;{'>'}&nbsp;</span>
+                            <span className='breadcrum-width-dot'>Checkout  </span>
+                        </p>
                     </div>
                 </div>
+            </div>
             {
                 isAuthorized ?
                     onlineCart.length !== 1 ?
@@ -234,7 +187,11 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-lg-7">
-                                        <Deliveryaddress/>
+                                        <Deliveryaddress
+                                            formValues={formValues}
+                                            formErrors={formErrors}
+                                            handleChange={handleChange}
+                                        />
                                         {/* <form action="#" method="post" className="form-box">
                                             <div className="row">
                                                 <div className="col-md-6">

@@ -7,8 +7,8 @@ import useBannerImages from '../../hooks/useBannerImages';
 
 
 export function Orderdetails({ items }) {
-    const { payment_mode,order } = items;
-    const {  address: { address, alternate_number, city, country, full_name, landmark, locality, message, pincode, state } } = order;
+    const { payment_mode, order } = items;
+    const { address: { address, alternate_number, city, country, full_name, landmark, locality, pincode, state } } = order;
     return (
         //add stytle here for address section 
         <div className='address-place container'>
@@ -23,10 +23,6 @@ export function Orderdetails({ items }) {
                 <p>
                     <b>Address: </b>
                     {address},{landmark}, {locality}, {city},{state}, {country} - {pincode}
-                </p>
-                <p>
-                    <b>Message: </b>
-                    {message}
                 </p>
                 <p>
                     <b>Payment Mode: </b>

@@ -43,52 +43,53 @@ const Deliveryaddress = ({ formErrors, formValues, handleChange }) => {
     }
 
     return (
-        <>  <div
-            style={{
-                border: '1px solid #ebebeb',
-                borderRadius: '3px',
-                padding: '10px 20px',
-                width: '100%',
-                outline: 'none',
-                fontSize: '14px',
-            }}
-        >
+        <>
+            {deliveryAddresses.length !== 0 && <div
+                style={{
+                    border: '1px solid #ebebeb',
+                    borderRadius: '3px',
+                    padding: '10px 20px',
+                    width: '100%',
+                    outline: 'none',
+                    fontSize: '14px',
+                }}
+            >
 
-            <FormControl>
-                <FormLabel>Delivery Address</FormLabel>
-                <RadioGroup
-                    name="user_address"
-                    value={formValues.user_address}
-                    onChange={handleChange}
-                >
-                    {deliveryAddresses.map((details, index) => {
-                        const { id } = details;
-                        return (
-                            <div
-                                style={{
-                                    padding: '10px 20px',
-                                    width: '100%',
-                                    outline: 'none',
-                                    fontSize: '14px',
-                                    display: 'flex'
-                                }}
-                            >
-                                <FormControlLabel value={id} control={<Radio />} />
+                <FormControl>
+                    <FormLabel>Delivery Address</FormLabel>
+                    <RadioGroup
+                        name="user_address"
+                        value={formValues.user_address}
+                        onChange={handleChange}
+                    >
+                        {deliveryAddresses.map((details, index) => {
+                            const { id } = details;
+                            return (
+                                <div
+                                    style={{
+                                        padding: '10px 20px',
+                                        width: '100%',
+                                        outline: 'none',
+                                        fontSize: '14px',
+                                        display: 'flex'
+                                    }}
+                                >
+                                    <FormControlLabel value={id} control={<Radio />} />
 
-                                <Selectaddress
-                                    key={index}
-                                    details={details}
-                                    setFetchAddress={() => setFetchAddress(!fetchAddress)}
-                                />
-                            </div>
-                        )
-                    })}
-                </RadioGroup>
-                <p style={{
-                    color: 'red'
-                }}>{formErrors.user_address}</p>
-            </FormControl>
-        </div>
+                                    <Selectaddress
+                                        key={index}
+                                        details={details}
+                                        setFetchAddress={() => setFetchAddress(!fetchAddress)}
+                                    />
+                                </div>
+                            )
+                        })}
+                    </RadioGroup>
+                    <p style={{
+                        color: 'red'
+                    }}>{formErrors.user_address}</p>
+                </FormControl>
+            </div>}
             <div style={{
                 marginTop: '10px',
                 marginBottom: '10px',
@@ -99,7 +100,17 @@ const Deliveryaddress = ({ formErrors, formValues, handleChange }) => {
                 outline: 'none',
                 fontSize: '14px'
             }}>
-
+                {formErrors.user_address !== undefined && deliveryAddresses.length === 0 ?
+                    <p
+                        style={{
+                            color: 'red'
+                        }}
+                    >
+                        Delivery address is required!
+                    </p>
+                    :
+                    undefined
+                }
                 <Addnewaddress
                     setFetchAddress={() => setFetchAddress(!fetchAddress)}
                 />

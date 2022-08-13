@@ -33,7 +33,7 @@ const Forgotpassform = (
                 <h4>Reset Password</h4>
                 <img src={process.env.PUBLIC_URL + "/images/clv_underline.png"} alt="signinimage" />
                 <form onSubmit={handleVerifySubmit}>
-                    <div className="form_block" style={{
+                    <div className="form_block my-3" style={{
                         position: 'relative'
                     }}>
                         <input
@@ -54,7 +54,7 @@ const Forgotpassform = (
                             }}
                         >Change ?</button>
                     </div>
-                    <div className="form_block">
+                    <div className="form_block my-3">
                         <input
                             type="text"
                             name='otp'
@@ -78,7 +78,7 @@ const Forgotpassform = (
                         }
                     </div>
 
-                    <div className="form_block">
+                    <div className="form_block my-3">
                         <input
                             type="password"
                             name='set_password'

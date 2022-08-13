@@ -216,11 +216,11 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                             <span className='breadcrum-width-dot'>   {name}</span> </p>
                     </div>
                     <div className="container pt-3">
-                        <div className='customBoxImageProduct' style={{
+                        <div className='customBoxImageProduct ' style={{
                             display: 'flex',
                             // flexWrap: 'wrap',
                         }}>
-                            <div>
+                            <div className=' col-sm-6 col-12'>
                                 <div className='add-image-radius'>
                                     <Productimages image={image} />
                                 </div>
@@ -242,7 +242,7 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                             </div>
                             <div className="col-lg-7">
                                 <div className="product-details-box m-b-60">
-                                    <h4 className="font--regular m-b-20">{name}</h4>
+                                    <h4 className=" m-b-20 mt-4 productNameText">{name}</h4>
                                     {/* <ul className="product__review">
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
                                         <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>

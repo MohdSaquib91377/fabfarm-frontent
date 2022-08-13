@@ -37,7 +37,7 @@ const Banner = () => {
                 interval={5000}
                 isPlaying={true}
                 style={{
-                    height: '768px'
+                    minHeight: '100vh'
                 }}
             >
                 <Slider>

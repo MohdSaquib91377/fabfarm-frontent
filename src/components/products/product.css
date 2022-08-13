@@ -6374,7 +6374,7 @@ table tbody > tr td a:hover {
 /* slider perv next buttons start here*/
 
 .prduct-images-cantainer{
-  width: 350px 
+  width: 100% 
 }
 .prduct-images-swiper-cantainer {
   width: 100% !important;

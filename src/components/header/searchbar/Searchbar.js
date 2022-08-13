@@ -52,7 +52,6 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
                         <div style={{
                             display: 'flex',
                             flexDirection: 'column',
-                            justifyContent: 'space-between',
                             width: '100%',
                             height: '250px',
                             backgroundColor: '#fff',

@@ -75,7 +75,8 @@ const Orderlist = ({ user }) => {
             <div key={i} className="order_list_top orderListTopMain">
                 <div style={{
                     height: '100px',
-                    width: '100px'
+                    width: '100px',
+                    overflow:'hidden'
                 }}>
                     <Link to={`/orderproductdetails/${id}`}>
                         <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
@@ -129,7 +130,7 @@ const Orderlist = ({ user }) => {
                 </div> */}
             </div>
             <div className="container ">
-                <div className="row pl-md-5">
+                <div className="row pl-md-3">
                     <div className="col-12  my-3">
                         <p className='m-0'>
                             <span className='breadcrum-width-dot'><Link to='/'>Home </Link>  </span>
@@ -145,7 +146,6 @@ const Orderlist = ({ user }) => {
 
                     <div className='box-shadow-adding' style={{
                         position: 'relative',
-                        top: '50px',
                         marginBottom: '280px',
                         width: 'auto',
                         overflowX: 'auto',
@@ -156,10 +156,15 @@ const Orderlist = ({ user }) => {
                                     Loading...
                                 </div>
                                 :
-                                items.length !== 0 ?
+                                <>
+                                <div className='text-center py-4'>
+
+                                {items.length !== 0 ?
                                     orderList
                                     :
-                                    'No Items'
+                                    'No Items'}
+                                    </div>
+                                </>
                         }
                     </div>
                 </div>

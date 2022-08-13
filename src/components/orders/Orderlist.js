@@ -14,6 +14,7 @@ const Orderlist = ({ user }) => {
     Tabtitle('FAB | Order List')
     const banner = useBannerImages('orderlist')
     const orderPaymentMode = useRef();
+    const orderStatus = useRef();
     const [getOrder, setGetOrder] = useState(false)
     const [items, setItems] = useState([])
     const axiosPrivate = useAxiosPrivate();
@@ -24,10 +25,11 @@ const Orderlist = ({ user }) => {
     const [codReturnForm, setCodReturnForm] = useState(false)
     const [razorpayReturnForm, setRazorpayReturnForm] = useState(false)
     const [cancleOrderItemID, setCancleOrderItemID] = useState(null)
-    const cancelOrder = (id, payment_mode) => {
+    const cancelOrder = (id, payment_mode, status) => {
         setOpenConfirmModal(true)
         setCancleOrderItemID(id);
         orderPaymentMode.current = payment_mode
+        orderStatus.current = status
         setIsSubmit(true)
     }
     useEffect(() => {
@@ -38,9 +40,15 @@ const Orderlist = ({ user }) => {
                 setConfirm('')
                 if (orderPaymentMode.current === 'Razorpay') {
                     setRazorpayReturnForm(true)
-                } else {
+                } else if (orderPaymentMode.current === 'Cash on delivery' && orderStatus.current === 'Delivered') {
                     setCodReturnForm(true)
-                }
+                } else (
+                    axiosPrivate.put(`/api/v1/order/order-cancel/${cancleOrderItemID}/`)
+                        .then(() => {
+                            setGetOrder()
+                        })
+                        .catch(error => { throw (error) })
+                )
             }
             funcCancelorder()
         }
@@ -77,7 +85,7 @@ const Orderlist = ({ user }) => {
                     </Link>
                 </div>
                 <Link to={`/orderproductdetails/${id}`}><h6>{name}</h6></Link>
-                <h6>Order Id : {order}</h6>
+                <h6>Order ID : {order}</h6>
                 <h6>Price: <FontAwesomeIcon icon={faIndianRupee} /> {price}</h6>
                 <h6>Quantity: {quantity}</h6>
                 <h6>Status: {status}</h6>
@@ -90,7 +98,7 @@ const Orderlist = ({ user }) => {
                         && status !== 'Completed'
                         ?
 
-                        <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
+                        <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode, status)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
                         :
                         <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                 }

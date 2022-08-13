@@ -57,11 +57,9 @@ function Productdetails({ items }) {
                             </h5>
                         </Link>
                         <br />
+                        <div> <b> Price: </b>{price} &nbsp;,&nbsp;<b>Status:</b> {status}</div>
                         <br />
-                        <div> <b> Price:</b>{price}</div>
-                        <br />
-                        <br />
-                        <div><b>Status:</b> {status}</div>
+                        <div></div>
                     </div>
 
                 </div>

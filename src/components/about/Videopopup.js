@@ -9,11 +9,12 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "80%",
-   
+    padding:'10px 10px 2px',
+    background:'#fff'
 };
 const Videopopup = ({ videoPopup, setVideoPopup }) => {
     return (
-        <div>
+        <div >
             <Modal
                 open={videoPopup}
                 onClose={setVideoPopup}

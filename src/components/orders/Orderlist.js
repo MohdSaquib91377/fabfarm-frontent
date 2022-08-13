@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import useBannerImages from '../../hooks/useBannerImages'
 import Tabtitle from '../../pages/Tabtitle'
+import Codreturnmodal from './Codreturnmodal'
 import Confirmationmodal from './Confirmationmodal'
+import Razorpayreturnmodel from './Razorpayreturnmodel'
 
 const Orderlist = ({ user }) => {
     Tabtitle('FAB | Order List')
     const banner = useBannerImages('orderlist')
-    const cancelOrderID = useRef();
     const orderPaymentMode = useRef();
     const [getOrder, setGetOrder] = useState(false)
     const [items, setItems] = useState([])
@@ -20,9 +21,12 @@ const Orderlist = ({ user }) => {
     const [confirm, setConfirm] = useState('')
     const [isSubmit, setIsSubmit] = useState(false)
     const [loader, setLoader] = useState(false)
+    const [codReturnForm, setCodReturnForm] = useState(false)
+    const [razorpayReturnForm, setRazorpayReturnForm] = useState(false)
+    const [cancleOrderItemID, setCancleOrderItemID] = useState(null)
     const cancelOrder = (id, payment_mode) => {
         setOpenConfirmModal(true)
-        cancelOrderID.current = id;
+        setCancleOrderItemID(id);
         orderPaymentMode.current = payment_mode
         setIsSubmit(true)
     }
@@ -33,19 +37,9 @@ const Orderlist = ({ user }) => {
                 setOpenConfirmModal(false)
                 setConfirm('')
                 if (orderPaymentMode.current === 'Razorpay') {
-                    axiosPrivate.post(`/api/v1/payment/payment-refund/${cancelOrderID.current}/`, {
-                        reason: 'return'
-                    })
-                        .then(() => {
-                            setGetOrder(!getOrder)
-                        })
-                        .catch(error => { throw (error) })
+                    setRazorpayReturnForm(true)
                 } else {
-                    axiosPrivate.put(`/api/v1/order/order-cancel/${cancelOrderID.current}/`)
-                        .then(() => {
-                            setGetOrder(!getOrder)
-                        })
-                        .catch(error => { throw (error) })
+                    setCodReturnForm(true)
                 }
             }
             funcCancelorder()
@@ -76,7 +70,7 @@ const Orderlist = ({ user }) => {
                 <div style={{
                     height: '100px',
                     width: '100px',
-                    overflow:'hidden'
+                    overflow: 'hidden'
                 }}>
                     <Link to={`/orderproductdetails/${id}`}>
                         <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />
@@ -122,12 +116,6 @@ const Orderlist = ({ user }) => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="breadcrumb_block">
-                    <ul>
-                        <li><Link to='/'>home</Link></li>
-                        <li> &nbsp;order list</li>
-                    </ul>
-                </div> */}
             </div>
             <div className="container ">
                 <div className="row pl-md-3">
@@ -157,12 +145,12 @@ const Orderlist = ({ user }) => {
                                 </div>
                                 :
                                 <>
-                                <div className='text-center py-4'>
+                                    <div className='text-center py-4'>
 
-                                {items.length !== 0 ?
-                                    orderList
-                                    :
-                                    'No Items'}
+                                        {items.length !== 0 ?
+                                            orderList
+                                            :
+                                            'No Items'}
                                     </div>
                                 </>
                         }
@@ -173,6 +161,20 @@ const Orderlist = ({ user }) => {
                 openConfirmModal={openConfirmModal}
                 setOpenConfirmModal={setOpenConfirmModal}
                 setConfirm={setConfirm}
+            />
+            <Codreturnmodal
+                codReturnForm={codReturnForm}
+                setCodReturnForm={setCodReturnForm}
+                setGetOrder={() => setGetOrder(!getOrder)}
+                orderItemID={cancleOrderItemID}
+                setCancleOrderItemID={() => setCancleOrderItemID(null)}
+            />
+            <Razorpayreturnmodel
+                razorpayReturnForm={razorpayReturnForm}
+                setRazorpayReturnForm={setRazorpayReturnForm}
+                setGetOrder={() => setGetOrder(!getOrder)}
+                orderItemID={cancleOrderItemID}
+                setCancleOrderItemID={() => setCancleOrderItemID(null)}
             />
         </>
     )

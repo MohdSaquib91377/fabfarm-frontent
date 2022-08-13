@@ -107,7 +107,7 @@ const Contact = ({setPopup,setPopupMessage}) => {
                 </div>
             <div className="contact_form_wrapper clv_section pt-2">
                 <div className="container">
-                    <div className="row">
+                    <div className="row justify-content-center">
                         
                         <div className="col-lg-8 ">
                             <div className="contact_form_section">
@@ -145,7 +145,7 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 ">
+                        <div className="col-lg-4 col-sm-6 my-4 my-lg-0">
                             <div className="working_time_section">
                                 <div className="timetable_block">
                                     <h5>working hours</h5>

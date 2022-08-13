@@ -56,12 +56,12 @@ function Productdetails({ items }) {
                                 {name}
                             </h5>
                         </Link>
-                        <div>Price:{price}</div>
                         <br />
                         <br />
+                        <div> <b> Price:</b>{price}</div>
                         <br />
                         <br />
-                        <div>Status:{status}</div>
+                        <div><b>Status:</b> {status}</div>
                     </div>
 
                 </div>

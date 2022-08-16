@@ -6392,3 +6392,10 @@ table tbody > tr td a:hover {
     margin-right: 0;
   }
 }
+.coupenCodeInput{
+  background-color: transparent;
+  padding: 5px 10px ;
+  border: 1px solid rgb(72, 72, 72);
+  border-radius: 5px;
+
+}

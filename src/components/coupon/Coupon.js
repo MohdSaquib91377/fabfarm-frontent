@@ -30,6 +30,7 @@ const Coupon = ({ setCouponDetails }) => {
                 name='couponcode'
                 placeholder='Coupon code'
                 value={coupon.couponcode}
+                className="coupenCodeInput"
                 onChange={handleChange}
                 type="text" />
             <button  onClick={() => applyCoupon()} className="buttonViewMore">Apply</button>

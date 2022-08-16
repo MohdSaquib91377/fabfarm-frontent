@@ -29,7 +29,8 @@ export function Orderdetails({ items }) {
                     {payment_mode}
 
                 </p>
-                <h6><b> Mobile:</b> <span>{alternate_number}</span> </h6>
+                <p><b> Mobile:</b> <span>{alternate_number}</span> </p>
+
             </div>
         </div>
     )
@@ -56,8 +57,13 @@ function Productdetails({ items }) {
                                 {name}
                             </h5>
                         </Link>
-                        <br />
-                        <div> <b> Price: </b>{price} &nbsp;,&nbsp;<b>Status:</b> {status}</div>
+                        <div> <b> Price: </b>₹{price} </div>
+                        <div>
+                            <b>Status:</b>
+                            <span>
+                                {status}
+                            </span>
+                        </div>
                         <br />
                         <div></div>
                     </div>

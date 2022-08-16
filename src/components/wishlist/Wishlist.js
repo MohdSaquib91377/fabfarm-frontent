@@ -73,8 +73,9 @@ const Wishlist = () => {
                 <h6>
                     <FontAwesomeIcon icon={faIndianRupee} /> {price}
                 </h6>
-                <button onClick={() => removeItem(id)}>
-                    <FontAwesomeIcon color="red" icon={faTrash} />
+                <button className="buttonViewMore" onClick={() => removeItem(id)}>
+                    {/* <FontAwesomeIcon color="red" icon={faTrash} /> */}
+                    Remove
                 </button>
             </div>
         );

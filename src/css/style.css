@@ -12587,7 +12587,7 @@ button.unset {
   width: 30%;
 }
 .overflow-cart .cart_block:nth-child(3){
-  width: 25%;
+  width: 20%;
   display: flex;
   justify-content: flex-start;
 }
@@ -12597,7 +12597,7 @@ button.unset {
   width: 70%;
 }
 .overflow-cart button.unset{
-  width: 30%;
+  width: 10%;
 }
 .cart_block h5 {
   font-size: 14px;

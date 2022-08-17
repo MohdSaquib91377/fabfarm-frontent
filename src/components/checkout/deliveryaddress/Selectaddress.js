@@ -68,7 +68,7 @@ const Selectaddress = ({ details, setFetchAddress }) => {
             errors.address = 'Address is required!'
         }
         if (!values.alternate_number) {
-            errors.alternate_number = 'Alternate Number is required!'
+            errors.alternate_number = 'Mobile Number is required!'
         } else if (!regexmobile.test(values.alternate_number)) {
             errors.alternate_number = 'Enter a valid mobile number!';
         }

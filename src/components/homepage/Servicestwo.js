@@ -29,7 +29,6 @@ const Servicestwo = ({ category, setMainCategory }) => {
                                 <div className="service2_image"><img src="/images/garden_service4.png" alt="services" /></div>
                                 <div className="service2_content">
                                     <h3>{category[0]?.name}</h3>
-                                    <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +37,6 @@ const Servicestwo = ({ category, setMainCategory }) => {
                                 <div className="service2_image"><img src="/images/garden_service6.png" alt="image" /></div>
                                 <div className="service2_content">
                                     <h3>{category[1]?.name}</h3>
-                                    <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +47,6 @@ const Servicestwo = ({ category, setMainCategory }) => {
                                 <div className="service2_image"><img src="/images/garden_service7.png" alt="image" /></div>
                                 <div className="service2_content">
                                     <h3>{category[2]?.name}</h3>
-                                    <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +55,6 @@ const Servicestwo = ({ category, setMainCategory }) => {
                         <div className="service2_image"><img src="/images/garden_service8.png" alt="image" /></div>
                         <div className="service2_content">
                             <h3>Types Of Soil</h3>
-                            <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                         </div>
                     </div>
                 </div> */}
@@ -67,7 +63,6 @@ const Servicestwo = ({ category, setMainCategory }) => {
                                 <div className="service2_image"><img src="/images/garden_service9.png" alt="image" /></div>
                                 <div className="service2_content">
                                     <h3>{category[3]?.name}</h3>
-                                    <p>Dolor sit amet consectetur adipisicing elit sed do eiusmod tempor.</p>
                                 </div>
                             </div>
                         </div>

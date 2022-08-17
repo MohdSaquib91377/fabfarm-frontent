@@ -49,6 +49,7 @@ const Addressdetails = ({ details, setFetchAddress }) => {
         const regexFullName = /^[A-Za-z ]+$/;
         const regexPincode = /^[1-9][0-9]{5}$/;
         const regexmobile = /^([+]\d{2})?\d{10}$/;
+        const regexCityStateCountry = /^[A-Za-z ]+$/;
         if (!values.full_name) {
             errors.full_name = 'Full Name is required!'
         } else if (!regexFullName.test(values.full_name)) {
@@ -56,12 +57,18 @@ const Addressdetails = ({ details, setFetchAddress }) => {
         }
         if (!values.city) {
             errors.city = 'City is required!'
+        } else if (!regexCityStateCountry.test(values.city)) {
+            errors.city = 'Enter a valid city'
         }
         if (!values.state) {
             errors.state = 'State is required!'
+        } else if (!regexCityStateCountry.test(values.state)) {
+            errors.state = 'Enter a valid state'
         }
         if (!values.country) {
             errors.country = 'Country is required!'
+        } else if (!regexCityStateCountry.test(values.country)) {
+            errors.country = 'Enter a valid country'
         }
         if (!values.pincode) {
             errors.pincode = 'Pincode is required!'
@@ -249,7 +256,7 @@ const Addressdetails = ({ details, setFetchAddress }) => {
                                     <input
                                         type='text'
                                         name='alternate_number'
-                                        placeholder='Alternate Number*'
+                                        placeholder='Mobile Number*'
                                         value={addressFormValues.alternate_number}
                                         onChange={handleChange}
                                     />

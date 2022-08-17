@@ -13035,7 +13035,14 @@ button.unset {
       }
       .button-buy-parent .btn--long {
         font-size: 10px;
-        width: 120px !important;
+        width: 50% !important;
+      }
+      .button-buy-parent a{
+        
+        width: 50% !important;
+      }
+      .button-buy-parent a .btn--long{
+        width: 100% !important;
       }
       .button-buy-parent{
         width: 350px !important;

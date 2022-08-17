@@ -86,7 +86,7 @@ const Orderlist = ({ user }) => {
                 </div>
                 <Link to={`/orderproductdetails/${id}`}><h6>{name}</h6></Link>
                 <h6>Order ID : {order}</h6>
-                <h6>Price: <FontAwesomeIcon icon={faIndianRupee} /> {price}</h6>
+                <h6>Price: <FontAwesomeIcon icon={faIndianRupee} /> {price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h6>
                 <h6>Quantity: {quantity}</h6>
                 <h6>Status: {status}</h6>
                 {

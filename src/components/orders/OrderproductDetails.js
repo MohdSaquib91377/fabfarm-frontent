@@ -57,7 +57,7 @@ function Productdetails({ items }) {
                                 {name}
                             </h5>
                         </Link>
-                        <div> <b> Price: </b>₹{price} </div>
+                        <div> <b> Price: </b>₹{price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')} </div>
                         <div>
                             <b>Status:</b>
                             <span>

@@ -93,7 +93,7 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                         <div className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
                     </Link>
                     <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
-                    <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h3>
+                    <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h3>
                     {
                         maxQuantity !== 0 ?
                             <>
@@ -111,7 +111,7 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                                 {name}
                             </h3>
                         </Link>
-                        <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price}</h5>
+                        <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h5>
                     </div>
                     <p>Farm & Garden</p>
                     {/* <div className="rating_section">

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faCloudDownloadAlt, faMapMarkerAlt, faUser, faSignOutAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faCloudDownloadAlt, faMapMarkerAlt, faUser, faSignOutAlt, faTachometerAlt, faBuilding, faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import './Profile.css'
 import Tabtitle from '../../pages/Tabtitle';
@@ -10,6 +10,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useBannerImages from '../../hooks/useBannerImages';
 import Accountsetting from './accountsetting/Accountsetting';
 import Addresssetting from './addresssetting/Addresssetting';
+import Bankaccountsetting from './bank account setting/Bankaccountsetting';
 const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser, userInfo }) => {
     let Navigate = useNavigate();
     const axiosPrivate = useAxiosPrivate();
@@ -100,6 +101,12 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser, userInfo }) =>
                                     >
                                         <button className={profileState === 'Account' ? 'active' : undefined}>
                                             <FontAwesomeIcon icon={faUser} /> Account Settings</button>
+                                    </li>
+                                    <li
+                                        onClick={() => setProfileState('Payment')}
+                                    >
+                                        <button className={profileState === 'Payment' ? 'active' : undefined}>
+                                            <FontAwesomeIcon icon={faBuildingColumns} /> Payment Info</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Logout')}
@@ -203,6 +210,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser, userInfo }) =>
                                 </div>
                                 <Addresssetting profileState={profileState} />
                                 <Accountsetting profileState={profileState} />
+                                <Bankaccountsetting profileState={profileState} />
                             </div>
                         </div>
                     </div>

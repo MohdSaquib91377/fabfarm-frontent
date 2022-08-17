@@ -252,8 +252,8 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                                     </ul> */}
                                     <h6>Special price</h6>
                                     <div className="product__price m-t-5">
-                                        <span className="product__price product__price--large"><FontAwesomeIcon icon={faIndianRupee} /> {price}</span>
-                                        <span> <s><FontAwesomeIcon icon={faIndianRupee} /> {old_price}</s></span>
+                                        <span className="product__price product__price--large"><FontAwesomeIcon icon={faIndianRupee} /> {price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</span>
+                                        <span> <s><FontAwesomeIcon icon={faIndianRupee} /> {old_price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</s></span>
                                     </div>
 
                                     <div className="product__desc m-t-25 m-b-10">

@@ -71,7 +71,7 @@ const Wishlist = () => {
                 </Link>
                 {/* <h6>price: {price}</h6> */}
                 <h6>
-                    <FontAwesomeIcon icon={faIndianRupee} /> {price}
+                    <FontAwesomeIcon icon={faIndianRupee} /> {price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}
                 </h6>
                 <button className="buttonViewMore" onClick={() => removeItem(id)}>
                     {/* <FontAwesomeIcon color="red" icon={faTrash} /> */}

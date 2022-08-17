@@ -20,7 +20,7 @@ const Topproductscarousel = ({ seeds }) => {
                         <div className="item_name">
                             <h5>{name}</h5>
                         </div>
-                        <h6><span><i className="fa fa-usd" aria-hidden="true"></i></span>{price}</h6>
+                        <h6><span><i className="fa fa-usd" aria-hidden="true"></i></span>{price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h6>
                     </div>
                     <span className="label">{offer}</span>
                     <input type="checkbox" id="wishlist_1" />

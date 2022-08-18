@@ -11,6 +11,7 @@ const Bankaccountsetting = ({ profileState }) => {
     account_holder_name: '',
     phone_number: '',
     reason: '',
+    order:'',
     order_item: ''
   }
   const [formValues, setFormValues] = useState(initialValues)
@@ -27,7 +28,6 @@ const Bankaccountsetting = ({ profileState }) => {
     setIsSubmit(true)
   }
   const handleClose = () => {
-    setFormValues(initialValues)
     setFormErrors({})
     setEditState(false)
   }
@@ -82,7 +82,7 @@ const Bankaccountsetting = ({ profileState }) => {
             try {
                 const response = await axiosPrivate.get(`/api/v1/order/cod-request-refund/`)
                 console.log(response)
-                setFormValues(response.data)
+                setFormValues(response.data[0])
             } catch (error) {
                 throw error
             }
@@ -98,7 +98,7 @@ const Bankaccountsetting = ({ profileState }) => {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       setIsSubmit(false)
-      axiosPrivate.patch(`/api/v1/order/cod-request-refund/`, formValues)
+      axiosPrivate.patch(`/api/v1/order/cod-request-refund/${formValues.order_item}/`, formValues)
         .then(() => {
 
         })
@@ -256,7 +256,8 @@ const Bankaccountsetting = ({ profileState }) => {
           </form>
         }
       </div>
-    </div>)
+    </div>
+    )
 }
 
 export default Bankaccountsetting

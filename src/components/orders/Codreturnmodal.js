@@ -48,7 +48,7 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
     }
     const validateCodReturnForm = (values) => {
         const errors = {};
-        if (!values.id) {
+        if (!values.bank_id) {
             errors.id = 'Fill Account Details'
         }
         if (!values.reason) {
@@ -64,7 +64,7 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
         const getBankAccountDetails = async () => {
             try {
                 const response = await axiosPrivate.get(`/api/v1/order/cod-create-bank/`)
-                setFormValues({ ...initialValues, bank_id: response?.data[0]?.id })
+                setFormValues({ ...formValues, bank_id: response?.data[0]?.id })
             } catch (error) {
                 throw error
             }

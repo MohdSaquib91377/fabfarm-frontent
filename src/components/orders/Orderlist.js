@@ -71,7 +71,7 @@ const Orderlist = ({ user }) => {
         fetchOrderList()
     }, [user, getOrder])
     const orderList = items.map((data, i) => {
-        const { id, product: { name, image }, order, price, quantity, status, payment_mode } = data;
+        const { id, return_refund_validaty, product: { name, image }, order, price, quantity, status, payment_mode } = data;
         return (
 
             <div key={i} className="order_list_top orderListTopMain">
@@ -90,17 +90,22 @@ const Orderlist = ({ user }) => {
                 <h6>Quantity: {quantity}</h6>
                 <h6>Status: {status}</h6>
                 {
-                    status !== 'Cancelled'
-                        && status !== 'Refunded'
-                        && status !== 'Refund In Progress'
-                        && status !== 'Refund Failed'
-                        && status !== 'Request Refund'
-                        && status !== 'Completed'
-                        ?
+                    return_refund_validaty.status ?
 
-                        <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode, status)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
+                        status !== 'Cancelled'
+                            && status !== 'Refunded'
+                            && status !== 'Refund In Progress'
+                            && status !== 'Refund Failed'
+                            && status !== 'Request Refund'
+                            && status !== 'Completed'
+                            ?
+
+                            <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode, status)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
+                            :
+                            <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+
                         :
-                        <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                        <div></div>
                 }
             </div>
 

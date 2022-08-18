@@ -12,6 +12,8 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
         setValue(event.target.value)
     }
     const navigate = (id, category) => {
+        setValue('')
+        setSearchList([])
         setMainCategory(true)
         Navigate(`/shop/${category.id}/product/${id}/`)
         setSearchBarVisible(false)

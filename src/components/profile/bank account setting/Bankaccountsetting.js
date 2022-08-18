@@ -5,19 +5,19 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
 const Bankaccountsetting = ({ profileState }) => {
   const axiosPrivate = useAxiosPrivate();
   const initialValues = {
+    id: '',
+    user: '',
     ifsc_code: '',
     account_number: '',
     confirm_account_number: '',
     account_holder_name: '',
     phone_number: '',
-    reason: '',
-    order:'',
-    order_item: ''
   }
   const [formValues, setFormValues] = useState(initialValues)
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
   const [editState, setEditState] = useState(false)
+  const [addNewData, setAddNewData] = useState(false)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value })
@@ -68,41 +68,48 @@ const Bankaccountsetting = ({ profileState }) => {
       errors.phone_number = 'Enter a valid phone number'
     }
 
-    if (!values.reason) {
-      errors.reason = 'Reason is required!'
-    }
-
     return errors
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     let isMounted = true;
-        const controller = new AbortController();
-        const getBankAccountDetails = async () => {
-            try {
-                const response = await axiosPrivate.get(`/api/v1/order/cod-request-refund/`)
-                console.log(response)
-                setFormValues(response.data[0])
-            } catch (error) {
-                throw error
-            }
-        }
-        if (isMounted && !editState) {
-            getBankAccountDetails();
-        }
-        return () => {
-            isMounted = false;
-            controller.abort();
-        }
-  },[])
+    const controller = new AbortController();
+    const getBankAccountDetails = async () => {
+      try {
+        const response = await axiosPrivate.get(`/api/v1/order/cod-create-bank/`)
+        setAddNewData(false)
+        setFormValues(response?.data[0])
+      } catch (error) {
+        setAddNewData(true)
+        throw error
+      }
+    }
+    if (isMounted && !editState) {
+      getBankAccountDetails();
+    }
+    return () => {
+      isMounted = false;
+      controller.abort();
+    }
+  }, [])
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       setIsSubmit(false)
-      axiosPrivate.patch(`/api/v1/order/cod-request-refund/${formValues.order_item}/`, formValues)
-        .then(() => {
+      if (addNewData) {
+        axiosPrivate.post(`/api/v1/order/cod-create-bank/`, formValues)
+          .then(() => {
+            setEditState(false)
+          })
+          .catch(error => { throw (error) })
+      }
+      else {
+        axiosPrivate.patch(`/api/v1/order/cod-read-update-delete-bank/${formValues.id}/`, formValues)
+          .then(() => {
 
-        })
-        .catch(error => { throw (error) })
+          })
+          .catch(error => { throw (error) })
+      }
+
     }
   })
   return (
@@ -170,15 +177,7 @@ const Bankaccountsetting = ({ profileState }) => {
                 />
                 <p>{formErrors.phone_number}</p>
               </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='reason'
-                  placeholder='Reason'
-                  value={formValues.reason}
-                  onChange={handleChange}
-                />
-                <p>{formErrors.reason}</p>
-              </div>
+
             </div>
             <div>
               <Button
@@ -243,21 +242,12 @@ const Bankaccountsetting = ({ profileState }) => {
                 />
                 <p>{formErrors.phone_number}</p>
               </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='reason'
-                  placeholder='Reason'
-                  value={formValues.reason}
-                  disabled
-                />
-                <p>{formErrors.reason}</p>
-              </div>
             </div>
           </form>
         }
       </div>
     </div>
-    )
+  )
 }
 
 export default Bankaccountsetting

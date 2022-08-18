@@ -49,12 +49,6 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser, userInfo }) =>
                         </div>
                     </div>
                 </div>
-                {/* <div className="breadcrumb_block">
-                    <ul>
-                        <li><Link to='/'>home</Link></li>
-                        <li>&nbsp;Profile</li>
-                    </ul>
-                </div> */}
             </div>
             <div className="container ">
                 <div className="row">
@@ -106,7 +100,7 @@ const Profile = ({ user, makeCartEmpty, setIsAuthorized, setUser, userInfo }) =>
                                         onClick={() => setProfileState('Payment')}
                                     >
                                         <button className={profileState === 'Payment' ? 'active' : undefined}>
-                                            <FontAwesomeIcon icon={faBuildingColumns} /> Payment Info</button>
+                                            <FontAwesomeIcon icon={faBuildingColumns} /> Bank Account Info</button>
                                     </li>
                                     <li
                                         onClick={() => setProfileState('Logout')}

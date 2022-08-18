@@ -11,7 +11,6 @@ const Productimages = ({ image }) => {
     const [matches, setMatches] = useState(
         window.matchMedia("(max-width: 500px)").matches
     )
-
     useEffect(() => {
         window
             .matchMedia("(max-width: 500px)")
@@ -23,35 +22,36 @@ const Productimages = ({ image }) => {
         )
     })
 
-    if (image.length === 0) {
-        return (
-            <h1>no images</h1>
-        )
-    }
-    else if (matches) {
+    if (matches) {
         return (
             <div className='prduct-images-cantainer'>
-                <Swiper
-                    style={{
-                        "--swiper-navigation-color": "blue",
-                        "--swiper-pagination-color": "blue",
-                    }}
-                    zoom={true}
-                    navigation={false}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[Zoom, Navigation, Pagination]}
-                    className="prduct-images-swiper-cantainer"
-                >
-                    {
-                        image.map((item, i) => {
-                            return (
-                                <SwiperSlide key={i}><img src={process.env.REACT_APP_BASE_URL + item.image} alt={item.image_caption} /></SwiperSlide>
-                            )
-                        })
-                    }
-                </Swiper>
+                {
+                    image.length !== 0 ?
+                        <Swiper
+                            style={{
+                                "--swiper-navigation-color": "blue",
+                                "--swiper-pagination-color": "blue",
+                            }}
+                            zoom={true}
+                            navigation={false}
+                            pagination={{
+                                clickable: true,
+                            }}
+                            modules={[Zoom, Navigation, Pagination]}
+                            className="prduct-images-swiper-cantainer"
+                        >
+                            {
+                                image.map((item, i) => {
+                                    return (
+                                        <SwiperSlide key={i}><img src={process.env.REACT_APP_BASE_URL + item.image} alt={item.image_caption} /></SwiperSlide>
+                                    )
+                                })
+                            }
+                        </Swiper>
+                        :
+                        <img src="/images/noimagefound.jpg" alt='not found' />
+
+                }
             </div>
         )
     }
@@ -59,42 +59,52 @@ const Productimages = ({ image }) => {
         return (
             <div className='productNameProductPage'>
                 <div id="gallery-zoom" className="product-image--thumb product-image--thumb-horizontal pos-relative PRODUCT-RESPONSIVE">
-                    <Swiper
-                        direction={"vertical"}
-                        navigation={true}
-                        slidesPerView={5}
-                        spaceBetween={20}
-                        modules={[Navigation]}
-                        className="swiper-container-vertical">
-                        {thumbImages}
-                    </Swiper>
+                    {
+                        image.length !== 0 ?
+                            <Swiper
+                                direction={"vertical"}
+                                navigation={true}
+                                slidesPerView={5}
+                                spaceBetween={20}
+                                modules={[Navigation]}
+                                className="swiper-container-vertical">
+                                {thumbImages}
+                            </Swiper>
+                            :
+                            <img src="/images/noimagefound.jpg" alt='not found' />
+                    }
                 </div>
                 <div>
-                    <ReactImageMagnify {...{
-                        smallImage: {
-                            alt: image[prevImage].image_caption,
-                            isFluidWidth: false,
-                            src: process.env.REACT_APP_BASE_URL + image[prevImage].image,
-                            width: 400,
-                            height: 500
-                        },
-                        largeImage: {
-                            src: process.env.REACT_APP_BASE_URL + image[prevImage].image,
-                            width: 1000,
-                            height: 1800,
-                            opacity: '100',
-                            backgroundColor: 'black'
-                        },
-                        enlargedImageContainerDimensions: {
-                            width: '180%',
-                            height: '100%',
-                        },
-                        enlargedImageContainerStyle: {
-                            border: 'red 1px solid',
-                            zIndex: '1',
-                            background: 'white'
-                        },
-                    }} />
+                    {
+                        image.length !== 0 ?
+                            <ReactImageMagnify {...{
+                                smallImage: {
+                                    alt: image[prevImage].image_caption,
+                                    isFluidWidth: false,
+                                    src: process.env.REACT_APP_BASE_URL + image[prevImage].image,
+                                    width: 400,
+                                    height: 500
+                                },
+                                largeImage: {
+                                    src: process.env.REACT_APP_BASE_URL + image[prevImage].image,
+                                    width: 1000,
+                                    height: 1800,
+                                    opacity: '100',
+                                    backgroundColor: 'black'
+                                },
+                                enlargedImageContainerDimensions: {
+                                    width: '180%',
+                                    height: '100%',
+                                },
+                                enlargedImageContainerStyle: {
+                                    border: 'red 1px solid',
+                                    zIndex: '1',
+                                    background: 'white'
+                                },
+                            }} />
+                            :
+                            <img src="/images/noimagefound.jpg" alt='not found' />
+                    }
                 </div>
 
 

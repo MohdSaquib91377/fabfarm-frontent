@@ -9,7 +9,7 @@ import { axiosPrivate } from '../API/axios';
 const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, addToCart, setPopupMessage, setPopup, onlineCart, cart }) => {
     let Navigate = useNavigate();
     const [onlineCartCount, setOnlineCartCount] = useState(0)
-    const { id, image: [{ image }], name, description, price, maxQuantity } = product;
+    const { id, image, name, description, price, maxQuantity } = product;
     const funcAddToCart = (event) => {
         const id = parseInt(event.currentTarget.id)
         if (maxQuantity === onlineCartCount) {
@@ -90,7 +90,14 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
             <div className="product_item_block">
                 <div className="org_product_block">
                     <Link to={`/shop/${categoryId}/product/${id}`}>
-                        <div className="org_product_image"><img src={process.env.REACT_APP_BASE_URL + image} alt={name} /></div>
+                        <div className="org_product_image">
+                            {
+                                image.length !== 0 ?
+                                    <img src={process.env.REACT_APP_BASE_URL + image[0]?.image} alt={name} />
+                                    :
+                                    <img src="/images/noimagefound.jpg" alt={name} />
+                            }
+                        </div>
                     </Link>
                     <Link to={`/shop/${categoryId}/product/${id}`}><h4 >{name}</h4></Link>
                     <h3><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h3>

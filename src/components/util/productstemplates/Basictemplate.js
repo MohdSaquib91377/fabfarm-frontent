@@ -13,7 +13,7 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
     const [addedToWhislist, setAddedToWhislist] = useState(false)
     const [onlineCartCount, setOnlineCartCount] = useState(0)
     const [loader, setLoader] = useState(false)
-    const { id, name, category, image: [{ image }], price, maxQuantity, is_product_in_wishlist_for_current_user } = item
+    const { id, name, category, image, price, maxQuantity, is_product_in_wishlist_for_current_user } = item
 
     const funcAddToCart = (event) => {
         if (maxQuantity === onlineCartCount) {
@@ -101,8 +101,14 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
             <div className="product__box product__default--single text-center">
                 <div className="product__img-box  pos-relative">
                     <Link to={`/shop/${category.id}/product/${id}`} className="product__img--link">
-                        <img className="product__img img-fluid"
-                            src={process.env.REACT_APP_BASE_URL + image} alt={name} />
+                        {
+                            image.length !== 0 ?
+                                <img className="product__img img-fluid"
+                                    src={process.env.REACT_APP_BASE_URL + image[0]?.image} alt={name} />
+                                :
+                                <img className="product__img img-fluid"
+                                    src="/images/noimagefound.jpg" alt={name} />
+                        }
                     </Link>
                     <span className="product__label product__label--sale-dis"></span>
                     <ul className="product__action--link pos-absolute">
@@ -139,16 +145,16 @@ const Basictemplate = ({ item, isAuthorized, addToCart, setPopup, setPopupMessag
                     <Link to={`/shop/${category.id}/product/${id}`} className="product__link">{name}</Link>
                     <div className="product__price m-t-5">
                         {
-                            maxQuantity !== 0?
+                            maxQuantity !== 0 ?
 
-                            <span className="product__price"><FontAwesomeIcon icon={faIndianRupee} /> {price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</span>
-                            :
-                            <span style={{
-                                color:'red'
-                            }}>Out Of Stock</span>
+                                <span className="product__price"><FontAwesomeIcon icon={faIndianRupee} /> {price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</span>
+                                :
+                                <span style={{
+                                    color: 'red'
+                                }}>Out Of Stock</span>
                         }
                     </div>
-                    
+
                 </div>
             </div>
         </>

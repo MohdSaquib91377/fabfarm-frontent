@@ -64,13 +64,21 @@ const Services = ({ category, setMainCategory }) => {
                                 className="mySwiper">
                                 {
                                     category.map((category, index) => {
-                                        const { id, name } = category;
+                                        console.log(category)
+                                        const { id, name, image } = category;
                                         return (
                                             <div className="col-lg-3 col-md-6">
                                                 <SwiperSlide key={index}>
                                                     <div className="garden_service_block" onClick={() => navigate(id)}>
                                                         <div className="service_image">
-                                                            <span><img src={process.env.PUBLIC_URL + "/images/garden_service1.png"} alt="" /></span>
+                                                            <span>
+                                                                {
+                                                                    image !== null ?
+                                                                        <img width='64px' height='70px' src={process.env.REACT_APP_BASE_URL + image} alt="" />
+                                                                        :
+                                                                        undefined
+                                                                }
+                                                            </span>
                                                         </div>
                                                         <h3>{name}</h3>
                                                     </div>

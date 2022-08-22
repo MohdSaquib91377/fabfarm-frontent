@@ -64,7 +64,6 @@ const Services = ({ category, setMainCategory }) => {
                                 className="mySwiper">
                                 {
                                     category.map((category, index) => {
-                                        console.log(category)
                                         const { id, name, image } = category;
                                         return (
                                             <div className="col-lg-3 col-md-6">

@@ -12792,10 +12792,13 @@ button.unset {
 }
 .product-page .left {
   display: flex;
-  width: 50%;
+  width: 100%;
 }
 .product-page .left div {
   margin-right: 10px;
+}
+.product-page .left button {
+  color:green;
 }
 .product-page .left div:last-child{
   width: 100%;
@@ -13185,13 +13188,26 @@ button.unset {
 }
 .orderListTopMain{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+}
+.orderListTopMain > div > h6 {
+  text-align:'left'
 }
 .orderListTopMain img{
   width: 100px;
   height: 100px;
 
+}
+.orderListTopMain > * {
+  flex:1;
+} 
+.orderliststatus {
+  text-align:left;
+}
+.orderliststatus > * {
+  padding:5px
+}
+.orderliststatus button{
+  color:green;
 }
 @media (max-width:900px) {
   .product-page .left{

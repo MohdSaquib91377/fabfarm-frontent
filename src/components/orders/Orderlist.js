@@ -1,5 +1,6 @@
-import { faIndianRupee } from '@fortawesome/free-solid-svg-icons'
+import { faIndianRupee, faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { display } from '@mui/system'
 import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -8,7 +9,13 @@ import useBannerImages from '../../hooks/useBannerImages'
 import Tabtitle from '../../pages/Tabtitle'
 import Codreturnmodal from './Codreturnmodal'
 import Confirmationmodal from './Confirmationmodal'
+import Ratingandreviewmodal from './Ratingandreviewmodal'
 import Razorpayreturnmodel from './Razorpayreturnmodel'
+
+const colors = {
+    green: '#317b31',
+    grey: '#a9a9a9'
+}
 
 const Orderlist = ({ user }) => {
     Tabtitle('FAB | Order List')
@@ -25,12 +32,19 @@ const Orderlist = ({ user }) => {
     const [codReturnForm, setCodReturnForm] = useState(false)
     const [razorpayReturnForm, setRazorpayReturnForm] = useState(false)
     const [cancleOrderItemID, setCancleOrderItemID] = useState(null)
+    const [ratingAndReviewState, setRatingAndReviewState] = useState(false)
+    const [orderItem, setOrderItem] = useState(null);
+    const stars = Array(5).fill(0);
     const cancelOrder = (id, payment_mode, status) => {
         setOpenConfirmModal(true)
         setCancleOrderItemID(id);
         orderPaymentMode.current = payment_mode
         orderStatus.current = status
         setIsSubmit(true)
+    }
+    const handleRating = (id) => {
+        setRatingAndReviewState(true)
+        setOrderItem(id)
     }
     useEffect(() => {
         if (confirm === 'yes' && isSubmit) {
@@ -71,7 +85,7 @@ const Orderlist = ({ user }) => {
         fetchOrderList()
     }, [user, getOrder])
     const orderList = items.map((data, i) => {
-        const { id, return_refund_validaty, product: { name, image }, order, price, quantity, status, payment_mode } = data;
+        const { id, return_refund_validaty, product: { name, image }, price, status, payment_mode, order_item_rating } = data;
         return (
 
             <div key={i} className="order_list_top orderListTopMain">
@@ -85,28 +99,71 @@ const Orderlist = ({ user }) => {
                     </Link>
                 </div>
                 <Link to={`/orderproductdetails/${id}`}><h6>{name}</h6></Link>
-                <h6>Order ID : {order}</h6>
                 <h6>Price: <FontAwesomeIcon icon={faIndianRupee} /> {price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h6>
-                <h6>Quantity: {quantity}</h6>
-                <h6>Status: {status}</h6>
-                {
-                    return_refund_validaty.status ?
-
-                        status !== 'Cancelled'
-                            && status !== 'Refunded'
-                            && status !== 'Refund In Progress'
-                            && status !== 'Refund Failed'
-                            && status !== 'Request Refund'
-                            && status !== 'Completed'
-                            ?
-
-                            <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode, status)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
+                <div className='orderliststatus'>
+                    <h6>Status: {status}</h6>
+                    {
+                        status === 'Delivered' ?
+                            <div>
+                                {
+                                    order_item_rating !== null &&
+                                    <div>
+                                        {
+                                            stars.map((_, index) => {
+                                                return (
+                                                    <FontAwesomeIcon
+                                                        style={{
+                                                            padding: '5px',
+                                                        }}
+                                                        icon={faStar}
+                                                        key={index}
+                                                        size='sm'
+                                                        color={parseInt(order_item_rating.rating) > index ? colors.green : colors.grey}
+                                                    />
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                }
+                                <button
+                                    onClick={() => handleRating(id)}
+                                >
+                                    Rate {'&'} Review Product
+                                </button>
+                                <Ratingandreviewmodal
+                                    order_item_rating={order_item_rating}
+                                    ratingAndReviewState={ratingAndReviewState}
+                                    setRatingAndReviewState={setRatingAndReviewState}
+                                    setGetOrder={() => setGetOrder(!getOrder)}
+                                    orderItem={orderItem}
+                                    setOrderItem={() => setOrderItem(null)}
+                                />
+                            </div>
                             :
-                            <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                            undefined
+                    }
+                </div>
+                <div>
+                    {
+                        return_refund_validaty.status ?
 
-                        :
-                        <div></div>
-                }
+                            status !== 'Cancelled'
+                                && status !== 'Refunded'
+                                && status !== 'Refund In Progress'
+                                && status !== 'Refund Failed'
+                                && status !== 'Request Refund'
+                                && status !== 'Completed'
+                                ?
+
+                                <button className='buttonViewMore delete-button' onClick={() => cancelOrder(id, payment_mode, status)}>{status === 'Delivered' ? 'Return' : 'Cancel'}</button>
+                                :
+                                <button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+
+                            :
+                            <div></div>
+                    }
+                </div>
+
             </div>
 
         )
@@ -158,7 +215,7 @@ const Orderlist = ({ user }) => {
                                 </div>
                                 :
                                 <>
-                                    <div className='text-center py-4'>
+                                    <div className='text-center'>
 
                                         {items.length !== 0 ?
                                             orderList

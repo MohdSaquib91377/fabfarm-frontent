@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Tabtitle from '../../pages/Tabtitle';
 import useBannerImages from '../../hooks/useBannerImages';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import Ratingandreviewmodal from './Ratingandreviewmodal';
 
-
+const colors = {
+    green: '#317b31',
+    grey: '#a9a9a9'
+}
 export function Orderdetails({ items }) {
     const { payment_mode, order } = items;
     const { address: { address, alternate_number, city, country, full_name, landmark, locality, pincode, state } } = order;
@@ -35,8 +41,15 @@ export function Orderdetails({ items }) {
         </div>
     )
 }
-function Productdetails({ items }) {
-    const { status, product: { id, category, name, image, price } } = items;
+function Productdetails({ items, setGetOrder, getOrder }) {
+    const { status, product: { id, category, name, image, price }, order_item_rating } = items;
+    const [ratingAndReviewState, setRatingAndReviewState] = useState(false)
+    const [orderItem, setOrderItem] = useState(null)
+    const stars = Array(5).fill(0);
+    const handleRating = (id) => {
+        setRatingAndReviewState(true)
+        setOrderItem(id)
+    }
     return (
         //add stytle here for product section 
         <div className='product-page-wrap container'>
@@ -67,19 +80,59 @@ function Productdetails({ items }) {
                         <br />
                         <div></div>
                     </div>
-
+                    {
+                        status === 'Delivered' ?
+                            <div>
+                                {
+                                    order_item_rating !== null &&
+                                    <div>
+                                        {
+                                            stars.map((_, index) => {
+                                                return (
+                                                    <FontAwesomeIcon
+                                                        style={{
+                                                            padding: '5px',
+                                                        }}
+                                                        icon={faStar}
+                                                        key={index}
+                                                        size='sm'
+                                                        color={parseInt(order_item_rating.rating) > index ? colors.green : colors.grey}
+                                                    />
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                }
+                                <button
+                                    onClick={() => handleRating(items.id)}
+                                >
+                                    Rate {'&'} Review Product
+                                </button>
+                                <Ratingandreviewmodal
+                                    order_item_rating={order_item_rating}
+                                    ratingAndReviewState={ratingAndReviewState}
+                                    setRatingAndReviewState={setRatingAndReviewState}
+                                    setGetOrder={() => setGetOrder(!getOrder)}
+                                    orderItem={orderItem}
+                                    setOrderItem={() => setOrderItem(null)}
+                                />
+                            </div>
+                            :
+                            undefined
+                    }
                 </div>
             </div>
         </div>
     )
 }
 
-function OrderproductDetails({ user }) {
+function OrderproductDetails() {
     let { prodID } = useParams();
     Tabtitle('FAB | Orders Details')
     const banner = useBannerImages('order_details_page')
     const axiosPrivate = useAxiosPrivate();
     const [items, setItems] = useState([]);
+    const [getOrder, setGetOrder] = useState(false)
     useEffect(() => {
         axiosPrivate.get(`/api/v1/order/order-details/${prodID}/`)
             .then(response => {
@@ -88,7 +141,7 @@ function OrderproductDetails({ user }) {
             .catch(error => {
                 throw (error)
             })
-    }, [])
+    }, [getOrder])
 
 
     // const { id, order, product, quantity, status } = item;
@@ -110,12 +163,6 @@ function OrderproductDetails({ user }) {
                         </div>
                     </div>
                 </div>
-                {/* <div className="breadcrumb_block">
-                    <ul>
-                        <li><Link to='/'>home</Link></li>
-                        <li> &nbsp;ordered product</li>
-                    </ul>
-                </div> */}
             </div>
             <div className="container ">
                 <div className="row">
@@ -136,7 +183,7 @@ function OrderproductDetails({ user }) {
 
                         </div>
                         <div>
-                            < Productdetails items={items} />
+                            < Productdetails items={items} setGetOrder={setGetOrder} getOrder={getOrder} />
                         </div>
                     </>
                     :

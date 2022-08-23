@@ -41,7 +41,6 @@ const Ratingandreviewmodal = ({ ratingAndReviewState, setRatingAndReviewState, s
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
     }
-    console.log(orderItem)
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validateRatingAndReview(formValues))

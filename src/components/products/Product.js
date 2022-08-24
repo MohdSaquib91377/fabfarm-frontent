@@ -19,6 +19,7 @@ import useBannerImages from '../../hooks/useBannerImages';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Recentlyviewed from './Recentlyviewed';
 import Shareonsocial from './Shareonsocial';
+import Ratingandreview from './Ratingandreview';
 const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addToCart, incrementQuantity, decrementQuantity, setMainCategory, setPopup, setPopupMessage }) => {
     let { productID } = useParams();
     let { categoryId } = useParams();
@@ -191,13 +192,6 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                         </div>
                     </div>
                 </div>
-                {/* <div className="breadcrumb_block">
-                                <ul>
-                                    <li><Link to='/'>home</Link></li>
-                                    <li><Link to={`/shop/${categoryId}`}>&nbsp;{category}</Link></li>
-                                    <li> &nbsp; {name} </li>
-                                </ul>
-                            </div> */}
             </div>
             <div id="main-container" style={{
                 marginTop: '30px'
@@ -243,13 +237,6 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                             <div className="col-lg-7">
                                 <div className="product-details-box m-b-60">
                                     <h4 className=" m-b-20 mt-4 productNameText">{name}</h4>
-                                    {/* <ul className="product__review">
-                                        <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
-                                        <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
-                                        <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
-                                        <li className="product__review--fill"><FontAwesomeIcon icon={faStar} /></li>
-                                        <li className="product__review--blank"><FontAwesomeIcon icon={faStar} /></li>
-                                    </ul> */}
                                     <h6>Special price</h6>
                                     <div className="product__price m-t-5">
                                         <span className="product__price product__price--large"><FontAwesomeIcon icon={faIndianRupee} /> {price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</span>
@@ -291,24 +278,6 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                                                 </div> :
                                                 undefined
                                         }
-                                        {/* <div className="product-var__item">
-                                                        <button onClick={() => addToCart(id)} className="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</button>
-                                                        <a href="wishlist.html" className="btn btn--round btn--round-size-small btn--green btn--green-hover-black">
-                                                            <FontAwesomeIcon icon={faHeart} />
-                                                        </a>
-                                                    </div> */}
-                                        {/* <div className="product-var__item">
-                                                        <div className="dynmiac_checkout--button">
-                                                            
-                                                            <Link to='/checkout'>
-                                                                <button style={{
-                                                                    width: "285px"
-                                                                }}
-                                                                    onClick={() => addToCart(id)}
-                                                                    className="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</button>
-                                                            </Link>
-                                                        </div>
-                                                    </div> */}
                                         <div className="product-var__item">
                                             <span className="product-var__text">Guaranteed safe checkout </span>
                                             <ul className="payment-icon m-t-5">
@@ -330,6 +299,7 @@ const Product = ({ onlineCart, cart, updateCart, isAuthorized, setProducts, addT
                                             />
                                         </div>
                                     </div>
+                                    <Ratingandreview currentItem={currentItem} />
                                 </div>
                             </div>
                         </div>

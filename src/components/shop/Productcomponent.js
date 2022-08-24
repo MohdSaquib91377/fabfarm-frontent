@@ -121,17 +121,6 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                         <h5><span><FontAwesomeIcon icon={faIndianRupee} /></span>{price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h5>
                     </div>
                     <p>Farm & Garden</p>
-                    {/* <div className="rating_section">
-                        <span>4.1</span>
-                        <ul>
-                            <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                            <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                            <li><a className="active" href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i className="fa fa-star" aria-hidden="true"></i></a></li>
-                        </ul>
-                        <p>151 reviews</p>
-                    </div> */}
                     <ul>
                         <li>
                             <p>Availability: <span style={maxQuantity !== 0 ? { color: 'green' } : { color: 'red' }}>{maxQuantity !== 0 ? 'In Stock' : 'Out Of Stock'}</span></p>

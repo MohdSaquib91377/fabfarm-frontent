@@ -13387,6 +13387,13 @@ button.unset {
   width: 400px;
   align-items: center;
 }
+
+@media (max-width:400px){
+  .rating-section {
+    flex-direction:column;  
+    width:auto;
+  }
+}
 .rating-text {
   display:flex;
   flex-direction:column;

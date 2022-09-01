@@ -6,7 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Bankaccountsetting from '../profile/bank account setting/Bankaccountsetting';
-
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Addnewaccount from './Addnewaccount';
 
 const style = {
     position: 'absolute',
@@ -18,19 +23,20 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    textAlign: 'center'
+    textAlign: 'center',
 };
 const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderItemID, setCancleOrderItemID }) => {
 
     const axiosPrivate = useAxiosPrivate();
     const initialValues = {
-        bank_id: '',
-        reason: '',
+        fund_accounts: '',
         order_item: ''
     }
     const [formValues, setFormValues] = useState(initialValues)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
+    const [accountDetails, setAccountDetails] = useState([])
+    const [fetchAccountDetails, setFetchAccountDetails] = useState(false)
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value })
@@ -48,23 +54,18 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
     }
     const validateCodReturnForm = (values) => {
         const errors = {};
-        if (!values.bank_id) {
-            errors.id = 'Fill Account Details'
+        if (!values.fund_accounts) {
+            errors.fund_accounts = 'Add Account Details'
         }
-        if (!values.reason) {
-            errors.reason = 'Reason is required!'
-        }
-
         return errors
     }
-
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
         const getBankAccountDetails = async () => {
             try {
-                const response = await axiosPrivate.get(`/api/v1/order/cod-create-bank/`)
-                setFormValues({ ...formValues, bank_id: response?.data[0]?.id })
+                const response = await axiosPrivate.get(`/api/v1/order/razorpay/create-fund-account/`)
+                setAccountDetails(response?.data)
             } catch (error) {
                 throw error
             }
@@ -76,7 +77,7 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
             isMounted = false;
             controller.abort();
         }
-    }, [])
+    }, [fetchAccountDetails])
 
 
     useEffect(() => {
@@ -86,7 +87,7 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             setIsSubmit(false)
-            axiosPrivate.post(`/api/v1/order/cod-request-refund/`, formValues)
+            axiosPrivate.post(`/api/v1/order/request-refund-item/`, formValues)
                 .then(() => {
                     setGetOrder()
                     setCodReturnForm(false)
@@ -113,22 +114,62 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
                     >
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
-                    <Bankaccountsetting profileState='Payment' />
+                    <div style={{
+                        textAlign: 'left',
+                    }}>
+                        <Addnewaccount fetchAccountDetails={fetchAccountDetails} setFetchAccountDetails={setFetchAccountDetails} />
+                        <div
+                            style={{
+                                border: '1px solid #ebebeb',
+                                borderRadius: '3px',
+                                padding: '10px 20px',
+                                width: '100%',
+                                outline: 'none',
+                                fontSize: '14px',
+                            }}
+                        >
+
+                            <FormControl>
+                                <FormLabel>Account Details</FormLabel>
+                                <RadioGroup
+                                    name="fund_accounts"
+                                    value={formValues.fund_accounts}
+                                    onChange={handleChange}
+                                >
+                                    {accountDetails.map((details, index) => {
+                                        const { id, name, ifsc, account_number } = details;
+                                        return (
+                                            <div
+                                                key={index}
+                                                style={{
+                                                    padding: '10px 20px',
+                                                    width: '100%',
+                                                    outline: 'none',
+                                                    fontSize: '14px',
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <FormControlLabel value={id} control={<Radio />} />
+
+                                                <div>
+                                                    <h4>{name}</h4>
+                                                    <p>{ifsc}</p>
+                                                    <p>{account_number}</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </RadioGroup>
+                                <p style={{
+                                    color: 'red'
+                                }}>{formErrors.fund_accounts}</p>
+                            </FormControl>
+                        </div>
+                    </div>
                     <p style={{
                         color: 'red'
-                    }}>{formErrors.bank_id}</p>
+                    }}>{formErrors.fund_accounts}</p>
                     <form onSubmit={handleSubmit} >
-                        <div className="d-flex flex-wrap">
-                            <div className="col-md-6 col-12 form-box__single-group">
-                                <input
-                                    name='reason'
-                                    placeholder='Reason'
-                                    value={formValues.reason}
-                                    onChange={handleChange}
-                                />
-                                <p>{formErrors.reason}</p>
-                            </div>
-                        </div>
                         <div>
                             <Button
                                 type='button'

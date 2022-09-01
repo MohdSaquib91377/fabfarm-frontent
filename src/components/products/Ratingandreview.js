@@ -4,7 +4,6 @@ import React from 'react'
 
 const Ratingandreview = ({ currentItem }) => {
     const { product_avg_ratings, ratings, total_ratings_reviews, rating_bar } = currentItem
-    console.log(ratings)
     return (
         <div>
             <span className='product-var__text m-t-15'>Ratings {'&'} Reviews</span>

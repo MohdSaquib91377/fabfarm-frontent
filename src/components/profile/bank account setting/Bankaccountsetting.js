@@ -5,19 +5,16 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate'
 const Bankaccountsetting = ({ profileState }) => {
   const axiosPrivate = useAxiosPrivate();
   const initialValues = {
-    id: '',
-    user: '',
-    ifsc_code: '',
+    ifsc: '',
+    name: '',
     account_number: '',
     confirm_account_number: '',
-    account_holder_name: '',
-    phone_number: '',
   }
   const [formValues, setFormValues] = useState(initialValues)
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
   const [editState, setEditState] = useState(false)
-  const [addNewData, setAddNewData] = useState(false)
+  const [accountDetails, setAccountDetails] = useState([])
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value })
@@ -36,12 +33,17 @@ const Bankaccountsetting = ({ profileState }) => {
     const regexIFSCCODE = /^[A-Z]{4}0[A-Z0-9]{6}$/;
     const regexAccountNumber = /^[0-9]{9,18}/;
     const regexName = /^[A-Za-z ]+$/;
-    const regexmobile = /^([+]\d{2})?\d{10}$/;
 
-    if (!values.ifsc_code) {
-      errors.ifsc_code = 'IFSC CODE is required!'
-    } else if (!regexIFSCCODE.test(values.ifsc_code)) {
-      errors.ifsc_code = 'Enter a valid IFSC CODE'
+    if (!values.ifsc) {
+      errors.ifsc = 'IFSC CODE is required!'
+    } else if (!regexIFSCCODE.test(values.ifsc)) {
+      errors.ifsc = 'Enter a valid IFSC CODE'
+    }
+
+    if (!values.name) {
+      errors.name = 'Account holder name is required!'
+    } else if (!regexName.test(values.name)) {
+      errors.name = 'Enter a valid account holder name'
     }
 
     if (!values.account_number) {
@@ -56,18 +58,6 @@ const Bankaccountsetting = ({ profileState }) => {
       errors.confirm_account_number = 'Account number and confirm account number does not match'
     }
 
-    if (!values.account_holder_name) {
-      errors.account_holder_name = 'Account holder name is required!'
-    } else if (!regexName.test(values.account_holder_name)) {
-      errors.account_holder_name = 'Enter a valid account holder name'
-    }
-
-    if (!values.phone_number) {
-      errors.phone_number = 'Phone number is required!'
-    } else if (!regexmobile.test(values.phone_number)) {
-      errors.phone_number = 'Enter a valid phone number'
-    }
-
     return errors
   }
 
@@ -76,11 +66,9 @@ const Bankaccountsetting = ({ profileState }) => {
     const controller = new AbortController();
     const getBankAccountDetails = async () => {
       try {
-        const response = await axiosPrivate.get(`/api/v1/order/cod-create-bank/`)
-        setAddNewData(false)
-        setFormValues(response?.data[0])
+        const response = await axiosPrivate.get(`/api/v1/order/razorpay/create-fund-account/`)
+        setAccountDetails(response?.data)
       } catch (error) {
-        setAddNewData(true)
         throw error
       }
     }
@@ -91,160 +79,111 @@ const Bankaccountsetting = ({ profileState }) => {
       isMounted = false;
       controller.abort();
     }
-  }, [])
+  }, [editState])
+
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       setIsSubmit(false)
-      if (addNewData) {
-        axiosPrivate.post(`/api/v1/order/cod-create-bank/`, formValues)
-          .then(() => {
-            setEditState(false)
-          })
-          .catch(error => { throw (error) })
-      }
-      else {
-        axiosPrivate.patch(`/api/v1/order/cod-read-update-delete-bank/${formValues.id}/`, formValues)
-          .then(() => {
-
-          })
-          .catch(error => { throw (error) })
-      }
-
+      axiosPrivate.post(`/api/v1/order/razorpay/create-fund-account/`, formValues)
+        .then(() => {
+          setEditState(false)
+        })
+        .catch(error => {
+          setFormErrors({ ...formErrors, error: `${error.response.data.message.error.description}` })
+          throw (error)
+        })
     }
   })
   return (
     <div className={profileState === 'Payment' ? 'tab-pane fade show active' : 'tab-pane fade '}>
       <div className="my-account-dashboard account-wrapper">
-        <div
-          className='HeadingsProfileEdit'>
-          <h4 className="account-title">Account Details</h4>
+        <h4 className="account-title">Account Details</h4>
+
+        <div className='m-t-30'>
           {
-            !editState
-            &&
-            <button
-              className='exitButtonProfile'
-              onClick={() => setEditState(true)}
-            >
-              Edit
-            </button>
+            editState ?
+              <form onSubmit={handleSubmit} >
+                <div className='form-box__single-group'>
+                  <p className='text-center'>{formErrors.error}</p>
+                </div>
+                <div className="d-flex flex-wrap">
+                  <div className="col-md-6 col-12 form-box__single-group">
+                    <input
+                      name='ifsc'
+                      placeholder='IFSC CODE'
+                      value={formValues.ifsc}
+                      onChange={handleChange}
+                    />
+                    <p>{formErrors.ifsc}</p>
+                  </div>
+                  <div className="col-md-6 col-12 form-box__single-group">
+                    <input
+                      name='account_number'
+                      placeholder='Account number'
+                      value={formValues.account_number}
+                      onChange={handleChange}
+                    />
+                    <p>{formErrors.account_number}</p>
+                  </div>
+                  <div className="col-md-6 col-12 form-box__single-group">
+                    <input
+                      name='confirm_account_number'
+                      placeholder='Confirm account number'
+                      value={formValues.confirm_account_number}
+                      onChange={handleChange}
+                    />
+                    <p>{formErrors.confirm_account_number}</p>
+                  </div>
+                  <div className="col-md-6 col-12 form-box__single-group">
+                    <input
+                      name='name'
+                      placeholder='Account holder name'
+                      value={formValues.name}
+                      onChange={handleChange}
+                    />
+                    <p>{formErrors.name}</p>
+                  </div>
+                </div>
+                <div>
+                  <Button
+                    type='button'
+                    variant="contained"
+                    color="error"
+                    sx={{ marginRight: 5 }}
+                    onClick={() => handleClose()}
+                  >Cancel</Button>
+                  <Button
+                    type='submit'
+                    variant="contained"
+                    color="success"
+                  >submit</Button>
+                </div>
+              </form>
+              :
+              <button
+                className='exitButtonProfile'
+                onClick={() => setEditState(true)}
+              >
+                Add new account
+              </button>
           }
         </div>
-        {editState ?
-          <form onSubmit={handleSubmit} >
-            <div className="d-flex flex-wrap">
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='ifsc_code'
-                  placeholder='IFSC CODE'
-                  value={formValues.ifsc_code}
-                  onChange={handleChange}
-                />
-                <p>{formErrors.ifsc_code}</p>
-              </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='account_number'
-                  placeholder='Account number'
-                  value={formValues.account_number}
-                  onChange={handleChange}
-                />
-                <p>{formErrors.account_number}</p>
-              </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='confirm_account_number'
-                  placeholder='Confirm account number'
-                  value={formValues.confirm_account_number}
-                  onChange={handleChange}
-                />
-                <p>{formErrors.confirm_account_number}</p>
-              </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='account_holder_name'
-                  placeholder='Account holder name'
-                  value={formValues.account_holder_name}
-                  onChange={handleChange}
-                />
-                <p>{formErrors.account_holder_name}</p>
-              </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='phone_number'
-                  placeholder='Phone number'
-                  value={formValues.phone_number}
-                  onChange={handleChange}
-                />
-                <p>{formErrors.phone_number}</p>
-              </div>
-
-            </div>
-            <div>
-              <Button
-                type='button'
-                variant="contained"
-                color="error"
-                sx={{ marginRight: 5 }}
-                onClick={() => handleClose()}
-              >Cancel</Button>
-              <Button
-                type='submit'
-                variant="contained"
-                color="success"
-              >submit</Button>
-            </div>
-          </form>
-          :
-          <form>
-            <div className="d-flex flex-wrap">
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='ifsc_code'
-                  placeholder='IFSC CODE'
-                  value={formValues.ifsc_code}
-                  disabled
-                />
-                <p>{formErrors.ifsc_code}</p>
-              </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='account_number'
-                  placeholder='Account number'
-                  value={formValues.account_number}
-                  disabled
-                />
-                <p>{formErrors.account_number}</p>
-              </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='confirm_account_number'
-                  placeholder='Confirm account number'
-                  value={formValues.confirm_account_number}
-                  disabled
-                />
-                <p>{formErrors.confirm_account_number}</p>
-              </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='account_holder_name'
-                  placeholder='Account holder name'
-                  value={formValues.account_holder_name}
-                  disabled
-                />
-                <p>{formErrors.account_holder_name}</p>
-              </div>
-              <div className="col-md-6 col-12 form-box__single-group">
-                <input
-                  name='phone_number'
-                  placeholder='Phone number'
-                  value={formValues.phone_number}
-                  disabled
-                />
-                <p>{formErrors.phone_number}</p>
-              </div>
-            </div>
-          </form>
-        }
+        <div className='m-t-30'>
+          {
+            accountDetails.map((details, index) => {
+              const { ifsc, account_number, name } = details;
+              return (
+                <div key={index}>
+                  <h4>{name}</h4>
+                  <div>
+                    <p>{ifsc}</p>
+                    <p>{account_number}</p>
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     </div>
   )

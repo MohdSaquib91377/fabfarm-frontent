@@ -34,11 +34,11 @@ const Ratingandreview = ({ currentItem }) => {
                         <div className='rating-status-bar'>
                             <span style={{
                                 backgroundColor: '#388e3c',
-                                width: '100%'
+                                width: rating_bar[4].bar_percentage
                             }}></span>
                         </div>
                         <di>
-                            1
+                            {rating_bar[4].five}
                         </di>
                     </div>
                     <div style={{
@@ -52,11 +52,11 @@ const Ratingandreview = ({ currentItem }) => {
                         <div className='rating-status-bar'>
                             <span style={{
                                 backgroundColor: '#388e3c',
-                                width: '40%'
+                                width: rating_bar[3].bar_percentage
                             }}></span>
                         </div>
                         <di>
-                            1
+                            {rating_bar[3].four}
                         </di>
                     </div>
                     <div style={{
@@ -70,11 +70,11 @@ const Ratingandreview = ({ currentItem }) => {
                         <div className='rating-status-bar'>
                             <span style={{
                                 backgroundColor: '#388e3c',
-                                width: '20%'
+                                width: rating_bar[2].bar_percentage
                             }}></span>
                         </div>
                         <di>
-                            1
+                            {rating_bar[2].three}
                         </di>
                     </div>
                     <div style={{
@@ -88,11 +88,11 @@ const Ratingandreview = ({ currentItem }) => {
                         <div className='rating-status-bar'>
                             <span style={{
                                 backgroundColor: '#FF9F00',
-                                width: '60%'
+                                width: rating_bar[1].bar_percentage
                             }}></span>
                         </div>
                         <di>
-                            1
+                            {rating_bar[1].two}
                         </di>
                     </div>
                     <div style={{
@@ -106,11 +106,11 @@ const Ratingandreview = ({ currentItem }) => {
                         <div className='rating-status-bar'>
                             <span style={{
                                 backgroundColor: '#FF6161',
-                                width: '0%'
+                                width: rating_bar[0].bar_percentage
                             }}></span>
                         </div>
                         <di>
-                            1
+                            {rating_bar[0].one}
                         </di>
                     </div>
                 </div>

@@ -35,58 +35,63 @@ const Shop = ({ mainCategory, setMainCategory }) => {
     let { subCategoryID } = useParams();
     const [productView, setProductView] = useState('');
     const [products, setProducts] = useState([])
-    const [filterData, setFilterData] = useState([])
     const [applyFilter, setApplyFilter] = useState(false);
     // const [page, setPage] = useState(2);
+    const [loader, setLoader] = useState(false);
     const [minPrice, setMinPrice] = useState(0)
-    const [maxPrice, setMaxPrice] = useState(0)
-    const [priceValue, setPriceValue] = useState([100, 1000])
-    const [selectedSortMethod, setSelectedSortMethod] = useState('popularity')
+    const [maxPrice, setMaxPrice] = useState(1000)
+    const [priceValue, setPriceValue] = useState([0, 1000])
+    const [searchText, setSearchText] = useState('')
+    const sortByInitialValues = {
+        sortPriceLowToHigh: false,
+        sortPriceHighToLow: false,
+        sortByPopularity: false
+    }
+    const [selectedSortMethod, setSelectedSortMethod] = useState(sortByInitialValues)
 
     Tabtitle('FAB | Shop')
     const banner = useBannerImages('shop')
     const handleFilter = (event) => {
-        setApplyFilter(true)
-        const searchWord = event.target.value;
-        const filterData = products.filter((value) => {
-            return value.name.toLowerCase().includes(searchWord.toLowerCase());
-        })
-        setFilterData(filterData)
+        setApplyFilter(!applyFilter)
+        setSearchText(event.target.value)
     }
-
     const handePriceFilterChange = (event, value) => {
-        setApplyFilter(true)
+        setApplyFilter(!applyFilter)
         setPriceValue(value);
-        const filterData = products.filter((value) => {
-            return value.price >= priceValue[0] && value.price <= priceValue[1];
-        })
-        setFilterData(filterData)
     }
     const handleSelectChange = (event) => {
-        setSelectedSortMethod(event.target.value)
-        setApplyFilter(true)
+        setApplyFilter(!applyFilter)
+        setSelectedSortMethod({ ...sortByInitialValues, [event.target.value]: true })
     }
-    useEffect(() => {
-        const price = products.map((items) => {
-            const { price } = items;
-            return price
-        })
-        setMinPrice(Math.min.apply(null, price))
-        setMaxPrice(Math.max.apply(null, price))
-        setPriceValue([Math.min.apply(null, price), Math.max.apply(null, price)])
-    }, [products])
+    // const setPriceRange = () => {
+    //     debugger
+    //     const price = products.map((items) => {
+    //         const { price } = items;
+    //         return price
+    //     })
+    //     setMinPrice(Math.min.apply(null, price))
+    //     setMaxPrice(Math.max.apply(null, price))
+    //     setPriceValue([Math.min.apply(null, price), Math.max.apply(null, price)])
+    // }
+    // useEffect(() => {
+    //     if(products.length!==0) setPriceRange();
+    // }, [])
     useEffect(() => {
         let isMounted = true
-
+        const { sortPriceLowToHigh, sortPriceHighToLow } = selectedSortMethod;
         if (isMounted) {
+            setProducts([])
+            setLoader(true)
             const fetchproducts = async () => {
                 try {
                     if (mainCategory) {
-                        const res = await axios.get(`/api/v1/store/parent-category-details/${categoryId}/`)
+                        const res = await axios.get(`/api/v1/search/product/?search=${searchText}&category_id=${categoryId}&min_price=${priceValue[0]}&max_price=${priceValue[1]}&sort_by_asec=${sortPriceLowToHigh}&sort_by_desc=${sortPriceHighToLow}`)
                         setProducts(res.data)
+                        setLoader(false)
                     } else {
-                        const res = await axios.get(`/api/v1/store/category-details/${subCategoryID}/`)
+                        const res = await axios.get(`/api/v1/search/product/?search=${searchText}&sub_category_id=${subCategoryID}&min_price=${priceValue[0]}&max_price=${priceValue[1]}&sort_by_asec=${sortPriceLowToHigh}&sort_by_desc=${sortPriceHighToLow}`)
                         setProducts(res.data)
+                        setLoader(false)
                     }
                 } catch (error) {
                     throw (error);
@@ -98,30 +103,8 @@ const Shop = ({ mainCategory, setMainCategory }) => {
         return () => {
             isMounted = false
         }
-    }, [mainCategory, categoryId, subCategoryID])
+    }, [mainCategory, categoryId, subCategoryID, applyFilter])
 
-
-    useEffect(() => {
-        if (selectedSortMethod === 'price') {
-            const filterData = products.sort((a, b) => {
-                return a.price > b.price ? 1 : -1;
-            })
-            setFilterData(filterData)
-        } else {
-            setApplyFilter(false)
-        }
-    }, [selectedSortMethod, products])
-    const productFilterList = filterData.map((product, i) => {
-        return (
-            <Productcomponent product={product} i={i} categoryId={categoryId} />
-
-        );
-    })
-    const productList = products.map((product, i) => {
-        return (
-            <Productcomponent product={product} i={i} categoryId={categoryId} />
-        );
-    })
     return (
         <>
             {/* <!--Breadcrumb--> */}
@@ -140,20 +123,6 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="breadcrumb_block">
-                    <ul>
-                        <li><Link to='/'>home</Link></li>
-                        {
-                            mainCategory ?
-                                <li> &nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined}</li>
-                                :
-                                <>
-                                    <li> <Link onClick={() => { setMainCategory(true) }} to={`/shop/${products[0]?.category?.id}/`}> &nbsp; {products.length !== 0 ? products[0]?.category?.name : undefined}</Link></li>
-                                    <li> &nbsp; {products.length !== 0 ? products[0]?.sub_category.name : undefined}</li>
-                                </>
-                        }
-                    </ul>
-                </div> */}
             </div>
             <div className="container ">
                 <div className="row">
@@ -190,8 +159,10 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                 <div className="product_block">
                                     <div className="sidebar_heading">
                                         <select onChange={handleSelectChange}>
-                                            <option selected disabled>Sort By</option>
-                                            <option value="price">Sort By Price </option>
+                                            <option selected disabled>Sort </option>
+                                            <option value='sortPriceLowToHigh'>Price Low To High </option>
+                                            <option value='sortPriceHighToLow'>Price High To Low </option>
+                                            <option value='sortByPopularity'>Popularity </option>
                                             {/* <option value="sort by category">Sort by Category</option> */}
                                         </select>
                                     </div>
@@ -236,7 +207,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                 <div className="product_list_filter">
                                     <ul>
                                         <li>
-                                            
+
                                         </li>
                                         <li>
                                             <ul className="list_view_toggle">
@@ -288,9 +259,18 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                 > */}
                                 <div id='products_list' className={productView !== 'list' ? "product_items_section product_list_view" : "product_items_section"}>
                                     <ul>
-                                        {applyFilter ?
-                                            filterData.length !== 0 ? productFilterList : "no data found" :
-                                            productList
+                                        {
+                                            loader ?
+                                                <div>Loading...</div>
+                                                :
+                                                products.length !== 0 ?
+                                                    products.map((product, i) => {
+                                                        return (
+                                                            <Productcomponent key={i} product={product} i={i} categoryId={categoryId} />
+                                                        );
+                                                    })
+                                                    :
+                                                    <div>No data Found</div>
                                         }
                                     </ul>
                                 </div>

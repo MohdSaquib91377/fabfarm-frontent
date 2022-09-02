@@ -9,7 +9,7 @@ import { axiosPrivate } from '../API/axios';
 const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, addToCart, setPopupMessage, setPopup, onlineCart, cart }) => {
     let Navigate = useNavigate();
     const [onlineCartCount, setOnlineCartCount] = useState(0)
-    const { id, image, name, description, price, maxQuantity } = product;
+    const { id, images, name, description, price, maxQuantity } = product;
     const funcAddToCart = (event) => {
         const id = parseInt(event.currentTarget.id)
         if (maxQuantity === onlineCartCount) {
@@ -92,8 +92,8 @@ const Productcomponent = ({ updateCart, isAuthorized, product, i, categoryId, ad
                     <Link to={`/shop/${categoryId}/product/${id}`}>
                         <div className="org_product_image">
                             {
-                                image.length !== 0 ?
-                                    <img src={process.env.REACT_APP_BASE_URL + image[0]?.image} alt={name} />
+                                images.length !== 0 ?
+                                    <img src={process.env.REACT_APP_BASE_URL + images[0]?.image} alt={name} />
                                     :
                                     <img src="/images/noimagefound.jpg" alt={name} />
                             }

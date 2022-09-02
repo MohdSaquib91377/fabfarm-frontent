@@ -75,7 +75,7 @@ const Contact = ({setPopup,setPopupMessage}) => {
         <>
             <div className="breadcrumb_wrapper"
                 style={{
-                    minHeight: '300px',
+                    minHeight: '250px',
                     backgroundImage: `url(${banner[0]?.image_or_video})`
                 }}>
                 <div className="container" style={{ marginTop: '130px' }}>

@@ -1,16 +1,16 @@
 import axios from '../components/API/axios';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
-import Servicestwo from '../components/homepage/Servicestwo';
 import Tabtitle from './Tabtitle';
+// import Servicestwo from '../components/homepage/Servicestwo';
 const Banner = lazy(() => import('../components/homepage/Banner'))
-const Testimonial = lazy(() => import('../components/homepage/Testimonial'))
 const Services = lazy(() => import('../components/homepage/Services'))
 const Counter = lazy(() => import('../components/homepage/Counter'))
 const Weare = lazy(() => import('../components/homepage/Weare'))
 const Featuredproducts = lazy(() => import('../components/homepage/allproducts/Featuredproducts'))
-const Seeds = lazy(() => import('../components/homepage/topproducts/Seeds'))
-const Fertilizers = lazy(() => import('../components/homepage/topproducts/Fertilizers'))
-const Soils = lazy(() => import('../components/homepage/topproducts/Soils'))
+// const Testimonial = lazy(() => import('../components/homepage/Testimonial'))
+// const Seeds = lazy(() => import('../components/homepage/topproducts/Seeds'))
+// const Fertilizers = lazy(() => import('../components/homepage/topproducts/Fertilizers'))
+// const Soils = lazy(() => import('../components/homepage/topproducts/Soils'))
 const Home = () => {
     Tabtitle('FAB')
 
@@ -68,7 +68,7 @@ const Home = () => {
             {/* <Suspense fallback={<div>Loading...</div>}>
                 <Testimonial />
             </Suspense> */}
-            <Servicestwo category={category} />
+            {/* <Servicestwo category={category} /> */}
 
 
             {/* <!--Partner--> */}

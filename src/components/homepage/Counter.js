@@ -16,7 +16,7 @@ const Counter = () => {
         window.addEventListener("resize", getPosition);
     }, []);
     return (
-        <div className="clv_counter_wrapper clv_section" ref={boxRef}>
+        <div className="clv_counter_wrapper m-b-30 clv_section" ref={boxRef}>
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-lg-8 col-md-8">

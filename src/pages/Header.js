@@ -4,11 +4,12 @@ import Signin from '../components/authorization/signin/Signin';
 import { connect } from 'react-redux';
 import Signup from '../components/authorization/Signup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faSearch, faClose, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faSearch, faClose, faBars, faHeart } from '@fortawesome/free-solid-svg-icons';
 // import Weather from '../components/weatherapi/Weather';
 import Desktopmenu from '../components/header/Desktopmenu';
 import Mobilemenu from '../components/header/Mobilemenu';
 import Searchbar from '../components/header/searchbar/Searchbar';
+import { Link } from 'react-router-dom';
 const Header = ({ totalCartCount, isAuthorized, cart }) => {
     const [cartCount, setCartCount] = useState(0);
     const [cartState, setcartState] = useState(false)
@@ -60,10 +61,10 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
         fontSize: '14px',
         width: '25px',
         height: '25px',
-        lineHeight:'25px',
-        top:"10px",
-        left:"11px",
-        margin:'auto',
+        lineHeight: '25px',
+        top: "10px",
+        left: "11px",
+        margin: 'auto',
         textAlign: 'center',
         whiteSpace: "nowrap",
 
@@ -106,7 +107,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                                                 </button>
                                             </li>
                                             <li>
-                                                <button style={{ all: 'unset', cursor: 'pointer', position:'relative' }} onClick={openCart}>
+                                                <button style={{ all: 'unset', cursor: 'pointer', position: 'relative' }} onClick={openCart}>
                                                     <FontAwesomeIcon color='#ffffff' icon={faShoppingCart} />
                                                     {
                                                         isAuthorized ?
@@ -122,7 +123,11 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
 
                                                 </button>
                                             </li>
-
+                                            {matches &&
+                                                <li>
+                                                    <Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /></Link>
+                                                </li>
+                                            }
                                             <li className="menu_toggle">
 
                                                 <button

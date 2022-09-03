@@ -1,12 +1,14 @@
 import { faIndianRupee, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useBannerImages from "../../hooks/useBannerImages";
 import Tabtitle from "../../pages/Tabtitle";
+import { setPopup, setPopupMessage } from "../../redux/actions/productActions";
 
-const Wishlist = () => {
+const Wishlist = ({ setPopup, setPopupMessage }) => {
     Tabtitle("FAB | Wish List");
     const banner = useBannerImages("wishlist");
     const axiosPrivate = useAxiosPrivate();
@@ -20,6 +22,8 @@ const Wishlist = () => {
                 },
             })
             .then(() => {
+                setPopup(true)
+                setPopupMessage('Product removed from wishlist')
                 setOnlickRemove(!onclickRemove);
             })
             .catch((error) => {
@@ -137,5 +141,10 @@ const Wishlist = () => {
         </>
     );
 };
-
-export default Wishlist;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setPopup: (boolean) => dispatch(setPopup(boolean)),
+        setPopupMessage: (string) => dispatch(setPopupMessage(string))
+    }
+}
+export default connect(null, mapDispatchToProps)(Wishlist);

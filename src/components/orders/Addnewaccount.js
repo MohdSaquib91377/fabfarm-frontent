@@ -144,7 +144,7 @@ const Addnewaccount = ({fetchAccountDetails,setFetchAccountDetails}) => {
                             className='exitButtonProfile'
                             onClick={() => setEditState(true)}
                         >
-                            Add new account
+                            Add New Account
                         </button>
                 }
             </div>

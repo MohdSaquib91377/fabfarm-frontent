@@ -19,7 +19,7 @@ const Billcard = ({ formErrors, formValues, setFormValues, handleChange, handleS
     }, [onlineCart])
     useEffect(() => {
         if (couponDetails.length !== 0) {
-            setFormValues({ couponCode: couponDetails.couponName })
+            setFormValues({ ...formValues, couponCode: couponDetails.couponName })
         }
     }, [couponDetails])
 
@@ -37,7 +37,7 @@ const Billcard = ({ formErrors, formValues, setFormValues, handleChange, handleS
     });
     return (
         <div className="your-order-section">
-            
+
             <div className="your-order-box gray-bg  m-b-30">
                 <div className="your-order-product-info">
                     <div className="your-order-top d-flex justify-content-between">

@@ -190,6 +190,7 @@ const Checkout = ({ setSigninOpen, isAuthorized, updateCart, onlineCart }) => {
                                         <Deliveryaddress
                                             formValues={formValues}
                                             formErrors={formErrors}
+                                            setFormValues={setFormValues}
                                             handleChange={handleChange}
                                         />
                                         {/* <form action="#" method="post" className="form-box">

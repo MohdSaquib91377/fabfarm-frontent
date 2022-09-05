@@ -7,7 +7,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-const Deliveryaddress = ({ formErrors, formValues, handleChange }) => {
+const Deliveryaddress = ({ formErrors, formValues, setFormValues, handleChange }) => {
     const axiosPrivate = useAxiosPrivate();
     const [deliveryAddresses, setDeliveryAddresses] = useState([])
     const [fetchAddress, setFetchAddress] = useState(false)
@@ -21,6 +21,7 @@ const Deliveryaddress = ({ formErrors, formValues, handleChange }) => {
             try {
                 const response = await axiosPrivate.get('/api/v1/account/user-address/')
                 setDeliveryAddresses(response.data)
+                setFormValues({ ...formValues, user_address: response?.data[0]?.id })
                 setLoader(false)
             } catch (error) {
                 setLoader(false)

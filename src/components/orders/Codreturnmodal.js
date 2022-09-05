@@ -66,6 +66,7 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
             try {
                 const response = await axiosPrivate.get(`/api/v1/order/razorpay/create-fund-account/`)
                 setAccountDetails(response?.data)
+                setFormValues({ ...formValues, fund_accounts: response?.data[0]?.id })
             } catch (error) {
                 throw error
             }
@@ -118,56 +119,61 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
                         textAlign: 'left',
                     }}>
                         <Addnewaccount fetchAccountDetails={fetchAccountDetails} setFetchAccountDetails={setFetchAccountDetails} />
-                        <div
-                            style={{
-                                border: '1px solid #ebebeb',
-                                borderRadius: '3px',
-                                padding: '10px 20px',
-                                width: '100%',
-                                outline: 'none',
-                                fontSize: '14px',
-                            }}
-                        >
+                        {
+                            accountDetails.length !== 0 &&
+                            <div
+                                style={{
+                                    border: '1px solid #ebebeb',
+                                    borderRadius: '3px',
+                                    padding: '10px 20px',
+                                    width: '100%',
+                                    outline: 'none',
+                                    fontSize: '14px',
+                                }}
+                            >
 
-                            <FormControl>
-                                <FormLabel>Account Details</FormLabel>
-                                <RadioGroup
-                                    name="fund_accounts"
-                                    value={formValues.fund_accounts}
-                                    onChange={handleChange}
-                                >
-                                    {accountDetails.map((details, index) => {
-                                        const { id, name, ifsc, account_number } = details;
-                                        return (
-                                            <div
-                                                key={index}
-                                                style={{
-                                                    padding: '10px 20px',
-                                                    width: '100%',
-                                                    outline: 'none',
-                                                    fontSize: '14px',
-                                                    display: 'flex'
-                                                }}
-                                            >
-                                                <FormControlLabel value={id} control={<Radio />} />
+                                <FormControl>
+                                    <FormLabel>Account Details</FormLabel>
+                                    <RadioGroup
+                                        name="fund_accounts"
+                                        value={formValues.fund_accounts}
+                                        onChange={handleChange}
+                                    >
+                                        {accountDetails.map((details, index) => {
+                                            const { id, name, ifsc, account_number } = details;
+                                            return (
+                                                <div
+                                                    key={index}
+                                                    style={{
+                                                        padding: '10px 20px',
+                                                        width: '100%',
+                                                        outline: 'none',
+                                                        fontSize: '14px',
+                                                        display: 'flex'
+                                                    }}
+                                                >
+                                                    <FormControlLabel value={id} control={<Radio />} />
 
-                                                <div>
-                                                    <h4>{name}</h4>
-                                                    <p>{ifsc}</p>
-                                                    <p>{account_number}</p>
+                                                    <div>
+                                                        <h4>{name}</h4>
+                                                        <p>{ifsc}</p>
+                                                        <p>{account_number}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )
-                                    })}
-                                </RadioGroup>
-                                <p style={{
+                                            )
+                                        })}
+                                    </RadioGroup>
+                                    {/* <p style={{
                                     color: 'red'
-                                }}>{formErrors.fund_accounts}</p>
-                            </FormControl>
-                        </div>
+                                }}>{formErrors.fund_accounts}</p> */}
+                                </FormControl>
+                            </div>
+                        }
                     </div>
                     <p style={{
-                        color: 'red'
+                        color: 'red',
+                        textAlign:'left',
+                        marginLeft:'30px'
                     }}>{formErrors.fund_accounts}</p>
                     <form onSubmit={handleSubmit} >
                         <div>

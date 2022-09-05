@@ -24,7 +24,7 @@ const colors = {
     grey: '#a9a9a9'
 }
 
-const Ratingandreviewmodal = ({ ratingAndReviewState, setRatingAndReviewState, setGetOrder, order_item_rating, orderItem,setOrderItem }) => {
+const Ratingandreviewmodal = ({ ratingAndReviewState, setRatingAndReviewState, setGetOrder, order_item_rating, orderItem, setOrderItem }) => {
     const axiosPrivate = useAxiosPrivate();
     const initialValues = {
         id: '',
@@ -59,9 +59,10 @@ const Ratingandreviewmodal = ({ ratingAndReviewState, setRatingAndReviewState, s
 
     useEffect(() => {
         setFormValues({ ...formValues, order_item: orderItem })
-    },[orderItem])
+    }, [orderItem])
     useEffect(() => {
-        setFormValues({ ...formValues, ...order_item_rating })
+        const { ratings, review, id } = order_item_rating;
+        setFormValues({ ...formValues, id: id, comment: review, rating: ratings })
     }, [order_item_rating])
 
     useEffect(() => {

@@ -96,7 +96,7 @@ function Productdetails({ items, setGetOrder, getOrder }) {
                                                         icon={faStar}
                                                         key={index}
                                                         size='sm'
-                                                        color={parseInt(order_item_rating.rating) > index ? colors.green : colors.grey}
+                                                        color={parseInt(order_item_rating.ratings) > index ? colors.green : colors.grey}
                                                     />
                                                 )
                                             })

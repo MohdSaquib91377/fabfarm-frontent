@@ -86,6 +86,7 @@ const Orderlist = ({ user }) => {
     }, [user, getOrder])
     const orderList = items.map((data, i) => {
         const { id, return_refund_validaty, product: { name, image }, price, status, payment_mode, order_item_rating } = data;
+        
         return (
 
             <div key={i} className="order_list_top orderListTopMain">
@@ -118,7 +119,7 @@ const Orderlist = ({ user }) => {
                                                         icon={faStar}
                                                         key={index}
                                                         size='sm'
-                                                        color={parseInt(order_item_rating.rating) > index ? colors.green : colors.grey}
+                                                        color={parseInt(order_item_rating.ratings) > index ? colors.green : colors.grey}
                                                     />
                                                 )
                                             })

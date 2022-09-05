@@ -72,7 +72,7 @@ function Productdetails({ items, setGetOrder, getOrder }) {
                         </Link>
                         <div> <b> Price: </b>₹{price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')} </div>
                         <div>
-                            <b>Status:</b>
+                            <b>Status: </b>
                             <span>
                                 {status}
                             </span>

@@ -24,6 +24,7 @@ const Addnewaccount = ({fetchAccountDetails,setFetchAccountDetails}) => {
     }
     const handleClose = () => {
         setFormErrors({})
+        setFormValues(initialValues)
         setEditState(false)
     }
     const validateCodReturnForm = (values) => {

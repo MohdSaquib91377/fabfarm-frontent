@@ -61,8 +61,10 @@ const Ratingandreviewmodal = ({ ratingAndReviewState, setRatingAndReviewState, s
         setFormValues({ ...formValues, order_item: orderItem })
     }, [orderItem])
     useEffect(() => {
-        const { ratings, review, id } = order_item_rating;
-        setFormValues({ ...formValues, id: id, comment: review, rating: ratings })
+        if (order_item_rating !== null) {
+            const { ratings, review, id } = order_item_rating;
+            setFormValues({ ...formValues, id: id, comment: review, rating: ratings })
+        }
     }, [order_item_rating])
 
     useEffect(() => {

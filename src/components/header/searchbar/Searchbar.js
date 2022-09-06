@@ -23,7 +23,7 @@ const Searchbar = ({ searchBarVisible, setSearchBarVisible, setMainCategory }) =
         if (isMounted && value.length !== 0) {
             const fetchSearchItem = async () => {
                 try {
-                    const response = await axios.get(`/api/v1/search/product/${value}/`)
+                    const response = await axios.get(`/api/v1/search/product/?search=${value}`)
                     setSearchList(response.data)
                 }
                 catch (error) {

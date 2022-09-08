@@ -1,6 +1,5 @@
 .display-menu {
   position: fixed;
-  
   top:102px;
   right: 0;
   color: white;
@@ -11,6 +10,7 @@
   width: 100%;
   padding: 10px;
   transition: .3s;
+  z-index:1000;
 }
 .display-menu li {
   margin: 10px 0;

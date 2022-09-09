@@ -48,7 +48,6 @@ const Shop = ({ mainCategory, setMainCategory }) => {
         sortByPopularity: false
     }
     const [selectedSortMethod, setSelectedSortMethod] = useState(sortByInitialValues)
-    console.log(priceValue)
     Tabtitle('FAB | Shop')
     const banner = useBannerImages('shop')
     const handleFilter = (event) => {

@@ -13443,3 +13443,22 @@ button.unset {
   color: #878787;
   margin-right: 8px;
 }
+
+.Range_slider_fields{
+  display:flex;
+  justify-content:space-between;
+  width:60%
+}
+
+.Range_slider_fields input {
+  width:50px;
+}
+.Range_slider_fields input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.Range_slider_fields input[type=number] {
+  -moz-appearance: textfield;
+}

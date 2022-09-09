@@ -38,9 +38,9 @@ const Shop = ({ mainCategory, setMainCategory }) => {
     const [applyFilter, setApplyFilter] = useState(false);
     // const [page, setPage] = useState(2);
     const [loader, setLoader] = useState(false);
-    const [minPrice, setMinPrice] = useState(0)
-    const [maxPrice, setMaxPrice] = useState(1000)
-    const [priceValue, setPriceValue] = useState([0, 1000])
+    // const [minPrice, setMinPrice] = useState(0)
+    // const [maxPrice, setMaxPrice] = useState(5000)
+    const [priceValue, setPriceValue] = useState([0, 5000])
     const [searchText, setSearchText] = useState('')
     const sortByInitialValues = {
         sortPriceLowToHigh: false,
@@ -48,7 +48,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
         sortByPopularity: false
     }
     const [selectedSortMethod, setSelectedSortMethod] = useState(sortByInitialValues)
-
+    console.log(priceValue)
     Tabtitle('FAB | Shop')
     const banner = useBannerImages('shop')
     const handleFilter = (event) => {
@@ -63,19 +63,12 @@ const Shop = ({ mainCategory, setMainCategory }) => {
         setApplyFilter(!applyFilter)
         setSelectedSortMethod({ ...sortByInitialValues, [event.target.value]: true })
     }
-    // const setPriceRange = () => {
-    //     debugger
-    //     const price = products.map((items) => {
-    //         const { price } = items;
-    //         return price
-    //     })
-    //     setMinPrice(Math.min.apply(null, price))
-    //     setMaxPrice(Math.max.apply(null, price))
-    //     setPriceValue([Math.min.apply(null, price), Math.max.apply(null, price)])
-    // }
-    // useEffect(() => {
-    //     if(products.length!==0) setPriceRange();
-    // }, [])
+    const handlePriceRange = index => e => {
+        let newAr = [...priceValue];
+        newAr[index] = e.target.value;
+        setPriceValue(newAr)
+        setApplyFilter(!applyFilter)
+    }
     useEffect(() => {
         let isMounted = true
         const { sortPriceLowToHigh, sortPriceHighToLow, sortByPopularity } = selectedSortMethod;
@@ -178,8 +171,8 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                         >
                                             <Slider
                                                 value={priceValue}
-                                                min={minPrice}
-                                                max={maxPrice}
+                                                min={0}
+                                                max={5000}
                                                 valueLabelDisplay='auto'
                                                 onChange={handePriceFilterChange}
                                                 classes={{
@@ -189,7 +182,22 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                                 }}
                                             />
                                         </div>
-
+                                        <div className='Range_slider_fields'>
+                                            <input
+                                                type='number'
+                                                placeholder='min'
+                                                name='minPrice'
+                                                onChange={handlePriceRange(0)}
+                                                value={priceValue[0]}
+                                            />
+                                            <input
+                                                type='number'
+                                                placeholder='max'
+                                                name='maxPrice'
+                                                onChange={handlePriceRange(1)}
+                                                value={priceValue[1]}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="product_block">

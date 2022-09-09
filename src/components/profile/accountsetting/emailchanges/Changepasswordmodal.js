@@ -13,7 +13,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo, setPopup, 
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
     const [loader, setLoader] = useState(false)
-
+    const [resendCounter, setResendCounter] = useState(0);
     const handleChange = (event) => {
         const { name, value } = event.target
         setFormValues({ ...formValues, [name]: value })
@@ -30,6 +30,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo, setPopup, 
         setFormValues(initialValues)
         setFormErrors(initialValues)
         setChangeState()
+        setResendCounter(0)
     }
 
     const validateUserDetails = (values) => {
@@ -58,6 +59,9 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo, setPopup, 
             setFormValues(
                 { ...formValues, txn_id: response.data.id }
             )
+            setPopup(true)
+            setPopupMessage(`OTP has been sent to ${userInfo.email_or_mobile}`)
+            setResendCounter(60);
         } catch (error) {
             throw error
         }
@@ -104,6 +108,10 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo, setPopup, 
             controller.abort();
         }
     })
+    useEffect(() => {
+        const timer = resendCounter > 0 && setInterval(() => setResendCounter(resendCounter - 1), 1000);
+        return () => clearInterval(timer);
+    }, [resendCounter])
     return (
         <div className={changeState ? 'signin_wrapper open_signin' : 'signin_wrapper'}>
             <div className="signup_inner forgotPass">
@@ -203,7 +211,7 @@ const Changepasswordmodal = ({ changeState, setChangeState, userInfo, setPopup, 
                                         onChange={handleChange}
                                         value={formValues.otp}
                                     />
-                                    <p className='text-right button-stylingresendotp' ><button type='button' onClick={() => sendOTP()} >Resend</button></p>
+                                    <p className='text-right button-stylingresendotp' >{resendCounter !== 0 ? `Resend OTP in ${resendCounter}` : <button type='button' onClick={() => sendOTP()} >Resend</button>}</p>
                                 </div>
                                 <p className='errorTextPasswordChange'>{formErrors.otp}</p>
 

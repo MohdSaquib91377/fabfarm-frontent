@@ -66,6 +66,7 @@ const Addnewaccount = ({fetchAccountDetails,setFetchAccountDetails}) => {
             axiosPrivate.post(`/api/v1/order/razorpay/create-fund-account/`, formValues)
                 .then(() => {
                     setEditState(false)
+                    setFormValues(initialValues)
                     setFetchAccountDetails(!fetchAccountDetails)
                 })
                 .catch(error => {

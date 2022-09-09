@@ -79,26 +79,30 @@ const Shop = ({ mainCategory, setMainCategory }) => {
     useEffect(() => {
         let isMounted = true
         const { sortPriceLowToHigh, sortPriceHighToLow, sortByPopularity } = selectedSortMethod;
-        if (isMounted) {
-            setProducts([])
-            setLoader(true)
-            const fetchproducts = async () => {
-                try {
-                    if (mainCategory) {
-                        const res = await axios.get(`/api/v1/search/product/?search=${searchText}&category_id=${categoryId}&min_price=${priceValue[0]}&max_price=${priceValue[1]}&sort_by_asec=${sortPriceLowToHigh}&sort_by_desc=${sortPriceHighToLow}&sort_by_popularity=${sortByPopularity}`)
-                        setProducts(res.data)
-                        setLoader(false)
-                    } else {
-                        const res = await axios.get(`/api/v1/search/product/?search=${searchText}&sub_category_id=${subCategoryID}&min_price=${priceValue[0]}&max_price=${priceValue[1]}&sort_by_asec=${sortPriceLowToHigh}&sort_by_desc=${sortPriceHighToLow}&sort_by_popularity=${sortByPopularity}`)
-                        setProducts(res.data)
-                        setLoader(false)
-                    }
-                } catch (error) {
-                    throw (error);
-                }
+        setLoader(true)
+        setTimeout(() => {
+            if (isMounted) {
+                setProducts([])
+                mainCategory ?
+                    axios.get(`/api/v1/search/product/?search=${searchText}&category_id=${categoryId}&min_price=${priceValue[0]}&max_price=${priceValue[1]}&sort_by_asec=${sortPriceLowToHigh}&sort_by_desc=${sortPriceHighToLow}&sort_by_popularity=${sortByPopularity}`)
+                        .then(response => {
+                            setProducts(response.data)
+                            setLoader(false)
+                        })
+                        .catch(error => {
+                            throw error
+                        })
+                    :
+                    axios.get(`/api/v1/search/product/?search=${searchText}&sub_category_id=${subCategoryID}&min_price=${priceValue[0]}&max_price=${priceValue[1]}&sort_by_asec=${sortPriceLowToHigh}&sort_by_desc=${sortPriceHighToLow}&sort_by_popularity=${sortByPopularity}`)
+                        .then(response => {
+                            setProducts(response.data)
+                            setLoader(false)
+                        })
+                        .catch(error => {
+                            throw error;
+                        })
             }
-            fetchproducts();
-        }
+        }, 1000)
 
         return () => {
             isMounted = false

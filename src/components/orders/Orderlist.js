@@ -91,7 +91,7 @@ const Orderlist = ({ user }) => {
 
             <div key={i} className="order_list_top orderListTopMain">
                 <div style={{
-                    height: '100px',
+                    height: '400px',
                     width: '300px',
                     overflow: 'hidden'
                 }}>

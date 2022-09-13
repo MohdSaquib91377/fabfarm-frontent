@@ -92,7 +92,7 @@ const Orderlist = ({ user }) => {
             <div key={i} className="order_list_top orderListTopMain">
                 <div style={{
                     height: '100px',
-                    width: '100px',
+                    width: '300px',
                     overflow: 'hidden'
                 }}>
                     <Link to={`/orderproductdetails/${id}`}>
@@ -201,7 +201,7 @@ const Orderlist = ({ user }) => {
             </div>
             <div className="container">
 
-                <div className='p-3'>
+                <div className='p-md-3'>
 
                     <div className='box-shadow-adding' style={{
                         position: 'relative',

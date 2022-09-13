@@ -18,7 +18,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 800,
+    maxWidth: 800,
+    width:'100%',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -154,8 +155,8 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
                                                 >
                                                     <FormControlLabel value={id} control={<Radio />} />
 
-                                                    <div>
-                                                        <h4>{name}</h4>
+                                                    <div style={{textTransform:"capitalize",boxShadow:"1px 1px 10px -5px #000",padding:'10px',margin:'10px 0',borderRadius:"10px"}}>
+                                                        <h3 style={{fontWeight:"600"}}>{name}</h3>
                                                         <p>{ifsc}</p>
                                                         <p>{account_number}</p>
                                                     </div>

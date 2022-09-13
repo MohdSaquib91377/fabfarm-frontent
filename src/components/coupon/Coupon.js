@@ -58,12 +58,12 @@ const Coupon = ({ setCouponDetails }) => {
                 justifyContent: 'space-between',
                 width: '100%'
             }}>
-            <div>
+            <div className='w-75'>
                 <input
                     name='couponcode'
                     placeholder='Coupon code'
                     value={coupon.couponcode}
-                    className="coupenCodeInput"
+                    className="coupenCodeInput w-100"
                     onChange={handleChange}
                     type="text" />
                 <p style={{
@@ -73,7 +73,7 @@ const Coupon = ({ setCouponDetails }) => {
             <div>
                 <button
                     onClick={() => handleApply()}
-                    className="buttonViewMore">Apply</button>
+                    className="buttonViewMore p-3">Apply</button>
             </div>
         </div>
     )

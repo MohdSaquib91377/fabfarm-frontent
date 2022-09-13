@@ -281,7 +281,7 @@ const Shop = ({ mainCategory, setMainCategory }) => {
                                                         );
                                                     })
                                                     :
-                                                    <div>No data Found</div>
+                                                    <div style={{fontSize:"20px"}}>No data Found</div>
                                         }
                                     </ul>
                                 </div>

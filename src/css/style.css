@@ -4447,7 +4447,7 @@ ul {
   height: 100%;
 }
 .index_v4 .header3_wrapper img {
-  width: 160px;
+  width: 130px;
 }
 .index_v4 .clv_right_header .clv_menu .cart_nav {
   margin-right: 30px;
@@ -8493,7 +8493,7 @@ ul {
 }
 .product_price_box h3 {
   font-size: 18px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .content_block .product_price_box {
   display: flex;
@@ -13228,7 +13228,6 @@ button.unset {
   }
   .orderListTopMain > div {
     width: 100% !important;
-    height: 300px !important;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -13461,4 +13460,13 @@ input::-webkit-inner-spin-button {
 
 .Range_slider_fields input[type=number] {
   -moz-appearance: textfield;
+}
+@media (max-width:600px) {
+  .orderListTopMain > div {
+   padding:20px 0;
+   border-bottom: 1px solid;
+  }
+}
+.product_items_section > ul> div{
+
 }

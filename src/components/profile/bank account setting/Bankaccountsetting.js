@@ -99,7 +99,7 @@ const Bankaccountsetting = ({ profileState }) => {
       <div className="my-account-dashboard account-wrapper">
         <h4 className="account-title">Account Details</h4>
 
-        <div className='m-t-30'>
+        <div className='mt-3'>
           {
             editState ?
               <form onSubmit={handleSubmit} >
@@ -144,7 +144,7 @@ const Bankaccountsetting = ({ profileState }) => {
                     <p>{formErrors.name}</p>
                   </div>
                 </div>
-                <div>
+                <div className='text-center'>
                   <Button
                     type='button'
                     variant="contained"

@@ -26,6 +26,7 @@ const Bankaccountsetting = ({ profileState }) => {
   }
   const handleClose = () => {
     setFormErrors({})
+    setFormValues(initialValues)
     setEditState(false)
   }
   const validateCodReturnForm = (values) => {
@@ -86,6 +87,7 @@ const Bankaccountsetting = ({ profileState }) => {
       setIsSubmit(false)
       axiosPrivate.post(`/api/v1/order/razorpay/create-fund-account/`, formValues)
         .then(() => {
+          setFormValues(initialValues)
           setEditState(false)
         })
         .catch(error => {

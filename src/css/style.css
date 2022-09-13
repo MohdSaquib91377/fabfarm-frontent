@@ -8497,8 +8497,9 @@ ul {
 }
 .content_block .product_price_box {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
+
 }
 .content_block .product_price_box > h3 {
   font-size: 22px;
@@ -13445,7 +13446,7 @@ button.unset {
 .Range_slider_fields{
   display:flex;
   justify-content:space-between;
-  width:60%
+  width:70%
 }
 
 .Range_slider_fields input {

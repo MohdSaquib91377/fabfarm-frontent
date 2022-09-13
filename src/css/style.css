@@ -4482,7 +4482,7 @@ ul {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
 }
-.index_v4 .dark_header .clv_right_header > .clv_menu > .cart_nav > ul > li {
+.index_v4  .clv_right_header > .clv_menu > .cart_nav > ul > li {
   padding: 29.5px 0px 36.5px;
 }
 .index_v4 .clv_right_header .clv_menu .clv_menu_nav > ul > li > a > span {
@@ -11722,9 +11722,8 @@ ul {
   .index_v4 .clv_right_header > .clv_menu > .cart_nav > ul > li {
     padding: 0px 0px 30px;
   }
-  .index_v4 .dark_header .clv_right_header > .clv_menu > .cart_nav > ul > li {
+  .index_v4  .clv_right_header > .clv_menu > .cart_nav > ul > li {
     padding: 20px 0px;
-    margin-left: 30px;
   }
   .index_v4 .clv_slide_inner .banner_btn > span:before {
     height: 1px;

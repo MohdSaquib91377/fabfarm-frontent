@@ -36,14 +36,8 @@ function Mobilemenu({ user, userInfo, makeCartEmpty, setIsAuthorized, setUser, i
     }, [userInfo])
 
     return (
-        <Drawer
-            anchor={"right"}
-            open={menuOpen}
-            onClose={closeMenuOpen}
-            variant="temporary"
-        >
-            <Box>
-                <div className='display-menu'>
+      
+                <div className={`display-menu ${!menuOpen?'d-none':""}`}>
                     <ul onClick={closeMenuOpen}>
                         <li>
                             <Link to="/" >Home</Link>
@@ -77,8 +71,7 @@ function Mobilemenu({ user, userInfo, makeCartEmpty, setIsAuthorized, setUser, i
                         }
                     </ul>
                 </div>
-            </Box>
-        </Drawer>
+          
     )
 }
 const mapStateToProps = (state) => {

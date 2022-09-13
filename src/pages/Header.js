@@ -128,7 +128,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                                                     <Link to='/wishlist'> <FontAwesomeIcon icon={faHeart} /></Link>
                                                 </li>
                                             }
-                                            <li className="menu_toggle">
+                                            <li className="menu_toggle" style={{width:"20px"}}>
 
                                                 <button
                                                     onClick={() => setMenuOpen(!menuOpen)}

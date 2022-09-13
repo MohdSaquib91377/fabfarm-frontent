@@ -61,7 +61,7 @@ const Billcard = ({ formErrors, formValues, setFormValues, handleChange, handleS
                     {
                         couponDetails.length !== 0 ?
                             <div className="your-order-total d-flex justify-content-between">
-                                <h6 className="your-order-bottom-left font--bold">Disconted amount</h6>
+                                <h6 className="your-order-bottom-left font--bold">Discount amount</h6>
                                 <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.couponDetails.discounted_price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h5>
                             </div> :
                             undefined

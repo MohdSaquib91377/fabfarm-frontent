@@ -133,8 +133,8 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
                                 }}
                             >
 
-                                <FormControl>
-                                    <FormLabel>Account Details</FormLabel>
+                                <FormControl style={{width:'100%'}}>
+                                    <FormLabel >Account Details</FormLabel>
                                     <RadioGroup
                                         name="fund_accounts"
                                         value={formValues.fund_accounts}
@@ -155,7 +155,7 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
                                                 >
                                                     <FormControlLabel value={id} control={<Radio />} />
 
-                                                    <div style={{textTransform:"capitalize",boxShadow:"1px 1px 10px -5px #000",padding:'10px',margin:'10px 0',borderRadius:"10px"}}>
+                                                    <div style={{textTransform:"capitalize",boxShadow:"1px 1px 10px -5px #000",padding:'10px',width:"100%",margin:'10px 0',borderRadius:"10px"}}>
                                                         <h3 style={{fontWeight:"600"}}>{name}</h3>
                                                         <p>{ifsc}</p>
                                                         <p>{account_number}</p>

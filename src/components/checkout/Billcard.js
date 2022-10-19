@@ -67,7 +67,7 @@ const Billcard = ({ formErrors, formValues, setFormValues, handleChange, handleS
                             undefined
                     }
                     <div className={couponDetails.length !== 0 ? "your-order-top d-flex justify-content-between" : "your-order-total d-flex justify-content-between"}>
-                        <h5 className="your-order-total-left font--bold">Total payable</h5>
+                        <h5 className="your-order-total-left font--bold">Total Payable</h5>
                         <h5 className="your-order-total-right font--bold"><FontAwesomeIcon icon={faIndianRupee} />{couponDetails.length !== 0 ? couponDetails.couponDetails.total_amount_payble.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',') : totalPrice.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}</h5>
                     </div>
                     <br />

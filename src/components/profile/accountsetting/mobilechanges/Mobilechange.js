@@ -101,7 +101,7 @@ const Mobilechange = ({ userInfo }) => {
                 <h4 className="account-title mt-3">Mobile Number</h4>
                 <button className='exitButtonProfile' type='button' onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
             </div>
-            <div className="account-details posrelProfile">
+            <div className="account-details posrelProfile w-100">
                 <div className="row">
                     {
                         editState ?

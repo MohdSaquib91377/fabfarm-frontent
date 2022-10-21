@@ -80,9 +80,10 @@ const Addnewaccount = ({fetchAccountDetails,setFetchAccountDetails}) => {
 
     return (
         <div className="my-account-dashboard account-wrapper">
-            <h4 className="account-title">Account Details</h4>
-
-            <div className='m-t-30'>
+            <h4 className="account-title pl-3">Account Details</h4>
+            
+            <div >
+           
                 {
                     editState ?
                         <form onSubmit={handleSubmit} >
@@ -127,7 +128,7 @@ const Addnewaccount = ({fetchAccountDetails,setFetchAccountDetails}) => {
                                     <p>{formErrors.name}</p>
                                 </div>
                             </div>
-                            <div>
+                            <div className='text-center'>
                                 <Button
                                     type='button'
                                     variant="contained"
@@ -144,11 +145,11 @@ const Addnewaccount = ({fetchAccountDetails,setFetchAccountDetails}) => {
                         </form>
                         :
                         <button
-                            className='exitButtonProfile'
-                            onClick={() => setEditState(true)}
-                        >
-                            Add New Account
-                        </button>
+                        className='exitButtonProfile'
+                        onClick={() => setEditState(true)}
+                    >
+                        Add New Account
+                    </button>      
                 }
             </div>
         </div>

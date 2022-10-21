@@ -21,10 +21,13 @@ const style = {
     maxWidth: 800,
     width:'100%',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '0',
+    borderRadius:"10px",
     boxShadow: 24,
     p: 4,
     textAlign: 'center',
+    maxHeight:"80vh",
+    overflow:"auto",
 };
 const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderItemID, setCancleOrderItemID }) => {
 
@@ -99,12 +102,12 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
     })
     return (
         <div>
-            <Modal
+            <Modal 
                 open={codReturnForm}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <Box sx={style} >
                     <button
                         type='button'
                         onClick={() => handleClose()}
@@ -133,8 +136,8 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
                                 }}
                             >
 
-                                <FormControl style={{width:'100%'}}>
-                                    <FormLabel >Account Details</FormLabel>
+                                <FormControl className='formBankAccount' style={{width:'100%'}}>
+                                    {/* <FormLabel >Account Details</FormLabel> */}
                                     <RadioGroup
                                         name="fund_accounts"
                                         value={formValues.fund_accounts}
@@ -154,12 +157,18 @@ const Codreturnmodal = ({ codReturnForm, setCodReturnForm, setGetOrder, orderIte
                                                     }}
                                                 >
                                                     <FormControlLabel value={id} control={<Radio />} />
-
-                                                    <div style={{textTransform:"capitalize",boxShadow:"1px 1px 10px -5px #000",padding:'10px',width:"100%",margin:'10px 0',borderRadius:"10px"}}>
+                                                    
+                                                    <div className={parseInt(formValues.fund_accounts) === id ? 'accountDetailIndividual activeIndiividal':'accountDetailIndividual' }>
+                                                        <h3 style={{fontWeight:"600"}}>{name}</h3>
+                                                        <p className='m-0'>{ifsc}</p>
+                                                        <p className='m-0'>{account_number}</p>
+                                                    </div>
+                                                    {/* <input type="radio"  name='indi' id={`abc${id}`} value={id} checked/>
+                                                    <label className='accountDetailIndividual' htmlFor={`abc${id}`}>
                                                         <h3 style={{fontWeight:"600"}}>{name}</h3>
                                                         <p>{ifsc}</p>
                                                         <p>{account_number}</p>
-                                                    </div>
+                                                    </label> */}
                                                 </div>
                                             )
                                         })}

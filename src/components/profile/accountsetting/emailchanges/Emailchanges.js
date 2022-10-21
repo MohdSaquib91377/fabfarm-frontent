@@ -88,7 +88,7 @@ const Emailchanges = ({ userInfo }) => {
                 <button type='button' className='exitButtonProfile' onClick={() => setEditState(!editState)}>{editState ? 'Cancel' : 'Edit'}</button>
             </div>
 
-            <div className="account-details">
+            <div className="account-details w-100">
                 <div className="row ">
                     {
                         editState ?

@@ -53,12 +53,8 @@ const Coupon = ({ setCouponDetails }) => {
 
     return (
         <div
-            style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%'
-            }}>
-            <div className='w-75'>
+        className='coupencodeCheckout'>
+            <div>
                 <input
                     name='couponcode'
                     placeholder='Coupon code'
@@ -70,11 +66,9 @@ const Coupon = ({ setCouponDetails }) => {
                     color:'red'
                 }}>{couponErrors.couponcode}</p>
             </div>
-            <div>
                 <button
                     onClick={() => handleApply()}
-                    className="buttonViewMore p-3">Apply</button>
-            </div>
+                    className=" p-3">Apply</button>
         </div>
     )
 }

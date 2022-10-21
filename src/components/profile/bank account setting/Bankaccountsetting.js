@@ -104,7 +104,7 @@ const Bankaccountsetting = ({ profileState }) => {
         <div className='mt-3'>
           {
             editState ?
-              <form onSubmit={handleSubmit} >
+              <form onSubmit={handleSubmit} className="w-100" >
                 <div className='form-box__single-group'>
                   <p className='text-center'>{formErrors.error}</p>
                 </div>
@@ -170,16 +170,17 @@ const Bankaccountsetting = ({ profileState }) => {
               </button>
           }
         </div>
-        <div className='m-t-30'>
+        <div className='m-t-30 w-100'>
           {
             accountDetails.map((details, index) => {
               const { ifsc, account_number, name } = details;
               return (
-                <div key={index}>
-                  <h4>{name}</h4>
+                <div key={index} className=" bankDetailsIndividual">
+
+                  <h4><b>Name :</b> {name}</h4>
                   <div>
-                    <p>{ifsc}</p>
-                    <p>{account_number}</p>
+                    <p className='m-0'><b>IFSC :</b> {ifsc}</p>
+                    <p className='m-0'><b>AC NO :</b> {account_number}</p>
                   </div>
                 </div>
               )

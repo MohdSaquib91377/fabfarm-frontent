@@ -92,7 +92,8 @@ const Orderlist = ({ user }) => {
             <div key={i} className="order_list_top orderListTopMain">
                 <div style={{
                     width: '300px',
-                    overflow: 'hidden'
+                    marginBottom:'10px',
+                    overflow: 'hidden',
                 }}>
                     <Link to={`/orderproductdetails/${id}`}>
                         <img src={process.env.REACT_APP_BASE_URL + image[0].image} alt={name} />

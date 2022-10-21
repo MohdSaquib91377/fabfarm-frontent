@@ -4410,13 +4410,13 @@ ul {
   background: linear-gradient(to bottom, #0c260e, #317b31);
 }
 .index_v4
-  .header3_wrapper.dark_header
+  .header3_wrapper
   .clv_right_header
   .clv_menu
   .clv_menu_nav
   > ul
   > li {
-  padding: 24.5px 0px 31.5px;
+  padding: 24.5px 0px 31.5px !important;
 }
 .header3_wrapper {
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
@@ -10191,7 +10191,7 @@ ul {
     margin: 0;
   }
   .clv_right_header .clv_menu .clv_menu_nav > ul > li > a {
-    padding: 5px;
+    padding: 10px;
   }
   .index_v3 .dairy_about_wrapper .dairy_about_inner .about_img img {
     max-width: 100%;
@@ -10391,7 +10391,7 @@ ul {
     justify-content: flex-end;
   }
   .clv_right_header > .clv_menu > .cart_nav > ul > li:first-child {
-    padding: 39px 0px;
+    /* padding: 39px 0px; */
   }
   .clv_right_header .clv_menu .cart_nav > ul > li > a {
     color: #2a7d2e;
@@ -13054,7 +13054,7 @@ button.unset {
   }
 
   .makeStyles-root-1 {
-    width: 100% !important;
+    width: 95% !important;
   }
   .sidebar_heading h3 {
     font-size: 16px;
@@ -13229,7 +13229,6 @@ button.unset {
   .orderListTopMain > div {
     width: 100% !important;
     text-align: center;
-    margin-bottom: 20px;
   }
 
   .orderListTopMain a:nth-child(2) {
@@ -13446,9 +13445,15 @@ button.unset {
 .Range_slider_fields{
   display:flex;
   justify-content:space-between;
-  width:70%
+  width:100%
 }
-
+@media (min-width:500px) {
+  .Range_slider_fields{
+    width: 73%;
+  }
+  
+  
+}
 .Range_slider_fields input {
   width:50px;
 }
@@ -13469,4 +13474,34 @@ input::-webkit-inner-spin-button {
 }
 .product_items_section > ul> div{
 
+}
+.makeStyles-root-1 {
+  width: 67% !important;
+  margin-left: 6px;
+}
+.coupencodeCheckout{
+  display: flex;
+  width: 100%;
+}
+.coupencodeCheckout div:first-child{
+  width: 75%;
+}
+.coupencodeCheckout div:first-child input{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+.coupencodeCheckout div:first-child p{
+  margin: 0;
+}
+.coupencodeCheckout button{
+  width:25%;
+  padding:0 !important;
+  background-color: #1fa12e;
+  height:unset;
+  border: 1px solid #000;
+  
+  border-top-right-radius:5px;
+  border-bottom-right-radius: 5px;
+  color: #fff;
 }

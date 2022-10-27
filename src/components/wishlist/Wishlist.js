@@ -1,6 +1,7 @@
 import { faIndianRupee, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -14,6 +15,7 @@ const Wishlist = ({ setPopup, setPopupMessage }) => {
     const axiosPrivate = useAxiosPrivate();
     const [wishlistItems, setWishlistItems] = useState([]);
     const [onclickRemove, setOnlickRemove] = useState(false);
+    const [loader, setLoader] = useState(false);
     const removeItem = (id) => {
         axiosPrivate
             .delete(`/api/v1/wishlist/wishlist/add-to-wishlist/`, {
@@ -36,11 +38,14 @@ const Wishlist = ({ setPopup, setPopupMessage }) => {
 
         const getWishList = async () => {
             try {
+                setLoader(true)
                 const response = await axiosPrivate.get(
                     "/api/v1/wishlist/wishlist/add-to-wishlist/"
                 );
                 isMounted && setWishlistItems(response.data);
+                setLoader(false)
             } catch (error) {
+                setLoader(false)
                 throw error;
             }
         };
@@ -134,7 +139,7 @@ const Wishlist = ({ setPopup, setPopupMessage }) => {
                             width: "auto",
                         }}
                     >
-                        {wishlistItems.length !== 0 ? wishlist : "No items"}
+                        {!loader ? wishlistItems.length !== 0 ? wishlist : "No items" : <FaSpinner icon="spinner" className="spinner" />}
                     </div>
                 </div>
             </div>

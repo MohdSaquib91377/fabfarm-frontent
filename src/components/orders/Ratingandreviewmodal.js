@@ -11,9 +11,11 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 800,
+    width: "100%",
+    maxWidth:'800px',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '0px solid #000',
+    borderRadius:"10px",
     boxShadow: 24,
     p: 4,
     textAlign: 'center'
@@ -139,6 +141,7 @@ const Ratingandreviewmodal = ({ ratingAndReviewState, setRatingAndReviewState, s
                             <textarea
                                 style={{
                                     height: '150px',
+                                    marginTop:10,
                                 }}
                                 name='comment'
                                 placeholder='comment'

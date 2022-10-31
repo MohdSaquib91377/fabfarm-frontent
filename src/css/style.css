@@ -667,6 +667,8 @@ ul {
   position: relative;
   max-width: 70px;
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .item_quantity > input {
   width: 30px;
@@ -12558,6 +12560,7 @@ input.check-nav {
 }
 .cart_block {
   margin: 10px;
+  margin-left: 0;
   width: 30%;
 }
 .quantity_plus,
@@ -12589,7 +12592,7 @@ button.unset {
   width: 30%;
 }
 .overflow-cart .cart_block:nth-child(3) {
-  width: 20%;
+  width: 30%;
   display: flex;
   justify-content: flex-start;
 }

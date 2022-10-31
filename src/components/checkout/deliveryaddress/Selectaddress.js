@@ -277,7 +277,7 @@ const Selectaddress = ({ details, setFetchAddress }) => {
                             </p>
                         </div>
                         <div>
-                            <button className='exitButtonProfile'
+                            <button className='exitButtonProfile mr-0'
                                 onClick={() => setEditState(true)}
                             >
                                 Edit

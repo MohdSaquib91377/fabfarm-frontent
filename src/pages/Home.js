@@ -12,9 +12,9 @@ const Featuredproducts = lazy(() => import('../components/homepage/allproducts/F
 // const Fertilizers = lazy(() => import('../components/homepage/topproducts/Fertilizers'))
 // const Soils = lazy(() => import('../components/homepage/topproducts/Soils'))
 const Home = () => {
-    Tabtitle('FAB')
+    Tabtitle('IICARE')          
 
-
+    
     const [category, setCategory] = useState([])
     useEffect(() => {
         let isMounted = true

@@ -16,7 +16,12 @@ const Weare = () => {
                             <div className="garden_about_content pageTitle">
                                 <h1>We Are Nice People With A <br />Lot Of Experience.</h1>
                                 <h6>Farming is not just for growing crops, it is for the cultivation of human beings !!!</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temponcididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatiomco laboris nisi ut aliquip ex ea commodo consequat...</p>
+                                <p>                  iiCARE, with an expansive vision of “Bring acceleration to
+                  planet preservation and innovation to forestall climate
+                  change”, strives to partner with organisations and climate
+                  enthusiasts to co-design and implement end to end nature-based
+                  solutions to reduce and mitigate GHG emissions in alignment
+                  with the United Nations Sustainable Development Goals.</p>
 
                                 <div className="garden_contact_section">
                                     <Link to='/aboutus' className="clv_btn">more details</Link>

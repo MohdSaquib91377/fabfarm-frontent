@@ -21,7 +21,7 @@ const Footer = () => {
                                  <a href='tel:+917977024074' className='footeratag'> 7977024074</a> </p>
                             <p>
                                 <FontAwesomeIcon icon={faEnvelopeOpen} />
-                                <a className='footeratag' href='mailto:support@iicare.org'> info@osty.in</a></p>
+                                <a className='footeratag' href='mailto:info@osty.in'> info@osty.in</a></p>
                             <ul className="agri_social_links">
                                 <li>
                                     <a href='https://facebook.com'>

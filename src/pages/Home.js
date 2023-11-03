@@ -12,7 +12,7 @@ const Featuredproducts = lazy(() => import('../components/homepage/allproducts/F
 // const Fertilizers = lazy(() => import('../components/homepage/topproducts/Fertilizers'))
 // const Soils = lazy(() => import('../components/homepage/topproducts/Soils'))
 const Home = () => {
-    Tabtitle('IICARE')          
+    Tabtitle('Osty')          
 
     
     const [category, setCategory] = useState([])

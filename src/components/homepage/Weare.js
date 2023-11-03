@@ -16,7 +16,7 @@ const Weare = () => {
                             <div className="garden_about_content pageTitle">
                                 <h1>We Are Nice People With A <br />Lot Of Experience.</h1>
                                 <h6>Farming is not just for growing crops, it is for the cultivation of human beings !!!</h6>
-                                <p>                  iiCARE, with an expansive vision of “Bring acceleration to
+                                <p>                  OSTY, with an expansive vision of “Bring acceleration to
                   planet preservation and innovation to forestall climate
                   change”, strives to partner with organisations and climate
                   enthusiasts to co-design and implement end to end nature-based

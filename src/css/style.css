@@ -1248,7 +1248,7 @@ ul {
 *******************************************************/
 .clv_testimonial_wrapper {
   position: relative;
-  background: url("../../public/images/hands-g0eecfe8b7_640.jpg") no-repeat
+  background: url("../../public/images/banner-2.jpg") no-repeat
     center;
   background-size: cover;
   z-index: 1;
@@ -4409,7 +4409,8 @@ ul {
   -moz-transition: all 0.3s ease-in-out;
 }
 .index_v4 .header3_wrapper.dark_header {
-  background: linear-gradient(to bottom, #0c260e, #317b31);
+  /* background: linear-gradient(to bottom, #0c260e, #317b31); */
+  background: linear-gradient(to bottom, #0c260e, #010101);
 }
 .index_v4
   .header3_wrapper
@@ -4845,7 +4846,7 @@ ul {
 /*Garden About End*/
 /*Garden Counter Start*/
 .index_v4 .clv_counter_wrapper {
-  background: url("../../public/images/home/grass.jpg") no-repeat center;
+  background: url("../../public/images/banner-6.jpg") no-repeat center;
   background-size: cover;
 }
 .index_v4 .clv_counter_wrapper:before {
@@ -5711,7 +5712,8 @@ ul {
 /*Garden Footer Start*/
 .index_v4 .clv_footer_wrapper {
   background: none;
-  background: linear-gradient(to top, #0c260e, #317b31);
+  /* background: linear-gradient(to top, #0c260e, #317b31); */
+  background: linear-gradient(to top, #111111, #0d0d0d);
   padding-top: 45px;
   padding-bottom: 40px;
 }
@@ -9509,7 +9511,8 @@ ul {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #2a7d2e;
+  /* background-color: #2a7d2e; */
+  background-color: #010101;
   z-index: -1;
   border-radius: 10px 0px 0px 10px;
 }
@@ -9745,7 +9748,8 @@ ul {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #2a7d2e;
+  /* background-color: #2a7d2e; */
+  background-color: #010101;
   z-index: -1;
   border-radius: 10px 0px 0px 10px;
 }

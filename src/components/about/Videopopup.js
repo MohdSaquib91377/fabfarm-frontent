@@ -23,6 +23,7 @@ const Videopopup = ({ videoPopup, setVideoPopup }) => {
             >
                 <Box sx={style}>
                     <video src='/images/video/Nature Beautiful short video 720p HD.mp4' width="100%"  controls autoPlay loop />
+                    {/* <video src='/images/video/Nature Beautiful short video 720p HD.mp4' width="100%"  controls autoPlay loop /> */}
                 </Box>
             </Modal>
         </div>)

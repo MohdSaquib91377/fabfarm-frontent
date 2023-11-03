@@ -55,29 +55,24 @@ const About = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="about_img">
-                <img src="/images/hands-g0eecfe8b7_640.jpg" alt="image" />
+                <img src="/images/p-2.png" alt="image" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="about_content">
                 <div className="about_heading">
                   <h2>
-                    Welcome to Our <span>IICARE</span>
+                    Welcome to Our <span>OSTY</span>
                   </h2>
                   <h6>
-                    INTERNATIONAL INSTITUTE FOR CLIMATE ACTION AND RENEWED EARTH
+                    OSTY The Online store of Premium Luggage & Bags.
                   </h6>
                   <div className="clv_underline">
                     <img src="/images/underline.png" alt="image" />
                   </div>
                 </div>
                 <p>
-                  iiCARE, with an expansive vision of “Bring acceleration to
-                  planet preservation and innovation to forestall climate
-                  change”, strives to partner with organisations and climate
-                  enthusiasts to co-design and implement end to end nature-based
-                  solutions to reduce and mitigate GHG emissions in alignment
-                  with the United Nations Sustainable Development Goals.
+                OSTY Luggage Collection is the best fit for the fashionable peoples looking to add style to their travels.Perfect for a quick getaway or a real adventure, OSTY has the travel bags to suit the destination. This collection will be your companion on countless journeys.
                 </p>
                 <div className="video_block">
                   <div className="video_btn">

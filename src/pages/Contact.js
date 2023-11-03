@@ -157,8 +157,8 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                     </ul>
                                 </div>
                                 <a className="tollfree_block" href='tel:12025550101'>
-                                    <h5>toll free number</h5>
-                                    <h3>+1-202-555-0101</h3>
+                                    <h5>Support Number</h5>
+                                    <h3>+91 79770 24074</h3>
                                 </a>
                             </div>
                         </div>
@@ -173,10 +173,10 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 <span></span>
                                 <div className="contact_icon"><img src="/images/contact_icon1.png" alt="image" /></div>
                                 <h4>contact us</h4>
-                                <a href='tel:919112293300' className='normalLink'>
+                                <a href='tel:917977024074' className='normalLink'>
 
                                 <p>
-                                    +91 91122 93300
+                                    +91 79770 24074
                                 </p>
                                 </a>
                             </div>
@@ -186,10 +186,10 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 <span></span>
                                 <div className="contact_icon"><img src="/images/contact_icon2.png" alt="image" /></div>
                                 <h4>email</h4>
-                                <a className='normalLink' href="mailto:farmersallianceforbusiness@gmail.com">
+                                <a className='normalLink' href="mailto:info@osty.in">
 
                                     <p className='normalLink'>
-                                        farmersallianceforbusiness@gmail.com
+                                        info@osty.in
                                     </p>
                                 </a>
                             </div>
@@ -202,7 +202,7 @@ const Contact = ({setPopup,setPopupMessage}) => {
                                 <a href='https://goo.gl/maps/WDEtXJeW2ha5tXFa7' target="_blank" className='normalLink'>
 
                                 <p className='normalLink'>
-                                    Baramati, Maharastra, India.
+                                    Godown no. 240-A, dinanath compound, behind Alfred cinema, at 10 khetwadi Lane, Pb Marg, Grant Road East, Mumbai 400004
                                 </p>
                                 </a>
                             </div>
@@ -214,7 +214,8 @@ const Contact = ({setPopup,setPopupMessage}) => {
             <div className="contact_map_wrapper">
                 {/* map iframe  */}
                 <div id="map"> 
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60650.7600801978!2d74.5553722474847!3d18.17899432569775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc3a03bdb59287f%3A0x36e4fb47fb8d8a9d!2sBaramati%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1658899556967!5m2!1sen!2sin" width="600" height="450"  allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.14571337597!2d72.71637411447857!3d19.082177513371683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699022489284!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> */}
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.14571337597!2d72.71637411447857!3d19.082177513371683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699022489284!5m2!1sen!2sin" width="600" height="450"  allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             <br />

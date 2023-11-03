@@ -43,7 +43,7 @@ const Abouttestimonial = () => {
                             </div>
                             <div className="client_message">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ilabore et dadhjiolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi liquip ex ea commodoersio consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugt nulla pariatuaerniri Excepteur sint occaecat cupidatat non proident.</p>
-                                <h3>Halil Alex <span> Agriculture Expert</span></h3>
+                                <h3>Halil Alex <span> Luggage Expert</span></h3>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ const Abouttestimonial = () => {
                             </div>
                             <div className="client_message">
                                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi liquip ex ea commodoersio consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugt nulla pariatuaerniri Excepteur sint occaecat cupidatat non proident. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ilabore et dadhjiolore magna aliqua.</p>
-                                <h3>john paradox <span> Agriculture Expert</span></h3>
+                                <h3>john paradox <span> Bags Expert</span></h3>
                             </div>
                         </div>
                     </div>

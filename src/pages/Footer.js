@@ -11,17 +11,17 @@ const Footer = () => {
 
                     <div className="col-md-4">
                         <div className="footer_block">
-                            <div className="footer_logo"><Link to='/'><img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="image" /></Link></div>
+                            <div className="footer_logo"><Link to='/'><img src={process.env.PUBLIC_URL + "/logo.png"} alt="osty logo" /></Link></div>
                             {/* <p>
                                 <FontAwesomeIcon icon={faLocationArrow} />
                                  <a href='https://goo.gl/maps/zEq3HEeSXJ8cAWze9' className='footeratag'> Baramati, Maharastra, India.</a>
                                  </p> */}
                             <p>
                                 <FontAwesomeIcon icon={faPhone} />
-                                 <a href='tel:919112293300' className='footeratag'> 123456789</a> </p>
+                                 <a href='tel:+917977024074' className='footeratag'> 7977024074</a> </p>
                             <p>
                                 <FontAwesomeIcon icon={faEnvelopeOpen} />
-                                <a className='footeratag' href='mailto:support@iicare.org'> support@iicare.org</a></p>
+                                <a className='footeratag' href='mailto:support@iicare.org'> info@osty.in</a></p>
                             <ul className="agri_social_links">
                                 <li>
                                     <a href='https://facebook.com'>

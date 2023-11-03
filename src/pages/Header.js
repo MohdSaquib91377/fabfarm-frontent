@@ -84,7 +84,7 @@ const Header = ({ totalCartCount, isAuthorized, cart }) => {
                                     <a href="/"><img style={{
                                         height:'100px',
                                         width:'100px'
-                                    }} src={process.env.PUBLIC_URL + "/images/logo.png"} alt="fab logo" /></a>
+                                    }} src={process.env.PUBLIC_URL + "/logo.png"} alt="osty logo" /></a>
                                 </div>
                             </div>
                         </div>

@@ -155,9 +155,9 @@ const Signup = ({ setSigninOpen, setSignupOpen, signupOpen, setUser, setUserInfo
             <div className="signup_inner">
                 <div className="signup_details">
                     <div className="site_logo">
-                        <a href="index.html"> <img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="image" /></a>
+                        <a href="index.html"> <img src={process.env.PUBLIC_URL + "/logo.png"} alt="image" /></a>
                     </div>
-                    <h3>welcome to cultivation!</h3>
+                    <h3>welcome to Osty!</h3>
                     <p>Consectetur adipisicing elit sed do eiusmod por incididunt uttelabore et dolore magna aliqu.</p>
                     <button onClick={triggersignin} className="clv_btn white_btn pop_signin">sign in</button>
                     <ul>

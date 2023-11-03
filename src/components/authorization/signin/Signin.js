@@ -275,9 +275,9 @@ const Signin = ({ setIsAuthorized, setSigninOpen, setSignupOpen, signinOpen, set
                 <div className="signup_inner">
                     <div className="signup_details">
                         <div className="site_logo">
-                            <a href="index.html"> <img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="signinimage" /></a>
+                            <a href="index.html"> <img src={process.env.PUBLIC_URL + "/logo.png"} alt="signinimage" /></a>
                         </div>
-                        <h3>welcome to cultivation!</h3>
+                        <h3>welcome to Osty!</h3>
                         {/* <svg
                             xmlns="http://www.w3.org/2000/svg"
                             x="0px"
